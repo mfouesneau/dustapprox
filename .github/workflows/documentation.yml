@@ -27,7 +27,6 @@ jobs:
       working-directory: ./docs
       run: |
         # clear previous API documentation
-        cd docs
         rm -f gdr3_dustapprox.rst gdr3_dustapprox.*.rst
         # re-generate API documentation
         make apidoc
