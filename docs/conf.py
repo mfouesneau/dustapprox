@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.abspath('..'))
 from pkg_resources import DistributionNotFound, get_distribution
 
 try:
-    __version__ = get_distribution("emcee").version
+    __version__ = get_distribution("gdr3_dustapprox").version
 except DistributionNotFound:
     __version__ = "unknown version"
 

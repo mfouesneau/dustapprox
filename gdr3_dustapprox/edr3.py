@@ -41,7 +41,6 @@ increasing with :math:`0.01 mag`.
       and for the upper HR diagram (giants, upper MS, etc.) up to :math:`M_G
       \sim 5 mag`.
 
-
 """
 from typing import Union, Sequence
 import pandas as pd
@@ -52,12 +51,19 @@ _PACKAGE_PATH_ = os.path.split(os.path.realpath(__file__))[0]
 _DATA_PATH_ = os.path.join(_PACKAGE_PATH_, 'data')
 
 class edr3_ext:
-    """ provide extinction coefficient k_x = A_x / A0 for Gaia eDR3 passbands (G, BP, RP)
+    """ provide extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (G, BP, RP)
 
     This class provides a simple access to their expressions
-    for X=(GBP-GRP)0, (G-K)0, and TeffNorm = Teff / 5040 K
-    and for the bands m = G, GBP, GRP,  and J, H, and Ks, corresponding to the 2MASS passbands.
-    The fit itself has a maximum uncertainty of 3.5%, 1.5%, and 1% in the G, GBP, and GRP bands, respectively.
+    for :math:`X=(G_{BP}-G_{RP})_0, (G-K)_0`, and :math:`T_{eff}`,
+    and for the bands :math:`m = G, GBP, GRP`,  and :math:`J, H`, and
+    :math:`Ks`, corresponding to the 2MASS passbands.  The fit itself has a
+    maximum uncertainty of 3.5%, 1.5%, and 1% in the :math:`G, G_{BP}`, and
+    :math:`G_{RP}` bands, respectively.
+
+    .. note::
+
+        The relations with temperature use internally :math:`T_{eff}^{Norm} = T_{eff} / 5040 K`, but
+        the function argument is :math:`T_{eff}` for simplicity.
 
     Data taken from: https://www.cosmos.esa.int/web/gaia/edr3-extinction-law
     """
@@ -68,13 +74,31 @@ class edr3_ext:
         self.Ay_top = pd.read_csv(os.path.join(_DATA_PATH_, datafiles[0])).set_index(['Kname', 'Xname'])
         self.Ay_ms = pd.read_csv(os.path.join(_DATA_PATH_, datafiles[1])).set_index(['Kname', 'Xname'])
 
-    def from_(self, name: str, Xname: str,
+    def _from(self, name: str, Xname: str,
               Xval: Union[float, Sequence[float], np.array],
               a0: Union[float, Sequence[float], np.array],
               flavor: str ='top'
              ) -> Union[float, Sequence[float], np.array]:
-        """Internal access to the equations"""
+        """Internal access to the equations
 
+        Parameters
+        ----------
+        name : str
+            The name of the band ('G', 'BP', or 'RP')
+        Xname : str
+            The name of the variable to be used as X (e.g., TeffNorm, BPRP, GK)
+        Xval : float or array_like
+            The value of the variable to be used as X
+        a0 : float or array_like
+            The value of the extinction at 550 nm
+        flavor : str
+            The type of the data to be used ('top' or 'ms')
+
+        Returns
+        -------
+        float or array_like
+            The extinction coefficient A_x / A_0
+        """
         if flavor == 'top':
             data = self.Ay_top
         else:
@@ -103,7 +127,24 @@ class edr3_ext:
               a0: Union[float, Sequence[float], np.array],
               flavor: str ='top'
              ) -> Union[float, Sequence[float], np.array]:
-        """Relation based on temperature of the source"""
+        """Relation based on temperature of the source
+
+        Parameters
+        ----------
+        name : str
+            The name of the band ('G', 'BP', or 'RP')
+        teff : float or array_like
+            The values of :math:`T_{eff}`
+        a0 : float or array_like
+            The value of the extinction at 550 nm
+        flavor : str
+            The type of the data to be used ('top' or 'ms')
+
+        Returns
+        -------
+        float or array_like
+            The extinction coefficient A_x / A_0
+        """
         teffnorm = teff / 5040.
         return self.from_(name, 'TeffNorm', teffnorm, a0, flavor)
 
@@ -112,7 +153,24 @@ class edr3_ext:
               a0: Union[float, Sequence[float], np.array],
               flavor: str ='top'
              ) -> Union[float, Sequence[float], np.array]:
-        """Relation based on BP-RP of the source"""
+        """Relation based on BP-RP of the source
+
+        Parameters
+        ----------
+        name : str
+            The name of the band ('G', 'BP', or 'RP')
+        bprp : float or array_like
+            The :math:`G_{BP} - G_{RP}` color values
+        a0 : float or array_like
+            The value of the extinction at 550 nm
+        flavor : str
+            The type of the data to be used ('top' or 'ms')
+
+        Returns
+        -------
+        float or array_like
+            The extinction coefficient A_x / A_0
+        """
         return self.from_(name, 'BPRP', bprp, a0, flavor)
 
     def from_GmK(self, name: str,
@@ -120,5 +178,22 @@ class edr3_ext:
               a0: Union[float, Sequence[float], np.array],
               flavor: str ='top'
              ) -> Union[float, Sequence[float], np.array]:
-        """Relation based on G-Ks of the source"""
+        """Relation based on G-Ks of the source
+
+        Parameters
+        ----------
+        name : str
+            The name of the band ('G', 'BP', or 'RP')
+        gmk : float or array_like
+            The G-Ks color values
+        a0 : float or array_like
+            The value of the extinction at 550 nm
+        flavor : str
+            The type of the data to be used ('top' or 'ms')
+
+        Returns
+        -------
+        float or array_like
+            The extinction coefficient A_x / A_0
+        """
         return self.from_(name, 'GK', gmk, a0, flavor)
