@@ -1,18 +1,28 @@
 from setuptools import setup, find_packages
 from distutils.util import convert_path
 
-main_ns = {}
-ver_path = convert_path('gdr3_dustapprox/version.py')
-with open(ver_path) as ver_file:
-    exec(ver_file.read(), main_ns)
+def version():
+    """Get the version tag from the package """
+    main_ns = {}
+    ver_path = convert_path('gdr3_dustapprox/version.py')
+    with open(ver_path) as ver_file:
+        exec(ver_file.read(), main_ns)
+    return main_ns['__VERSION__']
 
 
 def readme():
+    """ get readme content """
     with open('README.rst') as f:
         return f.read()
 
+
+def requirements():
+    """ get requirements content """
+    with open('requirements.txt') as f:
+        return f.read().splitlines()
+
 setup(name = "gdr3_dustapprox",
-    version = main_ns['__VERSION__'],
+    version = version(),
     description = "A tool for computing extinction coefficients in a quick and dirty manner",
     long_description = readme(),
     author = "Morgan Fouesneau",
@@ -30,5 +40,5 @@ setup(name = "gdr3_dustapprox",
       ],
     zip_safe=False,
     python_requires=">=3.6",
-    install_requires=["numpy", "scipy"]
+    install_requires=requirements()
 )

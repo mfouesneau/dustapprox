@@ -6,4 +6,5 @@ requires = ["setuptools",
             "cython",
             "numpy",
             "scipy",
+            "pyyaml",
             "extension-helpers"]
