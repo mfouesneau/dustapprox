@@ -10,5 +10,5 @@
     "python.testing.unittestEnabled": true,
     "esbonio.server.enabled": true,
     "restructuredtext.confPath": "${workspaceFolder}/docs",
-    "esbonio.sphinx.confDir": "/Users/fouesneau/Work/gdr3_dustapprox/docs"
+    "esbonio.sphinx.confDir": "${workspaceFolder}/docs"
 }
