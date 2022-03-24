@@ -12,6 +12,14 @@ gdr3\_dustapprox.io.ecsv module
    :undoc-members:
    :show-inheritance:
 
+gdr3\_dustapprox.io.svo module
+------------------------------
+
+.. automodule:: gdr3_dustapprox.io.svo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

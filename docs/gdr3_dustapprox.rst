@@ -28,6 +28,14 @@ gdr3\_dustapprox.edr3 module
    :undoc-members:
    :show-inheritance:
 
+gdr3\_dustapprox.extinction module
+----------------------------------
+
+.. automodule:: gdr3_dustapprox.extinction
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gdr3\_dustapprox.version module
 -------------------------------
 

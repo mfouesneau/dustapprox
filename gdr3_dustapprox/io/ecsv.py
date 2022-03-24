@@ -42,7 +42,9 @@ example of file::
 
 .. seealso::
 
-    https://github.com/astropy/astropy-APEs/blob/main/APE6.rst
+    `Enhanced Character Separated Values table format description
+    <https://github.com/astropy/astropy-APEs/blob/main/APE6.rst>`_ from the
+    Astropy project.
 
 """
 import textwrap

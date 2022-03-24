@@ -46,6 +46,7 @@ extensions = [
     "sphinx.ext.mathjax",
     'sphinx.ext.githubpages',
     "myst_nb",
+    "matplotlib.sphinxext.plot_directive"
 ]
 
 myst_enable_extensions = ["dollarmath", "colon_fence"]

@@ -3,7 +3,7 @@ Provide extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (
 
 Data and equations taken from: https://www.cosmos.esa.int/web/gaia/edr3-extinction-law
 
-Extinction coefficients depend both on the source spectral energy distribution
+Extinction coefficients depend on the source spectral energy distribution
 and on the extinction itself (e.g., Gordon et al., 2016; Jordi et al., 2010).
 
 Following the method presented in Danielski et al. (2018), DPAC computed the
