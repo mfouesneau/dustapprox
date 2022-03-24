@@ -17,21 +17,15 @@ jobs:
         fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
     #- name: Setup tmate session   # Debugging
     #  uses: mxschmitt/action-tmate@v3
-    - name: setup python
-      working-directory: ./
-      run: |
-        pip install -r requirements.txt
-        pip install -r docs/requirements.txt
-        pip install .
-    - name: build doc tables
-      working-directory: ./docs
-      run: |
-        # clear previous API documentation
-        rm -f gdr3_dustapprox.rst gdr3_dustapprox.*.rst
-        # re-generate API documentation
-        make apidoc
     - uses: ammaraskar/sphinx-action@master
       with:
+        pre-build-command: |
+          python -m pip install -r ../requirements.txt
+          python -m pip install -r requirements.txt
+          # clear previous API documentation
+          rm -f gdr3_dustapprox.rst gdr3_dustapprox.*.rst
+          # re-generate API documentation
+          make apidoc
         docs-folder: "docs/"
     # Publish built docs to gh-pages branch.
     # ======================================
