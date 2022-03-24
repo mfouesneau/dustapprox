@@ -127,3 +127,6 @@ dmypy.json
 .pyre/
 
 .DS_Store
+
+# ignore model data
+models/*

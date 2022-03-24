@@ -17,13 +17,32 @@ the Gaia :math:`G_{BP}-G_{RP}` color:
 
     Those relations depend on :math:`A_G`, not :math:`A_0`.
 
+The :math:`C1` Gaia photometric system
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The original design for Gaia included a set of photometric filters (see Jordi et
+al., 2006), the C1B and C1M systems for the broad and medium band passbands,
+respectively.  The C1 system was specifically desgined to maximize the
+scientific return in terms of stellar astrophysical parameters.
+
+Eventually, construction and budget constraints led ESA to adopt prisms in the
+final design of Gaia, which cover for those passbands.
+
+For example :math:`C1M467-C1M515` color is sensitive to
+surface gravity (:math:`\log g`) and :math:`C1B556-C1B996` is sensitive to the effective
+temperature :math:`T_{eff}`.
+
+.. todo::
+
+    Make a table with the C1 indices
+
 """
 from typing import Union
 import numpy as np
 from .io import ecsv
 
 
-class C1M_extinction:
+class C1_extinction:
     """Function to get the extinction coefficients A_X / A_G in C1M system
 
     The procedure is detailed in the appendix E of Bellazzini et al. (2022).
