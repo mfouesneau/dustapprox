@@ -3,3 +3,4 @@ scipy
 pyphot
 pyyaml
 pandas
+astropy
