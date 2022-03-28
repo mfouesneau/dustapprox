@@ -102,7 +102,7 @@ class edr3_ext:
         if flavor == 'top':
             data = self.Ay_top
         else:
-            data = self.Ay_MS
+            data = self.Ay_ms
         coeffs = data.loc[name, Xname]
         X_ = np.atleast_1d(Xval)
         X_2 = X_ ** 2
@@ -146,7 +146,7 @@ class edr3_ext:
             The extinction coefficient A_x / A_0
         """
         teffnorm = teff / 5040.
-        return self.from_(name, 'TeffNorm', teffnorm, a0, flavor)
+        return self._from(name, 'TeffNorm', teffnorm, a0, flavor)
 
     def from_bprp(self, name: str,
               bprp: Union[float, Sequence[float], np.array],
@@ -171,7 +171,7 @@ class edr3_ext:
         float or array_like
             The extinction coefficient A_x / A_0
         """
-        return self.from_(name, 'BPRP', bprp, a0, flavor)
+        return self._from(name, 'BPRP', bprp, a0, flavor)
 
     def from_GmK(self, name: str,
               gmk: Union[float, Sequence[float], np.array],
@@ -196,4 +196,4 @@ class edr3_ext:
         float or array_like
             The extinction coefficient A_x / A_0
         """
-        return self.from_(name, 'GK', gmk, a0, flavor)
+        return self._from(name, 'GK', gmk, a0, flavor)
