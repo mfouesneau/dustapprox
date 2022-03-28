@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.abspath('..'))
 from pkg_resources import DistributionNotFound, get_distribution
 
 try:
-    __version__ = get_distribution("gdr3_dustapprox").version
+    __version__ = get_distribution("dustapprox").version
 except DistributionNotFound:
     __version__ = "unknown version"
 
@@ -66,7 +66,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'gdr3_dustapprox'
+project = 'dustapprox'
 copyright = '2022, DPAC - M. Fouesneau, R. Andrae, R. Sordo ...'
 author = 'M. Fouesneau, R. Andrae, R. Sordo ...'
 
@@ -126,7 +126,7 @@ execution_timeout = -1
 #html_theme_options = {}
 html_theme_options = {
     "path_to_docs": "docs",
-    "repository_url": "https://github.com/mfouesneau/gdr3_dustapprox",
+    "repository_url": "https://github.com/mfouesneau/dustapprox",
     "launch_buttons": {
         "binderhub_url": "https://mybinder.org",
         "notebook_interface": "classic",

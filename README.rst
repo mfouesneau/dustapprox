@@ -1,9 +1,13 @@
-gdr3_dustapprox -- A tool for computing approximative extinction coefficients
+dustapprox -- A tool for computing approximative extinction coefficients
 =============================================================================
 
 This is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
 
 full documentation at:  XXXXXXXX
+
+.. warning::
+
+    This package will move to `dustapprox`
 
 
 Installation
