@@ -1,7 +1,7 @@
-gdr3_dustapprox
-===============
+dustapprox
+==========
 
 .. toctree::
    :maxdepth: 4
 
-   gdr3_dustapprox
+   dustapprox
