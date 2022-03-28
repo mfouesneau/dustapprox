@@ -8,6 +8,7 @@ Subpackages
    :maxdepth: 4
 
    gdr3_dustapprox.io
+   gdr3_dustapprox.models
 
 Submodules
 ----------
