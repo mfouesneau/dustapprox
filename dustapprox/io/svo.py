@@ -162,7 +162,7 @@ def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[UnitFi
 
         import matplotlib.pyplot as plt
 
-        from gdr3_dustapprox.io import svo
+        from dustapprox.io import svo
         which_filters = ['GAIA/GAIA3.Gbp', 'GAIA/GAIA3.Grp', 'GAIA/GAIA3.G']
         passbands = svo.get_svo_passbands(which_filters)
 

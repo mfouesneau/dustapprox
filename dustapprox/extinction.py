@@ -145,7 +145,7 @@ class CCM89(ExtinctionLaw):
         import matplotlib.pyplot as plt
         import astropy.units as u
 
-        from gdr3_dustapprox.extinction import CCM89
+        from dustapprox.extinction import CCM89
 
         #define the wave numbers
         x = np.arange(0.1, 10, 0.1)    # in microns^{-1}
@@ -283,7 +283,7 @@ class F99(ExtinctionLaw):
         import matplotlib.pyplot as plt
         import astropy.units as u
 
-        from gdr3_dustapprox.extinction import F99
+        from dustapprox.extinction import F99
 
         #define the wave numbers
         x = np.arange(0.1, 10, 0.1)    # in microns^{-1}
