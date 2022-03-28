@@ -38,6 +38,9 @@ model should explain well the data while being simple.
 
 
 .. plot::
+    :caption: Statistics on polynomial approximation of extinction effect per passband.
+              The top panel shows the residual statistics of the model to the grid values, while the bottom
+              panel shows the meaningful coefficient amplitudes. (Grey pixels indicate values below :math:`10^{-5}`).
 
     import pylab as plt
     from gdr3_dustapprox.models import polynomial
