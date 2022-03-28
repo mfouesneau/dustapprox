@@ -9,7 +9,7 @@ BUILDDIR      = _build
 
 APIBUILD      = sphinx-apidoc
 APIOPTS       = -o ./
-APIDIR        = ../gdr3_dustapprox
+APIDIR        = ../dustapprox
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
