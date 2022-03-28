@@ -1,4 +1,4 @@
-Welcome to gdr3_dustapprox's documentation!
+Welcome to dustapprox's documentation!
 ===========================================
 
 This package is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
@@ -14,14 +14,14 @@ Literature Extinction approximations
 
 We provide multiple literature approximations with this package
 
-* :class:`gdr3_dustapprox.edr3.edr3_ext` provides the Riello et al. (2020) approximation, i.e.,
+* :class:`dustapprox.edr3.edr3_ext` provides the Riello et al. (2020) approximation, i.e.,
   extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (G, BP, RP).
 
   .. warning::
 
      Their calibration only accounted for solar metallicity.
 
-* :class:`gdr3_dustapprox.c1m.C1_extinction` provides the Bellazzini et al. (2022) approximation, i.e.,
+* :class:`dustapprox.c1m.C1_extinction` provides the Bellazzini et al. (2022) approximation, i.e.,
   extinction coefficient :math:`k_x = A_x / A_G` for Gaia :math:`C1` passbands.
 
   .. warning::
@@ -60,9 +60,9 @@ All files from SVO have the same format, but the spectra are not on the same wav
 The parameters of the spectra may vary from source to source. For instance, they may not provide microturbulence velocity or alpha/Fe etc.
 We technically require only :math:`T_{eff}` and :math:`[Fe/H]` to be provided.
 
-* :class:`gdr3_dustapprox.io.svo` provides means to read SVO atmosphere models.
+* :class:`dustapprox.io.svo` provides means to read SVO atmosphere models.
 
-  see :func:`gdr3_dustapprox.io.svo.spectra_file_reader`, and :func:`gdr3_dustapprox.io.svo.get_svo_sprectum_units`
+  see :func:`dustapprox.io.svo.spectra_file_reader`, and :func:`dustapprox.io.svo.get_svo_sprectum_units`
 
 
 **example usage**
@@ -75,7 +75,7 @@ is the distance to Earth in consistent units.
    :include-source:
 
    import matplotlib.pyplot as plt
-   from gdr3_dustapprox.io import svo
+   from dustapprox.io import svo
 
    models = ['models/Kurucz2003all/fm05at10500g40k2odfnew.fl.dat.txt',
              'models/Kurucz2003all/fm05at5000g25k2odfnew.fl.dat.txt',
@@ -122,7 +122,7 @@ For the photometry, we use `pyphot
 <https://mfouesneau.github.io/pyphot/index.html>`_ a suite to compute synthetic
 photometry in flexible ways.
 
-* :func:`gdr3_dustapprox.io.svo.get_svo_passbands` to interface the `SVO Filter Profile Service
+* :func:`dustapprox.io.svo.get_svo_passbands` to interface the `SVO Filter Profile Service
   <http://svo2.cab.inta-csic.es/theory/fps/index.php>`_, which provides us with
   a large collection of passbands. This a wrapper around `pyphot <https://mfouesneau.github.io/pyphot/index.html>`_.
 
@@ -135,7 +135,7 @@ photometry in flexible ways.
 
    import matplotlib.pyplot as plt
 
-   from gdr3_dustapprox.io import svo
+   from dustapprox.io import svo
    which_filters = ['GAIA/GAIA3.Gbp', 'GAIA/GAIA3.Grp', 'GAIA/GAIA3.G']
    passbands = svo.get_svo_passbands(which_filters)
 
@@ -162,7 +162,7 @@ Magellanic Clouds (Gordon & Clayton 1998; Misselt et al. 1999; Maiz Apellaniz &
 Rubio 2012) as well as in M31 (Bianchi et al. 1996, Clayton et al. 2015).
 
 
-* :class:`gdr3_dustapprox.extinction` provides a common interface to many
+* :class:`dustapprox.extinction` provides a common interface to many
   commonly used extinction curves.
 
 .. plot::
@@ -173,7 +173,7 @@ Rubio 2012) as well as in M31 (Bianchi et al. 1996, Clayton et al. 2015).
    import matplotlib.pyplot as plt
    import astropy.units as u
 
-   from gdr3_dustapprox.extinction import CCM89, F99
+   from dustapprox.extinction import CCM89, F99
 
    #define the wave numbers
    x = np.arange(0.1, 10, 0.1)    # in microns^{-1}
@@ -207,8 +207,8 @@ Once we have the above ingredients, we can bring them together to generate a lar
 
    import numpy as np
    import matplotlib.pyplot as plt
-   from gdr3_dustapprox.io import svo
-   from gdr3_dustapprox.extinction import F99
+   from dustapprox.io import svo
+   from dustapprox.extinction import F99
 
    modelfile = 'models/Kurucz2003all/fm05at10500g40k2odfnew.fl.dat.txt'
    data = svo.spectra_file_reader(modelfile)
@@ -255,8 +255,8 @@ Creating a grid of models
    import pandas as pd
    from glob import glob
    from tqdm import tqdm
-   from gdr3_dustapprox.io import svo
-   from gdr3_dustapprox.extinction import F99
+   from dustapprox.io import svo
+   from dustapprox.extinction import F99
    from pyphot.astropy.sandbox import Unit as U
 
 

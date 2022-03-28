@@ -4,7 +4,7 @@ from distutils.util import convert_path
 def version():
     """Get the version tag from the package """
     main_ns = {}
-    ver_path = convert_path('gdr3_dustapprox/version.py')
+    ver_path = convert_path('dustapprox/version.py')
     with open(ver_path) as ver_file:
         exec(ver_file.read(), main_ns)
     return main_ns['__VERSION__']
@@ -21,15 +21,15 @@ def requirements():
     with open('requirements.txt') as f:
         return f.read().splitlines()
 
-setup(name = "gdr3_dustapprox",
+setup(name = "dustapprox",
     version = version(),
     description = "A tool for computing extinction coefficients in a quick and dirty manner",
     long_description = readme(),
     author = "Morgan Fouesneau",
     author_email = "",
-    url = "https://github.com/mfouesneau/gdr3_dustapprox",
+    url = "https://github.com/mfouesneau/dustapprox",
     packages = find_packages(),
-    package_data = {'gdr3_dustapprox':['data/*']},
+    package_data = {'dustapprox':['data/*']},
     include_package_data = True,
     classifiers=[
       'Intended Audience :: Science/Research',
