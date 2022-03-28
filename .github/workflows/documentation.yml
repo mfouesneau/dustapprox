@@ -15,18 +15,22 @@ jobs:
       with:
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
         fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-    #- name: Setup tmate session   # Debugging
-    #  uses: mxschmitt/action-tmate@v3
-    - uses: ammaraskar/sphinx-action@master
+    
+    - name: sphinx-action@master
+      uses: ammaraskar/sphinx-action@master
       with:
         pre-build-command: |
           python -m pip install -r requirements.txt
           python -m pip install -r docs/requirements.txt
+          python -m pip show markupsafe
           # clear previous API documentation
           rm -f gdr3_dustapprox.rst gdr3_dustapprox.*.rst
           # re-generate API documentation
           make apidoc
         docs-folder: "docs/"
+        
+    - name: Setup tmate session   # Debugging
+      uses: mxschmitt/action-tmate@v3
     # Publish built docs to gh-pages branch.
     # ======================================
     - name: Commit documentation changes
