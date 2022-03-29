@@ -10,6 +10,14 @@ full documentation at:  XXXXXXXX
     This package will move to `dustapprox`
 
 
+Quick Start
+-----------
+
+.. todo::
+
+    * add some quick examples of usage from precomputed models
+
+
 Installation
 ------------
 * Installation from PyPI
