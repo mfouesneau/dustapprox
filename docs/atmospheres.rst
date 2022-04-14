@@ -63,10 +63,6 @@ is the distance to Earth in consistent units.
    plt.xlim(800, 1e5)
 
 
-.. warning::
-
-   We do not provide an interface to download the atmospheres from SVO. (in this version at least)
-
 
 Pre-compiled atmosphere libraries
 ---------------------------------
@@ -74,10 +70,19 @@ Pre-compiled atmosphere libraries
 `SVO Theoretical spectra`_ provides many atmosphere libraries. Our approach is agnostics to the exact library itself.
 All files from SVO have the same format, but the spectra are not on the same wavelength scale (even for a single atmosphere source).
 
+.. warning::
+
+   We do not provide an interface to download the atmospheres from SVO. (in this version at least)
+
+
 We compiled tarballs of some atmosphere libraries we use in our models (and the associated references).
 
-* `Kurucz (ODFNEW/NOVER 2003) <https://keeper.mpdl.mpg.de/f/a80ede0816674d729f4e/>`_
-   * `SVO Theoretical spectra`_
+.. important::
+
+   Please cite the appropriate references we provided to the model atmospheres you use in your applications.
+
+* `Kurucz (ODFNEW/NOVER 2003) <https://keeper.mpdl.mpg.de/f/a80ede0816674d729f4e/>`_ (tar.gz; 78 Mo)
+   * from `SVO Theoretical spectra`_
    * `Castelli and Kurucz 2003, IAUS 210, A20 <http://adsabs.harvard.edu/abs/2003IAUS..210P.A20C>`_
    * `Castelli and Kurucz Atlas <https://www.stsci.edu/hst/instrumentation/reference-data-for-calibration-and-tools/astronomical-catalogs/castelli-and-kurucz-atlas>`_
    * `Castelli ATLAS9 grids web page. <https://wwwuser.oats.inaf.it/castelli/grids.html>`_
@@ -85,7 +90,3 @@ We compiled tarballs of some atmosphere libraries we use in our models (and the 
 .. todo::
 
    * add CU8 atmospheres with proper references. (MARCS, PHOENIX, OB, A, BTSettl, libraries)
-
-.. warning::
-
-   Please cite the appropriate references we provided to the model atmospheres you use in your applications.
