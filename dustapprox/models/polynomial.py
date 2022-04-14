@@ -52,10 +52,12 @@ model should explain well the data while being simple.
     plt.show()
 
 """
-from typing import Sequence
+from typing import Sequence, Union
 from pandas import DataFrame
+from sklearn.preprocessing import PolynomialFeatures
 import numpy as np
 import warnings
+from ..io import ecsv
 
 
 def approx_model(r: DataFrame,
@@ -88,7 +90,6 @@ def approx_model(r: DataFrame,
 
     """
     from sklearn.linear_model import LassoLarsIC
-    from sklearn.preprocessing import PolynomialFeatures
     from sklearn.metrics import median_absolute_error, mean_squared_error
 
     if input_parameters is None:
@@ -225,3 +226,304 @@ def quick_plot_models(r: DataFrame, **kwargs) -> DataFrame:
     plt.tight_layout()
 
     return res
+
+class PolynomialModel:
+    """ A polynomial model object
+
+    Attributes
+    ----------
+    meta: dict
+        meta information about the model
+
+    transformer_: PolynomialFeatures
+        polynomial transformer
+
+    coeffs_: pd.Series
+        coefficients of the regression on the polynomial expended features
+    """
+    def __init__(self, **kwargs):
+        self.meta = kwargs.get('meta', None)
+        self.name_ = kwargs.get('name', None)
+        self.transformer_ = None
+        self.coeffs_ = None
+
+    @property
+    def feature_names(self) -> Sequence[str]:
+        """ Input feature dimensions of the model """
+        try:
+            return self.meta['model']['feature_names']
+        except KeyError:
+            return None
+
+    @property
+    def degree_(self) -> int:
+        """ Degree of the polynomial transformation """
+        if self.transformer_:
+            return self.transformer_.degree
+        else:
+            return None
+
+    @property
+    def name(self) -> str:
+        """ Get the model name also stored in the coeffs series """
+        if self.coeffs_ is not None:
+            if (self.coeffs_.name is None) and (self.name_ is not None):
+                self.coeffs_.name = self.name_
+        if (self.coeffs_.name is not None) and (self.name_ is None):
+            self.name_ = self.coeffs_.name
+        if self.name_:
+            return self.name_
+
+    def _consolidate_named_data(self, X: Union[np.ndarray, DataFrame]) -> DataFrame:
+        """ A convenient consolidation of input data to named data fields
+
+        As we use the names internally to make the operations more readable, it
+        makes it easier to also convert the data.
+
+        Parameters
+        ----------
+        X: Union[np.ndarray, pd.DataFrame]
+            input features
+
+        Returns
+        -------
+        Xp: pd.DataFrame
+            named data input
+        """
+        if isinstance(X, DataFrame) or hasattr(X, 'columns'):
+            return X
+        else:
+            return DataFrame.from_records(np.atleast_2d(X),
+                                          columns=self.feature_names)
+
+    def __repr__(self) -> str:
+        txt = """PolynomialModel: {0} \n{1:s}\n""".format(self.name, object.__repr__(self))
+        txt += """   from: {0:s}""".format(', '.join(self.feature_names))
+        txt += """   polynomial degree: {0:d}""".format(self.degree_)
+        return txt
+
+    def fit(self, df: DataFrame,
+        features: Sequence[str] = None,
+        label: str = 'Ax',
+        degree: int = 3,
+        interaction_only: bool = False
+        ):
+        """
+        Parameters
+        ----------
+        df : DataFrame
+            DataFrame with the passband grid data.
+        features: Sequence[str]
+            input features from df (note: if used, teff will be normalized to teff/5040)
+        label: str
+            which field contains the label values
+        degree : int
+            The degree of the polynomial model.
+        interaction_only : bool
+            If True, only the interaction terms are used.
+        input_parameters : Sequence[str]
+            The input parameters to use.
+            If None, 'teff logg feh A0 alpha' parameters are used.
+        """
+        from sklearn.linear_model import LassoLarsIC
+        from sklearn.metrics import median_absolute_error, mean_squared_error
+
+        if features is None:
+            # features = 'teff A0'.split()
+            features = 'teff logg feh A0 alpha'.split()
+        if label is None:
+            label = 'Ax'
+
+        if 'A0' not in features:
+            raise AttributeError("field `A0` expected in the input data.")
+
+        col_subset = [label] + features
+        subset = df[col_subset]
+        subset = subset[subset['A0'] > 0]
+
+        xdata = subset[features]
+        # replace teff by teffnorm = teff / 5040K
+        xdata['teffnorm'] = xdata['teff'] / 5040.
+        xdata.drop(columns='teff', inplace=True)
+        ydata = subset[label]
+        ydata /= subset['A0']
+
+        # the common method
+        poly = PolynomialFeatures(degree=degree,
+                                interaction_only=interaction_only,
+                                include_bias=True).fit(xdata)
+        expand = poly.transform(xdata)
+
+
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=FutureWarning)
+            regr = LassoLarsIC(fit_intercept=False, copy_X=False).fit(expand, ydata)
+        pred = regr.predict(expand)
+
+        mae = median_absolute_error(ydata, pred)
+        rmse = mean_squared_error(ydata, pred, squared=False)
+        stddev = np.std(pred-ydata)
+        mean = np.mean(pred-ydata)
+
+        self.transformer_ = poly
+        self.coeffs_ = regr.coef_.copy()
+        self.meta['comment'] = 'teffnorm = teff / 5040; predicts kx = Ax / A0'
+        self.meta['model'] = {'kind': 'polynomial',
+                              'degree': degree,
+                              'interaction_only': interaction_only,
+                              'include_bias': True,
+                              'feature_names': list(xdata.columns)}
+        self.meta['mae'] = mae
+        self.meta['rmse'] = rmse
+        self.meta['std_residuals'] = stddev
+        self.meta['mean_residuals'] = mean
+
+        return self
+
+    def predict(self, X: Union[np.ndarray, DataFrame]) -> np.array:
+        """ Predict the extinction in the specific passband
+
+        .. note::
+
+            if X is a :class:`Dataframe`, `teffnorm` could be automatically added
+
+
+        Parameters
+        ----------
+        X: Union[np.ndarray, pd.DataFrame]
+            input features
+
+        Return
+        ------
+        y: np.ndarray
+            predicted values
+        """
+        transformer = self.transformer_
+        X_ = self._consolidate_named_data(X)
+        if ('teffnorm' in self.feature_names):
+            if 'teffnorm' not in X_.columns:
+                X_['teffnorm'] = X_['teff'] / 5040.
+        X_ = X_[self.feature_names]
+        coeffs = self.coeffs_[self.get_transformed_feature_names()]
+        expand = transformer.transform(X_)
+        return np.inner(coeffs, expand)
+
+    def get_transformed_feature_names(self) -> Sequence[str]:
+        """ get the feature names of the internal transformation """
+        return self.transformer_.get_feature_names_out()
+
+    def _set_transformer(self, degree: int = 2, interaction_only: bool = False,
+                         include_bias: bool = True, order: str = 'C', **params):
+        """ Setup the PolynomialFeature transformer
+
+        Generate a new feature matrix consisting of all polynomial combinations
+        of the features with degree less than or equal to the specified degree.
+        For example, if an input sample is two dimensional and of the form
+        [a, b], the degree-2 polynomial features are [1, a, b, a^2, ab, b^2].
+
+        .. seealso::
+
+            :class:`PolynomialFeature` from sklearn
+
+        Parameters
+        ----------
+        degree : int or tuple (min_degree, max_degree), default=2
+            If a single int is given, it specifies the maximal degree of the
+            polynomial features. If a tuple `(min_degree, max_degree)` is passed,
+            then `min_degree` is the minimum and `max_degree` is the maximum
+            polynomial degree of the generated features. Note that `min_degree=0`
+            and `min_degree=1` are equivalent as outputting the degree zero term is
+            determined by `include_bias`.
+
+        interaction_only : bool, default=False
+            If `True`, only interaction features are produced: features that are
+            products of at most `degree` *distinct* input features, i.e. terms with
+            power of 2 or higher of the same input feature are excluded:
+
+                - included: `x[0]`, `x[1]`, `x[0] * x[1]`, etc.
+                - excluded: `x[0] ** 2`, `x[0] ** 2 * x[1]`, etc.
+
+        include_bias : bool, default=True
+            If `True` (default), then include a bias column, the feature in which
+            all polynomial powers are zero (i.e. a column of ones - acts as an
+            intercept term in a linear model).
+
+        order : {'C', 'F'}, default='C'
+            Order of output array in the dense case. `'F'` order is faster to
+            compute, but may slow down subsequent estimators.
+        """
+        # check that the model attributes match
+        kind = params.pop('kind')
+        if kind not in ('polynomial', ):
+            raise NotImplementedError(kind, "Expecting a polynomial model definition")
+
+        feature_names = self.feature_names
+        # prepare transformer on fake data
+        X = DataFrame.from_records(np.empty((1, len(feature_names))),
+                                   columns=feature_names)
+        transformer = PolynomialFeatures(degree=degree,
+                                         include_bias=include_bias,
+                                         interaction_only=interaction_only,
+                                         order=order).fit(X)
+        self.transformer_ = transformer
+
+    @classmethod
+    def from_file(cls, filename: str, passband: str):
+        """ Restore a model from a file
+
+        Parameters
+        ----------
+        filename: str
+            the ECSV filepath containing the model definition
+
+            The file should contain the various parameters associated with the
+            model in its `metadata`.
+
+        passband: str
+            name of the model to load (passband column in the ecsv file)
+
+        Returns
+        -------
+        model: PolynomialModel
+            model object
+        """
+        data = ecsv.read(filename).set_index('passband')
+        name = data.attrs.pop('name', None)
+
+        # setting model metadata
+        model = cls(name=name, meta=data.attrs.copy())
+        model_attrs = model.meta['model'].copy()
+        model._set_transformer(**model_attrs)
+
+        # get regression coefficients
+        coeffs = data.loc[passband]
+        model.coeffs_ = coeffs[model.get_transformed_feature_names()]
+
+        # get stats if provided
+        keys = 'mae,rmse,mean,stddev'.split(',')
+        try:
+            stats = data.loc[passband][keys]
+            for key in keys:
+                model.meta[key] = float(stats[key])
+        except KeyError:
+            pass
+        return model
+
+    def to_pandas(self) -> DataFrame:
+        """ Export the model to a pandas array, useful for storage """
+        # set name consistency
+        self.name
+        data = self.coeffs_.to_frame().T
+        meta = self.meta.copy()
+        keys = 'mae,rmse,mean,stddev'.split(',')
+        for key in keys:
+            data[key] = meta.pop(key, float('nan'))
+        data.attrs.update(meta)
+        return data
+
+    def to_ecsv(self, fname: str, **meta):
+        """ Export model into an ECSV file """
+        df = self.to_pandas()
+        meta = df.attrs
+        meta.update(**meta)
+        ecsv.write(df, fname, **meta)
