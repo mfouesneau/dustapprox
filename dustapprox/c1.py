@@ -161,7 +161,7 @@ import numpy as np
 from .io import ecsv
 
 
-class DR3_extinction:
+class dr3_ext:
     """Function to get the extinction coefficients A_X / A_G in C1M system
 
     The procedure is detailed in the appendix E of `Bellazzini et al. (2022)`_.
