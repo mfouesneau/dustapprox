@@ -52,6 +52,11 @@ import re
 import yaml
 import pandas as pd
 import numpy as np
+from typing import Union
+from io import TextIOWrapper
+
+
+__ECSV_VERSION__ = '1.0'
 
 
 def read_header(fname: str) -> dict:
@@ -115,10 +120,12 @@ def read(fname: str, **kwargs) -> pd.DataFrame:
     delimiter = header.get('delimiter', kwargs.pop('delimiter', ','))
     comment = kwargs.pop('comment', '#')
 
-    return pd.read_csv(fname, delimiter=delimiter, dtype=dtype, comment=comment, **kwargs)
+    df = pd.read_csv(fname, delimiter=delimiter, dtype=dtype, comment=comment, **kwargs)
+    df.attrs.update(header.get('meta', {}))
+    return df
 
 
-def generate_header(df: pd.DataFrame, **meta):
+def generate_header(df: pd.DataFrame, **meta) -> str:
     """ Generates the yaml equivalent string for the ECSV header
 
     Parameters
@@ -137,12 +144,14 @@ def generate_header(df: pd.DataFrame, **meta):
     dtypes = [{'name': name, 'datatype': str(dt)}
                 for name, dt in df.dtypes.to_dict().items()]
     h = {'delimiter': ',', 'datatype': dtypes, 'meta': meta}
-    preamble = ['# %ECSV {0:s}'.format(ECSV.__version__), '# ---']
+    preamble = ['# %ECSV {0:s}'.format(__ECSV_VERSION__), '# ---']
     lines = ['# ' + line for line in yaml.dump(h, sort_keys=False).split('\n') if line]
     return '\n'.join(preamble + lines)
 
 
-def write(df: pd.DataFrame, fname, mode='w', **meta):
+def write(df: pd.DataFrame,
+          fname: Union[str, TextIOWrapper],
+          mode: str = 'w', **meta):
     """ output data into ecsv file
 
     Parameters
@@ -156,6 +165,10 @@ def write(df: pd.DataFrame, fname, mode='w', **meta):
     meta: dict
         meta data to be written to the header.
     """
-    with open(fname, mode) as fout:
-        fout.write(generate_header(df, **meta) + '\n')
-        df.to_csv(fout, index=False)
+    if hasattr(fname, 'write'):
+       fname.write(generate_header(df, **meta) + '\n')
+       df.to_csv(fname, index=False)
+    else:
+        with open(fname, mode) as fout:
+            fout.write(generate_header(df, **meta) + '\n')
+            df.to_csv(fout, index=False)
