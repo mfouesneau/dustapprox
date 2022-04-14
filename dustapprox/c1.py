@@ -1,22 +1,5 @@
 r"""  Coefficients of the reddening laws to correct magnitudes in the :math:`C1` system.
 
-The procedure is detailed in the appendix E of `Bellazzini et al. (2022) <https://www.cosmos.esa.int/web/gaia/dr3-papers>`_.
-
-In brief, they fit polynomial relations to predicted SED values.
-The simulated predictions originate from the BTSettl atmosphere library combined
-with the :math:`C1` passbands definitions and the Fitzpatrick extinction curve.
-
-They derive the absorption in any :math:`X` band as a function of the absorption in :math:`G`, :math:`A_G`,
-the Gaia :math:`G_{BP}-G_{RP}` color:
-
-.. math::
-
-        \frac{A_X}{A_G}=\alpha+\sum_{i=1}^{4}\beta_i \cdot ({G_{BP}-G_{RP}})^i+\sum_{j=1}^3 \gamma_j \cdot A_G^j + \delta \cdot ({G_{BP}-G_{RP}})\cdot A_G
-
-.. warning::
-
-    Those relations depend on :math:`A_G`, not :math:`A_0`.
-
 The :math:`C1` Gaia photometric system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -151,6 +134,26 @@ The last line of the above example shows the information of the C1B556 passband.
     plt.tight_layout()
     plt.show()
 
+
+Model from Bellazzini et al. (2022; Gaia DR3)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The procedure is detailed in the appendix E of `Bellazzini et al. (2022) <https://www.cosmos.esa.int/web/gaia/dr3-papers>`_.
+
+In brief, they fit polynomial relations to predicted SED values.
+The simulated predictions originate from the BTSettl atmosphere library combined
+with the :math:`C1` passbands definitions and the Fitzpatrick extinction curve.
+
+They derive the absorption in any :math:`X` band as a function of the absorption in :math:`G`, :math:`A_G`,
+the Gaia :math:`G_{BP}-G_{RP}` color:
+
+.. math::
+
+        \frac{A_X}{A_G}=\alpha+\sum_{i=1}^{4}\beta_i \cdot ({G_{BP}-G_{RP}})^i+\sum_{j=1}^3 \gamma_j \cdot A_G^j + \delta \cdot ({G_{BP}-G_{RP}})\cdot A_G
+
+.. warning::
+
+    Those relations depend on :math:`A_G`, not :math:`A_0`.
 
 """
 from typing import Union
