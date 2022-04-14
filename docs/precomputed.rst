@@ -36,3 +36,58 @@ with a large collection of passbands. (wrapper from `pyphot`_).
 
 Once we have the above ingredients, we can bring them together to generate a
 large collection of photometric extinction values in various bands.
+
+
+Creating a grid of models
+--------------------------
+
+.. code-block:: python3
+   :caption: An example of **not optimized** script to generate an extinction grid over all the atmosphere models
+
+   import numpy as np
+   import pandas as pd
+   from glob import glob
+   from tqdm import tqdm
+   from dustapprox.io import svo
+   from dustapprox.extinction import F99
+   from pyphot.astropy.sandbox import Unit as U
+
+
+   which_filters = ['GAIA/GAIA3.G', 'GAIA/GAIA3.Gbp', 'GAIA/GAIA3.Grp']
+   passbands = svo.get_svo_passbands(which_filters)
+   # Technically it does not matter what zeropoint we use since we'll do relative values to get the dust effect
+
+   models = glob('models/Kurucz2003all/*.fl.dat.txt')
+
+   # Extinction
+   extc = F99()
+   Rv = 3.1
+   Av = np.arange(0, 20.01, 0.2)
+
+   logs = []
+   for fname in tqdm(models):
+       data = svo.spectra_file_reader(fname)
+       # extract model relevant information
+       lamb_unit, flux_unit = svo.get_svo_sprectum_units(data)
+       lamb = data['data']['WAVELENGTH'].values * lamb_unit
+       flux = data['data']['FLUX'].values * flux_unit
+       teff = data['teff']['value']
+       logg = data['logg']['value']
+       feh = data['feh']['value']
+       print(fname, teff, logg, feh)
+
+       # wavelength definition varies between models
+       alambda_per_av = extc(lamb, 1.0, Rv=Rv)
+
+       # Dust magnitudes
+       columns = ['teff', 'logg', 'feh', 'passband', 'mag0', 'mag', 'A0', 'Ax']
+       for pk in passbands:
+           mag0 = -2.5 * np.log10(pk.get_flux(lamb, flux).value)
+           # we redo av = 0, but it's cheap, allows us to use the same code
+           for av_val in Av:
+               new_flux = flux * np.exp(- alambda_per_av * av_val)
+               mag = -2.5 * np.log10(pk.get_flux(lamb, new_flux).value)
+               delta = (mag - mag0)
+               logs.append([teff, logg, feh, pk.name, mag0, mag, av_val, delta])
+
+   logs = pd.DataFrame.from_records(logs, columns=columns)
