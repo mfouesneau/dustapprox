@@ -4,13 +4,14 @@ Welcome to dustapprox's documentation!
 This package is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
 
 Extinction coefficients per passbands depend on both the source spectral energy distribution
-and on the extinction itself (e.g., Gordon et al., 2016, Jordi et al., 2010).
+and on the extinction itself (e.g., `Gordon et al., 2016 <https://ui.adsabs.harvard.edu/abs/2016ApJ...826..104G/abstract>`_,
+`Jordi et al., 2010 <https://ui.adsabs.harvard.edu/abs/2010A%26A...523A..48J/abstract>`_ ).
 To first order, the shape of the SED through a given passband determine the mean
 photon wavelength and therefore the mean extinction through that passband.  Of
 course in practice this also depends on the source spectral features in the
 passband and the dust properties.
 
-We provide the methodology to compute the extinction coefficients for a given
+We provide the methodology to compute approximation models of the extinction for a given
 passband as well as some precomputed models that are ready to use or integrate
 with larger projects.
 
@@ -169,62 +170,6 @@ On another hand, it is often useful to convert extinction from :math:`A(T)` to :
 :math:`A_0` to :math:`A(V)`, :math:`A(G_{BP})`, or :math:`A(Ks)`. This could also become a difficult task.
 
 
-
-Creating a grid of models
---------------------------
-
-.. code-block:: python3
-   :caption: An example of **not optimized** script to generate an extinction grid over all the atmosphere models
-
-   import numpy as np
-   import pandas as pd
-   from glob import glob
-   from tqdm import tqdm
-   from dustapprox.io import svo
-   from dustapprox.extinction import F99
-   from pyphot.astropy.sandbox import Unit as U
-
-
-   which_filters = ['GAIA/GAIA3.G', 'GAIA/GAIA3.Gbp', 'GAIA/GAIA3.Grp']
-   passbands = svo.get_svo_passbands(which_filters)
-   # Technically it does not matter what zeropoint we use since we'll do relative values to get the dust effect
-
-   models = glob('models/Kurucz2003all/*.fl.dat.txt')
-
-   # Extinction
-   extc = F99()
-   Rv = 3.1
-   Av = np.arange(0, 20.01, 0.2)
-
-   logs = []
-   for fname in tqdm(models):
-       data = svo.spectra_file_reader(fname)
-       # extract model relevant information
-       lamb_unit, flux_unit = svo.get_svo_sprectum_units(data)
-       lamb = data['data']['WAVELENGTH'].values * lamb_unit
-       flux = data['data']['FLUX'].values * flux_unit
-       teff = data['teff']['value']
-       logg = data['logg']['value']
-       feh = data['feh']['value']
-       print(fname, teff, logg, feh)
-
-       # wavelength definition varies between models
-       alambda_per_av = extc(lamb, 1.0, Rv=Rv)
-
-       # Dust magnitudes
-       columns = ['teff', 'logg', 'feh', 'passband', 'mag0', 'mag', 'A0', 'Ax']
-       for pk in passbands:
-           mag0 = -2.5 * np.log10(pk.get_flux(lamb, flux).value)
-           # we redo av = 0, but it's cheap, allows us to use the same code
-           for av_val in Av:
-               new_flux = flux * np.exp(- alambda_per_av * av_val)
-               mag = -2.5 * np.log10(pk.get_flux(lamb, new_flux).value)
-               delta = (mag - mag0)
-               logs.append([teff, logg, feh, pk.name, mag0, mag, av_val, delta])
-
-   logs = pd.DataFrame.from_records(logs, columns=columns)
-
-
 Precomputed models
 ------------------
 
@@ -245,15 +190,15 @@ Literature Extinction approximations
 
 We also provide multiple literature approximations with this package
 
-* :class:`dustapprox.edr3.edr3_ext` provides the Riello et al. (2020) approximation, i.e.,
+* :class:`dustapprox.edr3.edr3_ext` provides the `Riello et al. (2020) <https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract>`_ approximation, i.e.,
   extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (G, BP, RP).
 
   .. warning::
 
      Their calibration only accounted for solar metallicity.
 
-* :class:`dustapprox.c1m.C1_extinction` provides the Bellazzini et al. (2022) approximation, i.e.,
-  extinction coefficient :math:`k_x = A_x / A_G` for Gaia :math:`C1` passbands.
+* :class:`dustapprox.c1m.C1_extinction` provides the `Bellazzini et al. (2022) <https://www.cosmos.esa.int/web/gaia/dr3-papers>`_ approximation, i.e.,
+  extinction coefficient :math:`k_x = A_x / A_G` for Gaia :math:`C1` passbands (defined in `Jordi et al (2006) <https://academic.oup.com/mnras/article/367/1/290/1018790>`_).
 
   .. warning::
 

@@ -8,7 +8,7 @@ atmosphere library from the `SVO Theoretical spectra
 
 .. _fig-Kurucz-coverage:
 
-.. figure:: http://svo2.cab.inta-csic.es/theory/newov2/temp/models/plots/range_1648123268.6215.png
+.. figure:: https://keeper.mpdl.mpg.de/f/5c751ff156d443b38692/?dl=1
 
    **Figure 1.** Kurucz (ODFNEW/NOVER 2003) atmosphere library coverage. These models span
    ranges of :math:`T_{eff}` from 3500 K to 50000 K, :math:`\log g` from 0 to 5
@@ -63,15 +63,29 @@ is the distance to Earth in consistent units.
    plt.xlim(800, 1e5)
 
 
-.. note::
+.. warning::
 
-   For the Kurucz ODFNEW /NOVER (2003) library, refer to
+   We do not provide an interface to download the atmospheres from SVO. (in this version at least)
 
+
+Pre-compiled atmosphere libraries
+---------------------------------
+
+`SVO Theoretical spectra`_ provides many atmosphere libraries. Our approach is agnostics to the exact library itself.
+All files from SVO have the same format, but the spectra are not on the same wavelength scale (even for a single atmosphere source).
+
+We compiled tarballs of some atmosphere libraries we use in our models (and the associated references).
+
+* `Kurucz (ODFNEW/NOVER 2003) <https://keeper.mpdl.mpg.de/f/a80ede0816674d729f4e/>`_
+   * `SVO Theoretical spectra`_
    * `Castelli and Kurucz 2003, IAUS 210, A20 <http://adsabs.harvard.edu/abs/2003IAUS..210P.A20C>`_
    * `Castelli and Kurucz Atlas <https://www.stsci.edu/hst/instrumentation/reference-data-for-calibration-and-tools/astronomical-catalogs/castelli-and-kurucz-atlas>`_
    * `Castelli ATLAS9 grids web page. <https://wwwuser.oats.inaf.it/castelli/grids.html>`_
 
+.. todo::
+
+   * add CU8 atmospheres with proper references. (MARCS, PHOENIX, OB, A, BTSettl, libraries)
 
 .. warning::
 
-   We do not provide an interface to download the atmospheres from SVO. (in this version at least)
+   Please cite the appropriate references we provided to the model atmospheres you use in your applications.
