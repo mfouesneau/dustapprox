@@ -15,6 +15,17 @@ We provide the methodology to compute approximation models of the extinction for
 passband as well as some precomputed models that are ready to use or integrate
 with larger projects.
 
+We also detailed the various ingredients of the models in subsequent pages listed below
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Details
+
+   atmospheres
+   extinction
+   photometry
+   precomputed
+   modules
 
 .. todo::
 
@@ -188,32 +199,20 @@ However, we also provide some pre-computed models that can be used directly.
 Literature Extinction approximations
 ------------------------------------
 
-We also provide multiple literature approximations with this package
+We also provide multiple literature approximations with this package (:mod:`dustapprox.literature`).
 
-* :class:`dustapprox.edr3.edr3_ext` provides the `Riello et al. (2020) <https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract>`_ approximation, i.e.,
-  extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (G, BP, RP).
+.. warning::
 
-  .. warning::
-
-     Their calibration only accounted for solar metallicity.
-
-* :class:`dustapprox.c1m.C1_extinction` provides the `Bellazzini et al. (2022) <https://www.cosmos.esa.int/web/gaia/dr3-papers>`_ approximation, i.e.,
-  extinction coefficient :math:`k_x = A_x / A_G` for Gaia :math:`C1` passbands (defined in `Jordi et al (2006) <https://academic.oup.com/mnras/article/367/1/290/1018790>`_).
-
-  .. warning::
-
-     Their relations use :math:`A_G`, not :math:`A_0` as input.
+   Their relations may not use the same approach or parametrizations.
 
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Contents:
+.. todo::
 
-   atmospheres
-   extinction
-   photometry
-   precomputed
-   modules
+   Add some comparison to the literature in the submodule :mod:`dustapprox.literature`.
+
+
+
+
 
 
 
