@@ -71,7 +71,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-doc/_build/
+docs/dustapprox.*rst
 
 # PyBuilder
 target/
@@ -127,6 +127,7 @@ dmypy.json
 .pyre/
 
 .DS_Store
+tmp/*
 
 # ignore model data
 models/*
