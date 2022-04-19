@@ -101,28 +101,65 @@ large collection of photometric extinction values in various bands.
 Creating a photometric grid of dust attenuated stars
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+To compute an extinction approximation model, we need to first compute the exact
+effects of extinction on well known stars when assuming a given extinction curve.
+
+We detail below the steps to do this.
+
+* We first need to get the set of transmission curves that we find relevant for the :doc:`/photometry`.
+
+.. code-block:: python3
+   :caption: Get transmission curves from the `SVO Filter Profile Service`_.
+
+   from dustapprox.io import svo
+   which_filters = ['GAIA/GAIA3.G', 'GAIA/GAIA3.Gbp', 'GAIA/GAIA3.Grp']
+   passbands = svo.get_svo_passbands(which_filters)
+
+
+.. code-block:: python3
+   :caption: Get the Gaia C1 transmission curves provided with `dustapprox` (see :mod:`dustapprox.literature.c1`)
+
+   from pkg_resources import resource_filename
+   from pyphot.astropy import UnitAscii_Library
+
+   where = resource_filename('dustapprox', 'data/Gaia2')
+   lib = UnitAscii_Library([where])
+   passbands = lib.load_all_filters()
+
+* We set which atmosphere library files we use (note that we do not provide these internally; :doc:`/atmospheres`).
+
+.. code-block:: python3
+   :caption: Set the atmosphere models and parameter fields to report
+
+   from glob import glob
+
+   models = glob('models/Kurucz2003all/*.fl.dat.txt')
+   apfields = ['teff', 'logg', 'feh', 'alpha']
+
+* We then need to get the set of extinction curves that we find relevant.
+
+.. code-block:: python3
+   :caption: Extinction curve and parameter sets
+
+   import numpy as np
+   from dustapprox.extinction import F99
+
+   # Extinction
+   extc = F99()
+   Rv = np.array([3.1,])
+   Av = np.arange(0, 10.01, 0.2)
+
+
+* Finally we loop through the elements and store relevant information (e.g., `apfields`, `Rv`, `Av`, `mag0`, `mag`).
+
+
 .. code-block:: python3
    :caption: An example of **not optimized** script to generate an extinction grid over all the atmosphere models
 
    import numpy as np
    import pandas as pd
-   from glob import glob
    from tqdm import tqdm
    from dustapprox.io import svo
-   from dustapprox.extinction import F99
-   from pyphot.astropy.sandbox import Unit as U
-
-
-   which_filters = ['GAIA/GAIA3.G', 'GAIA/GAIA3.Gbp', 'GAIA/GAIA3.Grp']
-   passbands = svo.get_svo_passbands(which_filters)
-   # Technically it does not matter what zeropoint we use since we'll do relative values to get the dust effect
-
-   models = glob('models/Kurucz2003all/*.fl.dat.txt')
-
-   # Extinction
-   extc = F99()
-   Rv = 3.1
-   Av = np.arange(0, 20.01, 0.2)
 
    logs = []
    for fname in tqdm(models):
@@ -131,16 +168,13 @@ Creating a photometric grid of dust attenuated stars
        lamb_unit, flux_unit = svo.get_svo_sprectum_units(data)
        lamb = data['data']['WAVELENGTH'].values * lamb_unit
        flux = data['data']['FLUX'].values * flux_unit
-       teff = data['teff']['value']
-       logg = data['logg']['value']
-       feh = data['feh']['value']
-       print(fname, teff, logg, feh)
+       apvalues = [data[k]['value'] for k in apfields]
 
        # wavelength definition varies between models
        alambda_per_av = extc(lamb, 1.0, Rv=Rv)
 
        # Dust magnitudes
-       columns = ['teff', 'logg', 'feh', 'passband', 'mag0', 'mag', 'A0', 'Ax']
+       columns = apfields + ['passband', 'mag0', 'mag', 'A0', 'Ax']
        for pk in passbands:
            mag0 = -2.5 * np.log10(pk.get_flux(lamb, flux).value)
            # we redo av = 0, but it's cheap, allows us to use the same code
@@ -148,6 +182,17 @@ Creating a photometric grid of dust attenuated stars
                new_flux = flux * np.exp(- alambda_per_av * av_val)
                mag = -2.5 * np.log10(pk.get_flux(lamb, new_flux).value)
                delta = (mag - mag0)
-               logs.append([teff, logg, feh, pk.name, mag0, mag, av_val, delta])
+               logs.append(apvalues + [pk.name, mag0, mag, av_val, delta])
 
    logs = pd.DataFrame.from_records(logs, columns=columns)
+
+The above script works, but it could be very time consuming if you have many
+passbands and many extinction parameters to grid. However, every piece of
+information are independent of one another: atmosphere spectra, passbands,
+extinction grid points. Hence this is a massively parallel problem.
+
+As the first rule of optimization is to start by the most outer loop, we
+provide a script that parallelizes the the procedure with respect to the atmosphere files in
+:mod:`dustapprox.tools.grid` (using
+`joblib <https://joblib.readthedocs.io/en/latest/>`_) in particular
+:func:`dustapprox.tools.grid.compute_photometric_grid`.

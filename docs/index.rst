@@ -26,11 +26,14 @@ We also detailed the various ingredients of the models in subsequent pages liste
    photometry
    precomputed
 
-.. todo::
 
-   * we need to warn about bad practices.
+.. warning::
 
-   * we need to give the various references.
+   This package provides **approximations** to the extinction effects in photometric bands.
+   It is not meant to be a full implementation of the extinction curves but a shortcut.
+
+   In this current version, we only provide global uncertainties (e.g., rms, biases).
+
 
 Quick Start
 -----------
@@ -38,6 +41,35 @@ Quick Start
 .. todo::
 
     * add some quick examples of usage from precomputed models
+
+
+.. plot::
+   :caption: This figure shows the model effects.
+   :include-source:
+
+   import pandas as pd
+   from dustapprox import models
+   import pylab as plt
+
+   # get Gaia models
+   lib = models.PrecomputedModel()
+   r = lib.find(passband='Gaia')
+   model = lib.load_model(r, passband='GAIA_GAIA3.G')
+
+   # get some data
+   data = pd.read_csv('models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
+   gmag = data[data.passband == 'GAIA_GAIA3.G']
+
+   mg = gmag['mag0']
+   kg = model.predict(gmag)
+   delta = gmag['mag'] - gmag['A0'] * kg - gmag['mag0']
+   plt.scatter(mg, delta, c=gmag['A0'], rasterized=True)
+   plt.colorbar().set_label(r'A$_0$ [mag]')
+   plt.xlabel(r'M$_G$ [mag] + constant')
+   plt.ylabel(r'G - A$_0\cdot k_g$ - M$_G$ [mag]')
+   plt.show()
+
+
 
 
 Why an approximation?
