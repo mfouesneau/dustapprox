@@ -9,17 +9,17 @@
 
 from pkg_resources import resource_filename
 from glob import glob
-from typing import Union
+from typing import Union, Sequence
 
 from ..io import ecsv
 from .polynomial import PolynomialModel
+from .basemodel import _BaseModel
 
 
 _DATA_PATH_ = resource_filename('dustapprox', 'data/precomputed')
 
 kinds = {'polynomial':  PolynomialModel,
          }
-
 
 class PrecomputedModel:
     """ Access to precomputed models
@@ -39,7 +39,7 @@ class PrecomputedModel:
     .. code-block:: text
         :caption: result from :func:`PrecomputedModel.find`
 
-        {'/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv': {'atmosphere': {'source': 'Kurucz (ODFNEW/NOVER 2003)',
+        [{'atmosphere': {'source': 'Kurucz (ODFNEW/NOVER 2003)',
             'teff': [3500.0, 50000.0],
             'logg': [0.0, 5.0],
             'feh': [-4, 0.5],
@@ -52,7 +52,7 @@ class PrecomputedModel:
             'include_bias': True,
             'feature_names': ['A0', 'teffnorm']},
             'passbands': ['GALEX_GALEX.FUV', 'GALEX_GALEX.NUV'],
-            'filename': 'dustapprox/data/precomputed/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv'}}
+            'filename': 'dustapprox/data/precomputed/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv'}]
 
     .. code-block:: text
         :caption: result when loading models with from :func:`PrecomputedModel.load_model`
@@ -72,16 +72,16 @@ class PrecomputedModel:
         self._info = None
         self.location = location
 
-    def get_models_info(self, glob_pattern='/**/*.ecsv') -> dict:
+    def get_models_info(self, glob_pattern='/**/*.ecsv') -> Sequence[dict]:
         """ Retrieve the information for all models available and files """
         if self._info is not None:
             return self._info
         location = self.location
         lst = glob(f'{location:s}{glob_pattern:s}', recursive=True)
 
-        info = {}
+        info = []
         for fname in lst:
-            info.update(self._get_file_info(fname))
+            info.append(self._get_file_info(fname))
         self._info = info
         return info
 
@@ -90,12 +90,12 @@ class PrecomputedModel:
         info = {}
         where = fname.replace(_DATA_PATH_, '')
         df = ecsv.read(fname)
-        info[where] = df.attrs.copy()
-        info[where]['passbands'] = list(df['passband'].values)
-        info[where]['filename'] = fname
+        info = df.attrs.copy()
+        info['passbands'] = list(df['passband'].values)
+        info['filename'] = fname
         return info
 
-    def find(self, passband=None, extinction=None, atmosphere=None, kind=None) -> dict:
+    def find(self, passband=None, extinction=None, atmosphere=None, kind=None) -> Sequence[dict]:
         """ Find all the computed models that match the given parameters.
 
         The search is case insentive and returns all matches.
@@ -110,11 +110,15 @@ class PrecomputedModel:
             The atmosphere model to be used. (e.g., 'kurucz')
         kind : str
             The kind of model to be used (e.g., polynomial).
+
+        Returns
+        -------
+
         """
         info = self.get_models_info()
 
-        results = {}
-        for key, value in info.items():
+        results = []
+        for value in info:
             if passband is not None and passband.lower() not in ' '.join(value['passbands']).lower():
                 continue
             if extinction is not None and extinction.lower() not in value['extinction']['source'].lower():
@@ -123,32 +127,41 @@ class PrecomputedModel:
                 continue
             if kind is not None and kind.lower() not in value['model']['kind'].lower():
                 continue
-            results[key] = value.copy()
+            content = value.copy()
             if passband is not None:
-                results[key]['passbands'] = [pk for pk in results[key]['passbands'] if passband.lower() in pk.lower()]
+                content['passbands'] = [pk for pk in content['passbands'] if passband.lower() in pk.lower()]
+            results.append(content)
         return results
 
-    def load_model(self, fname: Union[str, dict], passband: str = None):
+    def load_model(self, fname: Union[str, dict],
+                   passband: str = None):
+        """ Load a model from a file or description (:func:`PrecomputedModel.find`)
+
+        Parameters
+        ----------
+        fname : str or dict
+            The filename of the model to be loaded or a description of the model
+            returned by :func:`PrecomputedModel.find`
+
+        passband : str
+            The passband to be loaded. If `None`, loads all available passband models.
+
+        Returns
+        -------
+        model : :class:`dustapprox.models.polynomial.PolynomialModel`
+        """
 
         if isinstance(fname, dict):
-            key = list(fname.keys())[0]
-            fname_ = fname[key]['filename']
+            fname_ = fname['filename']
             info = fname
         else:
             fname_ = fname
             info = self._get_file_info(fname_)
 
-        try:
-            info = info[fname_.replace(_DATA_PATH_, '')]
-        except KeyError:
-            pass
-
         model_kind = info['model']['kind']
 
         if passband is None:
-            print("Available passbands:")
-            print(info['passbands'])
-            raise ValueError("You need to specify a passband to load the model.")
+            return [self.load_model(fname, pbname) for pbname in info['passbands']]
 
         try:
             return kinds[model_kind].from_file(fname_, passband=passband)

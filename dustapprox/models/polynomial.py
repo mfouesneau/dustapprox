@@ -58,6 +58,7 @@ from sklearn.preprocessing import PolynomialFeatures
 import numpy as np
 import warnings
 from ..io import ecsv
+from .basemodel import _BaseModel
 
 
 def approx_model(r: DataFrame,
@@ -227,7 +228,7 @@ def quick_plot_models(r: DataFrame, **kwargs) -> DataFrame:
 
     return res
 
-class PolynomialModel:
+class PolynomialModel(_BaseModel):
     """ A polynomial model object
 
     Attributes
@@ -242,8 +243,7 @@ class PolynomialModel:
         coefficients of the regression on the polynomial expended features
     """
     def __init__(self, **kwargs):
-        self.meta = kwargs.get('meta', None)
-        self.name_ = kwargs.get('name', None)
+        super().__init__(**kwargs)
         self.transformer_ = None
         self.coeffs_ = None
 
