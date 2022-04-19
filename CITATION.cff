@@ -13,8 +13,8 @@
 
 cff-version: 1.2.0
 title: dustapprox
-message: If you use this software, please cite as below.
-date-released: 2022-03-29
+message: If you use this software, please cite it using the metadata from this file.
+date-released: 2022-04-20
 url: 'https://github.com/mfouesneau/dustapprox'
 version: 0.1
 type: software

@@ -25,7 +25,6 @@ We also detailed the various ingredients of the models in subsequent pages liste
    extinction
    photometry
    precomputed
-   modules
 
 .. todo::
 
@@ -187,9 +186,7 @@ Precomputed models
 This package allows one to generate new models from spectral libraries and extinction curves.
 However, we also provide some pre-computed models that can be used directly.
 
-* :mod:`dustapprox.models.polynomial`: polynomial models.
-   * :class:`dustapprox.models.polynomial.precomputed`: get available models.
-
+* :class:`dustapprox.models.PrecomputedModel` provides convenient search and load functions.
 
 .. seealso::
 
@@ -197,7 +194,7 @@ However, we also provide some pre-computed models that can be used directly.
 
 
 Literature Extinction approximations
-------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We also provide multiple literature approximations with this package (:mod:`dustapprox.literature`).
 
@@ -211,9 +208,63 @@ We also provide multiple literature approximations with this package (:mod:`dust
    Add some comparison to the literature in the submodule :mod:`dustapprox.literature`.
 
 
+How to contribute?
+-------------------
+
+We love contributions! This project is open source, built on open source
+libraries.
+
+Please open a new issue or new pull request for bugs, feedback, or new features
+you would like to see. If there is an issue you would like to work on, please
+leave a comment and we will be happy to assist. New contributions and
+contributors are very welcome!
+
+Being a contributor doesn't just mean writing code. You can
+help out by writing documentation, tests, or even giving feedback about the
+project (yes - that includes giving feedback about the contribution
+process).
+
+We are committed to providing a strong and enforced code of conduct and expect
+everyone in our community to follow these guidelines when interacting with
+others in all forums. Our goal is to keep ours a positive, inclusive, thriving,
+and growing community. The community of participants in open source Astronomy
+projects such as this present work includes members from around the globe with
+diverse skills, personalities, and experiences. It is through these differences
+that our community experiences success and continued growth.
+Please have a look at our `code of conduct <https://github.com/mfouesneau/dustapprox/main/CODE_OF_CONDUCT.md>`_.
 
 
+This project work follows a `BSD 3-Clause license <https://github.com/mfouesneau/dustapprox/blob/main/LICENSE>`_.
 
+
+How to cite this work?
+----------------------
+
+If you use this software, please cite it using the metadata below.
+
+**APA citation**
+
+.. code-block:: text
+
+   Fouesneau, M., Andrae, R., Sordo, R., & Dharmawardena, T. (2022).
+      dustapprox (Version 0.1) [Computer software].
+      https://github.com/mfouesneau/dustapprox
+
+**Bibtex citation**
+
+.. code-block:: text
+
+   @software{Fouesneau_dustapprox_2022,
+      author = {Fouesneau, Morgan
+                and Andrae, René
+                and Sordo, Rosanna
+                and Dharmawardena, Thavisha},
+      month = {3},
+      title = {{dustapprox}},
+      url = {https://github.com/mfouesneau/dustapprox},
+      version = {0.1},
+      year = {2022}
+      }
 
 
 Indices and tables
@@ -222,3 +273,10 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Module API
+
+   modules
