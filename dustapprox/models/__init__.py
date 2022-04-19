@@ -10,11 +10,16 @@
 
 from pkg_resources import resource_filename
 from glob import glob
+from typing import Union
+
+from tables import UnImplemented
 from ..io import ecsv
+from .polynomial import PolynomialModel
 
 _DATA_PATH_ = resource_filename('dustapprox', 'data/precomputed')
 
-kinds = ('polynomial',)
+kinds = {'polynomial':  PolynomialModel,
+         }
 
 
 class PrecomputedModel:
@@ -35,12 +40,18 @@ class PrecomputedModel:
 
         info = {}
         for fname in lst:
-            where = fname.replace(_DATA_PATH_, '')
-            df = ecsv.read(fname)
-            info[where] = df.attrs.copy()
-            info[where]['passbands'] = list(df['passband'].values)
-            info[where]['filename'] = fname
+            info.update(self._get_file_info(fname))
         self._info = info
+        return info
+
+    def _get_file_info(self, fname:str) -> dict:
+        """ Extract information from a file """
+        info = {}
+        where = fname.replace(_DATA_PATH_, '')
+        df = ecsv.read(fname)
+        info[where] = df.attrs.copy()
+        info[where]['passbands'] = list(df['passband'].values)
+        info[where]['filename'] = fname
         return info
 
     def find(self, passband=None, extinction=None, atmosphere=None, kind=None) -> dict:
@@ -76,4 +87,29 @@ class PrecomputedModel:
                 results[key]['passbands'] = [pk for pk in results[key]['passbands'] if passband.lower() in pk.lower()]
         return results
 
-    # TODO: a load function
+    def load_model(self, fname: Union[str, dict], passband: str = None):
+
+        if isinstance(fname, dict):
+            key = list(fname.keys())[0]
+            fname_ = fname[key]['filename']
+            info = fname
+        else:
+            fname_ = fname
+            info = self._get_file_info(fname_)
+
+        try:
+            info = info[fname_.replace(_DATA_PATH_, '')]
+        except KeyError:
+            pass
+
+        model_kind = info['model']['kind']
+
+        if passband is None:
+            print("Available passbands:")
+            print(info['passbands'])
+            raise ValueError("You need to specify a passband to load the model.")
+
+        try:
+            return kinds[model_kind].from_file(fname_, passband=passband)
+        except KeyError:
+            raise NotImplementedError(f'Model kind {model_kind} not implemented.')
