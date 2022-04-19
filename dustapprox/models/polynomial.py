@@ -291,7 +291,7 @@ class PolynomialModel:
             named data input
         """
         if isinstance(X, DataFrame) or hasattr(X, 'columns'):
-            return X
+            return X.copy()
         else:
             return DataFrame.from_records(np.atleast_2d(X),
                                           columns=self.feature_names)
