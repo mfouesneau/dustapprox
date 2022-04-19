@@ -24,7 +24,7 @@ we have some atmosphere spectral model. We provide some tools associated with th
 in :doc:`/atmospheres` (:mod:`dustapprox.io.svo`) but you can also use your own atmosphere models.
 
 Second, we need an extinction presscription. We provide some mean extinction
-curves in :doc:`/extinction` (:mod:`dustapprox.io.extinction`).
+curves in :doc:`/extinction` (:mod:`dustapprox.extinction`).
 
 Finally, we need passband definitions and functions to do the photometric
 calculations.  For the photometry, we use the external package `pyphot
