@@ -8,7 +8,7 @@ PAPER         =
 BUILDDIR      = _build
 
 APIBUILD      = sphinx-apidoc
-APIOPTS       = -o ./
+APIOPTS       = -M -o ./
 APIDIR        = ../dustapprox
 
 # User-friendly check for sphinx-build
