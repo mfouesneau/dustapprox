@@ -15,6 +15,66 @@ Please have a look to the following pages for the ingredients we used in our pre
 * :doc:`/extinction` - The extinction curves
 
 
+Precomputed models
+------------------
+
+We provide some already pre-computed model approximations for the extinction in various passbands.
+
+:class:`dustapprox.models.PrecomputedModel` provides convenient search and load functions.
+
+* use :class:`dustapprox.models.PrecomputedModel.find` to find available models and associated passbands
+    * The search can be on passband, extinction, atmosphere, and model kind. It is caseless and does not need to contain the complete name.
+
+.. code-block:: python
+    :caption: examples of searching for models
+
+    from dustapprox.models import PrecomputedModel
+    lib = PrecomputedModel()
+    lib.find(passband='Gaia')   # returns all models with Gaia passband
+    lib.find(passband='galex', atmosphere='Atlas')   # returns nothing (we did not provide Atlas9 atmosphere)
+    lib.find(passband='galex', atmosphere='kurucz')  # return only kurucz based models
+
+.. code-block:: text
+    :caption: result from :func:`dustapprox.models.PrecomputedModel.find` for `passband="galex"`
+
+    {'/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv': {'atmosphere': {'source': 'Kurucz (ODFNEW/NOVER 2003)',
+        'teff': [3500.0, 50000.0],
+        'logg': [0.0, 5.0],
+        'feh': [-4, 0.5],
+        'alpha': [0, 0.4]},
+        'extinction': {'source': 'Fitzpatrick (1999)', 'R0': 3.1, 'A0': [0, 10]},
+        'comment': ['teffnorm = teff / 5040', 'predicts kx = Ax / A0'],
+        'model': {'kind': 'polynomial',
+        'degree': 3,
+        'interaction_only': False,
+        'include_bias': True,
+        'feature_names': ['A0', 'teffnorm']},
+        'passbands': ['GALEX_GALEX.FUV', 'GALEX_GALEX.NUV'],
+        'filename': 'dustapprox/data/precomputed/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv'}}
+
+
+* use :class:`dustapprox.models.PrecomputedModel.load_model` to load any model (for a given passband)
+
+
+.. code-block:: python
+    :caption: example of loading Gaia passband approximations
+
+    from dustapprox.models import PrecomputedModel
+    lib = PrecomputedModel()
+    r = lib.find(passband='Gaia')
+    models = []
+    for source in r.values():
+        models.extend([lib.load_model(r, passband=pbname) for pbname in source['passbands']])
+
+
+
+.. important::
+    We currently provide only a limited of set of models and approximation methods.
+    We plan to expand in the future releases.
+
+    If you would like a particular passband (or set of passbands) to be included by default please contact us.
+
+
 Generating models
 -----------------
 
@@ -38,8 +98,8 @@ Once we have the above ingredients, we can bring them together to generate a
 large collection of photometric extinction values in various bands.
 
 
-Creating a grid of models
---------------------------
+Creating a photometric grid of dust attenuated stars
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python3
    :caption: An example of **not optimized** script to generate an extinction grid over all the atmosphere models
