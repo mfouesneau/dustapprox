@@ -4,7 +4,6 @@
 
     * add script to generate grid of models
     * add polynomial training.
-    * move literature models to here.
     * compare literature values to ours.
 """
 
@@ -12,9 +11,9 @@ from pkg_resources import resource_filename
 from glob import glob
 from typing import Union
 
-from tables import UnImplemented
 from ..io import ecsv
 from .polynomial import PolynomialModel
+
 
 _DATA_PATH_ = resource_filename('dustapprox', 'data/precomputed')
 
@@ -23,6 +22,48 @@ kinds = {'polynomial':  PolynomialModel,
 
 
 class PrecomputedModel:
+    """ Access to precomputed models
+
+    .. code-block:: python
+
+        from dustapprox.models import PrecomputedModel
+        lib = PrecomputedModel()
+        # search for GALEX passbands if present
+        r = lib.find(passband='galex')
+        print(r)
+        # load both available models
+        models = []
+        for source in r.values():
+            models.extend([lib.load_model(r, passband=pbname) for pbname in source['passbands']])
+
+    .. code-block:: text
+        :caption: result from :func:`PrecomputedModel.find`
+
+        {'/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv': {'atmosphere': {'source': 'Kurucz (ODFNEW/NOVER 2003)',
+            'teff': [3500.0, 50000.0],
+            'logg': [0.0, 5.0],
+            'feh': [-4, 0.5],
+            'alpha': [0, 0.4]},
+            'extinction': {'source': 'Fitzpatrick (1999)', 'R0': 3.1, 'A0': [0, 10]},
+            'comment': ['teffnorm = teff / 5040', 'predicts kx = Ax / A0'],
+            'model': {'kind': 'polynomial',
+            'degree': 3,
+            'interaction_only': False,
+            'include_bias': True,
+            'feature_names': ['A0', 'teffnorm']},
+            'passbands': ['GALEX_GALEX.FUV', 'GALEX_GALEX.NUV'],
+            'filename': 'dustapprox/data/precomputed/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv'}}
+
+    .. code-block:: text
+        :caption: result when loading models with from :func:`PrecomputedModel.load_model`
+
+        [PolynomialModel: GALEX_GALEX.FUV
+        <dustapprox.models.polynomial.PolynomialModel object at 0x12917b6a0>
+            from: A0, teffnorm   polynomial degree: 3,
+        PolynomialModel: GALEX_GALEX.NUV
+        <dustapprox.models.polynomial.PolynomialModel object at 0x129170820>
+            from: A0, teffnorm   polynomial degree: 3]
+    """
 
     def __init__(self, location=None):
         """ Constructor """
