@@ -85,7 +85,7 @@ def _parallel_task(fname: str, apfields: Sequence[str],
                 new_flux = flux * np.exp(- alambda_per_av * av_val)
                 mag = -2.5 * np.log10(pk.get_flux(lamb, new_flux).value)
                 delta = (mag - mag0)
-                logs.append(apvalues + [pk.name, mag0, mag, av_val, Rv, delta])
+                logs.append(apvalues + [pk.name, mag0, mag, av_val, rv_val, delta])
                 pass
     logs = pd.DataFrame.from_records(logs, columns=columns)
     return logs
