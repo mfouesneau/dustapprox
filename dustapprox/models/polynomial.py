@@ -465,7 +465,7 @@ class PolynomialModel(_BaseModel):
 
         feature_names = self.feature_names
         # prepare transformer on fake data
-        X = DataFrame.from_records(np.empty((1, len(feature_names))),
+        X = DataFrame.from_records(np.zeros((1, len(feature_names))),
                                    columns=feature_names)
         transformer = PolynomialFeatures(degree=degree,
                                          include_bias=include_bias,
@@ -521,7 +521,7 @@ class PolynomialModel(_BaseModel):
         self.name
         data = self.coeffs_.to_frame().T
         meta = self.meta.copy()
-        keys = 'mae,rmse,mean,stddev'.split(',')
+        keys = 'mae,rmse,mean_residuals,std_residuals'.split(',')
         for key in keys:
             data[key] = meta.pop(key, float('nan'))
         data.attrs.update(meta)
