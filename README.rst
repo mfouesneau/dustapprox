@@ -49,6 +49,7 @@ Contributors
 ------------
 
 Main contributors:
+
 * M. Fouesneau (@mfouesneau),
 * R. Andrae,
 * R. Sordo,
