@@ -32,43 +32,36 @@ We also detailed the various ingredients of the models in subsequent pages liste
    This package provides **approximations** to the extinction effects in photometric bands.
    It is not meant to be a full implementation of the extinction curves but a shortcut.
 
-   In this current version, we only provide global uncertainties (e.g., rms, biases).
+   In this current version, we only provide global uncertainties (e.g., rms,
+   biases). To obtain complete uncertainties, one needs to use models and
+   compute the relevant statistics. We show how to compute a model grid in :doc:`/precomputed/`.
 
 
 Quick Start
 -----------
 
-.. todo::
-
-    * add some quick examples of usage from precomputed models
+The following example shows how to use the predictions from a precomputed model.
 
 
-.. plot::
-   :caption: This figure shows the model effects.
-   :include-source:
+.. code-block:: python
+   :caption: Example of using an approximation model.
 
    import pandas as pd
    from dustapprox import models
+   from dustapprox.literature import edr3
    import pylab as plt
 
    # get Gaia models
    lib = models.PrecomputedModel()
-   r = lib.find(passband='Gaia')
+   r = lib.find(passband='Gaia')[0]  # taking the first one
    model = lib.load_model(r, passband='GAIA_GAIA3.G')
 
    # get some data
    data = pd.read_csv('models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
-   gmag = data[data.passband == 'GAIA_GAIA3.G']
+   df = data[(data['passband'] == 'GAIA_GAIA3.G') & (data['A0'] > 0)]
 
-   mg = gmag['mag0']
-   kg = model.predict(gmag)
-   delta = gmag['mag'] - gmag['A0'] * kg - gmag['mag0']
-   plt.scatter(mg, delta, c=gmag['A0'], rasterized=True)
-   plt.colorbar().set_label(r'A$_0$ [mag]')
-   plt.xlabel(r'M$_G$ [mag] + constant')
-   plt.ylabel(r'G - A$_0\cdot k_g$ - M$_G$ [mag]')
-   plt.show()
-
+   # values
+   kg_pred = model.predict(df)
 
 
 
@@ -234,10 +227,93 @@ We also provide multiple literature approximations with this package (:mod:`dust
 
    Their relations may not use the same approach or parametrizations.
 
+The following figure (code provided) compares the predictions from a :class:`dustapprox.models.polynomial.PolynomialModel` to those of :class:`dustapprox.literature.edr3.edr3_ext`.
+However, one must note that the literature models are often valid on a restricted stellar parameter space, here in particular, the temperature :math:`T_{eff}` is limited to the range :math:`[3500, 10 000]` K. Our model uses the same polynomial degree as the literature version.
+Note that these are evidently approximations to the explicit calculations used as reference on all the y-axis.
+Our package also allows one to update the model parameters, such as the polynomial degree, or the range of validity of the model.
 
-.. todo::
+.. plot::
+   :caption: Comparing a Gaia G approximation model to the EDR3 one from `Riello et al. (2020) <https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract>`_ (:mod:`dustapprox.literature.edr3`). We plot the residuals of :math:`k_G = A_G/A_0` versus the intrinsic G-magnitude (left) and temperature (right). One can see the polynomial oscillations.  Note that the performance degrades with stellar temperature. As the EDR3 model is only valid for some limited range of temperature, we indicate extrapolation data with smaller dots.
 
-   Add some comparison to the literature in the submodule :mod:`dustapprox.literature`.
+   import pandas as pd
+   from dustapprox import models
+   from dustapprox.literature import edr3
+   import pylab as plt
+
+   # get Gaia models
+   lib = models.PrecomputedModel()
+   r = lib.find(passband='Gaia')[0]  # taking the first one
+   model = lib.load_model(r, passband='GAIA_GAIA3.G')
+
+   # get some data
+   data = pd.read_csv('../docs/models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
+   df = data[(data['passband'] == 'GAIA_GAIA3.G') & (data['A0'] > 0)]
+
+   # values
+   ydata = (df['mag'] - df['mag0']) / df['A0']
+   kg_edr3 = edr3.edr3_ext().from_teff('kG', df['teff'], df['A0'])
+   delta_edr3 = ydata - kg_edr3
+   delta = ydata - model.predict(df)
+   # note: edr3 model valid for 3500 < teff < 10_000
+   selection = '3500 < teff < 10_000'
+   select = df.eval(selection)
+
+   plt.figure(figsize=(10, 8))
+   cmap = plt.cm.inferno_r
+
+   title = "{name:s}: kind={kind:s}\n using: {features}".format(
+         name=model.name,
+         kind=model.__class__.__name__,
+         features=', '.join(model.feature_names))
+
+   kwargs_all = dict(rasterized=True, edgecolor='w', cmap=cmap, c=df['A0'])
+   kwargs_select = dict(rasterized=True, cmap=cmap, c=df['A0'][select])
+
+   ax0 = plt.subplot(221)
+   plt.scatter(df['mag0'], delta, **kwargs_all)
+   plt.scatter(df['mag0'][select], delta[select], **kwargs_select)
+   plt.colorbar().set_label(r'A$_0$ [mag]')
+   plt.ylabel(r'$\Delta$k$_G$')
+   plt.text(0.01, 0.99, title, fontsize='medium',
+         transform=plt.gca().transAxes, va='top', ha='left')
+
+   ax1 = plt.subplot(222, sharey=ax0)
+   plt.scatter(df['teff'], delta, **kwargs_all)
+   plt.scatter(df['teff'][select], delta[select], **kwargs_select)
+   plt.colorbar().set_label(r'A$_0$ [mag]')
+   plt.text(0.01, 0.99, title, fontsize='medium',
+         transform=plt.gca().transAxes, va='top', ha='left')
+
+   title = "{name:s}: kind={kind:s}\n using: {features}".format(
+            name="EDR3",
+            kind=edr3.edr3_ext().__class__.__name__,
+            features=', '.join(('teffnorm', 'A0')))
+
+   ax = plt.subplot(223, sharex=ax0, sharey=ax0)
+   plt.scatter(df['mag0'], delta_edr3, **kwargs_all)
+   plt.scatter(df['mag0'][select], delta_edr3[select], **kwargs_select)
+   plt.colorbar().set_label(r'A$_0$ [mag]')
+   plt.xlabel(r'M$_G$ [mag] + constant')
+   plt.ylabel(r'$\Delta$k$_G$')
+   plt.ylim(-0.1, 0.1)
+   plt.text(0.01, 0.99, title, fontsize='medium',
+         transform=plt.gca().transAxes, va='top', ha='left')
+
+
+   plt.subplot(224, sharex=ax1, sharey=ax1)
+   plt.scatter(df['teff'], delta_edr3, **kwargs_all)
+   plt.scatter(df['teff'][select], delta_edr3[select], **kwargs_select)
+   plt.xlabel(r'T$_{\rm eff}$ [K]')
+   plt.colorbar().set_label(r'A$_0$ [mag]')
+   plt.ylim(-0.1, 0.1)
+
+   plt.setp(plt.gcf().get_axes()[1:-1:2], visible=False)
+
+   plt.text(0.01, 0.99, title, fontsize='medium',
+         transform=plt.gca().transAxes, va='top', ha='left')
+
+   plt.tight_layout()
+   plt.show()
 
 
 How to contribute?
