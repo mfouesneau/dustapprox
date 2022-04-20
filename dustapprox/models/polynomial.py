@@ -53,7 +53,7 @@ model should explain well the data while being simple.
 
 """
 from typing import Sequence, Union
-from pandas import DataFrame
+from pandas import DataFrame, Series
 from sklearn.preprocessing import PolynomialFeatures
 import numpy as np
 import warnings
@@ -267,6 +267,10 @@ class PolynomialModel(_BaseModel):
     def name(self) -> str:
         """ Get the model name also stored in the coeffs series """
         if self.coeffs_ is not None:
+            if not hasattr(self.coeffs_, 'name'):
+                self.coeffs_ = Series(self.coeffs_,
+                                         index=self.get_transformed_feature_names())
+                self.coeffs_.name = None
             if (self.coeffs_.name is None) and (self.name_ is not None):
                 self.coeffs_.name = self.name_
         if (self.coeffs_.name is not None) and (self.name_ is None):
@@ -366,7 +370,9 @@ class PolynomialModel(_BaseModel):
         mean = np.mean(pred-ydata)
 
         self.transformer_ = poly
-        self.coeffs_ = regr.coef_.copy()
+        #self.coeffs_ = regr.coef_.copy()
+        self.coeffs_ = Series(regr.coef_,
+                              index=self.get_transformed_feature_names())
         self.meta['comment'] = 'teffnorm = teff / 5040; predicts kx = Ax / A0'
         self.meta['model'] = {'kind': 'polynomial',
                               'degree': degree,

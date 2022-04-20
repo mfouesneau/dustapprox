@@ -9,7 +9,7 @@ class _BaseModel(object):
         meta information about the model
     """
     def __init__(self, **kwargs):
-        self.meta = kwargs.get('meta', None)
+        self.meta = kwargs.get('meta', {})
         self.name_ = kwargs.get('name', None)
 
     def fit(self, *args, **kwargs):
