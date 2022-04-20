@@ -3,20 +3,30 @@ dustapprox -- A tool for computing approximative extinction coefficients
 
 This is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
 
-full documentation at:  XXXXXXXX
-
-.. warning::
-
-    This package will move to `dustapprox`
+full documentation at: http://mfouesneau.github.io/dustapprox/
 
 
 Quick Start
 -----------
 
-.. todo::
+.. code-block:: python
 
-    * add some quick examples of usage from precomputed models
+  import pandas as pd
+  from dustapprox import models
+  from dustapprox.literature import edr3
+  import pylab as plt
 
+  # get Gaia models
+  lib = models.PrecomputedModel()
+  r = lib.find(passband='Gaia')[0]  # taking the first one
+  model = lib.load_model(r, passband='GAIA_GAIA3.G')
+
+  # get some data
+  data = pd.read_csv('models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
+  df = data[(data['passband'] == 'GAIA_GAIA3.G') & (data['A0'] > 0)]
+
+  # values
+  kg_pred = model.predict(df)
 
 Installation
 ------------
@@ -34,8 +44,6 @@ download the repository and run the setup
 
   git clone https://github.com/mfouesneau/gdr3_extinction
   python setup.py install
-
-
 
 Contributors
 ------------
