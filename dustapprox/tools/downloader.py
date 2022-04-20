@@ -94,7 +94,7 @@ def _dl_ascii_progress(iterseq: Sequence,
         cur_t = time.time()
         if cur_t - last_print_t >= mininterval:
             done = int(progress_length * dl / total)
-            message = "\r[%s%s] (%s)" % ('=' * done, ' ' * (progress_length - done), pretty_size_print(dl))
+            message = "\r[%s%s] (%s)" % ('=' * done, ' ' * (progress_length - done), _pretty_size_print(dl))
             clear = ' ' * (max(1, message_length - len(message)))
             sys.stdout.write(message + clear)
             message_length = len(message)
