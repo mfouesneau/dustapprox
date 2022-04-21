@@ -227,15 +227,19 @@ We also provide multiple literature approximations with this package (:mod:`dust
 
    Their relations may not use the same approach or parametrizations.
 
-The following figure (code provided) compares the predictions from a :class:`dustapprox.models.polynomial.PolynomialModel` to those of :class:`dustapprox.literature.edr3.edr3_ext`.
+The following figure (code provided) compares the predictions from a :class:`dustapprox.models.polynomial.PolynomialModel` to those of :class:`dustapprox.literature.edr3.edr3_ext`. The latter is a model described `Riello et al. (2020) <https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract>`_.
+
 However, one must note that the literature models are often valid on a restricted stellar parameter space, here in particular, the temperature :math:`T_{eff}` is limited to the range :math:`[3500, 10 000]` K. Our model uses the same polynomial degree as the literature version.
 Note that these are evidently approximations to the explicit calculations used as reference on all the y-axis.
 Our package also allows one to update the model parameters, such as the polynomial degree, or the range of validity of the model.
 
 .. plot::
-   :caption: Comparing a Gaia G approximation model to the EDR3 one from `Riello et al. (2020) <https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract>`_ (:mod:`dustapprox.literature.edr3`). We plot the residuals of :math:`k_G = A_G/A_0` versus the intrinsic G-magnitude (left) and temperature (right). One can see the polynomial oscillations.  Note that the performance degrades with stellar temperature. As the EDR3 model is only valid for some limited range of temperature, we indicate extrapolation data with smaller dots.
-
-
+   :caption:  **Figure 3.** Comparing a Gaia G approximation model to the EDR3 one (:mod:`dustapprox.literature.edr3`).
+              We plot the residuals of :math:`k_G = A_G/A_0` versus the intrinsic G-magnitude (left) and temperature (right). One
+              can see the polynomial oscillations.  Note that the performance degrades with
+              stellar temperature. As the EDR3 model is only valid for some limited range
+              of temperature, we indicate extrapolation data with smaller dots.
+   
    import pandas as pd
    from dustapprox import models
    from dustapprox.literature import edr3
@@ -247,7 +251,7 @@ Our package also allows one to update the model parameters, such as the polynomi
    model = lib.load_model(r, passband='GAIA_GAIA3.G')
 
    # get some data
-   data = pd.read_csv('../docs/models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
+   data = pd.read_csv('./models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
    df = data[(data['passband'] == 'GAIA_GAIA3.G') & (data['A0'] > 0)]
 
    # values
