@@ -25,6 +25,7 @@ We also detailed the various ingredients of the models in subsequent pages liste
    extinction
    photometry
    precomputed
+   precomputed_content
 
 
 .. warning::
@@ -71,7 +72,7 @@ Why an approximation?
 
 If we assume :math:`F_\lambda^0` is the intrinsic atmosphere energy distribution of a star
 as a function of wavelength :math:`\lambda` and the extinction curve :math:`\tau_\lambda`, the apparent
-wavelength dependent light observed from a star is given by:
+wavelength-dependent light observed from a star is given by:
 
 .. math::
 
@@ -136,7 +137,7 @@ Consequently, the statistical mean of the flux density through :math:`T`, :math:
         \overline{f_T} = \frac{\int_\lambda \lambda f_\lambda T(\lambda) d\lambda}{\int_\lambda \lambda T(\lambda) d\lambda}.
         \end{equation}
 
-The flux equation above slightly change if we consider energy detector types, but the general idea remains the same.
+The flux equation above changes slightly if we consider energy detector types, but the general idea remains the same.
 The magnitude in :math:`T` is given by
 
 .. math::
@@ -175,6 +176,7 @@ often leads to approximations as functions of stellar temperatures, :math:`T_{ef
 
    import pylab as plt
    import pandas as pd
+   import numpy as np
 
    r = pd.read_csv('./models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
    r['kx'] = np.where(r['A0'] > 0, r['Ax'] / r['A0'], float('NaN'))
@@ -182,9 +184,11 @@ often leads to approximations as functions of stellar temperatures, :math:`T_{ef
    plt.figure(figsize=(9, 4))
    ax1 = plt.subplot(121)
    ax2 = plt.subplot(122, sharey=ax1)
+   colors = {'Gbp': 'C0', 'G': 'C1', 'Grp': 'C3'}
    for key, grp in r.groupby('passband'):
-      ax1.scatter(grp['A0'], grp['kx'], label=key, rasterized=True)
-      ax2.scatter(grp['teff'], grp['kx'], label=key, rasterized=True)
+      color = colors[key.split('.')[-1]]
+      ax1.scatter(grp['A0'], grp['kx'], label=key, rasterized=True, color=color)
+      ax2.scatter(grp['teff'], grp['kx'], label=key, rasterized=True, color=color)
    ax1.legend(loc='best', frameon=False)
    ax1.set_ylabel(r'$A(T)\ /\ A_0$ [mag]')
    ax1.set_xlabel(r'$A_0$ [mag]')
