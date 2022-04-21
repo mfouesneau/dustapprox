@@ -35,7 +35,7 @@ setup(name = "dustapprox",
       'Intended Audience :: Science/Research',
       'Operating System :: OS Independent',
       'Programming Language :: Python :: 3',
-      'License :: OSI Approved :: BSD 3-Clause License',
+      'License :: OSI Approved :: BSD License',
       'Topic :: Scientific/Engineering :: Astronomy'
       ],
     zip_safe=False,
