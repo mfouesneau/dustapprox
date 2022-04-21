@@ -166,6 +166,7 @@ class CCM89(ExtinctionLaw):
     """
     def __init__(self):
         self.name = 'CCM89'
+        self.long_name = 'Cardelli, Clayton, & Mathis (1989)'
 
     def __call__(self, lamb, Av=1., Rv=3.1, Alambda=True, **kwargs):
         """ Cardelli extinction curve
@@ -311,6 +312,7 @@ class F99(ExtinctionLaw):
     """
     def __init__(self):
         self.name = 'F99'
+        self.long_name = 'Fitzpatrick (1999)'
 
     def __call__(self,
                  lamb: Union[float, np.array, Quantity],
