@@ -184,7 +184,7 @@ often leads to approximations as functions of stellar temperatures, :math:`T_{ef
    plt.figure(figsize=(9, 4))
    ax1 = plt.subplot(121)
    ax2 = plt.subplot(122, sharey=ax1)
-   colors = {'Gbp': 'C0', 'G': 'C1', 'Grp': 'C3'}
+   colors = {'Gbp': 'C0', 'G': 'C2', 'Grp': 'C3'}
    for key, grp in r.groupby('passband'):
       color = colors[key.split('.')[-1]]
       ax1.scatter(grp['A0'], grp['kx'], label=key, rasterized=True, color=color)
