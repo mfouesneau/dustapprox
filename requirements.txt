@@ -4,3 +4,4 @@ pyphot
 pyyaml
 pandas
 astropy
+scikit-learn
