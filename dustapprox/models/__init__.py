@@ -44,15 +44,15 @@ class PrecomputedModel:
             'logg': [0.0, 5.0],
             'feh': [-4, 0.5],
             'alpha': [0, 0.4]},
-            'extinction': {'source': 'Fitzpatrick (1999)', 'R0': 3.1, 'A0': [0, 10]},
-            'comment': ['teffnorm = teff / 5040', 'predicts kx = Ax / A0'],
-            'model': {'kind': 'polynomial',
-            'degree': 3,
-            'interaction_only': False,
-            'include_bias': True,
-            'feature_names': ['A0', 'teffnorm']},
-            'passbands': ['GALEX_GALEX.FUV', 'GALEX_GALEX.NUV'],
-            'filename': 'dustapprox/data/precomputed/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv'}]
+          'extinction': {'source': 'Fitzpatrick (1999)', 'R0': 3.1, 'A0': [0, 10]},
+          'comment': ['teffnorm = teff / 5040', 'predicts kx = Ax / A0'],
+          'model': {'kind': 'polynomial',
+          'degree': 3,
+          'interaction_only': False,
+          'include_bias': True,
+          'feature_names': ['A0', 'teffnorm']},
+          'passbands': ['GALEX_GALEX.FUV', 'GALEX_GALEX.NUV'],
+          'filename': 'dustapprox/data/precomputed/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv'}]
 
     .. code-block:: text
         :caption: result when loading models with from :func:`PrecomputedModel.load_model`
