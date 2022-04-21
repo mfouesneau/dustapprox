@@ -57,7 +57,10 @@ help:
 clean:
 	rm -rf $(BUILDDIR)/*
 
-apidoc:
+prerun:
+	python3 generate_precomputed_list.py
+
+apidoc: 
 	$(APIBUILD) $(APIOPTS) $(APIDIR)
 
 .PHONY: html

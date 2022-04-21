@@ -66,14 +66,16 @@ We provide some already pre-computed model approximations for the extinction in 
     for source in r.values():
         models.extend([lib.load_model(r, passband=pbname) for pbname in source['passbands']])
 
-
-
 .. important::
-    We currently provide only a limited of set of models and approximation methods.
+    We currently provide only a limited set of models and approximation methods.
     We plan to expand in the future releases.
 
-    If you would like a particular passband (or set of passbands) to be included by default please contact us.
+    Please contact us if you would like a particular passband (or set of passbands) to be included by default.
 
+
+.. seealso::
+
+    * list of provided models: :doc:`/precomputed_content`
 
 Generating models
 -----------------

@@ -17,7 +17,7 @@ jobs:
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
         fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
 
-    - name: Set up Python 
+    - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: "3.9"
@@ -32,7 +32,7 @@ jobs:
       working-directory: "docs/"
       run: |
           rm -f dustapprox.rst dustapprox.*.rst
-          make apidoc && make html
+          make prerun && make apidoc && make html
 
     # - name: Debugging session Setup tmate
     #   uses: mxschmitt/action-tmate@v3

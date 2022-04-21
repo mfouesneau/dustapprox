@@ -38,6 +38,7 @@ except DistributionNotFound:
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
+    'sphinx.ext.autosectionlabel',
     'sphinx.ext.doctest',
     'sphinx.ext.todo',
     "sphinx.ext.intersphinx",
@@ -50,6 +51,9 @@ extensions = [
 ]
 
 myst_enable_extensions = ["dollarmath", "colon_fence"]
+
+# Make sure the target is unique
+autosectionlabel_prefix_document = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

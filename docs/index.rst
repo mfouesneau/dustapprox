@@ -64,7 +64,6 @@ The following example shows how to use the predictions from a precomputed model.
    kg_pred = model.predict(df)
 
 
-
 Why an approximation?
 ---------------------
 
@@ -216,6 +215,7 @@ However, we also provide some pre-computed models that can be used directly.
 .. seealso::
 
    * model training details :doc:`/precomputed`
+   * list of provided models: :doc:`/precomputed_content`
 
 
 Literature Extinction approximations
@@ -239,7 +239,7 @@ Our package also allows one to update the model parameters, such as the polynomi
               can see the polynomial oscillations.  Note that the performance degrades with
               stellar temperature. As the EDR3 model is only valid for some limited range
               of temperature, we indicate extrapolation data with smaller dots.
-   
+
    import pandas as pd
    from dustapprox import models
    from dustapprox.literature import edr3
