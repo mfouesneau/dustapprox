@@ -48,13 +48,10 @@ download the repository and run the setup
 Contributors
 ------------
 
-Main contributors:
-
-- M. Fouesneau (@mfouesneau),
-- R. Andrae,
-- R. Sordo,
-- R. Drimmel,
-- T. E. Dharmawardena
+- Morgan Fouesneau (@mfouesneau)
+- René Andrae
+- Rosanna Sordo
+- Thavisha Dharmawardena
 
 
 Contributing
