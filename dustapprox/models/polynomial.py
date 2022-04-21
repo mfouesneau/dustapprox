@@ -366,13 +366,13 @@ class PolynomialModel(_BaseModel):
 
         mae = median_absolute_error(ydata, pred)
         rmse = mean_squared_error(ydata, pred, squared=False)
-        stddev = np.std(pred-ydata)
-        mean = np.mean(pred-ydata)
+        stddev = np.std(pred - ydata)
+        mean = np.mean(pred - ydata)
 
         self.transformer_ = poly
-        #self.coeffs_ = regr.coef_.copy()
         self.coeffs_ = Series(regr.coef_,
                               index=self.get_transformed_feature_names())
+        self.meta.update(df.attrs)
         self.meta['comment'] = 'teffnorm = teff / 5040; predicts kx = Ax / A0'
         self.meta['model'] = {'kind': 'polynomial',
                               'degree': degree,
