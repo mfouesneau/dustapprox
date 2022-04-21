@@ -5,3 +5,4 @@ pyyaml
 pandas
 astropy
 scikit-learn
+tqdm
