@@ -18,12 +18,12 @@ Please have a look to the following pages for the ingredients we used in our pre
 Precomputed models
 ------------------
 
-We provide some already pre-computed model approximations for the extinction in various passbands.
+We provide some already precomputed model approximations for the extinction in various passbands.
 
 :class:`dustapprox.models.PrecomputedModel` provides convenient search and load functions.
 
 * use :class:`dustapprox.models.PrecomputedModel.find` to find available models and associated passbands
-    * The search can be on passband, extinction, atmosphere, and model kind. It is caseless and does not need to contain the complete name.
+    * The search can be on passband, extinction, atmosphere, and model kind.  It is caseless and does not need to contain the complete name.
 
 .. code-block:: python
     :caption: examples of searching for models
@@ -81,11 +81,11 @@ Generating models
 -----------------
 
 Generating a photometric extinction model or approximation requires first that
-we have some atmosphere spectral model. We provide some tools associated with the
+we have some atmosphere spectral model.  We provide some tools associated with the
 `SVO Theoretical <spectra: http://svo2.cab.inta-csic.es/theory/newov2/index.php>`_
 in :doc:`/atmospheres` (:mod:`dustapprox.io.svo`) but you can also use your own atmosphere models.
 
-Second, we need an extinction presscription. We provide some mean extinction
+Second, we need an extinction presscription.  We provide some mean extinction
 curves in :doc:`/extinction` (:mod:`dustapprox.extinction`).
 
 Finally, we need passband definitions and functions to do the photometric
@@ -94,7 +94,7 @@ calculations.  For the photometry, we use the external package `pyphot
 photometry in flexible ways.  In addition,
 :func:`dustapprox.io.svo.get_svo_passbands` interfaces the `SVO Filter Profile
 Service <http://svo2.cab.inta-csic.es/theory/fps/index.php>`_, which provides us
-with a large collection of passbands. (wrapper from `pyphot`_).
+with a large collection of passbands.  (wrapper from `pyphot`_).
 
 Once we have the above ingredients, we can bring them together to generate a
 large collection of photometric extinction values in various bands.
@@ -189,9 +189,9 @@ We detail below the steps to do this.
    logs = pd.DataFrame.from_records(logs, columns=columns)
 
 The above script works, but it could be very time consuming if you have many
-passbands and many extinction parameters to grid. However, every piece of
+passbands and many extinction parameters to grid.  However, every piece of
 information are independent of one another: atmosphere spectra, passbands,
-extinction grid points. Hence this is a massively parallel problem.
+extinction grid points.  Hence this is a massively parallel problem.
 
 As the first rule of optimization is to start by the most outer loop, we
 provide a script that parallelizes the the procedure with respect to the atmosphere files in
