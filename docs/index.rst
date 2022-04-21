@@ -232,11 +232,8 @@ However, one must note that the literature models are often valid on a restricte
 Note that these are evidently approximations to the explicit calculations used as reference on all the y-axis.
 Our package also allows one to update the model parameters, such as the polynomial degree, or the range of validity of the model.
 
-We plot the residuals of :math:`k_G = A_G/A_0` versus the intrinsic G-magnitude (left) and temperature (right). One can see the polynomial oscillations.  Note that the performance degrades with stellar temperature. As the EDR3 model is only valid for some limited range of temperature, we indicate extrapolation data with smaller dots.
-
 .. plot::
-   :caption: Comparing a Gaia G approximation model to the EDR3 one from `Riello et al. (2020) <https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract>`_ (:mod:`dustapprox.literature.edr3`).
-
+   :caption: Comparing a Gaia G approximation model to the EDR3 one from `Riello et al. (2020) <https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract>`_ (:mod:`dustapprox.literature.edr3`). We plot the residuals of :math:`k_G = A_G/A_0` versus the intrinsic G-magnitude (left) and temperature (right). One can see the polynomial oscillations.  Note that the performance degrades with stellar temperature. As the EDR3 model is only valid for some limited range of temperature, we indicate extrapolation data with smaller dots.
 
 
    import pandas as pd
