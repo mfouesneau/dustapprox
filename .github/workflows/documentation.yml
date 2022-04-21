@@ -29,7 +29,7 @@ jobs:
           make apidoc
         docs-folder: "docs/"
 
-    - name: Debugging session: Setup tmate
+    - name: Debugging session Setup tmate
       uses: mxschmitt/action-tmate@v3
 
     # Publish built docs to gh-pages branch.
