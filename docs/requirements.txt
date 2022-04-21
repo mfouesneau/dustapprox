@@ -1,3 +1,4 @@
+sphinx<4.5
 markupsafe<2.10
 sphinx-book-theme
 myst-nb
