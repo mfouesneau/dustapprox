@@ -50,11 +50,11 @@ Contributors
 
 Main contributors:
 
-* M. Fouesneau (@mfouesneau),
-* R. Andrae,
-* R. Sordo,
-* R. Drimmel,
-* T. E. Dharmawardena
+- M. Fouesneau (@mfouesneau),
+- R. Andrae,
+- R. Sordo,
+- R. Drimmel,
+- T. E. Dharmawardena
 
 
 Contributing
