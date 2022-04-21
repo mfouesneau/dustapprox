@@ -135,6 +135,7 @@ def generate_header(df: pd.DataFrame, **meta) -> str:
     meta: dict
         meta data to be written to the header.
         Typically keywords, comments, history and so forth should be part of meta.
+        df.attrs will be automatically added to the meta data.
 
     Returns
     -------
@@ -143,7 +144,9 @@ def generate_header(df: pd.DataFrame, **meta) -> str:
     """
     dtypes = [{'name': name, 'datatype': str(dt)}
                 for name, dt in df.dtypes.to_dict().items()]
-    h = {'delimiter': ',', 'datatype': dtypes, 'meta': meta}
+    meta_ = df.attrs.copy()
+    meta_.update(meta)
+    h = {'delimiter': ',', 'datatype': dtypes, 'meta': meta_}
     preamble = ['# %ECSV {0:s}'.format(__ECSV_VERSION__), '# ---']
     lines = ['# ' + line for line in yaml.dump(h, sort_keys=False).split('\n') if line]
     return '\n'.join(preamble + lines)
