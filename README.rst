@@ -37,6 +37,12 @@ Installation
 
 .. code::
 
+  pip install dustapprox
+  
+* Installation from pip+github
+
+.. code::
+
   pip install git+https://github.com/mfouesneau/gdr3_extinction
 
 * Manual installation
