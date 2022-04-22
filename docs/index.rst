@@ -348,7 +348,7 @@ and growing community. The community of participants in open source Astronomy
 projects such as this present work includes members from around the globe with
 diverse skills, personalities, and experiences. It is through these differences
 that our community experiences success and continued growth.
-Please have a look at our `code of conduct <https://github.com/mfouesneau/dustapprox/main/CODE_OF_CONDUCT.md>`_.
+Please have a look at our `code of conduct <https://github.com/mfouesneau/dustapprox/blob/main/CODE_OF_CONDUCT.md>`_.
 
 
 This project work follows a `BSD 3-Clause license <https://github.com/mfouesneau/dustapprox/blob/main/LICENSE>`_.
