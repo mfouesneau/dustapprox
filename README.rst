@@ -1,6 +1,9 @@
 dustapprox -- A tool for computing approximative extinction coefficients
 =============================================================================
 
+.. image:: https://img.shields.io/pypi/v/dustapprox.svg
+    :target: https://pypi.org/project/dustapprox/
+
 This is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
 
 full documentation at: http://mfouesneau.github.io/dustapprox/
@@ -31,6 +34,12 @@ Quick Start
 Installation
 ------------
 * Installation from PyPI
+
+.. code::
+
+  pip install dustapprox
+  
+* Installation from pip+github
 
 .. code::
 
