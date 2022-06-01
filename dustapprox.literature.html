@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>dustapprox.literature package &#8212; dustapprox</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dustapprox.models package" href="dustapprox.models.html" />
+    <link rel="prev" title="dustapprox.io package" href="dustapprox.io.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">dustapprox</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="atmospheres.html">
+   Atmosphere models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extinction.html">
+   Extinction curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="photometry.html">
+   Photometric computations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="precomputed.html">
+   Extinction approximation models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="precomputed_content.html">
+   List of provided precomputed models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module API
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="modules.html">
+   dustapprox
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="dustapprox.html">
+     dustapprox package
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.io.html">
+       dustapprox.io package
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       dustapprox.literature package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.models.html">
+       dustapprox.models package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.tools.html">
+       dustapprox.tools package
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Fdustapprox.literature.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/edit/main/docs/dustapprox.literature.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/dustapprox.literature.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature-extinction-approximations">
+   Literature Extinction approximations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-dustapprox.literature.c1">
+   dustapprox.literature.c1 module
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-c1-gaia-photometric-system">
+     The
+     <span class="math notranslate nohighlight">
+      \(C1\)
+     </span>
+     Gaia photometric system
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c1-passbands-transmission-curves">
+     C1 passbands transmission curves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-from-bellazzini-et-al-2022-gaia-dr3">
+     Model from Bellazzini et al. (2022; Gaia DR3)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-dustapprox.literature.edr3">
+   dustapprox.literature.edr3 module
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>dustapprox.literature package</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature-extinction-approximations">
+   Literature Extinction approximations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-dustapprox.literature.c1">
+   dustapprox.literature.c1 module
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-c1-gaia-photometric-system">
+     The
+     <span class="math notranslate nohighlight">
+      \(C1\)
+     </span>
+     Gaia photometric system
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c1-passbands-transmission-curves">
+     C1 passbands transmission curves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-from-bellazzini-et-al-2022-gaia-dr3">
+     Model from Bellazzini et al. (2022; Gaia DR3)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-dustapprox.literature.edr3">
+   dustapprox.literature.edr3 module
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="module-dustapprox.literature">
+<span id="dustapprox-literature-package"></span><h1>dustapprox.literature package<a class="headerlink" href="#module-dustapprox.literature" title="Permalink to this headline">#</a></h1>
+<section id="literature-extinction-approximations">
+<h2>Literature Extinction approximations<a class="headerlink" href="#literature-extinction-approximations" title="Permalink to this headline">#</a></h2>
+<p>We provide multiple literature approximations with this package.</p>
+<ul>
+<li><p><a class="reference internal" href="#dustapprox.literature.edr3.edr3_ext" title="dustapprox.literature.edr3.edr3_ext"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.literature.edr3.edr3_ext</span></code></a> provides the <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract">Riello et al. (2020)</a> approximation, i.e.,
+extinction coefficient <span class="math notranslate nohighlight">\(k_x = A_x / A_0\)</span> for Gaia eDR3 passbands (G, BP, RP).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Their calibration only accounted for solar metallicity.</p>
+</div>
+</li>
+<li><p><a class="reference internal" href="#dustapprox.literature.c1.dr3_ext" title="dustapprox.literature.c1.dr3_ext"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.literature.c1.dr3_ext</span></code></a> provides the <a class="reference external" href="https://www.cosmos.esa.int/web/gaia/dr3-papers">Bellazzini et al. (2022)</a> approximation, i.e.,
+extinction coefficient <span class="math notranslate nohighlight">\(k_x = A_x / A_G\)</span> for Gaia <span class="math notranslate nohighlight">\(C1\)</span> passbands (defined in <a class="reference external" href="https://academic.oup.com/mnras/article/367/1/290/1018790">Jordi et al (2006)</a>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Their relations use <span class="math notranslate nohighlight">\(A_G\)</span>, not <span class="math notranslate nohighlight">\(A_0\)</span> as input.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="module-dustapprox.literature.c1">
+<span id="dustapprox-literature-c1-module"></span><h2>dustapprox.literature.c1 module<a class="headerlink" href="#module-dustapprox.literature.c1" title="Permalink to this headline">#</a></h2>
+<p>Coefficients of the reddening laws to correct magnitudes in the <span class="math notranslate nohighlight">\(C1\)</span> system.</p>
+<section id="the-c1-gaia-photometric-system">
+<h3>The <span class="math notranslate nohighlight">\(C1\)</span> Gaia photometric system<a class="headerlink" href="#the-c1-gaia-photometric-system" title="Permalink to this headline">#</a></h3>
+<p>The original design for Gaia included a set of photometric filters (see <a class="reference external" href="https://academic.oup.com/mnras/article/367/1/290/1018790">Jordi et
+al., 2006</a>), the C1B and C1M systems for the broad and medium band passbands,
+respectively.  The C1 system was specifically desgined to maximize the
+scientific return in terms of stellar astrophysical parameters.</p>
+<p>The C1B component has five broad passbands covering the wavelength range of the
+unfiltered light from the blue to the far-red (i.e.  400-1000 nm). The basic
+response curve of the filters versus wavelength is a symmetric quasi-trapezoidal
+shape. The filter designs represent a compromise between the astrophysical needs and the
+specific requirements for chromaticity calibration of Gaia.</p>
+<p>The C1M component consists of 14 passbands. Their basic response curves are
+symmetric quasi-trapezoidal shapes as well.</p>
+<p>Eventually, construction and budget constraints led ESA to adopt prisms in the
+final design of Gaia, which cover for those passbands.</p>
+<p>For example <span class="math notranslate nohighlight">\(C1M467-C1M515\)</span> color is sensitive to
+surface gravity (<span class="math notranslate nohighlight">\(\log g\)</span>) and <span class="math notranslate nohighlight">\(C1B556-C1B996\)</span> is sensitive to the effective
+temperature <span class="math notranslate nohighlight">\(T_{eff}\)</span>.</p>
+<p><strong>Comments on the Passbands and colors</strong> (see details in Sect. 5.1 of <a class="reference external" href="https://academic.oup.com/mnras/article/367/1/290/1018790">Jordi et al., 2006</a>)</p>
+<ul class="simple">
+<li><p>C1B431: similar to that of a Johnson’s B passband.</p></li>
+<li><p>C1B556: similar to that of a Johnson’s V passband.</p></li>
+<li><p>C1B768: similar to that of a Cousin’s I passband, SDSS i prime, or HST F814W</p></li>
+<li><p>C1M326: is affected by strong metallicity dependent absorption lines.</p></li>
+<li><p>C1M379: corresponding to the higher energy levels of the Balmer series.</p></li>
+<li><p>C1M395: mainly to measure the Ca II H line</p></li>
+<li><p>C1M467: similar to Strömgren b</p></li>
+<li><p>C1M549: similar to Strömgren y</p></li>
+<li><p>C1M515: dominated by Mg I triplet and the MgH band.</p></li>
+<li><p>C1M656: is a direct Halpha line measurement.</p></li>
+<li><p>C1M716: dominated by TiO (713 nm)</p></li>
+<li><p>C1M825: mostly the strong Carbon-Nitrogen (CN), but also weak TiO bands</p></li>
+<li><p>C1B431-C1B556: is similar to Johnson’s B-V.</p></li>
+<li><p>C1B556-C1B768: is similar to a V-I color, HST F555W-F814W.</p></li>
+<li><p>C1B655-C1M656: forms an Halpha index</p></li>
+<li><p>C1B768-C1B916: strength of the Paschen jump.</p></li>
+<li><p>C1M326-C1B431: is a Balmer jump index, function of Teff and log g</p></li>
+<li><p>C1M326-C1M410: is a Balmer jump index, function of Teff and log g</p></li>
+<li><p>C1M379-C1M467: is a metallicity index.</p></li>
+<li><p>C1M395-C1M410: correlates with W(CaT*), i.e. the equivalent width of the Calcium triplet (in RVS).</p></li>
+<li><p>C1M395-C1M515: (and similar indices) allows to disentangle Fe and alpha-process element abundances.</p></li>
+<li><p>C1M716-C1M747: is an index for the presence and intensity of TiO.</p></li>
+<li><p>C1M861-C1M965: is an index of gravity-sensitive absorption of the high member lines of the Paschen series.</p></li>
+<li><p>C1B556-C1B768, C1B556-C1B916, C1B768-C1B916 indices can allow for the
+separation of cool oxygen-rich (M) and carbon-rich (N) stars (for dust-free stars).</p></li>
+<li><p>C1M395-C1M410 vs. W(CaT*) may be used as a log g estimator.</p></li>
+<li><p>C1M825-C1M861 vs. C1M861-C1M965 helps separating M-, R- and N-type stars</p></li>
+</ul>
+</section>
+<section id="c1-passbands-transmission-curves">
+<h3>C1 passbands transmission curves<a class="headerlink" href="#c1-passbands-transmission-curves" title="Permalink to this headline">#</a></h3>
+<p>The C1 passbands are available from <a class="reference external" href="https://academic.oup.com/mnras/article/367/1/290/1018790">Jordi et al., 2006</a>.</p>
+<p>For convenience, we also provide them with this package in
+<cite>dustapprox/data/Gaia2</cite> directory in the <a class="reference external" href="https://mfouesneau.github.io/pyphot/">pyphot</a> ascii format.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Use the C1 passbands transmission curves with <a class="reference external" href="https://mfouesneau.github.io/pyphot/">pyphot</a></span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">resource_filename</span>
+<span class="kn">from</span> <span class="nn">pyphot.astropy</span> <span class="kn">import</span> <span class="n">UnitAscii_Library</span>
+
+<span class="n">where</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;dustapprox&#39;</span><span class="p">,</span> <span class="s1">&#39;data/Gaia2&#39;</span><span class="p">)</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">UnitAscii_Library</span><span class="p">([</span><span class="n">where</span><span class="p">])</span>
+<span class="n">lib</span><span class="p">[</span><span class="s1">&#39;C1B556&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>The last line of the above example shows the information of the C1B556 passband.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Filter object information:
+    name:                 C1B556
+    detector type:        photon
+    wavelength units:     nm
+    central wavelength:   556.000128 nm
+    pivot wavelength:     554.743690 nm
+    effective wavelength: 548.702778 nm
+    photon wavelength:    551.180067 nm
+    minimum wavelength:   481.000000 nm
+    maximum wavelength:   631.000000 nm
+    norm:                 115.200850
+    effective width:      128.000944 nm
+    fullwidth half-max:   0.500000 nm
+    definition contains 337 points
+
+    Zeropoints
+        Vega: 21.142893 mag,
+            3.490138982485388e-09 erg / (Angstrom cm2 s),
+            3582.669614072932 Jy
+            879.1910941155257 ph / (Angstrom cm2 s)
+        AB: 21.128410 mag,
+            3.5370073412867404e-09 erg / (Angstrom cm2 s),
+            3630.780547700996 Jy
+        ST: 21.100000 mag,
+            3.6307805477010028e-09 erg / (Angstrom cm2 s),
+            3727.0398711607527 Jy
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">resource_filename</span>
+<span class="kn">from</span> <span class="nn">pyphot.astropy</span> <span class="kn">import</span> <span class="n">UnitAscii_Library</span>
+
+<span class="n">where</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;dustapprox&#39;</span><span class="p">,</span> <span class="s1">&#39;data/Gaia2&#39;</span><span class="p">)</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">UnitAscii_Library</span><span class="p">([</span><span class="n">where</span><span class="p">])</span>
+<span class="n">pbs</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_all_filters</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">pb</span> <span class="ow">in</span> <span class="n">pbs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">pb</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;C1B&#39;</span><span class="p">):</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pb</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;nm&#39;</span><span class="p">),</span> <span class="n">pb</span><span class="o">.</span><span class="n">transmit</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;wavelength [nm]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;throughput&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//dustapprox-literature-1.py">Source code</a>, <a class="reference external" href=".//dustapprox-literature-1.png">png</a>, <a class="reference external" href=".//dustapprox-literature-1.hires.png">hires.png</a>, <a class="reference external" href=".//dustapprox-literature-1.pdf">pdf</a>)</p>
+<figure class="align-default" id="id4">
+<img alt="_images/dustapprox-literature-1.png" class="plot-directive" src="_images/dustapprox-literature-1.png" />
+<figcaption>
+<p><span class="caption-text">C1 passband transmission curves. Black and blue lines indicate the C1B and C1M passbands, respectively.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="model-from-bellazzini-et-al-2022-gaia-dr3">
+<h3>Model from Bellazzini et al. (2022; Gaia DR3)<a class="headerlink" href="#model-from-bellazzini-et-al-2022-gaia-dr3" title="Permalink to this headline">#</a></h3>
+<p>The procedure is detailed in the appendix E of <a class="reference external" href="https://www.cosmos.esa.int/web/gaia/dr3-papers">Bellazzini et al. (2022)</a>.</p>
+<p>In brief, they fit polynomial relations to predicted SED values.
+The simulated predictions originate from the BTSettl atmosphere library combined
+with the <span class="math notranslate nohighlight">\(C1\)</span> passbands definitions and the Fitzpatrick extinction curve.</p>
+<p>They derive the absorption in any <span class="math notranslate nohighlight">\(X\)</span> band as a function of the absorption in <span class="math notranslate nohighlight">\(G\)</span>, <span class="math notranslate nohighlight">\(A_G\)</span>,
+the Gaia <span class="math notranslate nohighlight">\(G_{BP}-G_{RP}\)</span> color:</p>
+<div class="math notranslate nohighlight">
+\[\frac{A_X}{A_G}=\alpha+\sum_{i=1}^{4}\beta_i \cdot ({G_{BP}-G_{RP}})^i+\sum_{j=1}^3 \gamma_j \cdot A_G^j + \delta \cdot ({G_{BP}-G_{RP}})\cdot A_G\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Those relations depend on <span class="math notranslate nohighlight">\(A_G\)</span>, not <span class="math notranslate nohighlight">\(A_0\)</span>.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="dustapprox.literature.c1.dr3_ext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dustapprox.literature.c1.</span></span><span class="sig-name descname"><span class="pre">dr3_ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaia_C1_extinction.ecsv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dustapprox/literature/c1.html#dr3_ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.literature.c1.dr3_ext" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Function to get the extinction coefficients A_X / A_G in C1 system</p>
+<p>The procedure is detailed in the appendix E of <a class="reference external" href="https://www.cosmos.esa.int/web/gaia/dr3-papers">Bellazzini et al. (2022)</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the X band</p></li>
+<li><p><strong>bprp</strong> (<em>float</em><em> or </em><em>array</em>) – The Gaia G_BP - G_RP color</p></li>
+<li><p><strong>ag</strong> (<em>float</em><em> or </em><em>array</em>) – The Gaia A_G value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>A_X / A_G</strong> – The extinction coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dustapprox.literature.edr3">
+<span id="dustapprox-literature-edr3-module"></span><h2>dustapprox.literature.edr3 module<a class="headerlink" href="#module-dustapprox.literature.edr3" title="Permalink to this headline">#</a></h2>
+<p>Provide extinction coefficient <span class="math notranslate nohighlight">\(k_x = A_x / A_0\)</span> for Gaia eDR3 passbands (G, BP, RP).</p>
+<p>Data and equations taken from: <a class="reference external" href="https://www.cosmos.esa.int/web/gaia/edr3-extinction-law">https://www.cosmos.esa.int/web/gaia/edr3-extinction-law</a></p>
+<p>Extinction coefficients depend on the source spectral energy distribution
+and on the extinction itself (e.g., Gordon et al., 2016; Jordi et al., 2010).</p>
+<p>Following the method presented in Danielski et al. (2018), DPAC computed the
+extinction coefficient in the <span class="math notranslate nohighlight">\(x\)</span> band</p>
+<div class="math notranslate nohighlight">
+\[k_x = A_x / A_0,\]</div>
+<p>with <span class="math notranslate nohighlight">\(A_0\)</span> the extinction at <span class="math notranslate nohighlight">\(550 nm\)</span>, as a function of the star’s
+intrinsic color or effective temperature (both denoted by <span class="math notranslate nohighlight">\(X\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}k_x = a_1 &amp;+ a_2 \times X + a_3 \times X^2 + a_4 \times X^3 \\
+        &amp;+ a_5 \times A0 + a_6 \times A_0^2 + a_7 \times A_0^3 \\
+        &amp;+ a_8 \times A_0 \times X + a_9 \times A_0 \times X^2 \\
+        &amp;+ a_10 \times X \times A_0^2\end{split}\]</div>
+<p>Riello et al. (2020) fit the above formula on a grid of extinctions obtained by convolving
+the Gaia eDR3 passbands with Kurucz spectra (Castelli &amp; Kurucz, 2003) and the
+Fitzpatrick et al. (2019) extinction curve. They constructed a grid with <span class="math notranslate nohighlight">\(3500 K &lt; T_{eff}
+&lt; 10000 K\)</span> in steps of <span class="math notranslate nohighlight">\(250 K\)</span>, and <span class="math notranslate nohighlight">\(0.01 &lt; A_0 &lt; 20 mag\)</span> with a step linearly
+increasing with <span class="math notranslate nohighlight">\(0.01 mag\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Their work only include solar metallicity.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The work cannot be reproduced from the information contained on the webpage only.</p></li>
+<li><p>Internally, they did a fit for main-sequence stars (<span class="math notranslate nohighlight">\(log g &gt; 4.5\)</span>)
+and for the upper HR diagram (giants, upper MS, etc.) up to <span class="math notranslate nohighlight">\(M_G
+\sim 5 mag\)</span>.</p></li>
+</ul>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="dustapprox.literature.edr3.edr3_ext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dustapprox.literature.edr3.</span></span><span class="sig-name descname"><span class="pre">edr3_ext</span></span><a class="reference internal" href="_modules/dustapprox/literature/edr3.html#edr3_ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.literature.edr3.edr3_ext" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>provide extinction coefficient <span class="math notranslate nohighlight">\(k_x = A_x / A_0\)</span> for Gaia eDR3 passbands (G, BP, RP)</p>
+<p>This class provides a simple access to their expressions
+for <span class="math notranslate nohighlight">\(X=(G_{BP}-G_{RP})_0, (G-K)_0\)</span>, and <span class="math notranslate nohighlight">\(T_{eff}\)</span>,
+and for the bands <span class="math notranslate nohighlight">\(m = G, GBP, GRP\)</span>,  and <span class="math notranslate nohighlight">\(J, H\)</span>, and
+<span class="math notranslate nohighlight">\(Ks\)</span>, corresponding to the 2MASS passbands.  The fit itself has a
+maximum uncertainty of 3.5%, 1.5%, and 1% in the <span class="math notranslate nohighlight">\(G, G_{BP}\)</span>, and
+<span class="math notranslate nohighlight">\(G_{RP}\)</span> bands, respectively.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The relations with temperature use internally <span class="math notranslate nohighlight">\(T_{eff}^{Norm} = T_{eff} / 5040 K\)</span>, but
+the function argument is <span class="math notranslate nohighlight">\(T_{eff}\)</span> for simplicity.</p>
+</div>
+<p>Data taken from: <a class="reference external" href="https://www.cosmos.esa.int/web/gaia/edr3-extinction-law">https://www.cosmos.esa.int/web/gaia/edr3-extinction-law</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.literature.edr3.edr3_ext.from_GmK">
+<span class="sig-name descname"><span class="pre">from_GmK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gmk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flavor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'top'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/dustapprox/literature/edr3.html#edr3_ext.from_GmK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.literature.edr3.edr3_ext.from_GmK" title="Permalink to this definition">#</a></dt>
+<dd><p>Relation based on G-Ks of the source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the band (‘G’, ‘BP’, or ‘RP’)</p></li>
+<li><p><strong>gmk</strong> (<em>float</em><em> or </em><em>array_like</em>) – The G-Ks color values</p></li>
+<li><p><strong>a0</strong> (<em>float</em><em> or </em><em>array_like</em>) – The value of the extinction at 550 nm</p></li>
+<li><p><strong>flavor</strong> (<em>str</em>) – The type of the data to be used (‘top’ or ‘ms’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The extinction coefficient A_x / A_0</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float or array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.literature.edr3.edr3_ext.from_bprp">
+<span class="sig-name descname"><span class="pre">from_bprp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bprp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flavor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'top'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/dustapprox/literature/edr3.html#edr3_ext.from_bprp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.literature.edr3.edr3_ext.from_bprp" title="Permalink to this definition">#</a></dt>
+<dd><p>Relation based on BP-RP of the source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the band (‘G’, ‘BP’, or ‘RP’)</p></li>
+<li><p><strong>bprp</strong> (<em>float</em><em> or </em><em>array_like</em>) – The <span class="math notranslate nohighlight">\(G_{BP} - G_{RP}\)</span> color values</p></li>
+<li><p><strong>a0</strong> (<em>float</em><em> or </em><em>array_like</em>) – The value of the extinction at 550 nm</p></li>
+<li><p><strong>flavor</strong> (<em>str</em>) – The type of the data to be used (‘top’ or ‘ms’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The extinction coefficient A_x / A_0</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float or array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.literature.edr3.edr3_ext.from_teff">
+<span class="sig-name descname"><span class="pre">from_teff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">teff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flavor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'top'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/dustapprox/literature/edr3.html#edr3_ext.from_teff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.literature.edr3.edr3_ext.from_teff" title="Permalink to this definition">#</a></dt>
+<dd><p>Relation based on temperature of the source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the band (‘G’, ‘BP’, or ‘RP’)</p></li>
+<li><p><strong>teff</strong> (<em>float</em><em> or </em><em>array_like</em>) – The values of <span class="math notranslate nohighlight">\(T_{eff}\)</span></p></li>
+<li><p><strong>a0</strong> (<em>float</em><em> or </em><em>array_like</em>) – The value of the extinction at 550 nm</p></li>
+<li><p><strong>flavor</strong> (<em>str</em>) – The type of the data to be used (‘top’ or ‘ms’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The extinction coefficient A_x / A_0</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float or array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="dustapprox.io.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">dustapprox.io package</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="dustapprox.models.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">dustapprox.models package</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By M. Fouesneau, R. Andrae, R. Sordo ...<br/>
+  
+      &copy; Copyright 2022, DPAC - M. Fouesneau, R. Andrae, R. Sordo ....<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

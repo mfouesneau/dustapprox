@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dustapprox.literature.edr3 &#8212; dustapprox</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">dustapprox</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../atmospheres.html">
+   Atmosphere models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../extinction.html">
+   Extinction curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../photometry.html">
+   Photometric computations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../precomputed.html">
+   Extinction approximation models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../precomputed_content.html">
+   List of provided precomputed models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module API
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules.html">
+   dustapprox
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../dustapprox.html">
+     dustapprox package
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.io.html">
+       dustapprox.io package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.literature.html">
+       dustapprox.literature package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.models.html">
+       dustapprox.models package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.tools.html">
+       dustapprox.tools package
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2F_modules/dustapprox/literature/edr3.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for dustapprox.literature.edr3</h1><div class="highlight"><pre>
+<span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Provide extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (G, BP, RP).</span>
+
+<span class="sd">Data and equations taken from: https://www.cosmos.esa.int/web/gaia/edr3-extinction-law</span>
+
+<span class="sd">Extinction coefficients depend on the source spectral energy distribution</span>
+<span class="sd">and on the extinction itself (e.g., Gordon et al., 2016; Jordi et al., 2010).</span>
+
+<span class="sd">Following the method presented in Danielski et al. (2018), DPAC computed the</span>
+<span class="sd">extinction coefficient in the :math:`x` band</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">    k_x = A_x / A_0,</span>
+
+<span class="sd">with :math:`A_0` the extinction at :math:`550 nm`, as a function of the star&#39;s</span>
+<span class="sd">intrinsic color or effective temperature (both denoted by :math:`X`):</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">    k_x = a_1 &amp;+ a_2 \times X + a_3 \times X^2 + a_4 \times X^3 \\</span>
+<span class="sd">            &amp;+ a_5 \times A0 + a_6 \times A_0^2 + a_7 \times A_0^3 \\</span>
+<span class="sd">            &amp;+ a_8 \times A_0 \times X + a_9 \times A_0 \times X^2 \\</span>
+<span class="sd">            &amp;+ a_10 \times X \times A_0^2</span>
+
+<span class="sd">Riello et al. (2020) fit the above formula on a grid of extinctions obtained by convolving</span>
+<span class="sd">the Gaia eDR3 passbands with Kurucz spectra (Castelli &amp; Kurucz, 2003) and the</span>
+<span class="sd">Fitzpatrick et al. (2019) extinction curve. They constructed a grid with :math:`3500 K &lt; T_{eff}</span>
+<span class="sd">&lt; 10000 K` in steps of :math:`250 K`, and :math:`0.01 &lt; A_0 &lt; 20 mag` with a step linearly</span>
+<span class="sd">increasing with :math:`0.01 mag`.</span>
+
+<span class="sd">.. warning::</span>
+
+<span class="sd">    Their work only include solar metallicity.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    * The work cannot be reproduced from the information contained on the webpage only.</span>
+
+<span class="sd">    * Internally, they did a fit for main-sequence stars (:math:`log g &gt; 4.5`)</span>
+<span class="sd">      and for the upper HR diagram (giants, upper MS, etc.) up to :math:`M_G</span>
+<span class="sd">      \sim 5 mag`.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">resource_filename</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">_DATA_PATH_</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;dustapprox&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="edr3_ext"><a class="viewcode-back" href="../../../dustapprox.literature.html#dustapprox.literature.edr3.edr3_ext">[docs]</a><span class="k">class</span> <span class="nc">edr3_ext</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; provide extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (G, BP, RP)</span>
+
+<span class="sd">    This class provides a simple access to their expressions</span>
+<span class="sd">    for :math:`X=(G_{BP}-G_{RP})_0, (G-K)_0`, and :math:`T_{eff}`,</span>
+<span class="sd">    and for the bands :math:`m = G, GBP, GRP`,  and :math:`J, H`, and</span>
+<span class="sd">    :math:`Ks`, corresponding to the 2MASS passbands.  The fit itself has a</span>
+<span class="sd">    maximum uncertainty of 3.5%, 1.5%, and 1% in the :math:`G, G_{BP}`, and</span>
+<span class="sd">    :math:`G_{RP}` bands, respectively.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        The relations with temperature use internally :math:`T_{eff}^{Norm} = T_{eff} / 5040 K`, but</span>
+<span class="sd">        the function argument is :math:`T_{eff}` for simplicity.</span>
+
+<span class="sd">    Data taken from: https://www.cosmos.esa.int/web/gaia/edr3-extinction-law</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">datafiles</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Fitz19_EDR3_extinctionlawcoefficients/Fitz19_EDR3_HRDTop.csv&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Fitz19_EDR3_extinctionlawcoefficients/Fitz19_EDR3_MainSequence.csv&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ay_top</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_PATH_</span><span class="p">,</span> <span class="n">datafiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Kname&#39;</span><span class="p">,</span> <span class="s1">&#39;Xname&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ay_ms</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_PATH_</span><span class="p">,</span> <span class="n">datafiles</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Kname&#39;</span><span class="p">,</span> <span class="s1">&#39;Xname&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_from</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Xname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+              <span class="n">Xval</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
+              <span class="n">a0</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
+              <span class="n">flavor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s1">&#39;top&#39;</span>
+             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Internal access to the equations</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the band (&#39;G&#39;, &#39;BP&#39;, or &#39;RP&#39;)</span>
+<span class="sd">        Xname : str</span>
+<span class="sd">            The name of the variable to be used as X (e.g., TeffNorm, BPRP, GK)</span>
+<span class="sd">        Xval : float or array_like</span>
+<span class="sd">            The value of the variable to be used as X</span>
+<span class="sd">        a0 : float or array_like</span>
+<span class="sd">            The value of the extinction at 550 nm</span>
+<span class="sd">        flavor : str</span>
+<span class="sd">            The type of the data to be used (&#39;top&#39; or &#39;ms&#39;)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float or array_like</span>
+<span class="sd">            The extinction coefficient A_x / A_0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">flavor</span> <span class="o">==</span> <span class="s1">&#39;top&#39;</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ay_top</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ay_ms</span>
+        <span class="n">coeffs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">Xname</span><span class="p">]</span>
+        <span class="n">X_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">Xval</span><span class="p">)</span>
+        <span class="n">X_2</span> <span class="o">=</span> <span class="n">X_</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">X_3</span> <span class="o">=</span> <span class="n">X_</span> <span class="o">**</span> <span class="mi">3</span>
+        <span class="n">a0_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">a0_2</span> <span class="o">=</span> <span class="n">a0_</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">a0_3</span> <span class="o">=</span> <span class="n">a0_</span> <span class="o">**</span> <span class="mi">3</span>
+
+        <span class="n">ay</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">Xk</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;X2&#39;</span><span class="p">,</span> <span class="s1">&#39;X3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">X_</span><span class="p">,</span> <span class="n">X_2</span><span class="p">,</span> <span class="n">X_3</span><span class="p">]):</span>
+            <span class="n">ay</span> <span class="o">=</span> <span class="n">ay</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">*</span> <span class="n">Xk</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">Ak</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A2&#39;</span><span class="p">,</span> <span class="s1">&#39;A3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">a0_</span><span class="p">,</span> <span class="n">a0_2</span><span class="p">,</span> <span class="n">a0_3</span><span class="p">]):</span>
+            <span class="n">ay</span> <span class="o">=</span> <span class="n">ay</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">*</span> <span class="n">Ak</span>
+
+        <span class="n">ay</span> <span class="o">+=</span> <span class="p">(</span><span class="n">coeffs</span><span class="p">[</span><span class="s1">&#39;XA&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">X_</span> <span class="o">*</span> <span class="n">a0_</span> <span class="o">+</span>
+               <span class="n">coeffs</span><span class="p">[</span><span class="s1">&#39;XA2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">X_</span> <span class="o">*</span> <span class="n">a0_2</span> <span class="o">+</span>
+               <span class="n">coeffs</span><span class="p">[</span><span class="s1">&#39;AX2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">X_2</span> <span class="o">*</span> <span class="n">a0_</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ay</span>
+
+<div class="viewcode-block" id="edr3_ext.from_teff"><a class="viewcode-back" href="../../../dustapprox.literature.html#dustapprox.literature.edr3.edr3_ext.from_teff">[docs]</a>    <span class="k">def</span> <span class="nf">from_teff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+              <span class="n">teff</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
+              <span class="n">a0</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
+              <span class="n">flavor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s1">&#39;top&#39;</span>
+             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Relation based on temperature of the source</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the band (&#39;G&#39;, &#39;BP&#39;, or &#39;RP&#39;)</span>
+<span class="sd">        teff : float or array_like</span>
+<span class="sd">            The values of :math:`T_{eff}`</span>
+<span class="sd">        a0 : float or array_like</span>
+<span class="sd">            The value of the extinction at 550 nm</span>
+<span class="sd">        flavor : str</span>
+<span class="sd">            The type of the data to be used (&#39;top&#39; or &#39;ms&#39;)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float or array_like</span>
+<span class="sd">            The extinction coefficient A_x / A_0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">teffnorm</span> <span class="o">=</span> <span class="n">teff</span> <span class="o">/</span> <span class="mf">5040.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;TeffNorm&#39;</span><span class="p">,</span> <span class="n">teffnorm</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">flavor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="edr3_ext.from_bprp"><a class="viewcode-back" href="../../../dustapprox.literature.html#dustapprox.literature.edr3.edr3_ext.from_bprp">[docs]</a>    <span class="k">def</span> <span class="nf">from_bprp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+              <span class="n">bprp</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
+              <span class="n">a0</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
+              <span class="n">flavor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s1">&#39;top&#39;</span>
+             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Relation based on BP-RP of the source</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the band (&#39;G&#39;, &#39;BP&#39;, or &#39;RP&#39;)</span>
+<span class="sd">        bprp : float or array_like</span>
+<span class="sd">            The :math:`G_{BP} - G_{RP}` color values</span>
+<span class="sd">        a0 : float or array_like</span>
+<span class="sd">            The value of the extinction at 550 nm</span>
+<span class="sd">        flavor : str</span>
+<span class="sd">            The type of the data to be used (&#39;top&#39; or &#39;ms&#39;)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float or array_like</span>
+<span class="sd">            The extinction coefficient A_x / A_0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;BPRP&#39;</span><span class="p">,</span> <span class="n">bprp</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">flavor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="edr3_ext.from_GmK"><a class="viewcode-back" href="../../../dustapprox.literature.html#dustapprox.literature.edr3.edr3_ext.from_GmK">[docs]</a>    <span class="k">def</span> <span class="nf">from_GmK</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+              <span class="n">gmk</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
+              <span class="n">a0</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
+              <span class="n">flavor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s1">&#39;top&#39;</span>
+             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Relation based on G-Ks of the source</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the band (&#39;G&#39;, &#39;BP&#39;, or &#39;RP&#39;)</span>
+<span class="sd">        gmk : float or array_like</span>
+<span class="sd">            The G-Ks color values</span>
+<span class="sd">        a0 : float or array_like</span>
+<span class="sd">            The value of the extinction at 550 nm</span>
+<span class="sd">        flavor : str</span>
+<span class="sd">            The type of the data to be used (&#39;top&#39; or &#39;ms&#39;)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float or array_like</span>
+<span class="sd">            The extinction coefficient A_x / A_0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;GK&#39;</span><span class="p">,</span> <span class="n">gmk</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">flavor</span><span class="p">)</span></div></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By M. Fouesneau, R. Andrae, R. Sordo ...<br/>
+  
+      &copy; Copyright 2022, DPAC - M. Fouesneau, R. Andrae, R. Sordo ....<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
