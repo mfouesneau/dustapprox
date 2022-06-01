@@ -52,11 +52,30 @@ import re
 import yaml
 import pandas as pd
 import numpy as np
+import json
 from typing import Union
 from io import TextIOWrapper
 
 
 __ECSV_VERSION__ = '1.0'
+
+
+def _converter(str_val: str, subtype: str):
+    """ Convert string arrays to appropriate subtype arrays """
+    obj_val = json.loads(str_val)  # list or nested lists
+    try:
+        return np.array(obj_val, dtype=subtype)
+    except TypeError:
+        # obj_val has entries that are inconsistent with
+        # dtype. For a valid ECSV file the only possibility
+        # is None values (indicating missing values).
+        data = np.array(obj_val, dtype=object)
+        # Replace all the None with an appropriate fill value
+        mask = (data == None)  # noqa: E711
+        kind = np.dtype(subtype).kind
+        data[mask] = {'U': '', 'S': b''}.get(kind, 0)
+        return np.ma.array(data.astype(subtype), mask=mask)
+
 
 
 def read_header(fname: str) -> dict:
@@ -115,12 +134,30 @@ def read(fname: str, **kwargs) -> pd.DataFrame:
     dtype_mapper = {'string': str}
 
     dtype = {k['name']: np.dtype(dtype_mapper.get(k['datatype'], k['datatype']))
-                                    for k in header['datatype']}
+                                 for k in header['datatype']}
 
     delimiter = header.get('delimiter', kwargs.pop('delimiter', ','))
     comment = kwargs.pop('comment', '#')
 
-    df = pd.read_csv(fname, delimiter=delimiter, dtype=dtype, comment=comment, **kwargs)
+    # Check subtypes if any and generate the converter function.
+    converters = {}
+    for entry in header['datatype']:
+        subtype = entry.get('subtype', '')
+        if subtype and ('[' in subtype):
+            name = entry['name']
+            idx = subtype.index('[')
+            sub_dtype = subtype[:idx]
+            shape = json.loads(subtype[idx:])
+            converters[name] = lambda x: _converter(x, sub_dtype)
+            dtype.pop(name)
+    converters.update(kwargs.pop('converters', {}))
+
+    df = pd.read_csv(fname, 
+                     delimiter=delimiter, 
+                     dtype=dtype, 
+                     comment=comment, 
+                     converters=converters,
+                     **kwargs)
     df.attrs.update(header.get('meta', {}))
     return df
 
@@ -142,8 +179,16 @@ def generate_header(df: pd.DataFrame, **meta) -> str:
     header: str
         the header corresponding to the data.
     """
-    dtypes = [{'name': name, 'datatype': str(dt)}
-                for name, dt in df.dtypes.to_dict().items()]
+    # Get the column types
+    dtypes = []
+    for name, dt in df.dtypes.to_dict().items():
+        dtype = {'name': name, 'datatype': str(dt)}
+        # Check if vectors and add subtype if necessary.
+        if dt == 'object':
+            val0 = df[name][0]
+            if val0.shape:
+                dtype['subtype'] = '{0:s}[null]'.format(str(val0.dtype))
+        dtypes.append(dtype)
     meta_ = df.attrs.copy()
     meta_.update(meta)
     h = {'delimiter': ',', 'datatype': dtypes, 'meta': meta_}
