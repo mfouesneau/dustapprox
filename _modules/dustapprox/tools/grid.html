@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dustapprox.tools.grid &#8212; dustapprox</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">dustapprox</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../atmospheres.html">
+   Atmosphere models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../extinction.html">
+   Extinction curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../photometry.html">
+   Photometric computations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../precomputed.html">
+   Extinction approximation models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../precomputed_content.html">
+   List of provided precomputed models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module API
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules.html">
+   dustapprox
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../dustapprox.html">
+     dustapprox package
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.io.html">
+       dustapprox.io package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.literature.html">
+       dustapprox.literature package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.models.html">
+       dustapprox.models package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.tools.html">
+       dustapprox.tools package
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2F_modules/dustapprox/tools/grid.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for dustapprox.tools.grid</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Generate a grid of models with extinction from an atmosphere library</span>
+
+<span class="sd">Example of script that produces a grid of dust attenuated stellar models from an</span>
+<span class="sd">atmosphere library.</span>
+
+<span class="sd">This example can run in parallel on multiple processes or cores.</span>
+
+<span class="sd">.. seealso::</span>
+
+<span class="sd">    :func:`compute_photometric_grid`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">pyphot.astropy</span> <span class="kn">import</span> <span class="n">UnitFilter</span>
+<span class="kn">from</span> <span class="nn">dustapprox.io</span> <span class="kn">import</span> <span class="n">svo</span>
+<span class="kn">from</span> <span class="nn">.parallel</span> <span class="kn">import</span> <span class="n">tqdm_joblib</span>
+<span class="kn">from</span> <span class="nn">..extinction</span> <span class="kn">import</span> <span class="n">ExtinctionLaw</span><span class="p">,</span> <span class="n">F99</span>
+
+
+<span class="k">def</span> <span class="nf">_parallel_task</span><span class="p">(</span><span class="n">fname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">apfields</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+                   <span class="n">passbands</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">UnitFilter</span><span class="p">],</span>
+                   <span class="n">extc</span><span class="p">:</span> <span class="n">ExtinctionLaw</span><span class="p">,</span>
+                   <span class="n">Rv</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+                   <span class="n">Av</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Task per spectrum</span>
+
+<span class="sd">    This task reads in a spectrum from `fname`</span>
+<span class="sd">    applies the extinction dimension to it and extract the relevant photometric values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fname: str</span>
+<span class="sd">        Filename of the spectrum to process (assuming an svo formatted file)</span>
+<span class="sd">    apfields: Sequence[str]</span>
+<span class="sd">        Which fields to extract from the model atmospheres</span>
+<span class="sd">    passbands: Sequence[pyphot.astropy.UnitFilter]</span>
+<span class="sd">        List of passbands to extract photometry from</span>
+<span class="sd">    extc: ExtinctionLaw</span>
+<span class="sd">        Extinction law to apply</span>
+<span class="sd">    Rv: Sequence[float]</span>
+<span class="sd">        List of Rv values to apply</span>
+<span class="sd">    Av: Sequence[float]</span>
+<span class="sd">        List of Av values to apply</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        Dataframe with the photometric values for each passband</span>
+<span class="sd">        this includes the stellar parameters (Teff, logg, [Fe/H]), A0, R0,</span>
+<span class="sd">        intrinsic and reddened photometry, and the relative difference (Ax)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># imports retricted to subprocesses</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">from</span> <span class="nn">dustapprox.io</span> <span class="kn">import</span> <span class="n">svo</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">spectra_file_reader</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+    <span class="c1"># extract model relevant information</span>
+    <span class="n">lamb_unit</span><span class="p">,</span> <span class="n">flux_unit</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">get_svo_sprectum_units</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">lamb</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">lamb_unit</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;FLUX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">flux_unit</span>
+    <span class="n">apvalues</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">apfields</span><span class="p">]</span>
+
+    <span class="c1"># columns = [&#39;teff&#39;, &#39;logg&#39;, &#39;feh&#39;, &#39;alpha&#39;,</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">apfields</span><span class="p">)</span> <span class="o">+</span>
+               <span class="p">[</span><span class="s1">&#39;passband&#39;</span><span class="p">,</span> <span class="s1">&#39;mag0&#39;</span><span class="p">,</span> <span class="s1">&#39;mag&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;A0&#39;</span><span class="p">,</span> <span class="s1">&#39;R0&#39;</span><span class="p">,</span> <span class="s1">&#39;Ax&#39;</span><span class="p">])</span>
+    <span class="n">logs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">rv_val</span> <span class="ow">in</span> <span class="n">Rv</span><span class="p">:</span>
+        <span class="c1"># wavelength definition varies between models</span>
+        <span class="n">alambda_per_av</span> <span class="o">=</span> <span class="n">extc</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">Rv</span><span class="o">=</span><span class="n">rv_val</span><span class="p">)</span>
+
+        <span class="c1"># Dust magnitudes</span>
+        <span class="k">for</span> <span class="n">pk</span> <span class="ow">in</span> <span class="n">passbands</span><span class="p">:</span>
+            <span class="c1"># Dust free values</span>
+            <span class="n">mag0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">flux</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="c1"># possibly we redo av[0] = 0, but it&#39;s cheap for consistency gain</span>
+            <span class="k">for</span> <span class="n">av_val</span> <span class="ow">in</span> <span class="n">Av</span><span class="p">:</span>
+                <span class="n">new_flux</span> <span class="o">=</span> <span class="n">flux</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">alambda_per_av</span> <span class="o">*</span> <span class="n">av_val</span><span class="p">)</span>
+                <span class="n">mag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">new_flux</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">mag</span> <span class="o">-</span> <span class="n">mag0</span><span class="p">)</span>
+                <span class="n">logs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">apvalues</span> <span class="o">+</span> <span class="p">[</span><span class="n">pk</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mag0</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">av_val</span><span class="p">,</span> <span class="n">rv_val</span><span class="p">,</span> <span class="n">delta</span><span class="p">])</span>
+                <span class="k">pass</span>
+    <span class="n">logs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">logs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">logs</span>
+
+
+<div class="viewcode-block" id="compute_photometric_grid"><a class="viewcode-back" href="../../../dustapprox.tools.html#dustapprox.tools.grid.compute_photometric_grid">[docs]</a><span class="k">def</span> <span class="nf">compute_photometric_grid</span><span class="p">(</span><span class="n">sources</span><span class="o">=</span><span class="s1">&#39;models/Kurucz2003all/*.fl.dat.txt&#39;</span><span class="p">,</span>
+                             <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Run the computations of the photometric grid in parallel</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sources: str</span>
+<span class="sd">        pattern of atmospehric models to process</span>
+<span class="sd">        (using glob syntax)</span>
+<span class="sd">    n_jobs: int</span>
+<span class="sd">        number of parallel processes to run (default: 1, -1 for as many as CPUs)</span>
+<span class="sd">    verbose: int</span>
+<span class="sd">        verbosity level (default: 0)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        Dataframe with the photometric values for each passband</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Load relevant passbands</span>
+    <span class="n">which_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GAIA/GAIA3.G&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.Gbp&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.Grp&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;SLOAN/SDSS.u&#39;</span><span class="p">,</span> <span class="s1">&#39;SLOAN/SDSS.g&#39;</span><span class="p">,</span> <span class="s1">&#39;SLOAN/SDSS.r&#39;</span><span class="p">,</span> <span class="s1">&#39;SLOAN/SDSS.i&#39;</span><span class="p">,</span> <span class="s1">&#39;SLOAN/SDSS.z&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;2MASS/2MASS.J&#39;</span><span class="p">,</span> <span class="s1">&#39;2MASS/2MASS.H&#39;</span><span class="p">,</span> <span class="s1">&#39;2MASS/2MASS.Ks&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;WISE/WISE.W1&#39;</span><span class="p">,</span> <span class="s1">&#39;WISE/WISE.W2&#39;</span><span class="p">,</span> <span class="s1">&#39;WISE/WISE.W3&#39;</span><span class="p">,</span> <span class="s1">&#39;WISE/WISE.W4&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;GALEX/GALEX.FUV&#39;</span><span class="p">,</span> <span class="s1">&#39;GALEX/GALEX.NUV&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Generic/Johnson.U&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Johnson.B&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Johnson.V&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Generic/Cousins.R&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Cousins.I&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Generic/Bessell_JHKLM.J&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Bessell_JHKLM.H&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Bessell_JHKLM.K&#39;</span><span class="p">,]</span>
+    <span class="n">passbands</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">get_svo_passbands</span><span class="p">(</span><span class="n">which_filters</span><span class="p">)</span>
+
+
+    <span class="c1"># Extinction</span>
+    <span class="n">extc</span> <span class="o">=</span> <span class="n">F99</span><span class="p">()</span>
+    <span class="n">Rv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.1</span><span class="p">,])</span>
+    <span class="n">Av</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([[</span><span class="mf">0.01</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">10.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]))</span>
+
+    <span class="n">models</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">sources</span><span class="p">)</span>
+    <span class="n">apfields</span> <span class="o">=</span> <span class="s1">&#39;teff&#39;</span><span class="p">,</span> <span class="s1">&#39;logg&#39;</span><span class="p">,</span> <span class="s1">&#39;feh&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span>
+
+    <span class="k">with</span> <span class="n">tqdm_joblib</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Grid&quot;</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">))):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">prefer</span><span class="o">=</span><span class="s1">&#39;processes&#39;</span><span class="p">)(</span>
+            <span class="n">delayed</span><span class="p">(</span><span class="n">_parallel_task</span><span class="p">)(</span><span class="n">fname</span><span class="p">,</span> <span class="n">apfields</span><span class="p">,</span> <span class="n">passbands</span><span class="p">,</span> <span class="n">extc</span><span class="p">,</span> <span class="n">Rv</span><span class="p">,</span> <span class="n">Av</span><span class="p">)</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">models</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By M. Fouesneau, R. Andrae, R. Sordo ...<br/>
+  
+      &copy; Copyright 2022, DPAC - M. Fouesneau, R. Andrae, R. Sordo ....<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,731 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>dustapprox.io package &#8212; dustapprox</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dustapprox.literature package" href="dustapprox.literature.html" />
+    <link rel="prev" title="dustapprox package" href="dustapprox.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">dustapprox</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="atmospheres.html">
+   Atmosphere models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extinction.html">
+   Extinction curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="photometry.html">
+   Photometric computations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="precomputed.html">
+   Extinction approximation models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="precomputed_content.html">
+   List of provided precomputed models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module API
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="modules.html">
+   dustapprox
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="dustapprox.html">
+     dustapprox package
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       dustapprox.io package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.literature.html">
+       dustapprox.literature package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.models.html">
+       dustapprox.models package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.tools.html">
+       dustapprox.tools package
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Fdustapprox.io.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/edit/main/docs/dustapprox.io.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/dustapprox.io.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-dustapprox.io.ecsv">
+   dustapprox.io.ecsv module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-dustapprox.io.svo">
+   dustapprox.io.svo module
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>dustapprox.io package</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-dustapprox.io.ecsv">
+   dustapprox.io.ecsv module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-dustapprox.io.svo">
+   dustapprox.io.svo module
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="module-dustapprox.io">
+<span id="dustapprox-io-package"></span><h1>dustapprox.io package<a class="headerlink" href="#module-dustapprox.io" title="Permalink to this headline">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="module-dustapprox.io.ecsv">
+<span id="dustapprox-io-ecsv-module"></span><h2>dustapprox.io.ecsv module<a class="headerlink" href="#module-dustapprox.io.ecsv" title="Permalink to this headline">#</a></h2>
+<p>The ECSV format allows for specification of key table and column meta-data, in
+particular the data type and unit.</p>
+<p>The “Comma-Separated-Values” format is probably the most common text-based method
+for representing data tables. The proposed standard in APE6 leverages this
+universality by using this format for serializing the actual data values.</p>
+<p>For science applications, pure CSV has a serious shortcoming in the complete
+lack of support for table metadata. This is frequently not a showstopper but
+represents a serious limitation which has motivated alternate standards in the
+astronomical community.</p>
+<p>The proposed Enhanced CSV (ECSV) format has the following overall structure:</p>
+<p>A header section which consists of lines that start with the # character and
+provide the table definition and data format via a YAML-encoded data structure.
+An initial line in the header section which identifies the file as ECSV and
+provides a version number.  A CSV-formatted data section in which the first line
+contains the column names and subsequent lines contains the data values.
+Version 1.0 of the ECSV format specification and the reference Python
+implementation assumes ASCII-encoded header and data sections. Support for
+unicode (in particular UTF-8) may be added in subsequent versions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>“Comma-Separated-Values” (CSV) is a misleading name since tab-separated or
+whitespace-separated tabular data generally fall in this category.
+We should use “Character-Separated-Values”, which keep the same acronym.</p>
+</div>
+<p>example of file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># %ECSV 1.0</span>
+<span class="c1"># ---</span>
+<span class="c1"># datatype:</span>
+<span class="c1"># - {name: a, unit: m / s, datatype: int64, format: &#39;%03d&#39;}</span>
+<span class="c1"># - {name: b, unit: km, datatype: int64, description: This is column b}</span>
+<span class="n">a</span> <span class="n">b</span>
+<span class="mi">1</span> <span class="mi">2</span>
+<span class="mi">4</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/astropy/astropy-APEs/blob/main/APE6.rst">Enhanced Character Separated Values table format description</a> from the
+Astropy project.</p>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.io.ecsv.generate_header">
+<span class="sig-prename descclassname"><span class="pre">dustapprox.io.ecsv.</span></span><span class="sig-name descname"><span class="pre">generate_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">meta</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/dustapprox/io/ecsv.html#generate_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.io.ecsv.generate_header" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the yaml equivalent string for the ECSV header</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – data to be written to the file.</p></li>
+<li><p><strong>meta</strong> (<em>dict</em>) – meta data to be written to the header.
+Typically keywords, comments, history and so forth should be part of meta.
+df.attrs will be automatically added to the meta data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>header</strong> – the header corresponding to the data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.io.ecsv.read">
+<span class="sig-prename descclassname"><span class="pre">dustapprox.io.ecsv.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="reference internal" href="_modules/dustapprox/io/ecsv.html#read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.io.ecsv.read" title="Permalink to this definition">#</a></dt>
+<dd><p>Read the content of an Enhanced Character Separated Values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – The name of the file to read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong> – The data read from the file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.io.ecsv.read_header">
+<span class="sig-prename descclassname"><span class="pre">dustapprox.io.ecsv.</span></span><span class="sig-name descname"><span class="pre">read_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/dustapprox/io/ecsv.html#read_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.io.ecsv.read_header" title="Permalink to this definition">#</a></dt>
+<dd><p>read the header of ECSV file as a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – The name of the file to read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong> – the header of the file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.io.ecsv.write">
+<span class="sig-prename descclassname"><span class="pre">dustapprox.io.ecsv.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_io.TextIOWrapper</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">meta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dustapprox/io/ecsv.html#write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.io.ecsv.write" title="Permalink to this definition">#</a></dt>
+<dd><p>output data into ecsv file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – data to be written to the file.</p></li>
+<li><p><strong>fname</strong> (<em>str</em>) – the name of the file to write.</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – the mode to open the file.</p></li>
+<li><p><strong>meta</strong> (<em>dict</em>) – meta data to be written to the header.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-dustapprox.io.svo">
+<span id="dustapprox-io-svo-module"></span><h2>dustapprox.io.svo module<a class="headerlink" href="#module-dustapprox.io.svo" title="Permalink to this headline">#</a></h2>
+<p>Interface to the SVO Theoretical spectra web server and Filter Profile Service.</p>
+<p>The SVO Theory Server provides data for many sources of theoretical spectra
+and observational templates.</p>
+<ul class="simple">
+<li><p>SVO Theoretical spectra: <a class="reference external" href="http://svo2.cab.inta-csic.es/theory/newov2/index.php">http://svo2.cab.inta-csic.es/theory/newov2/index.php</a></p></li>
+<li><p>SVO Filter Profile Service: <a class="reference external" href="http://svo2.cab.inta-csic.es/theory/fps/index.php">http://svo2.cab.inta-csic.es/theory/fps/index.php</a></p></li>
+</ul>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Add support for the SVO Theoretical spectra service (create one similarly to pyphot, though it may be harder).</dt><dd><ul>
+<li><p>currently manual download of the data. It’s not that hard, but we could put some guidance in our documentation.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.io.svo.get_svo_passbands">
+<span class="sig-prename descclassname"><span class="pre">dustapprox.io.svo.</span></span><span class="sig-name descname"><span class="pre">get_svo_passbands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifiers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">pyphot.astropy.sandbox.UnitFilter</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/dustapprox/io/svo.html#get_svo_passbands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.io.svo.get_svo_passbands" title="Permalink to this definition">#</a></dt>
+<dd><p>Query the SVO filter profile service and return the pyphot filter objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>identifier</strong> (<em>str</em><em>, </em><em>Sequence</em><em>[</em><em>str</em><em>]</em>) – SVO identifier(s) of the filter profile
+e.g., 2MASS/2MASS.Ks HST/ACS_WFC.F475W
+The identifier is the first column on the webpage of the facilities.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>filter</strong> – list of Filter objects</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>UnitFilter, Sequence[UnitFilter]</p>
+</dd>
+</dl>
+<p><strong>example of the Gaia filter profile</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">dustapprox.io</span> <span class="kn">import</span> <span class="n">svo</span>
+<span class="n">which_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GAIA/GAIA3.Gbp&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.Grp&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.G&#39;</span><span class="p">]</span>
+<span class="n">passbands</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">get_svo_passbands</span><span class="p">(</span><span class="n">which_filters</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">pb</span> <span class="ow">in</span> <span class="n">passbands</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pb</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;nm&#39;</span><span class="p">),</span> <span class="n">pb</span><span class="o">.</span><span class="n">transmit</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">pb</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;wavelength [nm]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;transmission&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//dustapprox-io-1.py">Source code</a>, <a class="reference external" href=".//dustapprox-io-1.png">png</a>, <a class="reference external" href=".//dustapprox-io-1.hires.png">hires.png</a>, <a class="reference external" href=".//dustapprox-io-1.pdf">pdf</a>)</p>
+<figure class="align-default">
+<img alt="_images/dustapprox-io-1.png" class="plot-directive" src="_images/dustapprox-io-1.png" />
+</figure>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">pyphot.astropy.sandbox.UnitFilter</span></code></p>
+<p><a class="reference external" href="https://mfouesneau.github.io/pyphot/index.html">pyphot</a> is a set of
+tools to compute synthetic photometry in a simple way, ideal to
+integrate in larger projects.</p>
+<p>We internally use their astropy backend for the spectral units.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.io.svo.get_svo_sprectum_units">
+<span class="sig-prename descclassname"><span class="pre">dustapprox.io.svo.</span></span><span class="sig-name descname"><span class="pre">get_svo_sprectum_units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">astropy.units.core.CompositeUnit</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/dustapprox/io/svo.html#get_svo_sprectum_units"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.io.svo.get_svo_sprectum_units" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the units objects of the wavelength and flux from an SVO spectrum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – The data read from the file using <a class="reference internal" href="#dustapprox.io.svo.spectra_file_reader" title="dustapprox.io.svo.spectra_file_reader"><code class="xref py py-func docutils literal notranslate"><span class="pre">spectra_file_reader()</span></code></a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>lamb_unit</strong> (<em>Quantity</em>) – The wavelength unit.</p></li>
+<li><p><strong>flux_unit</strong> (<em>Quantity</em>) – The flux unit.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.io.svo.spectra_file_reader">
+<span class="sig-prename descclassname"><span class="pre">dustapprox.io.svo.</span></span><span class="sig-name descname"><span class="pre">spectra_file_reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/dustapprox/io/svo.html#spectra_file_reader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.io.svo.spectra_file_reader" title="Permalink to this definition">#</a></dt>
+<dd><p>Read the model file from the SVO Theoretical spectra service.</p>
+<p>They all have the same format, but the spectra are not on the same
+wavelength scale (even for a single atmosphere source).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameters of the spectra may vary from source to source. For instance, they may not provide
+microturbulence velocity or alpha/Fe etc.</p>
+</div>
+<p>example of the model file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kurucz ODFNEW /NOVER (2003)</span>
+<span class="c1"># teff = 3500 K (value for the effective temperature for the model. Temperatures are given in K)</span>
+<span class="c1"># logg = 0 log(cm/s2) (value for Log(G) for the model.)</span>
+<span class="c1"># meta = -0.5  (value for the Metallicity for the model.)</span>
+<span class="c1"># lh = 1.25  (l/Hp where l is the  mixing length of the convective element and Hp is the pressure scale height)</span>
+<span class="c1"># vtur = 2 km/s (Microturbulence velocity)</span>
+<span class="c1"># alpha = 0  (Alpha)</span>
+<span class="c1">#</span>
+<span class="c1"># column 1: WAVELENGTH (ANGSTROM), Wavelength in Angstrom</span>
+<span class="c1"># column 2: FLUX (ERG/CM2/S/A), Flux in erg/cm2/s/A</span>
+        <span class="mf">147.2</span>    <span class="mf">5.04158e-191</span>
+        <span class="mi">151</span>      <span class="mf">5.95223e-186</span>
+        <span class="mf">155.2</span>    <span class="mf">1.22889e-180</span>
+        <span class="mf">158.8</span>    <span class="mf">2.62453e-176</span>
+        <span class="mi">162</span>      <span class="mf">1.2726e-172</span>
+        <span class="mi">166</span>      <span class="mf">3.23807e-168</span>
+        <span class="mf">170.3</span>    <span class="mf">1.03157e-163</span>
+        <span class="o">...</span>      <span class="o">...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – The name of the file to read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong> – The data read from the file.
+it contains the various parameters (e.g., teff, logg, metallicity, alpha, lh, vtur)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="dustapprox.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">dustapprox package</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="dustapprox.literature.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">dustapprox.literature package</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By M. Fouesneau, R. Andrae, R. Sordo ...<br/>
+  
+      &copy; Copyright 2022, DPAC - M. Fouesneau, R. Andrae, R. Sordo ....<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

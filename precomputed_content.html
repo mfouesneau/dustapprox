@@ -1,0 +1,1105 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>List of provided precomputed models &#8212; dustapprox</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dustapprox" href="modules.html" />
+    <link rel="prev" title="Extinction approximation models" href="precomputed.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">dustapprox</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="atmospheres.html">
+   Atmosphere models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extinction.html">
+   Extinction curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="photometry.html">
+   Photometric computations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="precomputed.html">
+   Extinction approximation models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   List of provided precomputed models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module API
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="modules.html">
+   dustapprox
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="dustapprox.html">
+     dustapprox package
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.io.html">
+       dustapprox.io package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.literature.html">
+       dustapprox.literature package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.models.html">
+       dustapprox.models package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dustapprox.tools.html">
+       dustapprox.tools package
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Fprecomputed_content.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/edit/main/docs/precomputed_content.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/precomputed_content.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>List of provided precomputed models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="list-of-provided-precomputed-models">
+<h1>List of provided precomputed models<a class="headerlink" href="#list-of-provided-precomputed-models" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><dl class="simple">
+<dt>use <a class="reference internal" href="dustapprox.models.html#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel.find</span></code></a> to find available models and associated passbands</dt><dd><ul>
+<li><p>The search can be on passband, extinction, atmosphere, and model kind.  It is caseless and does not need to contain the complete name.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">examples of searching for models</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustapprox.models</span> <span class="kn">import</span> <span class="n">PrecomputedModel</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">PrecomputedModel</span><span class="p">()</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;Gaia&#39;</span><span class="p">)</span>   <span class="c1"># returns all models with Gaia passband</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;galex&#39;</span><span class="p">,</span> <span class="n">atmosphere</span><span class="o">=</span><span class="s1">&#39;Atlas&#39;</span><span class="p">)</span>   <span class="c1"># returns nothing (we did not provide Atlas9 atmosphere)</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;galex&#39;</span><span class="p">,</span> <span class="n">atmosphere</span><span class="o">=</span><span class="s1">&#39;kurucz&#39;</span><span class="p">)</span>  <span class="c1"># return only kurucz based models</span>
+</pre></div>
+</div>
+</div>
+<p>This table provides the list of precomputed models provided with this package.</p>
+<table class="table" id="id2">
+<caption><span class="caption-text">List of provided precomputed models</span><a class="headerlink" href="#id2" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>passband</p></td>
+<td><p>kind</p></td>
+<td><p>features</p></td>
+<td><p>extinction</p></td>
+<td><p>A0 min</p></td>
+<td><p>A0 max</p></td>
+<td><p>atmosphere</p></td>
+<td><p>teff min</p></td>
+<td><p>teff max</p></td>
+<td><p>logg min</p></td>
+<td><p>logg max</p></td>
+<td><p>[Fe/H] min</p></td>
+<td><p>[Fe/H] max</p></td>
+</tr>
+<tr class="row-even"><td><p>2MASS_2MASS.H</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2MASS_2MASS.J</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>2MASS_2MASS.Ks</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B431</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B556</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B655</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B768</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B916</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M326</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M344</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M379</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M395</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M410</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M467</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M506</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M515</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M549</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M656</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M716</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M747</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M825</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M861</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M965</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA_GAIA3.G</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GAIA_GAIA3.Gbp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA_GAIA3.Grp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GALEX_GALEX.FUV</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GALEX_GALEX.NUV</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Bessell_JHKLM.H</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Bessell_JHKLM.J</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Bessell_JHKLM.K</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Cousins.I</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Cousins.R</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Johnson.B</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Johnson.U</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Johnson.V</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.g</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.i</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.r</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.u</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.z</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_WISE.W1</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_WISE.W2</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_WISE.W3</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_WISE.W4</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3500</p></td>
+<td><p>50000</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="precomputed.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Extinction approximation models</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="modules.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">dustapprox</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By M. Fouesneau, R. Andrae, R. Sordo ...<br/>
+  
+      &copy; Copyright 2022, DPAC - M. Fouesneau, R. Andrae, R. Sordo ....<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

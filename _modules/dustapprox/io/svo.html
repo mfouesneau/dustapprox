@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dustapprox.io.svo &#8212; dustapprox</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">dustapprox</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../atmospheres.html">
+   Atmosphere models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../extinction.html">
+   Extinction curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../photometry.html">
+   Photometric computations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../precomputed.html">
+   Extinction approximation models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../precomputed_content.html">
+   List of provided precomputed models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module API
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules.html">
+   dustapprox
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../dustapprox.html">
+     dustapprox package
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.io.html">
+       dustapprox.io package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.literature.html">
+       dustapprox.literature package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.models.html">
+       dustapprox.models package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../dustapprox.tools.html">
+       dustapprox.tools package
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2F_modules/dustapprox/io/svo.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for dustapprox.io.svo</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Interface to the SVO Theoretical spectra web server and Filter Profile Service.</span>
+
+<span class="sd">The SVO Theory Server provides data for many sources of theoretical spectra</span>
+<span class="sd">and observational templates.</span>
+
+<span class="sd">* SVO Theoretical spectra: http://svo2.cab.inta-csic.es/theory/newov2/index.php</span>
+<span class="sd">* SVO Filter Profile Service: http://svo2.cab.inta-csic.es/theory/fps/index.php</span>
+
+<span class="sd">.. todo::</span>
+
+<span class="sd">    * Add support for the SVO Theoretical spectra service (create one similarly to pyphot, though it may be harder).</span>
+<span class="sd">        * currently manual download of the data. It&#39;s not that hard, but we could put some guidance in our documentation.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pyphot.astropy.sandbox</span> <span class="kn">import</span> <span class="n">Unit</span> <span class="k">as</span> <span class="n">U</span>
+<span class="kn">from</span> <span class="nn">pyphot.astropy.sandbox</span> <span class="kn">import</span> <span class="n">UnitFilter</span>
+<span class="kn">from</span> <span class="nn">pyphot.svo</span> <span class="kn">import</span> <span class="n">get_pyphot_astropy_filter</span>
+<span class="n">Quantity</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">U</span><span class="p">())</span>
+
+
+<div class="viewcode-block" id="spectra_file_reader"><a class="viewcode-back" href="../../../dustapprox.io.html#dustapprox.io.svo.spectra_file_reader">[docs]</a><span class="k">def</span> <span class="nf">spectra_file_reader</span><span class="p">(</span><span class="n">fname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Read the model file from the SVO Theoretical spectra service.</span>
+
+<span class="sd">    They all have the same format, but the spectra are not on the same</span>
+<span class="sd">    wavelength scale (even for a single atmosphere source).</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        The parameters of the spectra may vary from source to source. For instance, they may not provide</span>
+<span class="sd">        microturbulence velocity or alpha/Fe etc.</span>
+
+
+<span class="sd">    example of the model file::</span>
+
+<span class="sd">        # Kurucz ODFNEW /NOVER (2003)</span>
+<span class="sd">        # teff = 3500 K (value for the effective temperature for the model. Temperatures are given in K)</span>
+<span class="sd">        # logg = 0 log(cm/s2) (value for Log(G) for the model.)</span>
+<span class="sd">        # meta = -0.5  (value for the Metallicity for the model.)</span>
+<span class="sd">        # lh = 1.25  (l/Hp where l is the  mixing length of the convective element and Hp is the pressure scale height)</span>
+<span class="sd">        # vtur = 2 km/s (Microturbulence velocity)</span>
+<span class="sd">        # alpha = 0  (Alpha)</span>
+<span class="sd">        #</span>
+<span class="sd">        # column 1: WAVELENGTH (ANGSTROM), Wavelength in Angstrom</span>
+<span class="sd">        # column 2: FLUX (ERG/CM2/S/A), Flux in erg/cm2/s/A</span>
+<span class="sd">                147.2    5.04158e-191</span>
+<span class="sd">                151      5.95223e-186</span>
+<span class="sd">                155.2    1.22889e-180</span>
+<span class="sd">                158.8    2.62453e-176</span>
+<span class="sd">                162      1.2726e-172</span>
+<span class="sd">                166      3.23807e-168</span>
+<span class="sd">                170.3    1.03157e-163</span>
+<span class="sd">                ...      ...</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fname:  str</span>
+<span class="sd">        The name of the file to read.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data: dict</span>
+<span class="sd">        The data read from the file.</span>
+<span class="sd">        it contains the various parameters (e.g., teff, logg, metallicity, alpha, lh, vtur)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+
+    <span class="n">rename_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;meta&#39;</span><span class="p">:</span> <span class="s1">&#39;feh&#39;</span><span class="p">}</span>
+
+    <span class="n">n_header_lines</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fin</span><span class="p">:</span>
+            <span class="c1"># if not a comment line stop.</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">n_header_lines</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="s1">&#39;=&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">parameter</span><span class="p">,</span> <span class="n">valdesc</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+                <span class="n">parameter</span> <span class="o">=</span> <span class="n">rename_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">parameter</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">valdesc</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">candidate_unit</span> <span class="o">=</span> <span class="n">valdesc</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                <span class="k">if</span> <span class="s1">&#39;(&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">candidate_unit</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">val_unit</span> <span class="o">=</span> <span class="n">candidate_unit</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">val_desc</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">candidate_unit</span><span class="p">[</span><span class="mi">2</span><span class="p">:])[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># remove ()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">val_unit</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">val_desc</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">candidate_unit</span><span class="p">[</span><span class="mi">1</span><span class="p">:])[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># remove ()</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">val</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="n">val_unit</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">val_desc</span><span class="p">}</span>
+            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">):</span>
+                <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                <span class="n">name</span><span class="p">,</span> <span class="n">unit</span> <span class="o">=</span> <span class="n">comment</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">desc</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">comment</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># remove (),</span>
+                <span class="k">if</span> <span class="s1">&#39;ERG/CM2/S/A&#39;</span> <span class="ow">in</span> <span class="n">unit</span><span class="p">:</span>
+                    <span class="c1"># &#39;A&#39; unit is too vague and can be misinterpreted.</span>
+                    <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;erg/cm2/s/Angstrom&#39;</span>
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">desc</span><span class="p">}})</span>
+
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="n">n_header_lines</span><span class="p">,</span>
+                               <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span>
+                               <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                               <span class="n">names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="get_svo_sprectum_units"><a class="viewcode-back" href="../../../dustapprox.io.html#dustapprox.io.svo.get_svo_sprectum_units">[docs]</a><span class="k">def</span> <span class="nf">get_svo_sprectum_units</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Quantity</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot; Get the units objects of the wavelength and flux from an SVO spectrum.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: dict</span>
+<span class="sd">        The data read from the file using :func:`spectra_file_reader`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    lamb_unit: Quantity</span>
+<span class="sd">        The wavelength unit.</span>
+<span class="sd">    flux_unit: Quantity</span>
+<span class="sd">        The flux unit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># remove the UnitWarning (&quot;contains multiple slashes, which is discouraged&quot; warning)</span>
+    <span class="kn">import</span> <span class="nn">warnings</span>
+
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">lamb_unit</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">][</span><span class="s1">&#39;unit&#39;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">lamb_unit</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">][</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">flux_unit</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="s1">&#39;FLUX&#39;</span><span class="p">][</span><span class="s1">&#39;unit&#39;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">flux_unit</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="s1">&#39;FLUX&#39;</span><span class="p">][</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">lamb_unit</span><span class="p">,</span> <span class="n">flux_unit</span></div>
+
+<div class="viewcode-block" id="get_svo_passbands"><a class="viewcode-back" href="../../../dustapprox.io.html#dustapprox.io.svo.get_svo_passbands">[docs]</a><span class="k">def</span> <span class="nf">get_svo_passbands</span><span class="p">(</span><span class="n">identifiers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">UnitFilter</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot; Query the SVO filter profile service and return the pyphot filter objects.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    identifier : str, Sequence[str]</span>
+<span class="sd">        SVO identifier(s) of the filter profile</span>
+<span class="sd">        e.g., 2MASS/2MASS.Ks HST/ACS_WFC.F475W</span>
+<span class="sd">        The identifier is the first column on the webpage of the facilities.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    filter : UnitFilter, Sequence[UnitFilter]</span>
+<span class="sd">        list of Filter objects</span>
+
+
+<span class="sd">    **example of the Gaia filter profile**</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">        :include-source:</span>
+
+<span class="sd">        import matplotlib.pyplot as plt</span>
+
+<span class="sd">        from dustapprox.io import svo</span>
+<span class="sd">        which_filters = [&#39;GAIA/GAIA3.Gbp&#39;, &#39;GAIA/GAIA3.Grp&#39;, &#39;GAIA/GAIA3.G&#39;]</span>
+<span class="sd">        passbands = svo.get_svo_passbands(which_filters)</span>
+
+<span class="sd">        for pb in passbands:</span>
+<span class="sd">            plt.plot(pb.wavelength.to(&#39;nm&#39;), pb.transmit, label=pb.name)</span>
+
+<span class="sd">        plt.legend(loc=&#39;upper right&#39;, frameon=False)</span>
+
+<span class="sd">        plt.xlabel(&#39;wavelength [nm]&#39;)</span>
+<span class="sd">        plt.ylabel(&#39;transmission&#39;)</span>
+<span class="sd">        plt.tight_layout()</span>
+<span class="sd">        plt.show()</span>
+
+
+<span class="sd">    .. seealso:: :class:`pyphot.astropy.sandbox.UnitFilter`</span>
+
+<span class="sd">        `pyphot &lt;https://mfouesneau.github.io/pyphot/index.html&gt;`_ is a set of</span>
+<span class="sd">        tools to compute synthetic photometry in a simple way, ideal to</span>
+<span class="sd">        integrate in larger projects.</span>
+
+<span class="sd">        We internally use their astropy backend for the spectral units.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">identifiers</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">identifiers</span> <span class="o">=</span> <span class="p">[</span><span class="n">identifiers</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">get_pyphot_astropy_filter</span><span class="p">(</span><span class="n">identifiers</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">get_pyphot_astropy_filter</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">identifiers</span><span class="p">]</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By M. Fouesneau, R. Andrae, R. Sordo ...<br/>
+  
+      &copy; Copyright 2022, DPAC - M. Fouesneau, R. Andrae, R. Sordo ....<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
