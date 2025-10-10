@@ -21,3 +21,5 @@ We provide multiple literature approximations with this package.
 
 from . import edr3
 from . import c1
+
+__all__ = ["edr3", "c1"]

@@ -42,16 +42,19 @@ increasing with :math:`0.01 mag`.
       \sim 5 mag`.
 
 """
-from typing import Union, Sequence
-from pkg_resources import resource_filename
+
+from typing import Union
+from importlib import resources
 import pandas as pd
 import numpy as np
+import numpy.typing as npt
 import os
 
-_DATA_PATH_ = resource_filename('dustapprox', 'data')
+_DATA_PATH_ = str(resources.files("dustapprox").joinpath("data"))
+
 
 class edr3_ext:
-    """ provide extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (G, BP, RP)
+    """provide extinction coefficient :math:`k_x = A_x / A_0` for Gaia eDR3 passbands (G, BP, RP)
 
     This class provides a simple access to their expressions
     for :math:`X=(G_{BP}-G_{RP})_0, (G-K)_0`, and :math:`T_{eff}`,
@@ -67,18 +70,27 @@ class edr3_ext:
 
     Data taken from: https://www.cosmos.esa.int/web/gaia/edr3-extinction-law
     """
+
     def __init__(self):
         datafiles = (
             "Fitz19_EDR3_extinctionlawcoefficients/Fitz19_EDR3_HRDTop.csv",
-            "Fitz19_EDR3_extinctionlawcoefficients/Fitz19_EDR3_MainSequence.csv")
-        self.Ay_top = pd.read_csv(os.path.join(_DATA_PATH_, datafiles[0])).set_index(['Kname', 'Xname'])
-        self.Ay_ms = pd.read_csv(os.path.join(_DATA_PATH_, datafiles[1])).set_index(['Kname', 'Xname'])
+            "Fitz19_EDR3_extinctionlawcoefficients/Fitz19_EDR3_MainSequence.csv",
+        )
+        self.Ay_top = pd.read_csv(os.path.join(_DATA_PATH_, datafiles[0])).set_index(
+            ["Kname", "Xname"]
+        )
+        self.Ay_ms = pd.read_csv(os.path.join(_DATA_PATH_, datafiles[1])).set_index(
+            ["Kname", "Xname"]
+        )
 
-    def _from(self, name: str, Xname: str,
-              Xval: Union[float, Sequence[float], np.array],
-              a0: Union[float, Sequence[float], np.array],
-              flavor: str ='top'
-             ) -> Union[float, Sequence[float], np.array]:
+    def _from(
+        self,
+        name: str,
+        Xname: str,
+        Xval: Union[float, npt.NDArray[np.floating]],
+        a0: Union[float, npt.NDArray[np.floating]],
+        flavor: str = "top",
+    ) -> Union[float, npt.NDArray[np.floating]]:
         """Internal access to the equations
 
         Parameters
@@ -99,34 +111,38 @@ class edr3_ext:
         float or array_like
             The extinction coefficient A_x / A_0
         """
-        if flavor == 'top':
+        if flavor == "top":
             data = self.Ay_top
         else:
             data = self.Ay_ms
         coeffs = data.loc[name, Xname]
         X_ = np.atleast_1d(Xval)
-        X_2 = X_ ** 2
-        X_3 = X_ ** 3
+        X_2 = X_**2
+        X_3 = X_**3
         a0_ = np.atleast_1d(a0)
-        a0_2 = a0_ ** 2
-        a0_3 = a0_ ** 3
+        a0_2 = a0_**2
+        a0_3 = a0_**3
 
-        ay = coeffs['Intercept']
-        for key, Xk in zip(['X', 'X2', 'X3'], [X_, X_2, X_3]):
+        ay = coeffs["Intercept"]
+        for key, Xk in zip(["X", "X2", "X3"], [X_, X_2, X_3]):
             ay = ay + coeffs[key] * Xk
-        for key, Ak in zip(['A', 'A2', 'A3'], [a0_, a0_2, a0_3]):
+        for key, Ak in zip(["A", "A2", "A3"], [a0_, a0_2, a0_3]):
             ay = ay + coeffs[key] * Ak
 
-        ay += (coeffs['XA'] * X_ * a0_ +
-               coeffs['XA2'] * X_ * a0_2 +
-               coeffs['AX2'] * X_2 * a0_)
+        ay += (
+            coeffs["XA"] * X_ * a0_
+            + coeffs["XA2"] * X_ * a0_2
+            + coeffs["AX2"] * X_2 * a0_
+        )
         return ay
 
-    def from_teff(self, name: str,
-              teff: Union[float, Sequence[float], np.array],
-              a0: Union[float, Sequence[float], np.array],
-              flavor: str ='top'
-             ) -> Union[float, Sequence[float], np.array]:
+    def from_teff(
+        self,
+        name: str,
+        teff: Union[float, npt.NDArray[np.floating]],
+        a0: Union[float, npt.NDArray[np.floating]],
+        flavor: str = "top",
+    ) -> Union[float, npt.NDArray[np.floating]]:
         """Relation based on temperature of the source
 
         Parameters
@@ -145,14 +161,16 @@ class edr3_ext:
         float or array_like
             The extinction coefficient A_x / A_0
         """
-        teffnorm = teff / 5040.
-        return self._from(name, 'TeffNorm', teffnorm, a0, flavor)
+        teffnorm = teff / 5040.0
+        return self._from(name, "TeffNorm", teffnorm, a0, flavor)
 
-    def from_bprp(self, name: str,
-              bprp: Union[float, Sequence[float], np.array],
-              a0: Union[float, Sequence[float], np.array],
-              flavor: str ='top'
-             ) -> Union[float, Sequence[float], np.array]:
+    def from_bprp(
+        self,
+        name: str,
+        bprp: Union[float, npt.NDArray[np.floating]],
+        a0: Union[float, npt.NDArray[np.floating]],
+        flavor: str = "top",
+    ) -> Union[float, npt.NDArray[np.floating]]:
         """Relation based on BP-RP of the source
 
         Parameters
@@ -171,13 +189,15 @@ class edr3_ext:
         float or array_like
             The extinction coefficient A_x / A_0
         """
-        return self._from(name, 'BPRP', bprp, a0, flavor)
+        return self._from(name, "BPRP", bprp, a0, flavor)
 
-    def from_GmK(self, name: str,
-              gmk: Union[float, Sequence[float], np.array],
-              a0: Union[float, Sequence[float], np.array],
-              flavor: str ='top'
-             ) -> Union[float, Sequence[float], np.array]:
+    def from_GmK(
+        self,
+        name: str,
+        gmk: Union[float, npt.NDArray[np.floating]],
+        a0: Union[float, npt.NDArray[np.floating]],
+        flavor: str = "top",
+    ) -> Union[float, npt.NDArray[np.floating]]:
         """Relation based on G-Ks of the source
 
         Parameters
@@ -196,4 +216,4 @@ class edr3_ext:
         float or array_like
             The extinction coefficient A_x / A_0
         """
-        return self._from(name, 'GK', gmk, a0, flavor)
+        return self._from(name, "GK", gmk, a0, flavor)

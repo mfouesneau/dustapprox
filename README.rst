@@ -15,8 +15,8 @@ TODO
 ----
 - [x] update python supported versions
 - [x] upgrade packaging to pyproject.toml only
+- [x] typing annotations
 - [ ] debug warnings from doc workflow
-- [ ] typing annotations
 - [ ] additional unit tests
 - [ ] additional examples
 - [ ] generate workflow to train model

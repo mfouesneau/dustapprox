@@ -1,4 +1,4 @@
-r"""  Coefficients of the reddening laws to correct magnitudes in the :math:`C1` system.
+r"""Coefficients of the reddening laws to correct magnitudes in the :math:`C1` system.
 
 The :math:`C1` Gaia photometric system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -156,8 +156,10 @@ the Gaia :math:`G_{BP}-G_{RP}` color:
     Those relations depend on :math:`A_G`, not :math:`A_0`.
 
 """
+
 from typing import Union
 import numpy as np
+import numpy.typing as npt
 from ..io import ecsv
 
 
@@ -180,14 +182,14 @@ class dr3_ext:
     A_X / A_G : float or array
         The extinction coefficients
     """
-    def __init__(self, data='gaia_C1_extinction.ecsv'):
-        """Constructor that loads the external data table."""
-        self.data = ecsv.read('gaia_C1_extinction.ecsv').set_index('X')
 
-    def __call__(self,
-                 name: str,
-                 bprp: Union[float, np.array],
-                 ag:float) -> Union[float, np.array]:
+    def __init__(self, data="gaia_C1_extinction.ecsv"):
+        """Constructor that loads the external data table."""
+        self.data = ecsv.read("gaia_C1_extinction.ecsv").set_index("X")
+
+    def __call__(
+        self, name: str, bprp: Union[float, npt.NDArray[np.floating]], ag: float
+    ) -> Union[float, npt.NDArray[np.floating]]:
         """
         Returns A_X / A_G values
 
@@ -210,8 +212,8 @@ class dr3_ext:
         c = self.data.loc[name]
         ax = np.atleast_1d(c["alpha"])
         for i in range(1, 5):
-            ax = ax + c["beta_{0:d}".format(i)] * bprp_ ** i
+            ax = ax + c["beta_{0:d}".format(i)] * bprp_**i
         for j in range(1, 4):
-            ax = ax + (c["gamma_{0:d}".format(j)] * ag_ ** j)
+            ax = ax + (c["gamma_{0:d}".format(j)] * ag_**j)
         ax += c["delta"] * bprp_ * ag_
         return np.squeeze(ax)
