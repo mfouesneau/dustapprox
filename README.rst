@@ -4,6 +4,8 @@ dustapprox -- A tool for computing approximative extinction coefficients
 .. image:: https://img.shields.io/pypi/v/dustapprox.svg
     :target: https://pypi.org/project/dustapprox/
 
+.. image:: https://img.shields.io/badge/python-3.10,_3.11,_3.12,_3.13-blue.svg
+
 This is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
 
 full documentation at: http://mfouesneau.github.io/dustapprox/
@@ -11,8 +13,8 @@ full documentation at: http://mfouesneau.github.io/dustapprox/
 
 TODO
 ----
-- [ ] update python supported versions
-- [ ] upgrade packaging to pyproject.toml only
+- [x] update python supported versions
+- [x] upgrade packaging to pyproject.toml only
 - [ ] debug warnings from doc workflow
 - [ ] typing annotations
 - [ ] additional unit tests
