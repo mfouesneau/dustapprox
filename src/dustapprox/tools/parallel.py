@@ -1,11 +1,12 @@
 """Parallel processing with joblib and tqdm."""
+
 import contextlib
 import joblib
 from tqdm import tqdm
 
 
 @contextlib.contextmanager
-def tqdm_joblib(tqdm_object):
+def tqdm_joblib(tqdm_object: tqdm):
     """Context manager to patch joblib to report into tqdm progress bar given as argument
 
     Solution adapted from `Stackoverflow <https://stackoverflow.com/a/58936697>`_.
@@ -21,6 +22,7 @@ def tqdm_joblib(tqdm_object):
             Parallel(n_jobs=2)(delayed(some_method)(0.2) for i in range(10))
 
     """
+
     class TqdmBatchCompletionCallback(joblib.parallel.BatchCompletionCallBack):
         def __call__(self, *args, **kwargs):
             tqdm_object.update(n=self.batch_size)

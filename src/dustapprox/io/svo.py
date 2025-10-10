@@ -12,12 +12,13 @@ and observational templates.
     * Add support for the SVO Theoretical spectra service (create one similarly to pyphot, though it may be harder).
         * currently manual download of the data. It's not that hard, but we could put some guidance in our documentation.
 """
-from typing import Sequence, Union
+
+from typing import Sequence, Union, Tuple
 import pandas as pd
 from pyphot.astropy.sandbox import Unit as U
 from pyphot.astropy.sandbox import UnitFilter
 from pyphot.svo import get_pyphot_astropy_filter
-Quantity = type(U())
+from ..astropy_units import Quantity
 
 
 def spectra_file_reader(fname: str) -> dict:
@@ -64,53 +65,62 @@ def spectra_file_reader(fname: str) -> dict:
         The data read from the file.
         it contains the various parameters (e.g., teff, logg, metallicity, alpha, lh, vtur)
     """
-    data = {'columns': {}, 'data': None}
+    data = {"columns": {}, "data": None}
 
-    rename_parameters = {'meta': 'feh'}
+    rename_parameters = {"meta": "feh"}
 
     n_header_lines = 0
-    with open(fname, 'r') as fin:
+    with open(fname, "r") as fin:
         for line in fin:
             # if not a comment line stop.
-            if line[0] != '#':
+            if line[0] != "#":
                 break
             n_header_lines += 1
 
             line = line[1:].strip()
             if not line:
                 continue
-            if '=' in line:
-                parameter, valdesc = line.split('=')
+            if "=" in line:
+                parameter, valdesc = line.split("=")
                 parameter = rename_parameters.get(parameter.strip(), parameter.strip())
                 val = float(valdesc.split()[0])
                 candidate_unit = valdesc.split()
-                if '(' not in candidate_unit[1]:
+                if "(" not in candidate_unit[1]:
                     val_unit = candidate_unit[1]
-                    val_desc = ' '.join(candidate_unit[2:])[1:-1]  # remove ()
+                    val_desc = " ".join(candidate_unit[2:])[1:-1]  # remove ()
                 else:
                     val_unit = None
-                    val_desc = ' '.join(candidate_unit[1:])[1:-1]  # remove ()
-                data[parameter] = {'value': val, 'unit': val_unit, 'description': val_desc}
-            elif line.startswith('column'):
-                comment = ' '.join(line.split(':')[1:]).split()
+                    val_desc = " ".join(candidate_unit[1:])[1:-1]  # remove ()
+                data[parameter] = {
+                    "value": val,
+                    "unit": val_unit,
+                    "description": val_desc,
+                }
+            elif line.startswith("column"):
+                comment = " ".join(line.split(":")[1:]).split()
                 name, unit = comment[:2]
-                desc = ' '.join(comment[2:])
-                unit = unit.strip()[1:-2] # remove (),
-                if 'ERG/CM2/S/A' in unit:
+                desc = " ".join(comment[2:])
+                unit = unit.strip()[1:-2]  # remove (),
+                if "ERG/CM2/S/A" in unit:
                     # 'A' unit is too vague and can be misinterpreted.
-                    unit = 'erg/cm2/s/Angstrom'
-                data['columns'].update({name.strip(): {'unit': unit, 'description': desc}})
+                    unit = "erg/cm2/s/Angstrom"
+                data["columns"].update(
+                    {name.strip(): {"unit": unit, "description": desc}}
+                )
 
-    data['data'] = pd.read_csv(fname, skiprows=n_header_lines,
-                               comment='#',
-                               delim_whitespace=True,
-                               names=list(data['columns'].keys()))
+    data["data"] = pd.read_csv(
+        fname,
+        skiprows=n_header_lines,
+        comment="#",
+        delim_whitespace=True,
+        names=list(data["columns"].keys()),
+    )
 
     return data
 
 
-def get_svo_sprectum_units(data: dict) -> Sequence[Quantity]:
-    """ Get the units objects of the wavelength and flux from an SVO spectrum.
+def get_svo_sprectum_units(data: dict) -> Tuple[Quantity, Quantity]:
+    """Get the units objects of the wavelength and flux from an SVO spectrum.
 
     Parameters
     ----------
@@ -130,17 +140,18 @@ def get_svo_sprectum_units(data: dict) -> Sequence[Quantity]:
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         try:
-            lamb_unit = U(data['columns']['WAVELENGTH']['unit'])
+            lamb_unit = U(data["columns"]["WAVELENGTH"]["unit"])
         except ValueError:
-            lamb_unit = U(data['columns']['WAVELENGTH']['unit'].lower())
+            lamb_unit = U(data["columns"]["WAVELENGTH"]["unit"].lower())
         try:
-            flux_unit = U(data['columns']['FLUX']['unit'])
+            flux_unit = U(data["columns"]["FLUX"]["unit"])
         except ValueError:
-            flux_unit = U(data['columns']['FLUX']['unit'].lower())
-    return lamb_unit, flux_unit
+            flux_unit = U(data["columns"]["FLUX"]["unit"].lower())
+    return 1.0 * lamb_unit, 1.0 * flux_unit
+
 
 def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[UnitFilter]:
-    """ Query the SVO filter profile service and return the pyphot filter objects.
+    """Query the SVO filter profile service and return the pyphot filter objects.
 
     Parameters
     ----------
@@ -187,7 +198,6 @@ def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[UnitFi
 
     """
     if isinstance(identifiers, str):
-        identifiers = [identifiers]
-        return get_pyphot_astropy_filter(identifiers)
+        return [get_pyphot_astropy_filter(identifiers)]
 
     return [get_pyphot_astropy_filter(k) for k in identifiers]

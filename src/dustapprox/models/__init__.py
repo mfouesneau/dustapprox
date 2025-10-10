@@ -66,14 +66,14 @@ class PrecomputedModel:
             from: A0, teffnorm   polynomial degree: 3]
     """
 
-    def __init__(self, location=None):
+    def __init__(self, location: Union[str, None] = None):
         """Constructor"""
         if location is None:
             location = _DATA_PATH_
         self._info = None
         self.location = location
 
-    def get_models_info(self, glob_pattern="/**/*.ecsv") -> Sequence[dict]:
+    def get_models_info(self, glob_pattern: str = "/**/*.ecsv") -> Sequence[dict]:
         """Retrieve the information for all models available and files"""
         if self._info is not None:
             return self._info
@@ -89,7 +89,6 @@ class PrecomputedModel:
     def _get_file_info(self, fname: str) -> dict:
         """Extract information from a file"""
         info = {}
-        where = fname.replace(_DATA_PATH_, "")
         df = ecsv.read(fname)
         info = df.attrs.copy()
         info["passbands"] = list(df["passband"].values)
@@ -147,7 +146,7 @@ class PrecomputedModel:
             results.append(content)
         return results
 
-    def load_model(self, fname: Union[str, dict], passband: str = None):
+    def load_model(self, fname: Union[str, dict], passband: Union[str, None] = None):
         """Load a model from a file or description (:func:`PrecomputedModel.find`)
 
         Parameters

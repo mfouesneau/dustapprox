@@ -1,19 +1,21 @@
-""" Base class for deriving various kinds of models. """
+"""Base class for deriving various kinds of models."""
+
 
 class _BaseModel(object):
-    """ A model object other approximations derive from
+    """A model object other approximations derive from
 
     Attributes
     ----------
     meta: dict
         meta information about the model
     """
+
     def __init__(self, **kwargs):
-        self.meta = kwargs.get('meta', {})
-        self.name_ = kwargs.get('name', None)
+        self.meta = kwargs.get("meta", {})
+        self.name_ = kwargs.get("name", None)
 
     def fit(self, *args, **kwargs):
-        """ Fit the model to the data
+        """Fit the model to the data
 
         Parameters
         ----------
@@ -25,7 +27,7 @@ class _BaseModel(object):
         raise NotImplementedError
 
     def predict(self, *args, **kwargs):
-        """ Predict the extinction in a given passband.
+        """Predict the extinction in a given passband.
 
         Parameters
         ----------

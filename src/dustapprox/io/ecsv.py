@@ -47,21 +47,22 @@ example of file::
     Astropy project.
 
 """
+
 import textwrap
 import re
 import yaml
 import pandas as pd
 import numpy as np
 import json
-from typing import Union
+from typing import Union, Generator
 from io import TextIOWrapper
 
 
-__ECSV_VERSION__ = '1.0'
+__ECSV_VERSION__ = "1.0"
 
 
 def _converter(str_val: str, subtype: str):
-    """ Convert string arrays to appropriate subtype arrays """
+    """Convert string arrays to appropriate subtype arrays"""
     obj_val = json.loads(str_val)  # list or nested lists
     try:
         return np.array(obj_val, dtype=subtype)
@@ -71,15 +72,14 @@ def _converter(str_val: str, subtype: str):
         # is None values (indicating missing values).
         data = np.array(obj_val, dtype=object)
         # Replace all the None with an appropriate fill value
-        mask = (data == None)  # noqa: E711
+        mask = data == None  # noqa: E711
         kind = np.dtype(subtype).kind
-        data[mask] = {'U': '', 'S': b''}.get(kind, 0)
+        data[mask] = {"U": "", "S": b""}.get(kind, 0)
         return np.ma.array(data.astype(subtype), mask=mask)
 
 
-
 def read_header(fname: str) -> dict:
-    """ read the header of ECSV file as a dictionary
+    """read the header of ECSV file as a dictionary
 
     Parameters
     ----------
@@ -92,32 +92,36 @@ def read_header(fname: str) -> dict:
         the header of the file.
     """
 
-    def process_header_lines(fname: str, comment: str = '#') -> str:
-        """ Return header lines if non-blank and starting with the comment char
-            Empty lines are discarded.
+    def process_header_lines(
+        fname: str, comment: str = "#"
+    ) -> Union[str, Generator[str, None, None]]:
+        """Return header lines if non-blank and starting with the comment char
+        Empty lines are discarded.
         """
         re_comment = re.compile(comment)
 
-        with open(fname, 'r') as fin:
+        with open(fname, "r") as fin:
             for line in fin:
                 line = line.strip()
                 if not line:
                     continue
                 match = re_comment.match(line)
                 if match:
-                    out = line[match.end():]
+                    out = line[match.end() :]
                     if out:
                         yield out
                 else:
                     return
 
-    header = yaml.load(textwrap.dedent('\n'.join(process_header_lines(fname))),
-                        yaml.SafeLoader)
+    header = yaml.load(
+        textwrap.dedent("\n".join(process_header_lines(fname))), yaml.SafeLoader
+    )
 
     return header
 
+
 def read(fname: str, **kwargs) -> pd.DataFrame:
-    """ Read the content of an Enhanced Character Separated Values
+    """Read the content of an Enhanced Character Separated Values
 
     Parameters
     ----------
@@ -131,39 +135,43 @@ def read(fname: str, **kwargs) -> pd.DataFrame:
     """
     header = read_header(fname)
 
-    dtype_mapper = {'string': str}
+    dtype_mapper = {"string": str}
 
-    dtype = {k['name']: np.dtype(dtype_mapper.get(k['datatype'], k['datatype']))
-                                 for k in header['datatype']}
+    dtype = {
+        str(k["name"]): np.dtype(dtype_mapper.get(k["datatype"], k["datatype"]))
+        for k in header["datatype"]
+    }
 
-    delimiter = header.get('delimiter', kwargs.pop('delimiter', ','))
-    comment = kwargs.pop('comment', '#')
+    delimiter = header.get("delimiter", kwargs.pop("delimiter", ","))
+    comment = kwargs.pop("comment", "#")
 
     # Check subtypes if any and generate the converter function.
     converters = {}
-    for entry in header['datatype']:
-        subtype = entry.get('subtype', '')
-        if subtype and ('[' in subtype):
-            name = entry['name']
-            idx = subtype.index('[')
+    for entry in header["datatype"]:
+        subtype = entry.get("subtype", "")
+        if subtype and ("[" in subtype):
+            name = entry["name"]
+            idx = subtype.index("[")
             sub_dtype = subtype[:idx]
-            shape = json.loads(subtype[idx:])
+            # shape = json.loads(subtype[idx:])
             converters[name] = lambda x: _converter(x, sub_dtype)
             dtype.pop(name)
-    converters.update(kwargs.pop('converters', {}))
+    converters.update(kwargs.pop("converters", {}))
 
-    df = pd.read_csv(fname, 
-                     delimiter=delimiter, 
-                     dtype=dtype, 
-                     comment=comment, 
-                     converters=converters,
-                     **kwargs)
-    df.attrs.update(header.get('meta', {}))
+    df = pd.read_csv(  # pyright: ignore[reportCallIssue]
+        fname,
+        delimiter=delimiter,
+        dtype=dtype,  # pyright: ignore
+        comment=comment,
+        converters=converters,
+        **kwargs,
+    )
+    df.attrs.update(header.get("meta", {}))
     return df
 
 
 def generate_header(df: pd.DataFrame, **meta) -> str:
-    """ Generates the yaml equivalent string for the ECSV header
+    """Generates the yaml equivalent string for the ECSV header
 
     Parameters
     ----------
@@ -182,25 +190,23 @@ def generate_header(df: pd.DataFrame, **meta) -> str:
     # Get the column types
     dtypes = []
     for name, dt in df.dtypes.to_dict().items():
-        dtype = {'name': name, 'datatype': str(dt)}
+        dtype = {"name": name, "datatype": str(dt)}
         # Check if vectors and add subtype if necessary.
-        if dt == 'object':
+        if dt == "object":
             val0 = df[name][0]
             if val0.shape:
-                dtype['subtype'] = '{0:s}[null]'.format(str(val0.dtype))
+                dtype["subtype"] = "{0:s}[null]".format(str(val0.dtype))
         dtypes.append(dtype)
     meta_ = df.attrs.copy()
     meta_.update(meta)
-    h = {'delimiter': ',', 'datatype': dtypes, 'meta': meta_}
-    preamble = ['# %ECSV {0:s}'.format(__ECSV_VERSION__), '# ---']
-    lines = ['# ' + line for line in yaml.dump(h, sort_keys=False).split('\n') if line]
-    return '\n'.join(preamble + lines)
+    h = {"delimiter": ",", "datatype": dtypes, "meta": meta_}
+    preamble = ["# %ECSV {0:s}".format(__ECSV_VERSION__), "# ---"]
+    lines = ["# " + line for line in yaml.dump(h, sort_keys=False).split("\n") if line]
+    return "\n".join(preamble + lines)
 
 
-def write(df: pd.DataFrame,
-          fname: Union[str, TextIOWrapper],
-          mode: str = 'w', **meta):
-    """ output data into ecsv file
+def write(df: pd.DataFrame, fname: Union[str, TextIOWrapper], mode: str = "w", **meta):
+    """output data into ecsv file
 
     Parameters
     ----------
@@ -213,10 +219,10 @@ def write(df: pd.DataFrame,
     meta: dict
         meta data to be written to the header.
     """
-    if hasattr(fname, 'write'):
-       fname.write(generate_header(df, **meta) + '\n')
-       df.to_csv(fname, index=False)
+    if hasattr(fname, "write"):
+        fname.write(generate_header(df, **meta) + "\n")  # pyright: ignore
+        df.to_csv(fname, index=False)
     else:
-        with open(fname, mode) as fout:
-            fout.write(generate_header(df, **meta) + '\n')
+        with open(fname, mode) as fout:  # pyright: ignore
+            fout.write(generate_header(df, **meta) + "\n")
             df.to_csv(fout, index=False)
