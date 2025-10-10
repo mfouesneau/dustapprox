@@ -11,7 +11,7 @@ full documentation at: http://mfouesneau.github.io/dustapprox/
 
 TODO
 ----
-
+- [ ] update python supported versions
 - [ ] upgrade packaging to pyproject.toml only
 - [ ] typing annotations
 - [ ] additional unit tests

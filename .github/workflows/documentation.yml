@@ -7,55 +7,54 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.9"
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.12"
 
-    - name: install dependencies
-      run: |
+      - name: install dependencies
+        run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install -r docs/requirements.txt
 
-    - name: build documentation
-      working-directory: "docs/"
-      run: |
+      - name: build documentation
+        working-directory: "docs/"
+        run: |
           rm -f dustapprox.rst dustapprox.*.rst
           make prerun && make apidoc && make html
 
-    # - name: Debugging session Setup tmate
-    #   uses: mxschmitt/action-tmate@v3
+      # - name: Debugging session Setup tmate
+      #   uses: mxschmitt/action-tmate@v3
 
-    # Publish built docs to gh-pages branch.
-    # ======================================
-    - name: Commit documentation changes
-      run: |
-        git clone https://github.com/ammaraskar/sphinx-action-test.git --branch gh-pages --single-branch gh-pages
-        cp -r docs/_build/html/* gh-pages/
-        cd gh-pages
-        touch .nojekyll
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Update documentation" -a || true
-        # The above command will fail if no changes were present, so we ignore
-        # that.
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: gh-pages
-        directory: gh-pages
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        force: true
+      # Publish built docs to gh-pages branch.
+      # ======================================
+      - name: Commit documentation changes
+        run: |
+          git clone https://github.com/ammaraskar/sphinx-action-test.git --branch gh-pages --single-branch gh-pages
+          cp -r docs/_build/html/* gh-pages/
+          cd gh-pages
+          touch .nojekyll
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update documentation" -a || true
+          # The above command will fail if no changes were present, so we ignore
+          # that.
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          directory: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
     # ===============================
