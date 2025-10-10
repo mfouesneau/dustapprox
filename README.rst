@@ -26,6 +26,7 @@ TODO
   - [ ] G23 curves
 - [ ] add Gaia DR4 passbands
 - [ ] add Euclid passbands? others?
+- [ ] update internal extinction curves to use pyextinction instead
 
 
 Quick Start

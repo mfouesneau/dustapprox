@@ -43,18 +43,18 @@ commonly used extinction curves.
 
 import warnings
 import numpy as np
+import numpy.typing as npt
 from scipy import interpolate
+from typing import Union, Any
 from pyphot.astropy.sandbox import Unit as U
-from typing import Union, Sequence
-
-Quantity = type(U())
+from .astropy_units import Quantity, has_unit
 
 
 __all__ = ["ExtinctionLaw", "CCM89", "F99"]
 
 
 def _warning_on_one_line(
-    message, category, filename, lineno, file=None, line=None
+    message: str, category: Any, filename: str, lineno: int, file=None, line=None
 ) -> str:
     """Prints a complete warning that includes exactly the code line triggering it from the stack trace."""
     return " {0:s}:{1:d} {2:s}:{3:s}".format(
@@ -62,7 +62,9 @@ def _warning_on_one_line(
     )
 
 
-def _val_in_unit(varname: str, value: object, defaultunit: str) -> Quantity:
+def _val_in_unit(
+    varname: str, value: Union[object, Quantity], defaultunit: str
+) -> Quantity:
     """check units and convert to defaultunit or create the unit information
 
     Parameters
@@ -90,14 +92,14 @@ def _val_in_unit(varname: str, value: object, defaultunit: str) -> Quantity:
     <Quantity(0.5, 'degree')>
     """
 
-    if not (hasattr(value, "unit") or hasattr(value, "units")):
+    if not has_unit(value):
         warnings.formatwarning = _warning_on_one_line
         msg = "Variable {0:s} does not have explicit units. Assuming `{1:s}`\n"
         # stacklevel makes the correct code reference
         warnings.warn(msg.format(varname, defaultunit), stacklevel=4)
         return value * U(defaultunit)
     else:
-        return value.to(defaultunit)
+        return value.to(defaultunit)  # pyright: ignore[reportAttributeAccessIssue]
 
 
 class ExtinctionLaw(object):
@@ -123,16 +125,16 @@ class ExtinctionLaw(object):
     def __init__(self):
         self.name = "None"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "{0:s}\n{1:s}".format(self.name, object.__repr__(self))
 
     def __call__(
-        self, lamb: Union[float, np.array, Quantity], *args, **kwargs
-    ) -> np.array:
+        self, lamb: Union[float, npt.NDArray, Quantity], *args, **kwargs
+    ) -> Union[float, npt.NDArray[np.floating]]:
         """Make the extinction law callable object using :func:`self.function`"""
         raise NotImplementedError
 
-    def isvalid(self, *args, **kwargs):
+    def isvalid(self, *args, **kwargs) -> bool:
         """Check if the current arguments are in the validity domain of the law
         Must be redefined if any restriction applies to the law
         """
@@ -140,7 +142,7 @@ class ExtinctionLaw(object):
 
 
 class CCM89(ExtinctionLaw):
-    """Cardelli, Clayton, & Mathis (1989) Milky Way R(V) dependent model.
+    r"""Cardelli, Clayton, & Mathis (1989) Milky Way R(V) dependent model.
 
     from Cardelli, Clayton, and Mathis (1989, ApJ, 345, 245)
 
@@ -177,7 +179,14 @@ class CCM89(ExtinctionLaw):
         self.name = "CCM89"
         self.long_name = "Cardelli, Clayton, & Mathis (1989)"
 
-    def __call__(self, lamb, Av=1.0, Rv=3.1, Alambda=True, **kwargs):
+    def __call__(
+        self,
+        lamb: Union[float, npt.NDArray[np.floating]],
+        Av: float = 1.0,
+        Rv: float = 3.1,
+        Alambda: bool = True,
+        **kwargs,
+    ) -> Union[float, npt.NDArray[np.floating]]:
         """Cardelli extinction curve
 
         Parameters
@@ -203,7 +212,7 @@ class CCM89(ExtinctionLaw):
         """
         _lamb = _val_in_unit("lamb", lamb, "angstrom").value
 
-        if isinstance(_lamb, float) or isinstance(_lamb, np.float_):
+        if isinstance(_lamb, np.floating):
             _lamb = np.asarray([_lamb])
         else:
             _lamb = _lamb[:]
@@ -282,7 +291,7 @@ class CCM89(ExtinctionLaw):
 
 
 class F99(ExtinctionLaw):
-    """Fitzpatrick (1999, PASP, 111, 63) [1999PASP..111...63F]_
+    r"""Fitzpatrick (1999, PASP, 111, 63) [1999PASP..111...63F]_
 
     R(V) dependent extinction curve that explicitly deals with optical/NIR
     extinction being measured from broad/medium band photometry.
@@ -353,12 +362,12 @@ class F99(ExtinctionLaw):
 
     def __call__(
         self,
-        lamb: Union[float, np.array, Quantity],
+        lamb: Union[float, npt.NDArray[np.floating], Quantity],
         Av: float = 1,
         Rv: float = 3.1,
         Alambda: bool = True,
         **kwargs,
-    ):
+    ) -> Union[float, npt.NDArray[np.floating]]:
         """
         Fitzpatrick99 extinction curve
 
@@ -390,7 +399,7 @@ class F99(ExtinctionLaw):
         """
         _lamb = _val_in_unit("lamb", lamb, "angstrom").value
 
-        if isinstance(_lamb, float) or isinstance(_lamb, np.float_):
+        if isinstance(_lamb, (float, np.floating)):
             _lamb = np.asarray([_lamb])
         else:
             _lamb = _lamb[:]
