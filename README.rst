@@ -13,6 +13,7 @@ TODO
 ----
 - [ ] update python supported versions
 - [ ] upgrade packaging to pyproject.toml only
+- [ ] debug warnings from doc workflow
 - [ ] typing annotations
 - [ ] additional unit tests
 - [ ] additional examples

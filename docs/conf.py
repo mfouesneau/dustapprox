@@ -19,35 +19,35 @@ import os
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('..'))
-
-from pkg_resources import DistributionNotFound, get_distribution
+sys.path.insert(0, os.path.abspath("../src"))
 
 try:
-    __version__ = get_distribution("dustapprox").version
-except DistributionNotFound:
+    import dustapprox
+
+    __version__ = dustapprox.__VERSION__
+except Exception:
     __version__ = "unknown version"
 
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
-#needs_sphinx = '1.0'
+# needs_sphinx = '1.0'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    'sphinx.ext.autosectionlabel',
-    'sphinx.ext.doctest',
-    'sphinx.ext.todo',
+    "sphinx.ext.autosectionlabel",
+    "sphinx.ext.doctest",
+    "sphinx.ext.todo",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
-    'sphinx.ext.viewcode',
+    "sphinx.ext.viewcode",
     "sphinx.ext.mathjax",
-    'sphinx.ext.githubpages',
+    "sphinx.ext.githubpages",
     "myst_nb",
-    "matplotlib.sphinxext.plot_directive"
+    "matplotlib.sphinxext.plot_directive",
 ]
 
 myst_enable_extensions = ["dollarmath", "colon_fence"]
@@ -56,23 +56,23 @@ myst_enable_extensions = ["dollarmath", "colon_fence"]
 autosectionlabel_prefix_document = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The encoding of source files.
-#source_encoding = 'utf-8-sig'
+# source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
-project = 'dustapprox'
-copyright = '2022, DPAC - M. Fouesneau, R. Andrae, R. Sordo ...'
-author = 'M. Fouesneau, R. Andrae, R. Sordo ...'
+project = "dustapprox"
+copyright = "2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena"
+author = "M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -93,13 +93,13 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 # If true, keep warnings as "system message" paragraphs in the built documents.
-#keep_warnings = False
+# keep_warnings = False
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
@@ -127,7 +127,7 @@ execution_timeout = -1
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+# html_theme_options = {}
 html_theme_options = {
     "path_to_docs": "docs",
     "repository_url": "https://github.com/mfouesneau/dustapprox",
@@ -143,7 +143,7 @@ html_theme_options = {
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
-#html_theme_path = []
+# html_theme_path = []
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -154,8 +154,7 @@ html_static_path = []
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
-#html_extra_path = []
-
+# html_extra_path = []
 
 
 # If true, links to the reST sources are added to the pages.

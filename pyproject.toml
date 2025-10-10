@@ -1,12 +1,82 @@
-[build-system]
+[project]
+name = "dustapprox"
+version = "0.9.0"
+description = "A tool for computing extinction coefficients in a quick and dirty manner"
+readme = "README.rst"
+authors = [
+  {name="Morgan Fouesneau"},
+  {name="René Andrae"},
+  {name="Rosanna Sordo"},
+  {name="Thavisha Dharmawardena"}
+]
+license = {text = "BSD 3-Clause License"}
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: BSD 3-Clause License",
+    "Operating System :: OS Independent"
+]
+requires-python = ">=3.10"
+dependencies = [
+    "astropy>=6.0.0",
+    "numpy>=2.0.0",
+    "pandas>=2.3.3",
+    "pyphot>=1.7.0",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.7.2",
+    "scipy>=1.14.0",
+    "tqdm>=4.67.1",
+]
 
-requires = ["setuptools",
-            "setuptools_scm",
+[build-system]
+requires = ["setuptools>=60",
             "wheel",
-            "cython",
-            "numpy",
-            "scipy",
-            "pyyaml",
-            "pandas",
-            "astropy",
-            "extension-helpers"]
+            ]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# By default, include-package-data is true in pyproject.toml, so you do
+# NOT have to specify this line.
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]                       # list of folders that contain the packages (["."] by default)
+include = ["dustapprox*"]             # package names should match these glob patterns (["*"] by default)
+exclude = ["unittests*", "tests*"]    # exclude packages matching these glob patterns (empty by default)
+namespaces = true                     # to disable scanning PEP 420 namespaces (true by default)
+
+[tool.setuptools.package-data]
+ezpadova = ['*.ecsv', '*.csv', '*.rst']
+
+[project.optional-dependencies]
+
+ci = [
+    "ruff",
+    "pytest>=7",
+    "pytest-doctestplus",
+    "flake8",
+    "codecov",
+    "pytest-cov"]
+
+docs = [
+  "markupsafe<2.10",
+  "myst-nb>=0.16.0",
+  "sphinx-automodapi>=0.14",
+  "sphinx-book-theme",
+  "sphinx-book-theme>=0.3.3",
+  "sphinx-mdinclude>=0.6",
+  "sphinx-tabs>=3.0",
+  "sphinx>=5.3",
+  "sphinx_copybutton>=0.5",
+  "sphinxcontrib-htmlhelp>=2.1.0",
+  "sphinxcontrib-serializinghtml>=2.0.0",
+  "sphinx-design>=0.6",
+  "IPython>=8.0",
+  "matplotlib",
+  "numpydoc"
+]
+
+[tool.ruff]
+include = ["pyproject.toml", "src/**/*.py"]
