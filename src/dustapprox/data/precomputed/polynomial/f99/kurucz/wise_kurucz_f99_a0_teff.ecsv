@@ -1,0 +1,71 @@
+# %ECSV 1.0
+# ---
+# delimiter: ','
+# datatype:
+# - name: passband
+#   datatype: object
+# - name: '1'
+#   datatype: float64
+# - name: A0
+#   datatype: float64
+# - name: teffnorm
+#   datatype: float64
+# - name: A0^2
+#   datatype: float64
+# - name: A0 teffnorm
+#   datatype: float64
+# - name: teffnorm^2
+#   datatype: float64
+# - name: A0^3
+#   datatype: float64
+# - name: A0^2 teffnorm
+#   datatype: float64
+# - name: A0 teffnorm^2
+#   datatype: float64
+# - name: teffnorm^3
+#   datatype: float64
+# - name: mae
+#   datatype: float64
+# - name: rmse
+#   datatype: float64
+# - name: mean_residuals
+#   datatype: float64
+# - name: std_residuals
+#   datatype: float64
+# meta:
+#   extinction:
+#     source: Fitzpatrick (1999)
+#     R0:
+#     - 3.1
+#     - 3.1
+#     A0:
+#     - 0.01
+#     - 20.000000000000004
+#   atmosphere:
+#     source: Kurucz (ODFNEW/NOVER 2003)
+#     teff:
+#     - 3500.0
+#     - 50000.0
+#     logg:
+#     - 0.0
+#     - 5.0
+#     feh:
+#     - -4.0
+#     - 0.5
+#     alpha:
+#     - 0.0
+#     - 0.4
+#   comment: teffnorm = teff / 5040; predicts kx = Ax / A0
+#   model:
+#     kind: polynomial
+#     degree: 3
+#     interaction_only: false
+#     include_bias: true
+#     feature_names:
+#     - A0
+#     - teffnorm
+passband,1,A0,teffnorm,A0^2,A0 teffnorm,teffnorm^2,A0^3,A0^2 teffnorm,A0 teffnorm^2,teffnorm^3,mae,rmse,mean_residuals,std_residuals
+WISE_WISE.W1,0.0700553702996651,-2.5156506652478575e-05,0.0003694676204804395,0.0,-2.489138643721335e-07,-7.252006272319138e-05,7.940526215468644e-10,7.176092676206069e-10,1.978214231458248e-08,4.291538540095519e-06,5.326313281418804e-05,0.0001454211961769498,-2.8038913267303626e-08,0.00014542119347383403
+WISE_WISE.W2,0.04801478383974335,-6.6252792739984075e-06,-0.00011818471517594412,-2.4378321993392202e-08,-2.369263801858799e-08,2.660007027628636e-05,5.949541960296637e-10,1.5179388990035545e-09,0.0,-1.6533782918804093e-06,2.1494987305779173e-05,4.122434618500579e-05,-2.2911346007386177e-08,4.122433981826058e-05
+WISE_WISE.W3,0.021164706875336687,-2.044294370867373e-06,3.6599701602711834e-05,0.0,-2.046750956862493e-08,-6.880032070035272e-06,4.9524345522326786e-11,6.623875197487012e-11,1.5104449258329402e-09,4.015773162062444e-07,4.970818309293565e-06,1.1989812204638775e-05,-1.9466594492379154e-09,1.1989812046609488e-05
+WISE_WISE.W4,0.009622802364780995,1.376608028957893e-12,1.1865963940593804e-12,-7.925542275417918e-14,-1.0025140440017566e-13,0.0,1.4180187040313715e-15,2.5458574728605757e-15,0.0,-4.318765194099607e-15,4.408903797603614e-13,1.7304715323649361e-12,-6.4900045519609e-13,1.6041602580417948e-12

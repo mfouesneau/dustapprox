@@ -1,0 +1,70 @@
+# %ECSV 1.0
+# ---
+# delimiter: ','
+# datatype:
+# - name: passband
+#   datatype: object
+# - name: '1'
+#   datatype: float64
+# - name: A0
+#   datatype: float64
+# - name: teffnorm
+#   datatype: float64
+# - name: A0^2
+#   datatype: float64
+# - name: A0 teffnorm
+#   datatype: float64
+# - name: teffnorm^2
+#   datatype: float64
+# - name: A0^3
+#   datatype: float64
+# - name: A0^2 teffnorm
+#   datatype: float64
+# - name: A0 teffnorm^2
+#   datatype: float64
+# - name: teffnorm^3
+#   datatype: float64
+# - name: mae
+#   datatype: float64
+# - name: rmse
+#   datatype: float64
+# - name: mean_residuals
+#   datatype: float64
+# - name: std_residuals
+#   datatype: float64
+# meta:
+#   extinction:
+#     source: Fitzpatrick (1999)
+#     R0:
+#     - 3.1
+#     - 3.1
+#     A0:
+#     - 0.01
+#     - 20.000000000000004
+#   atmosphere:
+#     source: Kurucz (ODFNEW/NOVER 2003)
+#     teff:
+#     - 3500.0
+#     - 50000.0
+#     logg:
+#     - 0.0
+#     - 5.0
+#     feh:
+#     - -4.0
+#     - 0.5
+#     alpha:
+#     - 0.0
+#     - 0.4
+#   comment: teffnorm = teff / 5040; predicts kx = Ax / A0
+#   model:
+#     kind: polynomial
+#     degree: 3
+#     interaction_only: false
+#     include_bias: true
+#     feature_names:
+#     - A0
+#     - teffnorm
+passband,1,A0,teffnorm,A0^2,A0 teffnorm,teffnorm^2,A0^3,A0^2 teffnorm,A0 teffnorm^2,teffnorm^3,mae,rmse,mean_residuals,std_residuals
+GAIA_GAIA3.G,0.7196138024742462,-0.032350240269287275,0.20626490158176566,0.0018809113742829476,-0.006230207997692279,-0.032391888612478784,-3.983733359665935e-05,7.391860513219231e-05,0.00039645999792900326,0.0016188647191370717,0.010133215568975174,0.019689000469382722,-1.3860057200203178e-12,0.019689000469382722
+GAIA_GAIA3.Gbp,1.0028608061196658,-0.01954279466888426,0.14602096227237965,0.001015727914414369,-0.004170777759702932,-0.022979242334266955,-1.91245625203915e-05,4.7150009523117654e-05,0.00025992214455131026,0.0011610426483966228,0.008212884573723378,0.013531069818753835,5.438618143449118e-12,0.013531069818753835
+GAIA_GAIA3.Grp,0.6056521947078896,-0.006805067715225321,0.04365363151996598,8.770574427506626e-05,-0.0004249187926380988,-0.007593850653058107,7.970355235663673e-07,-2.268037064315222e-06,4.112525708342697e-05,0.00040797429476761724,0.0032385795622005276,0.00563572265099791,3.1653669997481173e-13,0.005635722650997909
