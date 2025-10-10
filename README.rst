@@ -9,6 +9,22 @@ This is a set of tools to compute photometric extinction coefficients in a *quic
 full documentation at: http://mfouesneau.github.io/dustapprox/
 
 
+TODO
+----
+
+- [ ] upgrade packaging to pyproject.toml only
+- [ ] typing annotations
+- [ ] additional unit tests
+- [ ] additional examples
+- [ ] generate workflow to train model
+- [ ] check how we handle R0
+- [ ] add notes about A0 vs A(V) etc.
+- [ ] add additional models:
+  - [ ] G23 curves
+- [ ] add Gaia DR4 passbands
+- [ ] add Euclid passbands? others?
+
+
 Quick Start
 -----------
 
@@ -38,7 +54,7 @@ Installation
 .. code::
 
   pip install dustapprox
-  
+
 * Installation from pip+github
 
 .. code::
