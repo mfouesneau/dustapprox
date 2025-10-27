@@ -7,19 +7,86 @@
     * compare literature values to ours.
 """
 
-from importlib import resources
+import json
+from dataclasses import dataclass
 from glob import glob
-from typing import Union, Sequence
+from importlib import resources
+from typing import List, Optional, Sequence, Union, cast
+
+import pandas as pd
 
 from ..io import ecsv
+from .basemodel import BaseModel
 from .polynomial import PolynomialModel
 
-
 _DATA_PATH_ = str(resources.files("dustapprox") / "data" / "precomputed")
+
+__all__ = ["PrecomputedModel", "ModelInfo", "kinds"]
 
 kinds = {
     "polynomial": PolynomialModel,
 }
+
+
+def compact_json(d, level=0, **kwargs):
+    def tight(obj):
+        return json.dumps(obj, separators=(", ", ": "), **kwargs)
+
+    txt = []
+    for k, v in d.items():
+        level_space = "  " * (level + 1)
+        if isinstance(v, dict):
+            vtxt = compact_json(v, level=level + 1, **kwargs)
+            txt.append(f"{level_space}{tight(k)}:\n{vtxt}")
+        else:
+            txt.append(f"{level_space}{tight(k)}: {tight(v)}")
+    return "\n".join(txt)
+
+
+@dataclass
+class ModelInfo:
+    """Information about a precomputed model"""
+
+    atmosphere: dict
+    extinction: dict
+    comment: Sequence[str]
+    model: dict
+    passbands: Sequence[str]
+    filename: str
+    _source_library: Optional["PrecomputedModel"] = None
+
+    def __repr__(self) -> str:
+        content = compact_json(self.__dict__, level=1, default=str)
+        txt = f"""Precomputed Model Information\n{content}"""
+        return txt
+
+    def load_model(self, passband: Union[str, None] = None):
+        """Load the model described by this info
+
+        Parameters
+        ----------
+        passband : str
+            The passband to be loaded. If `None`, loads all available passband models.
+
+        Returns
+        -------
+        model : :class:`dustapprox.models.polynomial.PolynomialModel`
+        """
+        if self._source_library is None:
+            raise ValueError("The source library is not set for this ModelInfo.")
+        return self._source_library.load_model(self, passband=passband)
+    
+    def copy(self) -> "ModelInfo":
+        """Create a copy of this ModelInfo"""
+        return ModelInfo(
+            atmosphere=self.atmosphere.copy(),
+            extinction=self.extinction.copy(),
+            comment=self.comment[:],
+            model=self.model.copy(),
+            passbands=self.passbands[:],
+            filename=self.filename,
+            _source_library=self._source_library,
+        )
 
 
 class PrecomputedModel:
@@ -73,30 +140,40 @@ class PrecomputedModel:
         self._info = None
         self.location = location
 
-    def get_models_info(self, glob_pattern: str = "/**/*.ecsv") -> Sequence[dict]:
-        """Retrieve the information for all models available and files"""
+    def get_models_info(self, glob_pattern: str = "/**/*.ecsv") -> Sequence[ModelInfo]:
+        """Retrieve the information for all models available and files
+        Parameters
+        ----------
+        glob_pattern : str
+            The glob pattern to use to search for model files.
+        Returns
+        -------
+        info : list of ModelInfo
+            The list of model information structures.
+        """
         if self._info is not None:
             return self._info
+
         location = self.location
         lst = glob(f"{location:s}{glob_pattern:s}", recursive=True)
 
         info = []
         for fname in lst:
-            info.append(self._get_file_info(fname))
+            info.append(ModelInfo(**self._get_file_info(fname)))
         self._info = info
         return info
 
     def _get_file_info(self, fname: str) -> dict:
         """Extract information from a file"""
         info = {}
-        df = ecsv.read(fname)
+        df = cast(pd.DataFrame, ecsv.read(fname))
         info = df.attrs.copy()
         info["passbands"] = list(df["passband"].values)
         info["filename"] = fname
         return info
 
     def find(
-        self, passband=None, extinction=None, atmosphere=None, kind=None
+        self, /, passband=None, extinction=None, atmosphere=None, kind=None
     ) -> Sequence[dict]:
         """Find all the computed models that match the given parameters.
 
@@ -123,30 +200,32 @@ class PrecomputedModel:
         for value in info:
             if (
                 passband is not None
-                and passband.lower() not in " ".join(value["passbands"]).lower()
+                and passband.lower() not in " ".join(value.passbands).lower()
             ):
                 continue
             if (
                 extinction is not None
-                and extinction.lower() not in value["extinction"]["source"].lower()
+                and extinction.lower() not in value.extinction["source"].lower()
             ):
                 continue
             if (
                 atmosphere is not None
-                and atmosphere.lower() not in value["atmosphere"]["source"].lower()
+                and atmosphere.lower() not in value.atmosphere["source"].lower()
             ):
                 continue
-            if kind is not None and kind.lower() not in value["model"]["kind"].lower():
+            if kind is not None and kind.lower() not in value.model["kind"].lower():
                 continue
             content = value.copy()
             if passband is not None:
-                content["passbands"] = [
-                    pk for pk in content["passbands"] if passband.lower() in pk.lower()
+                content.passbands = [
+                    pk for pk in content.passbands if passband.lower() in pk.lower()
                 ]
             results.append(content)
         return results
 
-    def load_model(self, fname: Union[str, dict], passband: Union[str, None] = None):
+    def load_model(
+        self, fname: Union[str, dict, ModelInfo], passband: Union[str, None] = None
+    ) -> Union[BaseModel, List[BaseModel]]:
         """Load a model from a file or description (:func:`PrecomputedModel.find`)
 
         Parameters
@@ -166,6 +245,16 @@ class PrecomputedModel:
         if isinstance(fname, dict):
             fname_ = fname["filename"]
             info = fname
+        elif isinstance(fname, ModelInfo):
+            fname_ = fname.filename
+            info = {
+                "atmosphere": fname.atmosphere,
+                "extinction": fname.extinction,
+                "comment": fname.comment,
+                "model": fname.model,
+                "passbands": fname.passbands,
+                "filename": fname.filename,
+            }
         else:
             fname_ = fname
             info = self._get_file_info(fname_)
@@ -173,7 +262,10 @@ class PrecomputedModel:
         model_kind = info["model"]["kind"]
 
         if passband is None:
-            return [self.load_model(fname, pbname) for pbname in info["passbands"]]
+            return [
+                cast(BaseModel, self.load_model(fname, pbname))
+                for pbname in info["passbands"]
+            ]
 
         try:
             return kinds[model_kind].from_file(fname_, passband=passband)
