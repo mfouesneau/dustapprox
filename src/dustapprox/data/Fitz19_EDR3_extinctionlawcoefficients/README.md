@@ -1,4 +1,4 @@
-# EDR3 extinction coefficients from Riello et al. (2020) 
+# EDR3 extinction coefficients from Riello et al. (2020)
 
 see :mod:`dustapprox.literature.edr3`.
 

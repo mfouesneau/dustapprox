@@ -8,7 +8,7 @@ import pathlib
 import numpy as np
 
 from dustapprox.models import PrecomputedModel
-from dustapprox.tools.generate_model import (GridParameters, train_polynomial_model)
+from dustapprox.tools.generate_model import GridParameters, train_polynomial_model
 
 gaia_dr3_filters = [
     "GAIA/GAIA3.G",
@@ -48,15 +48,16 @@ generic_filters = [
     "Generic/Bessell_JHKLM.K",
 ]
 
-filter_set = dict((
-    ("gaia_dr3", gaia_dr3_filters),
-    ("sloan", sloan_filters),
-    ("twomass", twomass_filters),
-    ("wise", wise_filters),
-    ("galex", galex_filters),
-    ("generic", generic_filters),
-))
-
+filter_set = dict(
+    (
+        ("gaia_dr3", gaia_dr3_filters),
+        ("sloan", sloan_filters),
+        ("twomass", twomass_filters),
+        ("wise", wise_filters),
+        ("galex", galex_filters),
+        ("generic", generic_filters),
+    )
+)
 
 
 def main_example() -> PrecomputedModel:

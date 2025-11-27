@@ -112,7 +112,7 @@ class GridParameters:
             apfields=self.apfields,
             n_jobs=self.n_jobs,
         )
-    
+
     def copy(self) -> "GridParameters":
         """Create a copy of the current GridParameters instance
 
