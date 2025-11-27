@@ -1,3 +1,6 @@
-from . import ecsv
+"""This module contains input/output utilities for dustapprox."""
 
-__all__ = ["ecsv"]
+from . import ecsv
+from . import svo
+
+__all__ = ["ecsv", "svo"]

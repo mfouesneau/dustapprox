@@ -214,8 +214,8 @@ class dr3_ext:
         c = self.data.loc[name]
         ax = np.atleast_1d(c["alpha"])
         for i in range(1, 5):
-            ax = ax + c["beta_{0:d}".format(i)] * bprp_**i
+            ax = ax + c[f"beta_{i:d}"] * bprp_**i
         for j in range(1, 4):
-            ax = ax + (c["gamma_{0:d}".format(j)] * ag_**j)
+            ax = ax + (c[f"gamma_{j:d}"] * ag_**j)
         ax += c["delta"] * bprp_ * ag_
         return np.squeeze(ax)

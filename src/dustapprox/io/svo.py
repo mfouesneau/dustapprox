@@ -71,7 +71,7 @@ def spectra_file_reader(fname: str) -> dict:
     rename_parameters = {"meta": "feh"}
 
     n_header_lines = 0
-    with open(fname, "r") as fin:
+    with open(fname) as fin:
         for line in fin:
             # if not a comment line stop.
             if line[0] != "#":
@@ -137,6 +137,7 @@ def get_svo_sprectum_units(data: dict) -> Tuple[Quantity, Quantity]:
     """
     # remove the UnitWarning ("contains multiple slashes, which is discouraged" warning)
     import warnings
+
     U = pyphot_config.units.U
 
     with warnings.catch_warnings():

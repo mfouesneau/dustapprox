@@ -57,7 +57,7 @@ def _warning_on_one_line(
     message: str, category: Any, filename: str, lineno: int, file=None, line=None
 ) -> str:
     """Prints a complete warning that includes exactly the code line triggering it from the stack trace."""
-    return " {0:s}:{1:d} {2:s}:{3:s}".format(
+    return " {:s}:{:d} {:s}:{:s}".format(
         filename, lineno, category.__name__, str(message)
     )
 
@@ -102,7 +102,7 @@ def _val_in_unit(
         return value.to(defaultunit)  # pyright: ignore[reportAttributeAccessIssue]
 
 
-class ExtinctionLaw(object):
+class ExtinctionLaw:
     """Template function class
 
     Attributes
@@ -126,7 +126,7 @@ class ExtinctionLaw(object):
         self.name = "None"
 
     def __repr__(self) -> str:
-        return "{0:s}\n{1:s}".format(self.name, object.__repr__(self))
+        return f"{self.name:s}\n{object.__repr__(self):s}"
 
     def __call__(
         self, lamb: Union[float, npt.NDArray, Quantity], *args, **kwargs

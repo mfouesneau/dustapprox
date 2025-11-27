@@ -1,7 +1,7 @@
 """Base class for deriving various kinds of models."""
 
 
-class _BaseModel(object):
+class BaseModel:
     """A model object other approximations derive from
 
     Attributes
@@ -10,7 +10,7 @@ class _BaseModel(object):
         meta information about the model
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, /, **kwargs):
         self.meta = kwargs.get("meta", {})
         self.name_ = kwargs.get("name", None)
 
@@ -35,5 +35,15 @@ class _BaseModel(object):
             positional arguments
         **kwargs:
             keyword arguments
+        """
+        raise NotImplementedError
+
+    def to_pandas(self):
+        """Export the model to a pandas DataFrame.
+
+        Returns
+        -------
+        pd.DataFrame
+            The model as a pandas DataFrame.
         """
         raise NotImplementedError

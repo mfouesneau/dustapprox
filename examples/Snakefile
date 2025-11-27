@@ -1,0 +1,58 @@
+import numpy as np
+
+from dustapprox.tools.generate_model import GridParameters, train_polynomial_model
+from dustapprox.io import ecsv
+from generate_polynomial_models_script import filter_set
+
+batch_name = "oct2025_a0r0"
+batch_features = ["teff", "A0", "R0"]
+
+grid_parameters = GridParameters(
+    model_pattern="models/Kurucz2003all/*.fl.dat.txt",
+    pbset=[],  # to be filled per batch
+    atmosphere_name="Kurucz (ODFNEW/NOVER 2003)",
+    atmosphere_shortname="kurucz",
+    extinction_curve="F99",
+    apfields=["teff", "logg", "feh", "alpha"],  # no additional output parameters
+    n_jobs=2,
+    A0=np.sort(np.hstack([[0.01], np.arange(0.1, 20.01, 0.1)])),
+    R0=np.array([2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1]),
+)
+
+
+def get_grid_output_path(pbset_name: str) -> str:
+    """Get the output path for the atmosphere/extinction grid"""
+    return f"precomputed/grids/{batch_name}_{pbset_name}_{grid_parameters.atmosphere_shortname}_{grid_parameters.extinction_curve}_grid.ecsv"
+
+
+def get_model_output_path(pbset_name: str) -> str:
+    """Get the output path for the trained polynomial model"""
+    return f"precomputed/polynomial/{grid_parameters.extinction_curve}/{grid_parameters.atmosphere_shortname}/{batch_name}_{pbset_name}_{grid_parameters.atmosphere_shortname}_{grid_parameters.extinction_curve}_{'_'.join(batch_features)}.ecsv"
+
+
+rule all:
+    input:
+        expand(get_model_output_path("{pbset_name}"), pbset_name=filter_set.keys()),
+
+
+rule train_polynomial_model_pbset:
+    params:
+        degree=3,
+    input:
+        get_grid_output_path("{pbset_name}"),
+    output:
+        get_model_output_path("{pbset_name}"),
+    run:
+        grid = ecsv.read(str(input))
+        train_polynomial_model(grid, str(output), batch_features, **params)
+
+
+rule atmosphere_extinction_grid:
+    input:
+        glob_wildcards(f"{grid_parameters.model_pattern}"),
+    output:
+        get_grid_output_path("{pbset_name}"),
+    run:
+        grid_parameters_ = grid_parameters.copy()
+        grid_parameters_.pbset = filter_set[wildcards.pbset_name]
+        grid_parameters_.generate_grid(str(output))

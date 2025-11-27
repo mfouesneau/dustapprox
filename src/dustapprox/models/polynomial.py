@@ -53,18 +53,22 @@ model should explain well the data while being simple.
 
 """
 
-from typing import Sequence, Union, cast, Generator, Any
-from pandas import DataFrame, Series
-from sklearn.preprocessing import PolynomialFeatures
+import warnings
+from typing import Any, Generator, List, Literal, Optional, Sequence, Union, cast
+
 import numpy as np
 import numpy.typing as npt
-import warnings
+import pandas as pd
+from pandas import DataFrame, Series
+from sklearn.preprocessing import PolynomialFeatures
+
 from ..io import ecsv
-from .basemodel import _BaseModel
+from .basemodel import BaseModel
 
 
 def approx_model(
     r: DataFrame,
+    *,
     passband: str = "GAIA_GAIA3.G",
     degree: int = 3,
     interaction_only: bool = False,
@@ -96,7 +100,7 @@ def approx_model(
 
     """
     from sklearn.linear_model import LassoLarsIC
-    from sklearn.metrics import median_absolute_error, mean_squared_error
+    from sklearn.metrics import mean_squared_error, median_absolute_error
 
     if input_parameters is None:
         input_parameters = "teff logg feh A0 alpha".split()
@@ -132,7 +136,7 @@ def approx_model(
     mean = np.mean(pred - ydata)
 
     named_coeffs = sorted(
-        [(k, v) for k, v in zip(coeff_names, regr.coef_) if abs(v) > 1e-8],
+        [(k, v) for k, v in zip(coeff_names, np.array(regr.coef_)) if abs(v) > 1e-8],
         key=lambda x: x[1],
     )
 
@@ -152,7 +156,7 @@ def approx_model(
             )
         )
 
-        [print("{0:15s} {1:0.3g}".format(k, v)) for k, v in named_coeffs]
+        [print(f"{k:15s} {v:0.3g}") for k, v in named_coeffs]
 
     return {
         "features": coeff_names,
@@ -183,10 +187,10 @@ def quick_plot_models(r: DataFrame, **kwargs) -> Generator[DataFrame, None, None
     """
     import matplotlib.pyplot as plt
 
-    names = r.passband.unique()
+    names = r.passband.unique().tolist()
     data = []
     for name in names:
-        res = approx_model(r, name, **kwargs)
+        res = approx_model(r, passband=name, **kwargs)
         coeff_names = res["features"]
         data.append(
             [name]
@@ -253,7 +257,7 @@ def quick_plot_models(r: DataFrame, **kwargs) -> Generator[DataFrame, None, None
         yield res
 
 
-class PolynomialModel(_BaseModel):
+class PolynomialModel(BaseModel):
     """A polynomial model object
 
     Attributes
@@ -268,14 +272,14 @@ class PolynomialModel(_BaseModel):
         coefficients of the regression on the polynomial expended features
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, /, **kwargs):
         super().__init__(**kwargs)
         self.transformer_ = None
         self.coeffs_ = None
         self.name_: str
 
     @property
-    def feature_names(self) -> Union[Sequence[str], None]:
+    def feature_names(self) -> Union[List[str], None]:
         """Input feature dimensions of the model"""
         try:
             return self.meta["model"]["feature_names"]
@@ -286,14 +290,16 @@ class PolynomialModel(_BaseModel):
     def degree_(self) -> Union[int, None]:
         """Degree of the polynomial transformation"""
         if self.transformer_:
-            return self.transformer_.degree
+            return self.transformer_.degree  # type: ignore / dump it exists
         else:
             return None
 
     @property
     def name(self) -> Union[str, None]:
         """Get the model name also stored in the coeffs series"""
-        if self.coeffs_ is not None:
+        if self.name_ is not None:
+            return self.name_
+        elif self.coeffs_ is not None:
             if not hasattr(self.coeffs_, "name"):
                 self.coeffs_ = Series(
                     self.coeffs_, index=self.get_transformed_feature_names()
@@ -303,8 +309,6 @@ class PolynomialModel(_BaseModel):
                 self.coeffs_.name = self.name_
             if (self.coeffs_.name is not None) and (self.name_ is None):
                 self.name_ = str(self.coeffs_.name)
-        if self.name_ is not None:
-            return self.name_
 
     def _consolidate_named_data(self, X: Union[npt.NDArray, DataFrame]) -> DataFrame:
         """A convenient consolidation of input data to named data fields
@@ -328,11 +332,11 @@ class PolynomialModel(_BaseModel):
             return DataFrame.from_records(np.atleast_2d(X), columns=self.feature_names)
 
     def __repr__(self) -> str:
-        txt = """PolynomialModel: {0} \n{1:s}\n""".format(
+        txt = """PolynomialModel: {} \n{:s}\n""".format(
             self.name, object.__repr__(self)
         )
-        txt += """   from: {0:s}""".format(", ".join(self.feature_names or []))
-        txt += """   polynomial degree: {0:d}""".format(self.degree_)
+        txt += """   from: {:s}""".format(", ".join(self.feature_names or []))
+        txt += f"""   polynomial degree: {self.degree_:d}"""
         return txt
 
     def fit(
@@ -361,7 +365,7 @@ class PolynomialModel(_BaseModel):
             If None, 'teff logg feh A0 alpha' parameters are used.
         """
         from sklearn.linear_model import LassoLarsIC
-        from sklearn.metrics import median_absolute_error, mean_squared_error
+        from sklearn.metrics import mean_squared_error, median_absolute_error
 
         if features is None:
             # features = 'teff A0'.split()
@@ -401,8 +405,6 @@ class PolynomialModel(_BaseModel):
         stddev = np.std(pred - ydata)
         mean = np.mean(pred - ydata)
 
-        self.transformer_ = poly
-        self.coeffs_ = Series(regr.coef_, index=self.get_transformed_feature_names())
         self.meta.update(df.attrs)
         self.meta["comment"] = "teffnorm = teff / 5040; predicts kx = Ax / A0"
         self.meta["model"] = {
@@ -416,6 +418,13 @@ class PolynomialModel(_BaseModel):
         self.meta["rmse"] = rmse
         self.meta["std_residuals"] = stddev
         self.meta["mean_residuals"] = mean
+
+        self.transformer_ = poly
+        transformed_names = self.get_transformed_feature_names()
+        if transformed_names is None:
+            self.coeffs_ = Series(np.array(regr.coef_))
+        else:
+            self.coeffs_ = Series(np.array(regr.coef_), index=transformed_names)
 
         return self
 
@@ -445,19 +454,22 @@ class PolynomialModel(_BaseModel):
             if "teffnorm" not in X_.columns:
                 X_["teffnorm"] = X_["teff"] / 5040.0
         X_ = X_[self.feature_names]
-        coeffs = self.coeffs_[self.get_transformed_feature_names()]
+        transformed_names = self.get_transformed_feature_names()
+        if transformed_names is None:
+            raise ValueError("Model transformer is not fitted")
+        coeffs = self.coeffs_[transformed_names]
         if self.transformer_ is not None:
             expand = self.transformer_.transform(X_)
         else:
             expand = X_
         return np.inner(coeffs, expand)  # type: ignore
 
-    def get_transformed_feature_names(self) -> Union[Sequence[str], npt.NDArray[Any]]:
+    def get_transformed_feature_names(self) -> Optional[npt.NDArray[Any]]:
         """get the feature names of the internal transformation"""
         if self.feature_names is None:
-            return []
+            return None
         elif self.transformer_ is None:
-            return self.feature_names
+            return np.array(self.feature_names)
         return self.transformer_.get_feature_names_out()
 
     def _set_transformer(
@@ -465,7 +477,7 @@ class PolynomialModel(_BaseModel):
         degree: int = 2,
         interaction_only: bool = False,
         include_bias: bool = True,
-        order: str = "C",
+        order: Literal["C", "F"] = "C",
         **params,
     ):
         """Setup the PolynomialFeature transformer
@@ -525,7 +537,7 @@ class PolynomialModel(_BaseModel):
         self.transformer_ = transformer
 
     @classmethod
-    def from_file(cls, filename: str, passband: str):
+    def from_file(cls, filename: str, passband: str) -> "PolynomialModel":
         """Restore a model from a file
 
         Parameters
@@ -544,7 +556,7 @@ class PolynomialModel(_BaseModel):
         model: PolynomialModel
             model object
         """
-        data = ecsv.read(filename).set_index("passband")
+        data = cast(pd.DataFrame, ecsv.read(filename)).set_index("passband")
         name = data.attrs.pop("name", None)
 
         # setting model metadata
@@ -554,14 +566,18 @@ class PolynomialModel(_BaseModel):
 
         # get regression coefficients
         coeffs = data.loc[passband]
-        model.coeffs_ = coeffs[model.get_transformed_feature_names()]
+        transformed_names = model.get_transformed_feature_names()
+        if transformed_names is None:
+            model.coeffs_ = coeffs
+        else:
+            model.coeffs_ = coeffs[transformed_names]
 
         # get stats if provided
         keys = "mae,rmse,mean,stddev".split(",")
         try:
-            stats = data.loc[passband][keys]
+            stats = data.loc[passband][keys]  # pyright: ignore / dumb typing here
             for key in keys:
-                model.meta[key] = float(stats[key])
+                model.meta[key] = float(stats[key])  # pyright: ignore
         except KeyError:
             pass
         return model
@@ -571,7 +587,7 @@ class PolynomialModel(_BaseModel):
         # set name consistency
         if self.coeffs_ is None:
             raise ValueError("Model has not been fitted yet")
-        data = self.coeffs_.to_frame().T
+        data = self.coeffs_.to_frame(self.name).T
         meta = self.meta.copy()
         keys = "mae,rmse,mean_residuals,std_residuals".split(",")
         for key in keys:

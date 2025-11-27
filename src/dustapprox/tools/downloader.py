@@ -7,6 +7,8 @@ import time
 from typing import Sequence, Iterator, Union
 from io import TextIOWrapper
 
+__all__ = ["download_file"]
+
 
 def _pretty_size_print(num_bytes: int) -> str:
     """
@@ -97,7 +99,7 @@ def _dl_ascii_progress(
         cur_t = time.time()
         if cur_t - last_print_t >= mininterval:
             done = int(progress_length * dl / total)
-            message = "\r[%s%s] (%s)" % (
+            message = "\r[{}{}] ({})".format(
                 "=" * done,
                 " " * (progress_length - done),
                 _pretty_size_print(dl),
@@ -136,7 +138,7 @@ def download_file(link: str, file_name: str, overwrite: bool = False) -> str:
 
     with open(file_name, "wb") as f:
         print(f"Downloading '{file_name}'", end="")
-        print(" ({0:s})".format(_pretty_size_print(total_length)))
+        print(f" ({_pretty_size_print(total_length):s})")
 
         if total_length is None:  # no content length header
             f.write(response.content)

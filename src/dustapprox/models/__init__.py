@@ -62,7 +62,9 @@ class ModelInfo:
         txt = f"""Precomputed Model Information\n{content}"""
         return txt
 
-    def load_model(self, passband: Union[str, None] = None) -> Union[BaseModel, List[BaseModel]]:
+    def load_model(
+        self, passband: Union[str, None] = None
+    ) -> Union[BaseModel, List[BaseModel]]:
         """Load the model described by this info
 
         Parameters
@@ -77,7 +79,7 @@ class ModelInfo:
         if self._source_library is None:
             raise ValueError("The source library is not set for this ModelInfo.")
         return self._source_library.load_model(self, passband=passband)
-    
+
     def copy(self) -> "ModelInfo":
         """Create a copy of this ModelInfo"""
         return ModelInfo(

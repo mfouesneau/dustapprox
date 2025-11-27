@@ -101,7 +101,7 @@ def read_header(fname: str) -> Dict[str, Any]:
         """
         re_comment = re.compile(comment)
 
-        with open(fname, "r") as fin:
+        with open(fname) as fin:
             for line in fin:
                 line = line.strip()
                 if not line:
@@ -207,12 +207,12 @@ def generate_header(df: pd.DataFrame, **meta) -> str:
         if dt == "object":
             val0 = df[name][0]
             if np.shape(val0):
-                dtype["subtype"] = "{0:s}[null]".format(str(val0.dtype))
+                dtype["subtype"] = f"{str(val0.dtype):s}[null]"
         dtypes.append(dtype)
     meta_ = df.attrs.copy()
     meta_.update(meta)  # pyright: ignore
     h = {"delimiter": ",", "datatype": dtypes, "meta": meta_}
-    preamble = ["# %ECSV {0:s}".format(__ECSV_VERSION__), "# ---"]
+    preamble = [f"# %ECSV {__ECSV_VERSION__:s}", "# ---"]
     lines = ["# " + line for line in yaml.dump(h, sort_keys=False).split("\n") if line]
     return "\n".join(preamble + lines)
 
