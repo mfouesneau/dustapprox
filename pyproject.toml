@@ -1,6 +1,6 @@
 [project]
 name = "dustapprox"
-version = "0.9.0"
+version = "0.2.0"
 description = "A tool for computing extinction coefficients in a quick and dirty manner"
 readme = "README.rst"
 authors = [
@@ -21,9 +21,13 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "astropy>=6.0.0",
+    "dust-extinction>=1.6",
+    "ipywidgets>=8.1.7",
+    "joblib>=1.5.2",
+    "matplotlib>=3.10.7",
     "numpy>=2.0.0",
     "pandas>=2.3.3",
-    "pyphot>=1.7.0",
+    "pyphot>=1.9.0",   # using git source v2.0.0
     "pyyaml>=6.0.3",
     "scikit-learn>=1.7.2",
     "scipy>=1.14.0",
@@ -80,3 +84,6 @@ docs = [
 
 [tool.ruff]
 include = ["pyproject.toml", "src/**/*.py"]
+
+[tool.uv.sources]
+pyphot = { git = "https://github.com/mfouesneau/pyphot" }
