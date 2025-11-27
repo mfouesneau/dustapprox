@@ -34,6 +34,8 @@ def compact_json(d, level=0, **kwargs):
 
     txt = []
     for k, v in d.items():
+        if k.startswith("_"):
+            continue
         level_space = "  " * (level + 1)
         if isinstance(v, dict):
             vtxt = compact_json(v, level=level + 1, **kwargs)
@@ -60,7 +62,7 @@ class ModelInfo:
         txt = f"""Precomputed Model Information\n{content}"""
         return txt
 
-    def load_model(self, passband: Union[str, None] = None):
+    def load_model(self, passband: Union[str, None] = None) -> Union[BaseModel, List[BaseModel]]:
         """Load the model described by this info
 
         Parameters
@@ -159,7 +161,9 @@ class PrecomputedModel:
 
         info = []
         for fname in lst:
-            info.append(ModelInfo(**self._get_file_info(fname)))
+            minfo = ModelInfo(**self._get_file_info(fname))
+            minfo._source_library = self
+            info.append(minfo)
         self._info = info
         return info
 
@@ -174,7 +178,7 @@ class PrecomputedModel:
 
     def find(
         self, /, passband=None, extinction=None, atmosphere=None, kind=None
-    ) -> Sequence[dict]:
+    ) -> Sequence[ModelInfo]:
         """Find all the computed models that match the given parameters.
 
         The search is case insentive and returns all matches.
