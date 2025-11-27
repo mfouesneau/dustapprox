@@ -132,7 +132,11 @@ tmp/*
 
 # ignore model data
 models/*
+examples/models/*
 
 # source files
 docs/source
 docs/*csv
+
+# ignore snakemake folders
+**/*/.snakemake/
