@@ -46,7 +46,7 @@ import numpy as np
 import numpy.typing as npt
 from scipy import interpolate
 from typing import Union, Any
-from pyphot.astropy.sandbox import Unit as U
+from pyphot import config as pyphot_config
 from .astropy_units import Quantity, has_unit
 
 
@@ -97,7 +97,7 @@ def _val_in_unit(
         msg = "Variable {0:s} does not have explicit units. Assuming `{1:s}`\n"
         # stacklevel makes the correct code reference
         warnings.warn(msg.format(varname, defaultunit), stacklevel=4)
-        return value * U(defaultunit)
+        return value * pyphot_config.units.U(defaultunit)
     else:
         return value.to(defaultunit)  # pyright: ignore[reportAttributeAccessIssue]
 
