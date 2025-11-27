@@ -53,15 +53,16 @@ import re
 import yaml
 import pandas as pd
 import numpy as np
+import numpy.typing as npt
 import json
-from typing import Union, Generator
+from typing import Union, Dict, Any, Generator
 from io import TextIOWrapper
 
 
 __ECSV_VERSION__ = "1.0"
 
 
-def _converter(str_val: str, subtype: str):
+def _converter(str_val: str, subtype: str) -> npt.NDArray:
     """Convert string arrays to appropriate subtype arrays"""
     obj_val = json.loads(str_val)  # list or nested lists
     try:
@@ -78,7 +79,7 @@ def _converter(str_val: str, subtype: str):
         return np.ma.array(data.astype(subtype), mask=mask)
 
 
-def read_header(fname: str) -> dict:
+def read_header(fname: str) -> Dict[str, Any]:
     """read the header of ECSV file as a dictionary
 
     Parameters
@@ -94,7 +95,7 @@ def read_header(fname: str) -> dict:
 
     def process_header_lines(
         fname: str, comment: str = "#"
-    ) -> Union[str, Generator[str, None, None]]:
+    ) -> Generator[str, None, None]:
         """Return header lines if non-blank and starting with the comment char
         Empty lines are discarded.
         """
@@ -120,7 +121,7 @@ def read_header(fname: str) -> dict:
     return header
 
 
-def read(fname: str, **kwargs) -> pd.DataFrame:
+def read(fname: str, **kwargs) -> pd.DataFrame | Generator[Any, Any, None]:
     """Read the content of an Enhanced Character Separated Values
 
     Parameters
@@ -135,10 +136,10 @@ def read(fname: str, **kwargs) -> pd.DataFrame:
     """
     header = read_header(fname)
 
-    dtype_mapper = {"string": str}
+    dtype_mapper: Dict[str, Any] = {"string": str}
 
-    dtype = {
-        str(k["name"]): np.dtype(dtype_mapper.get(k["datatype"], k["datatype"]))
+    dtype: Dict[str, Any] = {
+        k["name"]: np.dtype(dtype_mapper.get(k["datatype"], k["datatype"]))
         for k in header["datatype"]
     }
 
@@ -158,16 +159,27 @@ def read(fname: str, **kwargs) -> pd.DataFrame:
             dtype.pop(name)
     converters.update(kwargs.pop("converters", {}))
 
-    df = pd.read_csv(  # pyright: ignore[reportCallIssue]
+    df = pd.read_csv(
         fname,
-        delimiter=delimiter,
+        delimiter=str(delimiter),
         dtype=dtype,  # pyright: ignore
-        comment=comment,
+        comment=str(comment),
         converters=converters,
         **kwargs,
     )
-    df.attrs.update(header.get("meta", {}))
-    return df
+
+    # compatibility with ecsv format
+    if isinstance(df, pd.io.parsers.TextFileReader):  # pyright: ignore / parsers are there
+
+        def _df_iter(df, header):
+            for chunk in df:
+                chunk.attrs.update(header.get("meta", {}))
+                yield chunk
+
+        return _df_iter(df, header)
+    else:
+        df.attrs.update(header.get("meta", {}))
+        return df
 
 
 def generate_header(df: pd.DataFrame, **meta) -> str:
@@ -194,18 +206,23 @@ def generate_header(df: pd.DataFrame, **meta) -> str:
         # Check if vectors and add subtype if necessary.
         if dt == "object":
             val0 = df[name][0]
-            if val0.shape:
+            if np.shape(val0):
                 dtype["subtype"] = "{0:s}[null]".format(str(val0.dtype))
         dtypes.append(dtype)
     meta_ = df.attrs.copy()
-    meta_.update(meta)
+    meta_.update(meta)  # pyright: ignore
     h = {"delimiter": ",", "datatype": dtypes, "meta": meta_}
     preamble = ["# %ECSV {0:s}".format(__ECSV_VERSION__), "# ---"]
     lines = ["# " + line for line in yaml.dump(h, sort_keys=False).split("\n") if line]
     return "\n".join(preamble + lines)
 
 
-def write(df: pd.DataFrame, fname: Union[str, TextIOWrapper], mode: str = "w", **meta):
+def write(
+    df: pd.DataFrame,
+    fname: Union[str, TextIOWrapper],
+    mode: str = "w",
+    **meta,
+):
     """output data into ecsv file
 
     Parameters
@@ -220,9 +237,11 @@ def write(df: pd.DataFrame, fname: Union[str, TextIOWrapper], mode: str = "w", *
         meta data to be written to the header.
     """
     if hasattr(fname, "write"):
-        fname.write(generate_header(df, **meta) + "\n")  # pyright: ignore
+        fname.write(  # pyright: ignore[reportAttributeAccessIssue]
+            generate_header(df, **meta) + "\n"
+        )
         df.to_csv(fname, index=False)
     else:
-        with open(fname, mode) as fout:  # pyright: ignore
+        with open(fname, mode) as fout:  # pyright: ignore[reportCallIssue, reportArgumentType]
             fout.write(generate_header(df, **meta) + "\n")
             df.to_csv(fout, index=False)
