@@ -133,6 +133,7 @@ tmp/*
 # ignore model data
 models/*
 examples/models/*
+examples/precomputed/*
 
 # source files
 docs/source
