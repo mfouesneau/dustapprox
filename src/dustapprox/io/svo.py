@@ -13,11 +13,12 @@ and observational templates.
         * currently manual download of the data. It's not that hard, but we could put some guidance in our documentation.
 """
 
-from typing import Sequence, Union, Tuple
+from typing import Sequence, Tuple, Union
+
 import pandas as pd
-from pyphot.astropy.sandbox import Unit as U
-from pyphot.astropy.sandbox import UnitFilter
-from pyphot.svo import get_pyphot_astropy_filter
+from pyphot import Filter, config as pyphot_config
+from pyphot.svo import get_pyphot_filter
+
 from ..astropy_units import Quantity
 
 
@@ -112,7 +113,7 @@ def spectra_file_reader(fname: str) -> dict:
         fname,
         skiprows=n_header_lines,
         comment="#",
-        delim_whitespace=True,
+        sep=r"\s+",
         names=list(data["columns"].keys()),
     )
 
@@ -136,6 +137,7 @@ def get_svo_sprectum_units(data: dict) -> Tuple[Quantity, Quantity]:
     """
     # remove the UnitWarning ("contains multiple slashes, which is discouraged" warning)
     import warnings
+    U = pyphot_config.units.U
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
@@ -150,7 +152,7 @@ def get_svo_sprectum_units(data: dict) -> Tuple[Quantity, Quantity]:
     return 1.0 * lamb_unit, 1.0 * flux_unit
 
 
-def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[UnitFilter]:
+def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[Filter]:
     """Query the SVO filter profile service and return the pyphot filter objects.
 
     Parameters
@@ -188,7 +190,7 @@ def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[UnitFi
         plt.show()
 
 
-    .. seealso:: :class:`pyphot.astropy.sandbox.UnitFilter`
+    .. seealso:: :class:`pyphot.Filter`
 
         `pyphot <https://mfouesneau.github.io/pyphot/index.html>`_ is a set of
         tools to compute synthetic photometry in a simple way, ideal to
@@ -198,6 +200,6 @@ def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[UnitFi
 
     """
     if isinstance(identifiers, str):
-        return [get_pyphot_astropy_filter(identifiers)]
+        return [get_pyphot_filter(identifiers)]
 
-    return [get_pyphot_astropy_filter(k) for k in identifiers]
+    return [get_pyphot_filter(k) for k in identifiers]
