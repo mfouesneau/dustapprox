@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 #
 # pyphot documentation build configuration file, created by
 # sphinx-quickstart on Wed Oct  5 11:25:47 2016.
