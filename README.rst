@@ -16,17 +16,20 @@ TODO
 - [x] update python supported versions
 - [x] upgrade packaging to pyproject.toml only
 - [x] typing annotations
-- [ ] debug warnings from doc workflow
-- [ ] additional unit tests
-- [ ] additional examples
+- [x] update internal extinction curves to use dust_extinction instead
+- [x] update for pyphot 2.0
 - [ ] generate workflow to train model
 - [ ] check how we handle R0
-- [ ] add notes about A0 vs A(V) etc.
+  - [ ] add (A0, R0) models
 - [ ] add additional models:
-  - [ ] G23 curves
+  - [ ] G23 curve
+- [ ] additional unit tests
+- [ ] debug warnings from doc workflow
+- [ ] additional examples
+- [ ] add notes about A0 vs A(V) etc.
 - [ ] add Gaia DR4 passbands
 - [ ] add Euclid passbands? others?
-- [ ] update internal extinction curves to use pyextinction instead
+- [ ] check python 3.14 compatibility
 
 
 Quick Start
