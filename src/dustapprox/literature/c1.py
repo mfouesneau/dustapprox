@@ -69,19 +69,18 @@ For convenience, we also provide them with this package in
 
 
 .. code-block:: python
-    :caption: Use the C1 passbands transmission curves with `pyphot`_
+    :caption: Use the C1 passbands transmission curves with `pyphot`_ (v2.0)
 
     from pkg_resources import resource_filename
-    from pyphot.astropy import UnitAscii_Library
+    from pyphot.libraries import Ascii_Library
 
     where = resource_filename('dustapprox', 'data/Gaia2')
-    lib = UnitAscii_Library([where])
+    lib = Ascii_Library([where])
     lib['C1B556'].info()
 
 The last line of the above example shows the information of the C1B556 passband.
 
 .. code-block:: text
-
 
     Filter object information:
         name:                 C1B556
@@ -89,37 +88,36 @@ The last line of the above example shows the information of the C1B556 passband.
         wavelength units:     nm
         central wavelength:   556.000128 nm
         pivot wavelength:     554.743690 nm
-        effective wavelength: 548.702778 nm
-        photon wavelength:    551.180067 nm
+        effective wavelength: 548.703011 nm
+        photon wavelength:    551.180327 nm
         minimum wavelength:   481.000000 nm
         maximum wavelength:   631.000000 nm
         norm:                 115.200850
         effective width:      128.000944 nm
         fullwidth half-max:   0.500000 nm
         definition contains 337 points
-
         Zeropoints
-            Vega: 21.142893 mag,
-                3.490138982485388e-09 erg / (Angstrom cm2 s),
-                3582.669614072932 Jy
-                879.1910941155257 ph / (Angstrom cm2 s)
-            AB: 21.128410 mag,
-                3.5370073412867404e-09 erg / (Angstrom cm2 s),
-                3630.780547700996 Jy
-            ST: 21.100000 mag,
-                3.6307805477010028e-09 erg / (Angstrom cm2 s),
-                3727.0398711607527 Jy
+            Vega: 21.142884 mag,
+                  3.490168493382294e-09 erg / (Angstrom s cm2),
+                  3582.6999073633024 Jy
+                  879.1985286958516 ph / (Angstrom s cm2)
+              AB: 21.128410 mag,
+                  3.5370073412867404e-09 erg / (Angstrom s cm2),
+                  3630.780547700996 Jy
+              ST: 21.100000 mag,
+                  3.6307805477010028e-09 erg / (Angstrom s cm2),
+                  3727.0398711607527 Jy
 
 .. plot::
     :include-source:
     :caption: C1 passband transmission curves. Black and blue lines indicate the C1B and C1M passbands, respectively.
 
-    import pylab as plt
+    import matplotlib.pyplot as plt
     from pkg_resources import resource_filename
-    from pyphot.astropy import UnitAscii_Library
+    from pyphot.libraries import Ascii_Library
 
     where = resource_filename('dustapprox', 'data/Gaia2')
-    lib = UnitAscii_Library([where])
+    lib = Ascii_Library([where])
     pbs = lib.load_all_filters()
 
     plt.figure(figsize=(8, 4))
@@ -157,9 +155,12 @@ the Gaia :math:`G_{BP}-G_{RP}` color:
 
 """
 
-from typing import Union
+from typing import Union, cast
+
 import numpy as np
 import numpy.typing as npt
+import pandas as pd
+
 from ..io import ecsv
 
 
@@ -185,7 +186,8 @@ class dr3_ext:
 
     def __init__(self, data="gaia_C1_extinction.ecsv"):
         """Constructor that loads the external data table."""
-        self.data = ecsv.read("gaia_C1_extinction.ecsv").set_index("X")
+        df = ecsv.read(data)
+        self.data = cast(pd.DataFrame, df).set_index("X")
 
     def __call__(
         self, name: str, bprp: Union[float, npt.NDArray[np.floating]], ag: float
