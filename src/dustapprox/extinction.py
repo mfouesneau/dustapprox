@@ -56,6 +56,15 @@ from .astropy_units import val_in_unit
 __all__ = ["evaluate_extinction_model", "get_extinction_model", "BaseExtRvModel"]
 
 
+def _allow_F9x_extrapolation() -> None:
+    """ Patch to dust_extinction to allow F99 wavelength extrapolation 
+
+    Bug reported to dust_extinction [issue #262](https://github.com/karllark/dust_extinction/issues/262).
+    """
+    from dust_extinction.shapes import FM90
+    FM90.x_range = [0.001, 100]
+
+
 def get_extinction_model(name: Union[str, BaseExtRvModel]) -> BaseExtRvModel:
     """Get an extinction model from dust_extinction by name
 
@@ -127,6 +136,11 @@ def evaluate_extinction_model(
         #  Above Rv=6.3, G23 FUV extinction becomes lower at shorter wavelengths
         #  Below Rv=2.2, G23 MIR before 10um silicates goes unrealistically small
         model_cls.Rv_range = [2.0, 6.51]
+        # most curves valid range in x is [0.3, 10.0], but we allow more extrapolation
+        # because models are low order polynomials this should be ok, but no garanties.
+        model_cls.x_range = [0.001, 100.0]
+        if isinstance(name, str) and name.startswith("F9"):
+            _allow_F9x_extrapolation()
         model = model_cls(Rv=R0)
         valid = (x.value < model.x_range[1]) & (x.value > model.x_range[0])
         τ_ = model(x[valid])
