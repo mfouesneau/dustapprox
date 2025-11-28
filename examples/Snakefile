@@ -52,7 +52,9 @@ rule atmosphere_extinction_grid:
         glob_wildcards(f"{grid_parameters.model_pattern}"),
     output:
         get_grid_output_path("{pbset_name}"),
+    threads: 10
     run:
         grid_parameters_ = grid_parameters.copy()
         grid_parameters_.pbset = filter_set[wildcards.pbset_name]
+        grid_parameters_.n_jobs = int(threads)
         grid_parameters_.generate_grid(str(output))
