@@ -110,15 +110,17 @@ def _parallel_task(
         Aλ_per_A0 = evaluate_extinction_model(
             extinction_curve, λ, A0=1.0, R0=r0_val, extrapolate=True
         )
+        # only keep valid values for extinction curve
+        valid = np.isfinite(Aλ_per_A0)
 
         # Dust magnitudes
         for pk in passbands:
             # Dust free values
-            mag0 = -2.5 * np.log10(pk.get_flux(λ, flux).value)  # pyright: ignore / dumb
+            mag0 = -2.5 * np.log10(pk.get_flux(λ[valid], flux[valid]).value)  # pyright: ignore / dumb
             # possibly we redo a0[0] = 0, but it's cheap for consistency gain
             for a0_val in A0:
                 new_flux = flux * np.exp(-Aλ_per_A0 * a0_val)
-                mag = -2.5 * np.log10(pk.get_flux(λ, new_flux).value)  # pyright: ignore / dumb
+                mag = -2.5 * np.log10(pk.get_flux(λ[valid], new_flux[valid]).value)  # pyright: ignore / dumb
                 delta = mag - mag0
                 logs.append(apvalues + [str(pk.name), mag0, mag, a0_val, r0_val, delta])
     logs = pd.DataFrame.from_records(logs, columns=columns).astype(
