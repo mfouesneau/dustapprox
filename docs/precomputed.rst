@@ -119,7 +119,7 @@ We detail below the steps to do this.
 
 
 .. code-block:: python3
-   :caption: Get the Gaia C1 transmission curves provided with ``dustapprox`` (see :mod:``dustapprox.literature.c1``)
+   :caption: Get the Gaia C1 transmission curves provided with :mod:`dustapprox` (see :mod:`dustapprox.literature.c1`)
 
    from pkg_resources import resource_filename
    from pyphot.astropy import UnitAscii_Library

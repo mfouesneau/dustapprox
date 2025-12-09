@@ -16,15 +16,14 @@ atmosphere library from the `SVO Theoretical spectra
    indicates the availability of a synthetic spectrum.
 
 However, `SVO Theoretical spectra
-<http://svo2.cab.inta-csic.es/theory/newov2/index.php>`_ :ref:`Figure 1
-<fig-Kurucz-coverage>` provides many other libraries. Our approach is agnostics to the exact library itself.
+<http://svo2.cab.inta-csic.es/theory/newov2/index.php>`_  provides many other libraries. Our approach is agnostics to the exact library itself.
 All files from SVO have the same format, but the spectra are not on the same wavelength scale (even for a single atmosphere source).
 The parameters of the spectra may vary from source to source. For instance, they may not provide microturbulence velocity or alpha/Fe etc.
 We technically require only :math:`T_{eff}` and :math:`[Fe/H]` to be provided.
 
-* :class:`dustapprox.io.svo` provides means to read SVO atmosphere models.
+* :mod:`dustapprox.io.svo` provides means to read SVO atmosphere models.
 
-  see :func:`dustapprox.io.svo.spectra_file_reader`, and :func:`dustapprox.io.svo.get_svo_sprectum_units`
+  see :class:`~dustapprox.io.svo.SVOSpectrum`, :func:`~dustapprox.io.svo.spectra_file_reader`, and :func:`~dustapprox.io.svo.get_svo_spectrum_units`
 
 
 **example usage**
@@ -46,22 +45,18 @@ is the distance to Earth in consistent units.
    label = 'teff={teff:4g} K, logg={logg:0.1g} dex, [Fe/H]={feh:0.1g} dex'
 
    for fname in models:
-      data = svo.spectra_file_reader(fname)
-      lamb_unit, flux_unit = svo.get_svo_sprectum_units(data)
-      lamb = data['data']['WAVELENGTH'].values * lamb_unit
-      flux = data['data']['FLUX'].values * flux_unit
+      spec = svo.SVOSpectrum(fname)
 
-      plt.loglog(lamb, flux,
-                 label=label.format(teff=data['teff']['value'],
-                                    logg=data['logg']['value'],
-                                    feh=data['feh']['value']))
+      plt.loglog(spec.λ, spec.flux,
+                 label=label.format(teff=spec.meta['teff'],
+                                    logg=spec.meta['logg'],
+                                    feh=spec.meta['feh']))
 
    plt.legend(loc='upper right', frameon=False)
-   plt.xlabel('Wavelength [{}]'.format(lamb_unit))
-   plt.ylabel('Flux [{}]'.format(flux_unit))
+   plt.xlabel('Wavelength [{}]'.format(spec.units[0]))
+   plt.ylabel('Flux [{}]'.format(spec.units[1]))
    plt.ylim(1e2, 5e9)
    plt.xlim(800, 1e5)
-
 
 
 Pre-compiled atmosphere libraries

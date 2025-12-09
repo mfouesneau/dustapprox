@@ -24,3 +24,7 @@ apidoc:
 
 prerun:
 	python3 generate_precomputed_list.py
+
+clean:
+	rm -rf _build/*
+	rm -rf source/*
