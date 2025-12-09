@@ -13,11 +13,11 @@ import numpy.typing as npt
 import pandas as pd
 from tqdm import tqdm
 
-from dustapprox.extinction import BaseExtRvModel
-from dustapprox.io import ecsv
-from dustapprox.models import PrecomputedModel, polynomial
-from dustapprox.models.basemodel import BaseModel
-from dustapprox.tools import grid
+from ..extinction import BaseExtRvModel
+from ..io import ecsv
+from ..models import PrecomputedModel, polynomial
+from ..models.basemodel import BaseModel
+from . import grid
 
 gaia_dr3_filters = [
     "GAIA/GAIA3.G",
@@ -219,6 +219,10 @@ def generate_grid(
         r = grid.compute_photometric_grid(
             model_pattern,
             pbset,
+            extinction_curve=extinction_curve,
+            A0=A0,
+            R0=R0,
+            apfields=apfields,
             n_jobs=n_jobs,
             atmosphere_name=atmosphere_name,
         )

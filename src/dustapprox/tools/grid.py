@@ -97,7 +97,7 @@ def _parallel_task(
     data = svo.spectra_file_reader(fname)
 
     # extract model relevant information
-    λ_unit, flux_unit = svo.get_svo_sprectum_units(data)
+    λ_unit, flux_unit = svo.get_svo_spectrum_units(data)
     λ = data["data"]["WAVELENGTH"].values * λ_unit
     flux = data["data"]["FLUX"].values * flux_unit
     apvalues = [data[k]["value"] for k in apfields]
@@ -197,9 +197,12 @@ def compute_photometric_grid(
         else extinction_curve.__class__.__name__
     )
 
-    R0 = R0 or np.array([2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1])
-    A0 = A0 or np.sort(np.hstack([[0.01], np.arange(0.1, 20.01, 0.1)]))
-    apfields = apfields or ("teff", "logg", "feh", "alpha")
+    if R0 is None:
+        R0 = np.array([2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1])
+    if A0 is None:
+        A0 = np.sort(np.hstack([[0.01], np.arange(0.1, 20.01, 0.1)]))
+    if apfields is None:
+        apfields = ("teff", "logg", "feh", "alpha")
 
     # get model file list
     models = glob(sources)
