@@ -53,7 +53,7 @@ exclude = ["unittests*", "tests*"]    # exclude packages matching these glob pat
 namespaces = true                     # to disable scanning PEP 420 namespaces (true by default)
 
 [tool.setuptools.package-data]
-ezpadova = ['*.ecsv', '*.csv', '*.rst']
+dustapprox = ['*.ecsv', '*.csv', '*.rst']
 
 [project.optional-dependencies]
 
@@ -61,27 +61,70 @@ ci = [
     "ruff",
     "pytest>=7",
     "pytest-doctestplus",
-    "flake8",
     "codecov",
-    "pytest-cov"]
+    "pytest-cov",
+    "prek"]
 
 docs = [
-  "markupsafe<2.10",
-  "myst-nb>=0.16.0",
-  "sphinx-automodapi>=0.14",
-  "sphinx-book-theme",
+  "sphinx>=5.3", 
   "sphinx-book-theme>=0.3.3",
-  "sphinx-mdinclude>=0.6",
-  "sphinx-tabs>=3.0",
-  "sphinx>=5.3",
+  "sphinx-automodapi>=0.14",
   "sphinx_copybutton>=0.5",
+  "sphinx-mdinclude>=0.6",
   "sphinxcontrib-htmlhelp>=2.1.0",
   "sphinxcontrib-serializinghtml>=2.0.0",
+  "sphinx-tabs>=3.0",
+  "myst-nb>=0.16.0",
   "sphinx-design>=0.6",
   "IPython>=8.0",
   "matplotlib",
-  "numpydoc"
+  "numpydoc",
+  "sphinx-datatables>=0.3.1",
 ]
 
 [tool.ruff]
-include = ["pyproject.toml", "src/**/*.py"]
+# Enumerate all fixed violations.
+show-fixes = true
+# Always generate Python 3.10-compatible code.
+target-version = "py310"
+# PEP-8 line length
+line-length = 79
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pyenv",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    ".DS_Store",
+    "_build",
+    "build",
+    "dist",
+    "site-packages",
+    "venv",
+    ".pre-commit-config.yaml",
+    "src/dustapprox/data/**"
+]
+
+[tool.ruff.format]
+# Enable reformatting of code snippets in docstrings.
+docstring-code-format = true
+# use double quotes for strings.
+quote-style = "double"
+
+[tool.ruff.lint]
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
