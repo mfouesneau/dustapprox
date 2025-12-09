@@ -1,0 +1,91 @@
+# %ECSV 1.0
+# ---
+# delimiter: ','
+# datatype:
+# - name: passband
+#   datatype: object
+# - name: '1'
+#   datatype: float64
+# - name: A0
+#   datatype: float64
+# - name: R0
+#   datatype: float64
+# - name: teffnorm
+#   datatype: float64
+# - name: A0^2
+#   datatype: float64
+# - name: A0 R0
+#   datatype: float64
+# - name: A0 teffnorm
+#   datatype: float64
+# - name: R0^2
+#   datatype: float64
+# - name: R0 teffnorm
+#   datatype: float64
+# - name: teffnorm^2
+#   datatype: float64
+# - name: A0^3
+#   datatype: float64
+# - name: A0^2 R0
+#   datatype: float64
+# - name: A0^2 teffnorm
+#   datatype: float64
+# - name: A0 R0^2
+#   datatype: float64
+# - name: A0 R0 teffnorm
+#   datatype: float64
+# - name: A0 teffnorm^2
+#   datatype: float64
+# - name: R0^3
+#   datatype: float64
+# - name: R0^2 teffnorm
+#   datatype: float64
+# - name: R0 teffnorm^2
+#   datatype: float64
+# - name: teffnorm^3
+#   datatype: float64
+# - name: mae
+#   datatype: float64
+# - name: rmse
+#   datatype: float64
+# - name: mean_residuals
+#   datatype: float64
+# - name: std_residuals
+#   datatype: float64
+# meta:
+#   extinction:
+#     source: F99
+#     R0:
+#     - 2.299999952316284
+#     - 5.099999904632568
+#     A0:
+#     - 0.009999999776482582
+#     - 20.0
+#   atmosphere:
+#     source: Kurucz (ODFNEW/NOVER 2003)
+#     teff:
+#     - 3500.0
+#     - 50000.0
+#     logg:
+#     - 0.0
+#     - 5.0
+#     feh:
+#     - -4.0
+#     - 0.5
+#     alpha:
+#     - 0.0
+#     - 0.4
+#   comment: teffnorm = teff / 5040; predicts kx = Ax / A0
+#   model:
+#     kind: polynomial
+#     degree: 3
+#     interaction_only: false
+#     include_bias: true
+#     feature_names:
+#     - A0
+#     - R0
+#     - teffnorm
+passband,1,A0,R0,teffnorm,A0^2,A0 R0,A0 teffnorm,R0^2,R0 teffnorm,teffnorm^2,A0^3,A0^2 R0,A0^2 teffnorm,A0 R0^2,A0 R0 teffnorm,A0 teffnorm^2,R0^3,R0^2 teffnorm,R0 teffnorm^2,teffnorm^3,mae,rmse,mean_residuals,std_residuals
+GAIA_GAIA3.G,0.41279836397216585,-0.046928724541564396,0.1988920355499988,0.2178531389708164,0.002413351932065671,0.005059616178419431,-0.006561705068508841,-0.0407081206740861,-0.005001324608720777,-0.03244657814915411,-3.2905274271848814e-05,-0.00021520515642722778,6.271634773444039e-05,-0.0001120806001903974,0.0002276369347483359,0.00037494789016158777,0.0028860672827074173,9.135515644323973e-05,0.00016231228950829582,0.0016011837979606576,0.010816820269488714,0.0004016548984248226,1.0404228615577096e-13,0.020041329756900428
+GAIA_GAIA3.Gbp,0.8595199699880633,-0.05764714707232734,0.13414984919426054,0.17441683018558948,0.0019440672572878588,0.014212780034272114,-0.004763799807485098,-0.03676833493352116,-0.011727644432163946,-0.023552945305051667,-1.766992711675198e-05,-0.00028244061119489224,4.055236309955958e-05,-0.0008183267679858486,0.000296479289916352,0.00023169786233593454,0.003089954473759064,0.0002987322412126439,0.0005404055584159418,0.0010981517612657968,0.00832950374432101,0.00019258263464233907,1.251401372494034e-12,0.013877414551793827
+GAIA_GAIA3.Grp,0.18558315295936642,0.00032840359539100853,0.2440528989817159,0.03795370002930326,1.7058223771514954e-05,-0.0029486966973342028,-0.0003900721643654918,-0.04408895240442891,0.002281933865586398,-0.0073691332443714674,1.0118884935684068e-06,2.009967776105747e-05,-2.5208887261037593e-06,0.00022393091112501938,-1.3799847805877048e-05,4.285586340911317e-05,0.002904854851620822,-0.0001136145811960248,-0.00010560976316204576,0.00041584724715718237,0.0032725188248131643,3.362909684865922e-05,-1.2781444516371344e-13,0.005799059996987375
