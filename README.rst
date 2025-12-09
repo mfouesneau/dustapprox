@@ -16,20 +16,26 @@ TODO
 - [x] update python supported versions
 - [x] upgrade packaging to pyproject.toml only
 - [x] typing annotations
-- [x] update internal extinction curves to use dust_extinction instead
 - [x] update for pyphot 2.0
-- [ ] generate workflow to train model
-- [ ] check how we handle R0
-  - [ ] add (A0, R0) models
+- [x] update internal extinction curves to use dust_extinction instead
+   - [x] patch to allow F99 extrapolation
+- [ ] Workflow to train model
+  - [x] snakemake file (in examples/).
+  - [ ] add snakemake file to doc
+- [x] check how we handle R0?
+  - [x] add (A0, R0) models
+  - [x] see if 2D models are consistent with A0 | R0 = 3.1 models
+- [ ] additional unit tests
 - [ ] add additional models:
   - [ ] G23 curve
-- [ ] additional unit tests
-- [ ] debug warnings from doc workflow
-- [ ] additional examples
-- [ ] add notes about A0 vs A(V) etc.
-- [ ] add Gaia DR4 passbands
-- [ ] add Euclid passbands? others?
-- [ ] check python 3.14 compatibility
+  - [ ] add Gaia DR4 passbands
+  - [ ] add Euclid passbands? others?
+- [ ] improve documentation
+  - [ ] debug warnings from doc workflow
+  - [ ] additional examples
+  - [ ] add notes about A0 vs A(V) etc.
+  - [ ] add notes about A0, R0 models
+  - [x] add automated precomputed model doc and accuracy plots
 
 
 Quick Start
