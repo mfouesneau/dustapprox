@@ -43,7 +43,9 @@ class ModelCharacteristicsRunner:
         """
         if self._data is None:
             if self.testdata_path is None:
-                raise ValueError("No testdata_path provided to load test data grid.")
+                raise ValueError(
+                    "No testdata_path provided to load test data grid."
+                )
             if not isinstance(self.testdata_path, str):
                 raise ValueError(
                     "testdata_path should be a string path to the data file."
@@ -63,7 +65,9 @@ class ModelCharacteristicsRunner:
     def what(self) -> Sequence[models.ModelInfo]:
         """Which models to run."""
         if not self._what:
-            print(f"Selecting precomputed model library from {self.library_path}...")
+            print(
+                f"Selecting precomputed model library from {self.library_path}..."
+            )
             lib = models.PrecomputedModel(self.library_path)
             print("Selection criteria:", self.library_selection)
             self._what = list(lib.find(**self.library_selection))
@@ -95,8 +99,7 @@ class ModelCharacteristicsRunner:
     def passbands(self) -> Generator[str, None, None]:
         """Return a generator on the passbands of the selected models."""
         for what_ in self.what:
-            for pb in what_.passbands:
-                yield pb
+            yield from what_.passbands
 
     def models(self) -> Generator[models.BaseModel, None, None]:
         """Return a generator on the selected models."""
@@ -105,10 +108,11 @@ class ModelCharacteristicsRunner:
             models_ = lib.load_model(what_)
             if not isinstance(models_, Sequence):
                 models_ = [models_]
-            for model in models_:
-                yield model
+            yield from models_
 
-    def plot_2d_residuals(self, /, close_figure: bool = True, **kwargs) -> None:
+    def plot_2d_residuals(
+        self, /, close_figure: bool = True, **kwargs
+    ) -> None:
         """Plot 2D residuals for each selected model.
 
         Parameters
@@ -192,11 +196,15 @@ class ModelCharacteristicsRunner:
 
             plt.tight_layout()
             plt.savefig(f"model_characteristics_2_{pb.replace('/', '_')}.png")
-            print(f"   - Saved model_characteristics_2_{pb.replace('/', '_')}.png")
+            print(
+                f"   - Saved model_characteristics_2_{pb.replace('/', '_')}.png"
+            )
             if close_figure:
                 plt.close()
 
-    def plot_1d_residuals(self, /, close_figure: bool = True, **kwargs) -> None:
+    def plot_1d_residuals(
+        self, /, close_figure: bool = True, **kwargs
+    ) -> None:
         """Plot 1D residuals for each selected model.
 
         Parameters
@@ -225,7 +233,9 @@ class ModelCharacteristicsRunner:
                 fontweight="bold",
             )
             plt.savefig(f"model_characteristics_1_{pb.replace('/', '_')}.png")
-            print(f"   - Saved model_characteristics_1_{pb.replace('/', '_')}.png")
+            print(
+                f"   - Saved model_characteristics_1_{pb.replace('/', '_')}.png"
+            )
             if close_figure:
                 plt.close()
 
@@ -249,7 +259,12 @@ def generate_small_kurucz_testgrid(
         atmosphere_name="Kurucz (ODFNEW/NOVER 2003)",
         atmosphere_shortname="kurucz",
         extinction_curve=extinction_curve,
-        apfields=["teff", "logg", "feh", "alpha"],  # no additional output parameters
+        apfields=[
+            "teff",
+            "logg",
+            "feh",
+            "alpha",
+        ],  # no additional output parameters
         n_jobs=10,
         A0=np.array([0.01, 0.1, 1, 2, 4, 6, 8, 10]),
         R0=np.array([2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1]),
@@ -261,7 +276,9 @@ def generate_small_kurucz_testgrid(
     # run grid generation
     grid = grid_parameters.generate_grid(grid_output_path)
 
-    print(f"Generated small grid at {grid_output_path} with {len(grid)} entries.")
+    print(
+        f"Generated small grid at {grid_output_path} with {len(grid)} entries."
+    )
     return grid_output_path
 
 
@@ -284,40 +301,55 @@ def plot_quick_diagnostic_1d(
 
     cmap = mpl.colormaps["inferno_r"]
     kwargs_all = dict(
-        rasterized=True, edgecolor="None", cmap=cmap, c=df["A0"], s=6, alpha=0.6
+        rasterized=True,
+        edgecolor="None",
+        cmap=cmap,
+        c=df["A0"],
+        s=6,
+        alpha=0.6,
     )
     noise = np.random.uniform(-0.5, 0.5, size=len(df))
 
     fig, axes = plt.subplots(1, 4, figsize=(14, 4), sharey=True)
     ax = axes[0]
-    sc = ax.scatter(df["A0"] + 0.3 * noise, df["kg_pred"] - df["kg_true"], **kwargs_all)
+    sc = ax.scatter(
+        df["A0"] + 0.3 * noise, df["kg_pred"] - df["kg_true"], **kwargs_all
+    )
     plt.colorbar(sc, label="A0 [mag]")
     grps = df.groupby("A0")[["delta_kg"]]
     grps.mean().plot(
         y="delta_kg", ax=ax, color="k", lw=2, label="Mean prediction error"
     )
     a, b = grps.quantile(0.16), grps.quantile(0.84)
-    ax.fill_between(a.index, a["delta_kg"], b["delta_kg"], color="gray", alpha=0.2)
+    ax.fill_between(
+        a.index, a["delta_kg"], b["delta_kg"], color="gray", alpha=0.2
+    )
     ax.axhline(0, color="k", ls="--")
     ax.set_xlabel("A0 [mag]")
     ax.set_ylabel("Predicted - True $A_x / A_0$ [mag]")
     ax.legend(frameon=False, loc="upper right")
     ax = axes[1]
-    sc = ax.scatter(df["mag0"] - mag_zpt, df["kg_pred"] - df["kg_true"], **kwargs_all)
+    sc = ax.scatter(
+        df["mag0"] - mag_zpt, df["kg_pred"] - df["kg_true"], **kwargs_all
+    )
     plt.colorbar(sc, label="A0 [mag]")
     ax.axhline(0, color="k", ls="--")
     ax.set_xlabel(r"M$_G$ [mag]")
     ax.set_ylabel("Predicted - True $A_x / A_0$ [mag]")
 
     ax = axes[2]
-    sc = ax.scatter(np.log10(df["teff"]), df["kg_pred"] - df["kg_true"], **kwargs_all)
+    sc = ax.scatter(
+        np.log10(df["teff"]), df["kg_pred"] - df["kg_true"], **kwargs_all
+    )
     plt.colorbar(sc, label="A0 [mag]")
     ax.axhline(0, color="k", ls="--")
     ax.set_xlabel(r"log$_{10}$T$_{eff}$ [K]")
     ax.set_ylabel("Predicted - True $A_x / A_0$ [mag]")
 
     ax = axes[3]
-    sc = ax.scatter(df["R0"] + 0.2 * noise, df["kg_pred"] - df["kg_true"], **kwargs_all)
+    sc = ax.scatter(
+        df["R0"] + 0.2 * noise, df["kg_pred"] - df["kg_true"], **kwargs_all
+    )
     cbar = plt.colorbar(sc, label="A0 [mag]")
     if cbar.solids:
         cbar.solids.set_alpha(1)

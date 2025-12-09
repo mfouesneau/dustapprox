@@ -24,9 +24,9 @@ Non-breaking changes
     - includes end-to-end example function
 
 - added :mod:`dustapprox.tools.model_characteristics` module to help assess model systematics
-    - can compute a sparse model grid 
+    - can compute a sparse model grid
     - evaluates systematics and makes some plots (see :doc:`systematics`)
-    
+
 - adopted `dust_extinction <https://dust-extinction.readthedocs.io/en/latest/>`_ as provider of dust extinction curves
     - outsourced definitions of extinction curves to experts
     - allows dustapprox to include other curves (e.g. G23)

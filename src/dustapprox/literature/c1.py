@@ -74,9 +74,9 @@ For convenience, we also provide them with this package in
     from pkg_resources import resource_filename
     from pyphot.libraries import Ascii_Library
 
-    where = resource_filename('dustapprox', 'data/Gaia2')
+    where = resource_filename("dustapprox", "data/Gaia2")
     lib = Ascii_Library([where])
-    lib['C1B556'].info()
+    lib["C1B556"].info()
 
 The last line of the above example shows the information of the C1B556 passband.
 
@@ -190,7 +190,10 @@ class dr3_ext:
         self.data = cast(pd.DataFrame, df).set_index("X")
 
     def __call__(
-        self, name: str, bprp: Union[float, npt.NDArray[np.floating]], ag: float
+        self,
+        name: str,
+        bprp: Union[float, npt.NDArray[np.floating]],
+        ag: float,
     ) -> Union[float, npt.NDArray[np.floating]]:
         """
         Returns A_X / A_G values

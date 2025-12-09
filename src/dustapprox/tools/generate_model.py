@@ -91,7 +91,9 @@ class GridParameters:
     apfields: Optional[List[str]] = None
     n_jobs: int = -1
 
-    def generate_grid(self, output_path: Union[str, pathlib.Path]) -> pd.DataFrame:
+    def generate_grid(
+        self, output_path: Union[str, pathlib.Path]
+    ) -> pd.DataFrame:
         """Shortcut to generate the photometric grid based on the parameters
 
         seealso:: :func:`generate_grid`
@@ -129,7 +131,9 @@ class GridParameters:
             extinction_curve=self.extinction_curve,
             A0=self.A0.copy() if self.A0 is not None else None,
             R0=self.R0.copy() if self.R0 is not None else None,
-            apfields=self.apfields.copy() if self.apfields is not None else None,
+            apfields=self.apfields.copy()
+            if self.apfields is not None
+            else None,
             n_jobs=self.n_jobs,
         )
 
@@ -192,7 +196,9 @@ def generate_grid(
         DataFrame with the computed grid
     """
 
-    atmosphere_name = atmosphere_name or model_pattern.split("/")[1].split("_")[0]
+    atmosphere_name = (
+        atmosphere_name or model_pattern.split("/")[1].split("_")[0]
+    )
 
     # show some info
     print("Computing photometric grid")
@@ -209,13 +215,17 @@ def generate_grid(
         else:
             print(f"   - Using custom A0 values: {A0}")
         if R0 is None:
-            print("   - Using default R0 values: [2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1]")
+            print(
+                "   - Using default R0 values: [2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1]"
+            )
         else:
             print(f"   - Using custom R0 values: {R0}")
         if apfields is not None:
             print(f"   - Using additional parameters: {', '.join(apfields)}")
         else:
-            print("   - Using default parameters: ('teff', 'logg', 'feh', 'alpha')")
+            print(
+                "   - Using default parameters: ('teff', 'logg', 'feh', 'alpha')"
+            )
         r = grid.compute_photometric_grid(
             model_pattern,
             pbset,
@@ -312,7 +322,12 @@ def main_example() -> PrecomputedModel:
         atmosphere_name="Kurucz (ODFNEW/NOVER 2003)",
         atmosphere_shortname="kurucz",
         extinction_curve="F99",
-        apfields=["teff", "logg", "feh", "alpha"],  # no additional output parameters
+        apfields=[
+            "teff",
+            "logg",
+            "feh",
+            "alpha",
+        ],  # no additional output parameters
         n_jobs=-1,
         A0=np.sort(np.hstack([[0.01], np.arange(0.1, 20.01, 0.1)])),
         R0=np.array([2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1]),

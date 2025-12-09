@@ -120,9 +120,13 @@ def _parallel_task(
             # possibly we redo a0[0] = 0, but it's cheap for consistency gain
             for a0_val in A0:
                 new_flux = flux * np.exp(-Aλ_per_A0 * a0_val)
-                mag = -2.5 * np.log10(pk.get_flux(λ[valid], new_flux[valid]).value)  # pyright: ignore / dumb
+                mag = -2.5 * np.log10(
+                    pk.get_flux(λ[valid], new_flux[valid]).value
+                )  # pyright: ignore / dumb
                 delta = mag - mag0
-                logs.append(apvalues + [str(pk.name), mag0, mag, a0_val, r0_val, delta])
+                logs.append(
+                    apvalues + [str(pk.name), mag0, mag, a0_val, r0_val, delta]
+                )
     logs = pd.DataFrame.from_records(logs, columns=columns).astype(
         {
             "passband": "string",
@@ -236,8 +240,14 @@ def compute_photometric_grid(
     meta.update(kwargs)
 
     for key in ("R0", "A0"):
-        meta["extinction"][key] = [float(stats[key]["min"]), float(stats[key]["max"])]
+        meta["extinction"][key] = [
+            float(stats[key]["min"]),
+            float(stats[key]["max"]),
+        ]
     for key in apfields:
-        meta["atmosphere"][key] = [float(stats[key]["min"]), float(stats[key]["max"])]
+        meta["atmosphere"][key] = [
+            float(stats[key]["min"]),
+            float(stats[key]["max"]),
+        ]
     df.attrs.update(**meta)
     return df

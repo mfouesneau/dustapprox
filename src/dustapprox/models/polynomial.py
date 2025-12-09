@@ -54,7 +54,16 @@ model should explain well the data while being simple.
 """
 
 import warnings
-from typing import Any, Generator, List, Literal, Optional, Sequence, Union, cast
+from typing import (
+    Any,
+    Generator,
+    List,
+    Literal,
+    Optional,
+    Sequence,
+    Union,
+    cast,
+)
 
 import numpy as np
 import numpy.typing as npt
@@ -127,7 +136,9 @@ def approx_model(
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", category=FutureWarning)
-        regr = LassoLarsIC(fit_intercept=False, copy_X=False).fit(expand, ydata)
+        regr = LassoLarsIC(fit_intercept=False, copy_X=False).fit(
+            expand, ydata
+        )
     pred = regr.predict(expand)
 
     mae = median_absolute_error(ydata, pred)
@@ -136,7 +147,11 @@ def approx_model(
     mean = np.mean(pred - ydata)
 
     named_coeffs = sorted(
-        [(k, v) for k, v in zip(coeff_names, np.array(regr.coef_)) if abs(v) > 1e-8],
+        [
+            (k, v)
+            for k, v in zip(coeff_names, np.array(regr.coef_))
+            if abs(v) > 1e-8
+        ],
         key=lambda x: x[1],
     )
 
@@ -168,7 +183,9 @@ def approx_model(
     }
 
 
-def quick_plot_models(r: DataFrame, **kwargs) -> Generator[DataFrame, None, None]:
+def quick_plot_models(
+    r: DataFrame, **kwargs
+) -> Generator[DataFrame, None, None]:
     """Plot diagnostic plots for the models.
 
     Parameters
@@ -195,7 +212,12 @@ def quick_plot_models(r: DataFrame, **kwargs) -> Generator[DataFrame, None, None
         data.append(
             [name]
             + list(res["coefficients"])
-            + [res["mae"], res["rmse"], res["mean_residuals"], res["std_residuals"]]
+            + [
+                res["mae"],
+                res["rmse"],
+                res["mean_residuals"],
+                res["std_residuals"],
+            ]
         )
 
         res = DataFrame(
@@ -231,7 +253,11 @@ def quick_plot_models(r: DataFrame, **kwargs) -> Generator[DataFrame, None, None
         cmap = plt.colormaps["RdYlBu"]
         cmap.set_bad("0.5", 1.0)
         imshow_kwargs = dict(
-            vmin=vmin, vmax=vmax, cmap=cmap, interpolation="nearest", aspect="auto"
+            vmin=vmin,
+            vmax=vmax,
+            cmap=cmap,
+            interpolation="nearest",
+            aspect="auto",
         )
         if shape[0] < shape[1]:
             figsize = (len(names) * 0.8, len(coeff_names) * 0.5)
@@ -248,7 +274,9 @@ def quick_plot_models(r: DataFrame, **kwargs) -> Generator[DataFrame, None, None
         else:
             plt.imshow(subdata.T, **kwargs)
             plt.yticks(np.arange(len(names)), labels=names)
-            plt.xticks(np.arange(len(coeff_names)), labels=coeff_names, rotation=90)
+            plt.xticks(
+                np.arange(len(coeff_names)), labels=coeff_names, rotation=90
+            )
             plt.ylabel("passband")
             plt.xlabel("features")
         plt.colorbar(extend="both").set_label("coefficient")
@@ -311,7 +339,9 @@ class PolynomialModel(BaseModel):
                 self.name_ = str(self.coeffs_.name)
             return self.name_
 
-    def _consolidate_named_data(self, X: Union[npt.NDArray, DataFrame]) -> DataFrame:
+    def _consolidate_named_data(
+        self, X: Union[npt.NDArray, DataFrame]
+    ) -> DataFrame:
         """A convenient consolidation of input data to named data fields
 
         As we use the names internally to make the operations more readable, it
@@ -330,7 +360,9 @@ class PolynomialModel(BaseModel):
         if isinstance(X, DataFrame) or hasattr(X, "columns"):
             return X.copy()  # pyright: ignore
         else:
-            return DataFrame.from_records(np.atleast_2d(X), columns=self.feature_names)
+            return DataFrame.from_records(
+                np.atleast_2d(X), columns=self.feature_names
+            )
 
     def __repr__(self) -> str:
         txt = """PolynomialModel: {} \n{:s}\n""".format(
@@ -398,7 +430,9 @@ class PolynomialModel(BaseModel):
 
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=FutureWarning)
-            regr = LassoLarsIC(fit_intercept=False, copy_X=False).fit(expand, ydata)
+            regr = LassoLarsIC(fit_intercept=False, copy_X=False).fit(
+                expand, ydata
+            )
         pred = regr.predict(expand)
 
         mae = median_absolute_error(ydata, pred)
@@ -425,7 +459,9 @@ class PolynomialModel(BaseModel):
         if transformed_names is None:
             self.coeffs_ = Series(np.array(regr.coef_))
         else:
-            self.coeffs_ = Series(np.array(regr.coef_), index=transformed_names)
+            self.coeffs_ = Series(
+                np.array(regr.coef_), index=transformed_names
+            )
 
         return self
 
@@ -522,7 +558,9 @@ class PolynomialModel(BaseModel):
         # check that the model attributes match
         kind = params.pop("kind")
         if kind not in ("polynomial",):
-            raise NotImplementedError(kind, "Expecting a polynomial model definition")
+            raise NotImplementedError(
+                kind, "Expecting a polynomial model definition"
+            )
 
         feature_names = self.feature_names or []
         # prepare transformer on fake data

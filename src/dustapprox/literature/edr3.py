@@ -76,12 +76,12 @@ class edr3_ext:
             "Fitz19_EDR3_extinctionlawcoefficients/Fitz19_EDR3_HRDTop.csv",
             "Fitz19_EDR3_extinctionlawcoefficients/Fitz19_EDR3_MainSequence.csv",
         )
-        self.Ay_top = pd.read_csv(os.path.join(_DATA_PATH_, datafiles[0])).set_index(
-            ["Kname", "Xname"]
-        )
-        self.Ay_ms = pd.read_csv(os.path.join(_DATA_PATH_, datafiles[1])).set_index(
-            ["Kname", "Xname"]
-        )
+        self.Ay_top = pd.read_csv(
+            os.path.join(_DATA_PATH_, datafiles[0])
+        ).set_index(["Kname", "Xname"])
+        self.Ay_ms = pd.read_csv(
+            os.path.join(_DATA_PATH_, datafiles[1])
+        ).set_index(["Kname", "Xname"])
 
     def _from(
         self,

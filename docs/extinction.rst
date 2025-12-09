@@ -44,4 +44,4 @@ Since v.0.20, Dusapprox uses `dust_extinction <https://dust-extinction.readthedo
   axes[0].set_ylim(-0.2, 5.2)
   axes[1].set_ylim(-0.42, 0.19)
   plt.tight_layout()
-  plt.show() 
+  plt.show()

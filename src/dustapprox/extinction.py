@@ -53,15 +53,20 @@ from dust_extinction.parameter_averages import BaseExtRvModel
 
 from .astropy_units import val_in_unit
 
-__all__ = ["evaluate_extinction_model", "get_extinction_model", "BaseExtRvModel"]
+__all__ = [
+    "evaluate_extinction_model",
+    "get_extinction_model",
+    "BaseExtRvModel",
+]
 
 
 def _allow_F9x_extrapolation() -> None:
-    """ Patch to dust_extinction to allow F99 wavelength extrapolation 
+    """Patch to dust_extinction to allow F99 wavelength extrapolation
 
     Bug reported to dust_extinction [issue #262](https://github.com/karllark/dust_extinction/issues/262).
     """
     from dust_extinction.shapes import FM90
+
     FM90.x_range = [0.001, 100]
 
 

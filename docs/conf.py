@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path("..").resolve()))
 
 try:
     import dustapprox
+
     __version__ = dustapprox.__VERSION__
 except Exception:
     __version__ = "unknown version"
@@ -21,7 +22,9 @@ except Exception:
 
 # General information about the project.
 project = "dustapprox"
-copyright = "2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena"
+copyright = (
+    "2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena"
+)
 author = "M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena"
 # The short X.Y version.
 version = __version__
@@ -214,7 +217,9 @@ def autodoc_skip_member(app, what, name, obj, skip, options):
             if "self" in local_vars:
                 documenter = local_vars["self"]
                 # Check if this is a ModuleDocumenter with the info we need
-                if hasattr(documenter, "modname") and hasattr(documenter, "object"):
+                if hasattr(documenter, "modname") and hasattr(
+                    documenter, "object"
+                ):
                     current_module = documenter.modname
 
                     # Check if obj comes from a submodule
@@ -222,8 +227,9 @@ def autodoc_skip_member(app, what, name, obj, skip, options):
                         obj_module = obj.__module__
 
                         # Skip if object is from a submodule
-                        if obj_module != current_module and obj_module.startswith(
-                            current_module + "."
+                        if (
+                            obj_module != current_module
+                            and obj_module.startswith(current_module + ".")
                         ):
                             return True
                     break

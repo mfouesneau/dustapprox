@@ -85,7 +85,9 @@ def spectra_file_reader(fname: str) -> dict:
                 continue
             if "=" in line:
                 parameter, valdesc = line.split("=")
-                parameter = rename_parameters.get(parameter.strip(), parameter.strip())
+                parameter = rename_parameters.get(
+                    parameter.strip(), parameter.strip()
+                )
                 val = float(valdesc.split()[0])
                 candidate_unit = valdesc.split()
                 if "(" not in candidate_unit[1]:
@@ -155,7 +157,9 @@ def get_svo_spectrum_units(data: dict) -> Tuple[Quantity, Quantity]:
     return 1.0 * lamb_unit, 1.0 * flux_unit
 
 
-def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[Filter]:
+def get_svo_passbands(
+    identifiers: Union[str, Sequence[str]],
+) -> Sequence[Filter]:
     """Query the SVO filter profile service and return the pyphot filter objects.
 
     Parameters
@@ -224,7 +228,7 @@ class SVOSpectrum:
     """The flux array of the spectrum."""
 
     def __init__(self, filename: str):
-        """ Constructor 
+        """Constructor
 
         Parameters
         ----------

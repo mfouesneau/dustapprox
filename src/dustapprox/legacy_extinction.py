@@ -54,7 +54,12 @@ __all__ = ["ExtinctionLaw", "CCM89", "F99"]
 
 
 def _warning_on_one_line(
-    message: str, category: Any, filename: str, lineno: int, file=None, line=None
+    message: str,
+    category: Any,
+    filename: str,
+    lineno: int,
+    file=None,
+    line=None,
 ) -> str:
     """Prints a complete warning that includes exactly the code line triggering it from the stack trace."""
     return " {:s}:{:d} {:s}:{:s}".format(
@@ -84,11 +89,11 @@ def _val_in_unit(
     Example
     -------
     >>> r = 0.5
-    >>> print(val_in_unit('r', r, 'degree'))
+    >>> print(val_in_unit("r", r, "degree"))
     # UserWarning: Variable r does not have explicit units. Assuming `degree`
     <Quantity(0.5, 'degree')>
-    >>> r = 0.5 * unit['degree']
-    >>> print(val_in_unit('r', r, 'degree'))
+    >>> r = 0.5 * unit["degree"]
+    >>> print(val_in_unit("r", r, "degree"))
     <Quantity(0.5, 'degree')>
     """
 
@@ -251,8 +256,12 @@ class CCM89(ExtinctionLaw):
         # UV
         # Eq 4a, 4b
         ind = np.where((x >= 3.3) & (x <= 8.0))
-        a[ind] = 1.752 - 0.316 * x[ind] - 0.104 / ((x[ind] - 4.67) ** 2 + 0.341)
-        b[ind] = -3.090 + 1.825 * x[ind] + 1.206 / ((x[ind] - 4.62) ** 2 + 0.263)
+        a[ind] = (
+            1.752 - 0.316 * x[ind] - 0.104 / ((x[ind] - 4.67) ** 2 + 0.341)
+        )
+        b[ind] = (
+            -3.090 + 1.825 * x[ind] + 1.206 / ((x[ind] - 4.62) ** 2 + 0.263)
+        )
 
         ind = np.where((x >= 5.9) & (x <= 8.0))
         Fa = -0.04473 * (x[ind] - 5.9) ** 2 - 0.009779 * (x[ind] - 5.9) ** 3
@@ -432,13 +441,17 @@ class F99(ExtinctionLaw):
                 + (c2 * x[ind])
                 + c3
                 * ((x[ind]) ** 2)
-                / (((x[ind]) ** 2 - (x0**2)) ** 2 + (gamma**2) * ((x[ind]) ** 2))
+                / (
+                    ((x[ind]) ** 2 - (x0**2)) ** 2
+                    + (gamma**2) * ((x[ind]) ** 2)
+                )
             )
 
             # FUV portion
             fuvind = np.where(x >= 5.9)
             k[fuvind] += c4 * (
-                0.5392 * ((x[fuvind] - 5.9) ** 2) + 0.05644 * ((x[fuvind] - 5.9) ** 3)
+                0.5392 * ((x[fuvind] - 5.9) ** 2)
+                + 0.05644 * ((x[fuvind] - 5.9) ** 3)
             )
 
             k[ind] += Rv
@@ -463,15 +476,21 @@ class F99(ExtinctionLaw):
                     np.poly1d([-7.35778e-05, 1.00216, -5.13540e-02])(Rv),
                     np.poly1d([-3.32598e-05, 1.00184, 7.00127e-01])(Rv),
                     np.poly1d(
-                        [1.19456, 1.01707, -5.46959e-03, 7.97809e-04, -4.45636e-05][
-                            ::-1
-                        ]
+                        [
+                            1.19456,
+                            1.01707,
+                            -5.46959e-03,
+                            7.97809e-04,
+                            -4.45636e-05,
+                        ][::-1]
                     )(Rv),
                 ]
             )
 
             tck = interpolate.splrep(
-                np.hstack([xsplopir, xspluv]), np.hstack([ysplopir, yspluv]), k=3
+                np.hstack([xsplopir, xspluv]),
+                np.hstack([ysplopir, yspluv]),
+                k=3,
             )
             k[ind] = interpolate.splev(x[ind], tck)
 

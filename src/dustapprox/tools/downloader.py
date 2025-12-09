@@ -132,7 +132,9 @@ def download_file(link: str, file_name: str, overwrite: bool = False) -> str:
     response = requests.get(link, stream=True)
     total_length = int(response.headers.get("content-length") or "0")
     if os.path.exists(file_name) and not overwrite:
-        if (total_length is None) or (os.stat(file_name).st_size == total_length):
+        if (total_length is None) or (
+            os.stat(file_name).st_size == total_length
+        ):
             print(f"file '{file_name}' already downloaded.")
             return file_name
 

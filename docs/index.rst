@@ -17,7 +17,7 @@ This package is a set of tools to compute photometric extinction coefficients in
 .. note:: Python 3.14 support
    Support for python 3.14 is currently blocked by `pytables` not supporting it yet.
 
-.. important:: 
+.. important::
    New release (v0.2.0) which introduces new models and features.
 
    See :doc:`What's new <whats_new>`.

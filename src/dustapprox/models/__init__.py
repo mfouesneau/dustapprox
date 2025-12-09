@@ -21,7 +21,13 @@ from .polynomial import PolynomialModel
 
 _DATA_PATH_ = str(resources.files("dustapprox") / "data" / "precomputed")
 
-__all__ = ["PrecomputedModel", "ModelInfo", "kinds", "BaseModel", "PolynomialModel"]
+__all__ = [
+    "PrecomputedModel",
+    "ModelInfo",
+    "kinds",
+    "BaseModel",
+    "PolynomialModel",
+]
 
 kinds = {
     "polynomial": PolynomialModel,
@@ -77,7 +83,9 @@ class ModelInfo:
         model : :class:`dustapprox.models.polynomial.PolynomialModel`
         """
         if self._source_library is None:
-            raise ValueError("The source library is not set for this ModelInfo.")
+            raise ValueError(
+                "The source library is not set for this ModelInfo."
+            )
         return self._source_library.load_model(self, passband=passband)
 
     def copy(self) -> "ModelInfo":
@@ -99,14 +107,20 @@ class PrecomputedModel:
     .. code-block:: python
 
         from dustapprox.models import PrecomputedModel
+
         lib = PrecomputedModel()
         # search for GALEX passbands if present
-        r = lib.find(passband='galex')
+        r = lib.find(passband="galex")
         print(r)
         # load both available models
         models = []
         for source in r.values():
-            models.extend([lib.load_model(r, passband=pbname) for pbname in source['passbands']])
+            models.extend(
+                [
+                    lib.load_model(r, passband=pbname)
+                    for pbname in source["passbands"]
+                ]
+            )
 
     .. code-block:: text
         :caption: result from :func:`PrecomputedModel.find`
@@ -144,7 +158,9 @@ class PrecomputedModel:
         self._info = None
         self.location = location
 
-    def get_models_info(self, glob_pattern: str = "/**/*.ecsv") -> Sequence[ModelInfo]:
+    def get_models_info(
+        self, glob_pattern: str = "/**/*.ecsv"
+    ) -> Sequence[ModelInfo]:
         """Retrieve the information for all models available and files
         Parameters
         ----------
@@ -216,27 +232,36 @@ class PrecomputedModel:
                 continue
             if (
                 extinction is not None
-                and extinction.lower() not in value.extinction["source"].lower()
+                and extinction.lower()
+                not in value.extinction["source"].lower()
             ):
                 continue
             if (
                 atmosphere is not None
-                and atmosphere.lower() not in value.atmosphere["source"].lower()
+                and atmosphere.lower()
+                not in value.atmosphere["source"].lower()
             ):
                 continue
-            if kind is not None and kind.lower() not in value.model["kind"].lower():
+            if (
+                kind is not None
+                and kind.lower() not in value.model["kind"].lower()
+            ):
                 continue
             content = value.copy()
 
             if passband is not None:
                 content.passbands = [
-                    pk for pk in content.passbands if passband.lower() in pk.lower()
+                    pk
+                    for pk in content.passbands
+                    if passband.lower() in pk.lower()
                 ]
             results.append(content)
         return results
 
     def load_model(
-        self, fname: Union[str, dict, ModelInfo], passband: Union[str, None] = None
+        self,
+        fname: Union[str, dict, ModelInfo],
+        passband: Union[str, None] = None,
     ) -> Union[BaseModel, List[BaseModel]]:
         """Load a model from a file or description (:func:`PrecomputedModel.find`)
 
@@ -282,4 +307,6 @@ class PrecomputedModel:
         try:
             return kinds[model_kind].from_file(fname_, passband=passband)
         except KeyError:
-            raise NotImplementedError(f"Model kind {model_kind} not implemented.")
+            raise NotImplementedError(
+                f"Model kind {model_kind} not implemented."
+            )

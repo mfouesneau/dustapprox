@@ -115,7 +115,8 @@ def read_header(fname: str) -> Dict[str, Any]:
                     return
 
     header = yaml.load(
-        textwrap.dedent("\n".join(process_header_lines(fname))), yaml.SafeLoader
+        textwrap.dedent("\n".join(process_header_lines(fname))),
+        yaml.SafeLoader,
     )
 
     return header
@@ -213,7 +214,11 @@ def generate_header(df: pd.DataFrame, **meta) -> str:
     meta_.update(meta)  # pyright: ignore
     h = {"delimiter": ",", "datatype": dtypes, "meta": meta_}
     preamble = [f"# %ECSV {__ECSV_VERSION__:s}", "# ---"]
-    lines = ["# " + line for line in yaml.dump(h, sort_keys=False).split("\n") if line]
+    lines = [
+        "# " + line
+        for line in yaml.dump(h, sort_keys=False).split("\n")
+        if line
+    ]
     return "\n".join(preamble + lines)
 
 

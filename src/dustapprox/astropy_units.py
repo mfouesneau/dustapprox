@@ -21,11 +21,18 @@ new_units = dict(
     ergs="erg",
 )
 
-add_enabled_units([def_unit([k], Unit(v)) for k, v in new_units.items()]).__enter__()
+add_enabled_units(
+    [def_unit([k], Unit(v)) for k, v in new_units.items()]
+).__enter__()
 
 
 def _warning_on_one_line(
-    message: str, category: Any, filename: str, lineno: int, file=None, line=None
+    message: str,
+    category: Any,
+    filename: str,
+    lineno: int,
+    file=None,
+    line=None,
 ) -> str:
     """Prints a complete warning that includes exactly the code line triggering it from the stack trace."""
     return " {:s}:{:d} {:s}:{:s}".format(
@@ -62,11 +69,11 @@ def val_in_unit(
     Example
     -------
     >>> r = 0.5
-    >>> print(val_in_unit('r', r, 'degree'))
+    >>> print(val_in_unit("r", r, "degree"))
     # UserWarning: Variable r does not have explicit units. Assuming `degree`
     <Quantity(0.5, 'degree')>
-    >>> r = 0.5 * unit['degree']
-    >>> print(val_in_unit('r', r, 'degree'))
+    >>> r = 0.5 * unit["degree"]
+    >>> print(val_in_unit("r", r, "degree"))
     <Quantity(0.5, 'degree')>
     """
 
