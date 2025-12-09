@@ -21,7 +21,7 @@ from .polynomial import PolynomialModel
 
 _DATA_PATH_ = str(resources.files("dustapprox") / "data" / "precomputed")
 
-__all__ = ["PrecomputedModel", "ModelInfo", "kinds"]
+__all__ = ["PrecomputedModel", "ModelInfo", "kinds", "BaseModel", "PolynomialModel"]
 
 kinds = {
     "polynomial": PolynomialModel,
@@ -179,7 +179,12 @@ class PrecomputedModel:
         return info
 
     def find(
-        self, /, passband=None, extinction=None, atmosphere=None, kind=None
+        self,
+        *,
+        passband: Union[str, None] = None,
+        extinction: Union[str, None] = None,
+        atmosphere: Union[str, None] = None,
+        kind: Union[str, None] = None,
     ) -> Sequence[ModelInfo]:
         """Find all the computed models that match the given parameters.
 
@@ -222,6 +227,7 @@ class PrecomputedModel:
             if kind is not None and kind.lower() not in value.model["kind"].lower():
                 continue
             content = value.copy()
+
             if passband is not None:
                 content.passbands = [
                     pk for pk in content.passbands if passband.lower() in pk.lower()
