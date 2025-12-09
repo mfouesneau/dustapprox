@@ -309,6 +309,7 @@ class PolynomialModel(BaseModel):
                 self.coeffs_.name = self.name_
             if (self.coeffs_.name is not None) and (self.name_ is None):
                 self.name_ = str(self.coeffs_.name)
+            return self.name_
 
     def _consolidate_named_data(self, X: Union[npt.NDArray, DataFrame]) -> DataFrame:
         """A convenient consolidation of input data to named data fields
