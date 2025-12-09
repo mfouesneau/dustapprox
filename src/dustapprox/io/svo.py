@@ -13,10 +13,12 @@ and observational templates.
         * currently manual download of the data. It's not that hard, but we could put some guidance in our documentation.
 """
 
-from typing import Sequence, Tuple, Union
+from dataclasses import dataclass
+from typing import Any, Sequence, Tuple, Union
 
 import pandas as pd
-from pyphot import Filter, config as pyphot_config
+from pyphot import Filter
+from pyphot import config as pyphot_config
 from pyphot.svo import get_pyphot_filter
 
 from ..astropy_units import Quantity
@@ -120,7 +122,7 @@ def spectra_file_reader(fname: str) -> dict:
     return data
 
 
-def get_svo_sprectum_units(data: dict) -> Tuple[Quantity, Quantity]:
+def get_svo_spectrum_units(data: dict) -> Tuple[Quantity, Quantity]:
     """Get the units objects of the wavelength and flux from an SVO spectrum.
 
     Parameters
@@ -204,3 +206,36 @@ def get_svo_passbands(identifiers: Union[str, Sequence[str]]) -> Sequence[Filter
         return [get_pyphot_filter(identifiers)]
 
     return [get_pyphot_filter(k) for k in identifiers]
+
+
+@dataclass
+class SVOSpectrum:
+    """A convenient class to handle SVO spectra."""
+
+    filename: str
+    """The source path and filename of the spectrum."""
+    units = tuple[str, str]
+    """The units of the wavelength and flux."""
+    meta: dict[str, Any]
+    """The metadata of the spectrum (e.g. stellar parameters)."""
+    λ: Quantity
+    """The wavelength array of the spectrum."""
+    flux: Quantity
+    """The flux array of the spectrum."""
+
+    def __init__(self, filename: str):
+        """ Constructor 
+
+        Parameters
+        ----------
+        filename: str
+            The source path and filename of the spectrum.
+        """
+        self.filename = filename
+        data = spectra_file_reader(filename)
+        λ_unit, flux_unit = get_svo_spectrum_units(data)
+        self.units = (λ_unit, flux_unit)
+        self.λ = data["data"]["WAVELENGTH"].values * λ_unit
+        self.flux = data["data"]["FLUX"].values * flux_unit
+        ignore = "columns", "data"
+        self.meta = {k: data[k]["value"] for k in data if k not in ignore}
