@@ -213,7 +213,7 @@ class TestComputePhotometricGrid:
         A0 = np.sort(np.hstack([[0.01], np.arange(0.1, 20.01, 0.1)]))
         
         assert A0.min() == 0.01
-        assert A0.max() <= 20.0
+        assert A0.max() <= 20.0 + 1e-8  # Allow for floating-point precision
         assert len(A0) > 100  # Should have many values
         # Should be sorted
         assert np.all(A0[:-1] <= A0[1:])
