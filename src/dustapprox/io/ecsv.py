@@ -206,7 +206,7 @@ def generate_header(df: pd.DataFrame, **meta) -> str:
         dtype = {"name": name, "datatype": str(dt)}
         # Check if vectors and add subtype if necessary.
         if dt == "object":
-            val0 = df[name][0]
+            val0 = df[name].iloc[0]
             if np.shape(val0):
                 dtype["subtype"] = f"{str(val0.dtype):s}[null]"
         dtypes.append(dtype)
@@ -241,6 +241,8 @@ def write(
     meta: dict
         meta data to be written to the header.
     """
+    if len(df) == 0:
+        raise ValueError("Cannot write an empty DataFrame to ECSV format.")
     if hasattr(fname, "write"):
         fname.write(  # pyright: ignore[reportAttributeAccessIssue]
             generate_header(df, **meta) + "\n"
