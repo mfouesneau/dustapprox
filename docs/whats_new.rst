@@ -18,7 +18,8 @@ Non-breaking changes
 ~~~~~~~~~~~~~~~~~~~~
 
 - new precomputed models:
-    - F99 with R0 dependency for Generic, Galex, Gaia DR3, Sloan TwoMASS, WISE passbands
+    - F99 with A0, R0, Teff dependency for Generic, Galex, Gaia DR3, Gaia C1, Sloan, TwoMASS, WISE passbands
+    - G23 with A0, R0, Teff dependency for Generic, Galex, Gaia DR3, Gaia C1, Sloan, TwoMASS, WISE passbands
 
 - added :mod:`dustapprox.tools.generate_model` module to simplify the generation of pre-computed models
     - includes end-to-end example function
