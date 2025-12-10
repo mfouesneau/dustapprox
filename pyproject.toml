@@ -53,7 +53,7 @@ exclude = ["unittests*", "tests*"]    # exclude packages matching these glob pat
 namespaces = true                     # to disable scanning PEP 420 namespaces (true by default)
 
 [tool.setuptools.package-data]
-dustapprox = ['*.ecsv', '*.csv', '*.rst']
+dustapprox = ['*.ecsv', '*.csv', '*.rst', 'data/**/*']
 
 [project.optional-dependencies]
 
