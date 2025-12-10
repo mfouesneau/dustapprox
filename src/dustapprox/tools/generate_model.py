@@ -12,6 +12,7 @@ import numpy as np
 import numpy.typing as npt
 import pandas as pd
 from tqdm import tqdm
+from pyphot import Filter
 
 from ..extinction import BaseExtRvModel
 from ..io import ecsv
@@ -65,7 +66,7 @@ class GridParameters:
     ----------
     model_pattern : str
         The pattern to identify the atmosphere models.
-    pbset : List[str]
+    pbset : List[str] | List[Filter]
         The list of passbands to compute.
     atmosphere_name : Optional[str]
         The name of the atmosphere set.
@@ -82,7 +83,7 @@ class GridParameters:
     """
 
     model_pattern: str
-    pbset: List[str]
+    pbset: List[str] | List[Filter]
     atmosphere_name: Optional[str] = None
     atmosphere_shortname: Optional[str] = None
     extinction_curve: Union[str, BaseExtRvModel] = "F99"
@@ -160,7 +161,7 @@ class ModelParameters:
 def generate_grid(
     model_pattern: str,
     grid_fname: Union[str, pathlib.Path],
-    pbset: List[str],
+    pbset: List[str] | List[Filter],
     atmosphere_name: Optional[str] = None,
     extinction_curve: Union[str, BaseExtRvModel] = "F99",
     A0: Optional[npt.NDArray] = None,
@@ -205,8 +206,9 @@ def generate_grid(
     # ensure directory exists
     grid_fname = pathlib.Path(grid_fname)
     grid_fname.parent.mkdir(parents=True, exist_ok=True)
+    pbset_names = [f.name if isinstance(f, Filter) else f for f in pbset]
     if not grid_fname.exists():
-        print(f"   - Using passbands: {', '.join(pbset)}")
+        print(f"   - Using passbands: {', '.join(pbset_names)}")
         print(f"   - Using model pattern: {model_pattern}")
         print(f"   - Using atmospheres: {atmosphere_name}")
         print(f"   - Using extinction curve: {extinction_curve}")
