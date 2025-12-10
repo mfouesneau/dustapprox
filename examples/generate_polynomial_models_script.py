@@ -21,7 +21,7 @@ def get_gaia_c1_filters() -> list[Filter]:
     """Load Gaia DR3 C1 passbands from pyphot's Ascii_Library"""
     DATA_PATH = str(resources.files("dustapprox").joinpath("data", "Gaia2"))
     lib = Ascii_Library(f"{DATA_PATH}", glob_pattern="*csv")
-    fnames = [f for f in lib.content if f.endswith('.csv')]
+    fnames = [f for f in lib.content if f.endswith(".csv")]
     filters = lib.load_filters(fnames)
     return filters
 
