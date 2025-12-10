@@ -20,7 +20,6 @@ This document is a guideline to help you get started with contributing to dustap
 * `Style guide for writing code <#style-guide>`_
 * `Documentation <#contributing-to-the-documentation>`_
 
-Please also have a look at our `code of conduct <https://github.com/mfouesneau/pyphot/blob/master/CODE_OF_CONDUCT.md>`_.
 
 Setting up your development environment
 ---------------------------------------

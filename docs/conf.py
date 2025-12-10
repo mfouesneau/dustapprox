@@ -158,6 +158,11 @@ html_static_path = ["_static"]
 # hide coppy button on outputs
 copybutton_selector = "div:not(.output) > div.highlight pre"
 
+# -- Additional configurations -----------------------------------------------
+
+# Enable numfig for automatic numbering of figures, tables, and code-blocks
+numfig = True
+
 # -- Options for autodoc ----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
 
