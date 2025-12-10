@@ -1,10 +1,14 @@
 r"""
-Dust Extinction curves
-----------------------
+Dust Extinction curves (legacy module)
+----------------------------------------
 
 The observations show a wide range of dust column normalized extinction curves,
 :math:`A(\lambda) / A(V)`.  This package provides a common interface to many
 commonly used extinction curves.
+
+.. important::
+
+    This is a legacy module kept for backward compatibility. New code should use :mod:`dustapprox.extinction` instead which is based on the `dust_extinction` package.
 
 .. note::
 
@@ -21,7 +25,7 @@ commonly used extinction curves.
     import matplotlib.pyplot as plt
     import astropy.units as u
 
-    from dustapprox.extinction import CCM89, F99
+    from dustapprox.legacy_extinction import CCM89, F99
 
     #define the wave numbers
     x = np.arange(0.1, 10, 0.1)    # in microns^{-1}
@@ -160,7 +164,7 @@ class CCM89(ExtinctionLaw):
         import matplotlib.pyplot as plt
         import astropy.units as u
 
-        from dustapprox.extinction import CCM89
+        from dustapprox.legacy_extinction import CCM89
 
         #define the wave numbers
         x = np.arange(0.1, 10, 0.1)    # in microns^{-1}
@@ -338,7 +342,7 @@ class F99(ExtinctionLaw):
         import matplotlib.pyplot as plt
         import astropy.units as u
 
-        from dustapprox.extinction import F99
+        from dustapprox.legacy_extinction import F99
 
         #define the wave numbers
         x = np.arange(0.1, 10, 0.1)    # in microns^{-1}

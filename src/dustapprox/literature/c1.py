@@ -75,7 +75,7 @@ For convenience, we also provide them with this package in
     from pyphot.libraries import Ascii_Library
 
     where = resource_filename("dustapprox", "data/Gaia2")
-    lib = Ascii_Library([where])
+    lib = Ascii_Library(where, glob_pattern="*csv")
     lib["C1B556"].info()
 
 The last line of the above example shows the information of the C1B556 passband.
@@ -117,7 +117,7 @@ The last line of the above example shows the information of the C1B556 passband.
     from pyphot.libraries import Ascii_Library
 
     where = resource_filename('dustapprox', 'data/Gaia2')
-    lib = Ascii_Library([where])
+    lib = Ascii_Library(where, glob_pattern='*csv')
     pbs = lib.load_all_filters()
 
     plt.figure(figsize=(8, 4))
