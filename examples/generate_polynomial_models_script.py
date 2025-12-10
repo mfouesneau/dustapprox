@@ -4,11 +4,27 @@ train polynomial models on these grids, and export the trained models to ECSV fi
 """
 
 import pathlib
+from importlib import resources
 
 import numpy as np
+from pyphot import Filter
+from pyphot.libraries import Ascii_Library
 
 from dustapprox.models import PrecomputedModel
-from dustapprox.tools.generate_model import GridParameters, train_polynomial_model
+from dustapprox.tools.generate_model import (
+    GridParameters,
+    train_polynomial_model,
+)
+
+
+def get_gaia_c1_filters() -> list[Filter]:
+    """Load Gaia DR3 C1 passbands from pyphot's Ascii_Library"""
+    DATA_PATH = str(resources.files("dustapprox").joinpath("data", "Gaia2"))
+    lib = Ascii_Library(f"{DATA_PATH}")
+    fnames = [f for f in lib.content if f.endswith('.csv')]
+    filters = lib.load_filters(fnames)
+    return filters
+
 
 gaia_dr3_filters = [
     "GAIA/GAIA3.G",
@@ -56,6 +72,7 @@ filter_set = dict(
         ("wise", wise_filters),
         ("galex", galex_filters),
         ("generic", generic_filters),
+        ("gaiac1", get_gaia_c1_filters()),
     )
 )
 
@@ -73,7 +90,12 @@ def main_example() -> PrecomputedModel:
         atmosphere_name="Kurucz (ODFNEW/NOVER 2003)",
         atmosphere_shortname="kurucz",
         extinction_curve="F99",
-        apfields=["teff", "logg", "feh", "alpha"],  # no additional output parameters
+        apfields=[
+            "teff",
+            "logg",
+            "feh",
+            "alpha",
+        ],  # no additional output parameters
         n_jobs=-1,
         A0=np.sort(np.hstack([[0.01], np.arange(0.1, 20.01, 0.1)])),
         R0=np.array([2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1]),

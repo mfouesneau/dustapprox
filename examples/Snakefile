@@ -22,7 +22,7 @@ grid_parameters = GridParameters(
 
 def get_grid_output_path(pbset_name: str) -> str:
     """Get the output path for the atmosphere/extinction grid"""
-    return f"precomputed/grids/{batch_name}_{pbset_name}_{grid_parameters.atmosphere_shortname}_{grid_parameters.extinction_curve}_grid.ecsv"
+    return f"grids/{batch_name}_{pbset_name}_{grid_parameters.atmosphere_shortname}_{grid_parameters.extinction_curve}_grid.ecsv"
 
 
 def get_model_output_path(pbset_name: str) -> str:
