@@ -35,6 +35,9 @@ Non-breaking changes
 - updated `pyphot <https://mfouesneau.github.io/pyphot/>`_ dependency to v2.0.0
     - see `pyphot v2.0.0 release notes <https://mfouesneau.github.io/pyphot/whats_new.html#id1>`_ for details
 
+- unit tests improvements
+    - increased coverage to 61% (from 0!)
+
 - updated documentation
-    - added :doc:`contributing`, :doc:`systematics`
+    - added :doc:`whats_new`, :doc:`contributing`, :doc:`systematics` pages
     - updated :doc:`extinction`, :doc:`precomputed_content`
