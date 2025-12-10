@@ -146,10 +146,14 @@ def evaluate_extinction_model(
         model_cls.x_range = [0.001, 100.0]
         if isinstance(name, str) and name.startswith("F9"):
             _allow_F9x_extrapolation()
-        model = model_cls(Rv=R0)
+        if isinstance(model_cls, type):
+            model = model_cls(Rv=R0)
+        else:
+            model = model_cls
         valid = (x.value < model.x_range[1]) & (x.value > model.x_range[0])
-        τ_ = model(x[valid])
-        τ[valid] = τ_
+        if np.any(valid):
+            τ_ = model(x[valid])
+            τ[valid] = τ_
     else:
         τ = model_cls(Rv=R0)(x)
     # return extinction curve evaluated at given x, A0, R0
