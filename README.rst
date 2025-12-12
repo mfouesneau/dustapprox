@@ -1,5 +1,5 @@
 dustapprox -- A tool for computing approximative extinction coefficients
-=============================================================================
+========================================================================
 
 .. image:: https://img.shields.io/pypi/v/dustapprox.svg
     :target: https://pypi.org/project/dustapprox/
@@ -10,32 +10,7 @@ This is a set of tools to compute photometric extinction coefficients in a *quic
 
 full documentation at: http://mfouesneau.github.io/dustapprox/
 
-
-TODO
-----
-- [x] update python supported versions
-- [x] upgrade packaging to pyproject.toml only
-- [x] typing annotations
-- [x] update for pyphot 2.0
-- [x] update internal extinction curves to use dust_extinction instead
-   - [x] patch to allow F99 extrapolation
-- [ ] Workflow to train model
-  - [x] snakemake file (in examples/).
-  - [ ] add snakemake file to doc
-- [x] check how we handle R0?
-  - [x] add (A0, R0) models
-  - [x] see if 2D models are consistent with A0 | R0 = 3.1 models
-- [ ] add additional models:
-  - [ ] G23 curve
-  - [ ] add Gaia DR4 passbands
-  - [ ] add Euclid passbands? others?
-- [ ] improve documentation
-  - [ ] debug warnings from doc workflow
-  - [ ] additional examples
-  - [ ] add notes about A0 vs A(V) etc.
-  - [ ] add notes about A0, R0 models
-  - [x] add automated precomputed model doc and accuracy plots
-- [x] additional unit tests -- coverage 63%
+see recent changes at: `What's new <http://mfouesneau.github.io/dustapprox/whats_new.html>`_
 
 
 Quick Start
@@ -72,7 +47,7 @@ Installation
 
 .. code::
 
-  pip install git+https://github.com/mfouesneau/gdr3_extinction
+  pip install git+https://github.com/mfouesneau/dustapprox
 
 * Manual installation
 
@@ -80,8 +55,8 @@ download the repository and run the setup
 
 .. code::
 
-  git clone https://github.com/mfouesneau/gdr3_extinction
-  python setup.py install
+  git clone https://github.com/mfouesneau/dustapprox
+  python -m pip install .
 
 Contributors
 ------------
@@ -100,4 +75,18 @@ you would like to see. If there is an issue you would like to work on, please
 leave a comment, and we will be happy to assist. New contributions and
 contributors are very welcome!
 
-see [contributing guide](http://mfouesneau.github.io/dustapprox/contributing.html) for more information.
+see `contributing guide <http://mfouesneau.github.io/dustapprox/contributing.html>`_ for more information.
+
+TODO
+----
+Upcoming tasks and features planned for future releases
+
+- [ ] add additional models:
+  - [ ] add Gaia DR4 passbands
+  - [ ] add Euclid passbands? 
+  - [ ] others?
+- [ ] improve documentation
+  - [ ] additional examples
+  - [ ] add notes about A0 vs A(V) etc.
+  - [ ] add notes about A0, R0 models
+- [ ] additional unit tests (current coverage 63%)

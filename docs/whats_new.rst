@@ -5,7 +5,7 @@ This page lists the recent changes in versions of dustapprox.
 
 v0.2.0
 ------
-[December 10, 2025]
+[December 12, 2025]
 
 Breaking changes
 ~~~~~~~~~~~~~~~~
