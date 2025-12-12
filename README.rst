@@ -1,12 +1,16 @@
 dustapprox -- A tool for computing approximative extinction coefficients
-=============================================================================
+========================================================================
 
 .. image:: https://img.shields.io/pypi/v/dustapprox.svg
     :target: https://pypi.org/project/dustapprox/
 
+.. image:: https://img.shields.io/badge/python-3.10,_3.11,_3.12,_3.13-blue.svg
+
 This is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
 
 full documentation at: http://mfouesneau.github.io/dustapprox/
+
+see recent changes at: `What's new <http://mfouesneau.github.io/dustapprox/whats_new.html>`_
 
 
 Quick Start
@@ -38,12 +42,12 @@ Installation
 .. code::
 
   pip install dustapprox
-  
+
 * Installation from pip+github
 
 .. code::
 
-  pip install git+https://github.com/mfouesneau/gdr3_extinction
+  pip install git+https://github.com/mfouesneau/dustapprox
 
 * Manual installation
 
@@ -51,8 +55,8 @@ download the repository and run the setup
 
 .. code::
 
-  git clone https://github.com/mfouesneau/gdr3_extinction
-  python setup.py install
+  git clone https://github.com/mfouesneau/dustapprox
+  python -m pip install .
 
 Contributors
 ------------
@@ -70,3 +74,5 @@ Please open a new issue or new pull request for bugs, feedback, or new features
 you would like to see. If there is an issue you would like to work on, please
 leave a comment, and we will be happy to assist. New contributions and
 contributors are very welcome!
+
+see `contributing guide <http://mfouesneau.github.io/dustapprox/contributing.html>`_ for more information.

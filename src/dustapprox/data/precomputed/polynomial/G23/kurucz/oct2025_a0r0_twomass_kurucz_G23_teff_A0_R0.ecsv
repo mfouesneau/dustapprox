@@ -1,0 +1,91 @@
+# %ECSV 1.0
+# ---
+# delimiter: ','
+# datatype:
+# - name: passband
+#   datatype: object
+# - name: '1'
+#   datatype: float64
+# - name: A0
+#   datatype: float64
+# - name: R0
+#   datatype: float64
+# - name: teffnorm
+#   datatype: float64
+# - name: A0^2
+#   datatype: float64
+# - name: A0 R0
+#   datatype: float64
+# - name: A0 teffnorm
+#   datatype: float64
+# - name: R0^2
+#   datatype: float64
+# - name: R0 teffnorm
+#   datatype: float64
+# - name: teffnorm^2
+#   datatype: float64
+# - name: A0^3
+#   datatype: float64
+# - name: A0^2 R0
+#   datatype: float64
+# - name: A0^2 teffnorm
+#   datatype: float64
+# - name: A0 R0^2
+#   datatype: float64
+# - name: A0 R0 teffnorm
+#   datatype: float64
+# - name: A0 teffnorm^2
+#   datatype: float64
+# - name: R0^3
+#   datatype: float64
+# - name: R0^2 teffnorm
+#   datatype: float64
+# - name: R0 teffnorm^2
+#   datatype: float64
+# - name: teffnorm^3
+#   datatype: float64
+# - name: mae
+#   datatype: float64
+# - name: rmse
+#   datatype: float64
+# - name: mean_residuals
+#   datatype: float64
+# - name: std_residuals
+#   datatype: float64
+# meta:
+#   extinction:
+#     source: G23
+#     R0:
+#     - 2.299999952316284
+#     - 5.099999904632568
+#     A0:
+#     - 0.009999999776482582
+#     - 20.0
+#   atmosphere:
+#     source: Kurucz (ODFNEW/NOVER 2003)
+#     teff:
+#     - 3500.0
+#     - 50000.0
+#     logg:
+#     - 0.0
+#     - 5.0
+#     feh:
+#     - -4.0
+#     - 0.5
+#     alpha:
+#     - 0.0
+#     - 0.4
+#   comment: teffnorm = teff / 5040; predicts kx = Ax / A0
+#   model:
+#     kind: polynomial
+#     degree: 3
+#     interaction_only: false
+#     include_bias: true
+#     feature_names:
+#     - A0
+#     - R0
+#     - teffnorm
+passband,1,A0,R0,teffnorm,A0^2,A0 R0,A0 teffnorm,R0^2,R0 teffnorm,teffnorm^2,A0^3,A0^2 R0,A0^2 teffnorm,A0 R0^2,A0 R0 teffnorm,A0 teffnorm^2,R0^3,R0^2 teffnorm,R0 teffnorm^2,teffnorm^3,mae,rmse,mean_residuals,std_residuals
+2MASS_2MASS.J,-0.46558716944467005,0.000289883677090237,0.44829126329682956,0.003183885783495299,-9.964570669173803e-07,-0.0002610347591335951,-6.685386022305437e-06,-0.08354998106696972,0.0003722210410483154,-0.0007461101941158072,1.0240076880503638e-08,6.042053960792132e-07,-2.463382664134908e-08,2.079217614808943e-05,-6.847282934249148e-07,8.490441065875183e-07,0.0056867031161376225,-1.6709436067984807e-05,-2.1133141110142365e-05,4.7315369144641744e-05,0.0005742889750350866,6.396565923769895e-07,2.707227939931744e-13,0.0007997853414366817
+2MASS_2MASS.H,-0.3769269377775153,9.993136885243944e-05,0.33046776877891393,0.000677993358565942,6.9623253508282e-08,-8.212276765596622e-05,-7.10869835738751e-07,-0.06153221921072981,0.00014995307766262254,-0.0001765599617529856,0.0,2.426992323136187e-08,-1.0492876604483157e-08,6.168836257701347e-06,-2.5218813172764363e-07,1.6209380036766604e-07,0.004186101530646613,-8.5327309917215e-06,-6.989246445367504e-06,1.1430875427106956e-05,0.00041618324473888246,2.5356093896474153e-07,8.06380594834904e-08,0.0005035483417331894
+2MASS_2MASS.Ks,-0.3034956566803136,2.6820312784904318e-05,0.2474908157123348,9.37876110165334e-05,1.9491906368347495e-07,-2.3298835412098697e-05,4.838776753632584e-07,-0.046059552391392686,4.6067002332210384e-05,-3.431220320537625e-05,-1.8975018650265017e-09,-2.436750530965311e-08,-5.7009110834258125e-09,1.443564243098694e-06,-1.0760235627683978e-07,0.0,0.0031326903992005724,-3.3091982919660604e-06,-1.7634446936040481e-06,2.3671436799913232e-06,0.00035335119258556036,1.3467339921143604e-07,8.209251872186822e-08,0.0003669787357221865

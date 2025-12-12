@@ -29,6 +29,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.lock
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -131,3 +132,12 @@ tmp/*
 
 # ignore model data
 models/*
+examples/models/*
+examples/precomputed/*
+
+# source files
+docs/source
+docs/*csv
+
+# ignore snakemake folders
+**/*/.snakemake/

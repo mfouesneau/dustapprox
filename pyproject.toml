@@ -1,12 +1,174 @@
-[build-system]
+[project]
+name = "dustapprox"
+version = "0.2.0"
+description = "A tool for computing extinction coefficients in a quick and dirty manner"
+readme = "README.rst"
+authors = [
+  {name="Morgan Fouesneau"},
+  {name="René Andrae"},
+  {name="Rosanna Sordo"},
+  {name="Thavisha Dharmawardena"}
+]
+license = {text = "BSD 3-Clause License"}
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: BSD 3-Clause License",
+    "Operating System :: OS Independent"
+]
+requires-python = ">=3.10"
+dependencies = [
+    "astropy>=6.0.0",
+    "dust-extinction>=1.6",
+    "ipywidgets>=8.1.7",
+    "joblib>=1.5.2",
+    "matplotlib>=3.10.7",
+    "numpy>=2.0.0",
+    "pandas>=2.3.3",
+    "pyphot@git+https://github.com/mfouesneau/pyphot",   # using git source v2.0.0
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.7.2",
+    "scipy>=1.14.0",
+    "snakemake>=7.32.4",
+    "tqdm>=4.67.1",
+]
 
-requires = ["setuptools",
-            "setuptools_scm",
+[build-system]
+requires = ["setuptools>=60",
             "wheel",
-            "cython",
-            "numpy",
-            "scipy",
-            "pyyaml",
-            "pandas",
-            "astropy",
-            "extension-helpers"]
+            ]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# By default, include-package-data is true in pyproject.toml, so you do
+# NOT have to specify this line.
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]                       # list of folders that contain the packages (["."] by default)
+include = ["dustapprox*"]             # package names should match these glob patterns (["*"] by default)
+exclude = ["unittests*", "tests*"]    # exclude packages matching these glob patterns (empty by default)
+namespaces = true                     # to disable scanning PEP 420 namespaces (true by default)
+
+[tool.setuptools.package-data]
+dustapprox = ['*.ecsv', '*.csv', '*.rst', 'data/**/*']
+
+[project.optional-dependencies]
+
+ci = [
+    "ruff",
+    "pytest>=7",
+    "pytest-doctestplus",
+    "codecov",
+    "pytest-cov",
+    "prek"]
+
+docs = [
+  "sphinx>=5.3",
+  "sphinx-book-theme>=0.3.3",
+  "sphinx-automodapi>=0.14",
+  "sphinx_copybutton>=0.5",
+  "sphinx-mdinclude>=0.6",
+  "sphinxcontrib-htmlhelp>=2.1.0",
+  "sphinxcontrib-serializinghtml>=2.0.0",
+  "sphinx-tabs>=3.0",
+  "myst-nb>=0.16.0",
+  "sphinx-design>=0.6",
+  "IPython>=8.0",
+  "matplotlib",
+  "numpydoc",
+  "sphinx-datatables>=0.3.1",
+]
+
+[tool.ruff]
+# Enumerate all fixed violations.
+show-fixes = true
+# Always generate Python 3.10-compatible code.
+target-version = "py310"
+# PEP-8 line length
+line-length = 79
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pyenv",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    ".DS_Store",
+    "_build",
+    "build",
+    "dist",
+    "site-packages",
+    "venv",
+    ".pre-commit-config.yaml",
+    "src/dustapprox/data/**"
+]
+
+[tool.ruff.format]
+# Enable reformatting of code snippets in docstrings.
+docstring-code-format = true
+# use double quotes for strings.
+quote-style = "double"
+
+[tool.ruff.lint]
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+    "requires_network: marks tests that require network access",
+    "requires_data: marks tests that require external data files",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["src/dustapprox"]
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__pycache__/*",
+    "*/version.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+    "import",
+]

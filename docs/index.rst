@@ -3,6 +3,25 @@ Welcome to dustapprox's documentation!
 
 This package is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
 
+.. image:: https://img.shields.io/pypi/v/dustapprox.svg
+    :target: https://pypi.org/project/dustapprox/
+
+.. image:: https://static.pepy.tech/badge/dustapprox
+    :target: https://pepy.tech/project/dustapprox
+
+.. image:: https://static.pepy.tech/badge/dustapprox/month
+    :target: https://pepy.tech/project/dustapprox
+
+.. image:: https://img.shields.io/badge/python-_3.10,_3.11,_3.12,_3.13-blue.svg
+
+.. note:: Python 3.14 support
+   Support for python 3.14 is currently blocked by `pytables` not supporting it yet.
+
+.. important::
+   New release (v0.2.0) which introduces new models and features.
+
+   See :doc:`What's new <whats_new>`.
+
 Extinction coefficients per passbands depend on both the source spectral energy distribution
 and on the extinction itself (e.g., `Gordon et al., 2016 <https://ui.adsabs.harvard.edu/abs/2016ApJ...826..104G/abstract>`_,
 `Jordi et al., 2010 <https://ui.adsabs.harvard.edu/abs/2010A%26A...523A..48J/abstract>`_ ).
@@ -21,11 +40,16 @@ We also detailed the various ingredients of the models in subsequent pages liste
    :maxdepth: 1
    :caption: Details
 
+   Home <index>
+   What's New <whats_new>
    atmospheres
    extinction
    photometry
    precomputed
    precomputed_content
+   systematics
+   examples
+   contributing
 
 
 .. warning::
@@ -58,7 +82,7 @@ The following example shows how to use the predictions from a precomputed model.
    model = lib.load_model(r, passband='GAIA_GAIA3.G')
 
    # get some data
-   data = pd.read_csv('models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
+   data = pd.read_csv('models/precomputed/kurucz_gaiaedr3_small_a0_grid.csv')
    df = data[(data['passband'] == 'GAIA_GAIA3.G') & (data['A0'] > 0)]
 
    # values
@@ -87,39 +111,38 @@ wavelength-dependent light observed from a star is given by:
 
    import numpy as np
    import matplotlib.pyplot as plt
+   import matplotlib as mpl
    from dustapprox.io import svo
-   from dustapprox.extinction import F99
+   from dustapprox.extinction import evaluate_extinction_model
 
    modelfile = 'models/Kurucz2003all/fm05at10500g40k2odfnew.fl.dat.txt'
-   data = svo.spectra_file_reader(modelfile)
+   spec = svo.SVOSpectrum(modelfile)
 
    # extract model relevant information
-   lamb_unit, flux_unit = svo.get_svo_sprectum_units(data)
-   lamb = data['data']['WAVELENGTH'].values * lamb_unit
-   flux = data['data']['FLUX'].values * flux_unit
+   lamb = spec.λ
+   flux = spec.flux
 
    # Extinction
-   extc = F99()
-   Rv = 3.1
-   Av = np.arange(0, 5.01, 0.1)
-   alambda_per_av = extc(lamb, 1.0, Rv=Rv)
+   R0 = 3.1
+   alambda_per_av = evaluate_extinction_model('F99', lamb, 1., R0)
+   A0 = np.arange(0, 5.01, 0.1)
 
    # Dust magnitudes
-   cmap = plt.cm.inferno_r
-   sm = plt.cm.ScalarMappable(cmap=cmap, norm=plt.Normalize(vmin=Av.min(), vmax=Av.max()))
-   for av_val in Av:
-      new_flux = flux * np.exp(- alambda_per_av * av_val)
-      plt.loglog(lamb, new_flux, label=f'A0={av_val:.2f}', color=cmap(av_val / Av.max()))
+   cmap = mpl.colormaps["inferno_r"]
+   sm = plt.cm.ScalarMappable(cmap=cmap, norm=plt.Normalize(vmin=A0.min(), vmax=A0.max()))
+   for a0_val in A0:
+      new_flux = flux * np.exp(- alambda_per_av * a0_val)
+      plt.loglog(lamb, new_flux, label=f'A0={a0_val:.2f}', color=cmap(a0_val / A0.max()))
    plt.loglog(lamb, flux, color='k')
    plt.ylim(1e-6, 1e9)
    plt.xlim(750, 5e4)
-   plt.xlabel('Wavelength [{}]'.format(lamb_unit))
-   plt.ylabel('Flux [{}]'.format(flux_unit))
+   plt.xlabel('Wavelength [{}]'.format(spec.units[0]))
+   plt.ylabel('Flux [{}]'.format(spec.units[1]))
    label = 'teff={teff:4g} K, logg={logg:0.1g} dex, [Fe/H]={feh:0.1g} dex'
-   plt.title(label.format(teff=data['teff']['value'],
-                          logg=data['logg']['value'],
-                          feh=data['feh']['value']))
-   plt.colorbar(sm).set_label(r'A$_0$ [mag]')
+   plt.title(label.format(teff=spec.meta['teff'],
+                           logg=spec.meta['logg'],
+                           feh=spec.meta['feh']))
+   plt.colorbar(sm, ax=plt.gca()).set_label(r'A$_0$ [mag]')
    plt.tight_layout()
 
    plt.show()
@@ -178,7 +201,7 @@ often leads to approximations as functions of stellar temperatures, :math:`T_{ef
    import pandas as pd
    import numpy as np
 
-   r = pd.read_csv('./models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
+   r = pd.read_csv('models/precomputed/kurucz_gaiaedr3_small_a0_grid.csv')
    r['kx'] = np.where(r['A0'] > 0, r['Ax'] / r['A0'], float('NaN'))
 
    plt.figure(figsize=(9, 4))
@@ -249,13 +272,19 @@ Our package also allows one to update the model parameters, such as the polynomi
    from dustapprox.literature import edr3
    import pylab as plt
 
-   # get Gaia models
+   # get Gaia G band models
+   # let's take the first one with teffnorm and A0 features only
    lib = models.PrecomputedModel()
-   r = lib.find(passband='Gaia')[0]  # taking the first one
-   model = lib.load_model(r, passband='GAIA_GAIA3.G')
+   options = lib.find(passband='Gaia')
+   selected = None
+   for model in options:
+      if model.model['feature_names'] == ['A0', 'teffnorm']:
+         selected = model
+         break
+   model = lib.load_model(selected, passband='GAIA_GAIA3.G')
 
    # get some data
-   data = pd.read_csv('./models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
+   data = pd.read_csv('models/precomputed/kurucz_gaiaedr3_small_a0_grid.csv')
    df = data[(data['passband'] == 'GAIA_GAIA3.G') & (data['A0'] > 0)]
 
    # values
@@ -325,35 +354,6 @@ Our package also allows one to update the model parameters, such as the polynomi
    plt.show()
 
 
-How to contribute?
--------------------
-
-We love contributions! This project is open source, built on open source
-libraries.
-
-Please open a new issue or new pull request for bugs, feedback, or new features
-you would like to see. If there is an issue you would like to work on, please
-leave a comment and we will be happy to assist. New contributions and
-contributors are very welcome!
-
-Being a contributor doesn't just mean writing code. You can
-help out by writing documentation, tests, or even giving feedback about the
-project (yes - that includes giving feedback about the contribution
-process).
-
-We are committed to providing a strong and enforced code of conduct and expect
-everyone in our community to follow these guidelines when interacting with
-others in all forums. Our goal is to keep ours a positive, inclusive, thriving,
-and growing community. The community of participants in open source Astronomy
-projects such as this present work includes members from around the globe with
-diverse skills, personalities, and experiences. It is through these differences
-that our community experiences success and continued growth.
-Please have a look at our `code of conduct <https://github.com/mfouesneau/dustapprox/blob/main/CODE_OF_CONDUCT.md>`_.
-
-
-This project work follows a `BSD 3-Clause license <https://github.com/mfouesneau/dustapprox/blob/main/LICENSE>`_.
-
-
 How to cite this work?
 ----------------------
 
@@ -363,15 +363,15 @@ If you use this software, please cite it using the metadata below.
 
 .. code-block:: text
 
-   Fouesneau, M., Andrae, R., Sordo, R., & Dharmawardena, T. (2022).
-      dustapprox (Version 0.1) [Computer software].
+   Fouesneau, M., Andrae, R., Sordo, R., & Dharmawardena, T. (2025).
+      dustapprox (Version 0.2) [Computer software].
       https://github.com/mfouesneau/dustapprox
 
 **Bibtex citation**
 
 .. code-block:: text
 
-   @software{Fouesneau_dustapprox_2022,
+   @software{Fouesneau_dustapprox_2025,
       author = {Fouesneau, Morgan
                 and Andrae, René
                 and Sordo, Rosanna
@@ -379,8 +379,8 @@ If you use this software, please cite it using the metadata below.
       month = {3},
       title = {{dustapprox}},
       url = {https://github.com/mfouesneau/dustapprox},
-      version = {0.1},
-      year = {2022}
+      version = {0.2},
+      year = {2025}
       }
 
 
