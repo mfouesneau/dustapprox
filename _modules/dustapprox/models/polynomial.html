@@ -1,0 +1,1073 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dustapprox.models.polynomial &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=984d411d"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="../../../_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/dustapprox/models/polynomial';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/_modules/dustapprox/models/polynomial.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../precomputed.html">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../../precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2F_modules/dustapprox/models/polynomial.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for dustapprox.models.polynomial</h1><div class="highlight"><pre>
+<span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Polynomial approximation of extinction effect per passband.</span>
+
+<span class="sd">In this library, we provide tools and pre-computed models to obtain the extinction coefficient</span>
+<span class="sd">:math:`k_x = A_x / A_0` for various passbands.</span>
+
+<span class="sd">Extinction coefficients depend primarily on the source spectral energy</span>
+<span class="sd">distribution and on the extinction itself (e.g., Gordon et al., 2016; Jordi et</span>
+<span class="sd">al., 2010) but also other parameters such as :math:`\log g`,</span>
+<span class="sd">:math:`[\alpha/Fe]`, and :math:`[Fe/H]`.</span>
+
+<span class="sd">We define the extinction coefficient :math:`k_x` as</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">    k_x = A_x / A_0,</span>
+
+<span class="sd">with :math:`A_0` the extinction parameter at :math:`550 nm`, and :math:`x` the passband.</span>
+
+<span class="sd">We use a L1-regularized regression model (Lasso-Lars model) using BIC or AIC for</span>
+<span class="sd">model/complexity selection.</span>
+
+<span class="sd">The optimization objective for Lasso is:</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">    \frac{1}{2 n_{samples}} \cdot \|y - X \cdot w\|^2_2 + \alpha \times \|w\|_1</span>
+
+<span class="sd">AIC is the `Akaike information</span>
+<span class="sd">criterion &lt;https://en.wikipedia.org/wiki/Akaike_information_criterion&gt;`_ and BIC</span>
+<span class="sd">is the `Bayes Information criterion</span>
+<span class="sd">&lt;https://en.wikipedia.org/wiki/Bayesian_information_criterion&gt;`_.</span>
+<span class="sd">AIC or BIC are useful criteria to select the value of the regularization parameter :math:`\alpha` by making a</span>
+<span class="sd">trade-off between the goodness-of-fit and</span>
+<span class="sd">the complexity of the model.</span>
+
+<span class="sd">This allows is to follow the principle of parsimony (aka Occam&#39;s razor): a good</span>
+<span class="sd">model should explain well the data while being simple.</span>
+
+
+<span class="sd">.. plot::</span>
+<span class="sd">    :caption: Statistics on polynomial approximation of extinction effect per passband.</span>
+<span class="sd">              The top panel shows the residual statistics of the model to the grid values, while the bottom</span>
+<span class="sd">              panel shows the meaningful coefficient amplitudes. (Grey pixels indicate values below :math:`10^{-5}`).</span>
+
+<span class="sd">    import pylab as plt</span>
+<span class="sd">    from dustapprox.models import polynomial</span>
+<span class="sd">    import pandas as pd</span>
+
+<span class="sd">    r = pd.read_csv(&#39;models/precomputed/kurucz_gaiaedr3_small_a0_grid.csv&#39;)</span>
+<span class="sd">    # polynomial.quick_plot_models(r, input_parameters=&#39;teff A0&#39;.split())</span>
+<span class="sd">    polynomial.quick_plot_models(r, input_parameters=&#39;teff A0 feh logg&#39;.split())</span>
+<span class="sd">    plt.show()</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Any</span><span class="p">,</span>
+    <span class="n">Generator</span><span class="p">,</span>
+    <span class="n">List</span><span class="p">,</span>
+    <span class="n">Literal</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
+    <span class="n">Sequence</span><span class="p">,</span>
+    <span class="n">Union</span><span class="p">,</span>
+    <span class="n">cast</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..io</span><span class="w"> </span><span class="kn">import</span> <span class="n">ecsv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.basemodel</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+
+<div class="viewcode-block" id="approx_model">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.approx_model">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">approx_model</span><span class="p">(</span>
+    <span class="n">r</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">passband</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;GAIA_GAIA3.G&quot;</span><span class="p">,</span>
+    <span class="n">degree</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">interaction_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">input_parameters</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fit the passband grid data with a polynomial model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r : DataFrame</span>
+<span class="sd">        DataFrame with the passband grid data.</span>
+<span class="sd">    passband : str</span>
+<span class="sd">        The passband to fit.</span>
+<span class="sd">    degree : int</span>
+<span class="sd">        The degree of the polynomial model.</span>
+<span class="sd">    interaction_only : bool</span>
+<span class="sd">        If True, only the interaction terms are used.</span>
+<span class="sd">    input_parameters : Sequence[str]</span>
+<span class="sd">        The input parameters to use.</span>
+<span class="sd">        If None, &#39;teff logg feh A0 alpha&#39; parameters are used.</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        If True, print the model parameters and statistics</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Dictionary with the model parameters and statistics.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LassoLarsIC</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">median_absolute_error</span>
+
+    <span class="k">if</span> <span class="n">input_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">input_parameters</span> <span class="o">=</span> <span class="s2">&quot;teff logg feh A0 alpha&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">input_parameters</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">input_parameters</span><span class="p">)</span>
+    <span class="n">predict_parameter</span> <span class="o">=</span> <span class="s2">&quot;Ax&quot;</span>
+
+    <span class="n">col_subset</span> <span class="o">=</span> <span class="p">[</span><span class="n">predict_parameter</span><span class="p">]</span> <span class="o">+</span> <span class="n">input_parameters</span>
+    <span class="n">subset</span><span class="p">:</span> <span class="n">DataFrame</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">passband</span> <span class="o">==</span> <span class="n">passband</span><span class="p">][</span><span class="n">col_subset</span><span class="p">])</span>
+    <span class="n">subset</span> <span class="o">=</span> <span class="n">subset</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">xdata</span> <span class="o">=</span> <span class="n">subset</span><span class="p">[</span><span class="n">input_parameters</span><span class="p">]</span>
+    <span class="c1"># replace teff by teffnorm = teff / 5040K</span>
+    <span class="n">xdata</span><span class="p">[</span><span class="s2">&quot;teffnorm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xdata</span><span class="p">[</span><span class="s2">&quot;teff&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mf">5040.0</span>
+    <span class="n">xdata</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;teff&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ydata</span> <span class="o">=</span> <span class="n">subset</span><span class="p">[</span><span class="n">predict_parameter</span><span class="p">]</span>
+    <span class="n">ydata</span> <span class="o">/=</span> <span class="n">subset</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">]</span>
+
+    <span class="c1"># the common method</span>
+    <span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span>
+        <span class="n">degree</span><span class="o">=</span><span class="n">degree</span><span class="p">,</span> <span class="n">interaction_only</span><span class="o">=</span><span class="n">interaction_only</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xdata</span><span class="p">)</span>
+    <span class="n">expand</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">xdata</span><span class="p">)</span>
+    <span class="n">coeff_names</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+        <span class="n">regr</span> <span class="o">=</span> <span class="n">LassoLarsIC</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">copy_X</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+            <span class="n">expand</span><span class="p">,</span> <span class="n">ydata</span>
+        <span class="p">)</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">expand</span><span class="p">)</span>
+
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">median_absolute_error</span><span class="p">(</span><span class="n">ydata</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">ydata</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+    <span class="n">stddev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">pred</span> <span class="o">-</span> <span class="n">ydata</span><span class="p">)</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred</span> <span class="o">-</span> <span class="n">ydata</span><span class="p">)</span>
+
+    <span class="n">named_coeffs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">coeff_names</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-8</span>
+        <span class="p">],</span>
+        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        --------------</span>
+<span class="s2">        Band: </span><span class="si">{</span><span class="n">passband</span><span class="si">}</span>
+<span class="s2">        Polynomial degree: </span><span class="si">{</span><span class="n">poly</span><span class="o">.</span><span class="n">degree</span><span class="si">}</span>
+<span class="s2">        MAE = </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">        RMSE = </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">        Mean = </span><span class="si">{</span><span class="n">mean</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">        Stddev = </span><span class="si">{</span><span class="n">stddev</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span>
+<span class="s2">        --------------</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">15s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">0.3g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">named_coeffs</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="n">coeff_names</span><span class="p">,</span>
+        <span class="s2">&quot;coefficients&quot;</span><span class="p">:</span> <span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span>
+        <span class="s2">&quot;mae&quot;</span><span class="p">:</span> <span class="n">mae</span><span class="p">,</span>
+        <span class="s2">&quot;rmse&quot;</span><span class="p">:</span> <span class="n">rmse</span><span class="p">,</span>
+        <span class="s2">&quot;mean_residuals&quot;</span><span class="p">:</span> <span class="n">mean</span><span class="p">,</span>
+        <span class="s2">&quot;std_residuals&quot;</span><span class="p">:</span> <span class="n">stddev</span><span class="p">,</span>
+    <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="quick_plot_models">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.quick_plot_models">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">quick_plot_models</span><span class="p">(</span>
+    <span class="n">r</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot diagnostic plots for the models.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r : DataFrame</span>
+<span class="sd">        DataFrame with the passband grid data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    DataFrame</span>
+<span class="sd">        DataFrame with the all model parameters and statistics.</span>
+
+<span class="sd">    .. seealso::</span>
+
+<span class="sd">        :func:`approx_model`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+    <span class="n">names</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">passband</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">approx_model</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">passband</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">coeff_names</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;coefficients&quot;</span><span class="p">])</span>
+            <span class="o">+</span> <span class="p">[</span>
+                <span class="n">res</span><span class="p">[</span><span class="s2">&quot;mae&quot;</span><span class="p">],</span>
+                <span class="n">res</span><span class="p">[</span><span class="s2">&quot;rmse&quot;</span><span class="p">],</span>
+                <span class="n">res</span><span class="p">[</span><span class="s2">&quot;mean_residuals&quot;</span><span class="p">],</span>
+                <span class="n">res</span><span class="p">[</span><span class="s2">&quot;std_residuals&quot;</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;passband&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">coeff_names</span><span class="p">)</span>
+            <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;mae&quot;</span><span class="p">,</span> <span class="s2">&quot;rmse&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;stddev&quot;</span><span class="p">],</span>  <span class="c1"># pyright: ignore / dumb</span>
+        <span class="p">)</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">subdata</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subdata</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mae&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subdata</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rmse&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subdata</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subdata</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;stddev&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)),</span> <span class="n">labels</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;passband&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;residual statistics&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+        <span class="n">subdata</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">subdata</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">subdata</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">subdata</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">vmin</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">vmin</span><span class="p">),</span> <span class="n">vmax</span><span class="p">)</span>
+            <span class="n">vmax</span> <span class="o">=</span> <span class="o">-</span><span class="n">vmin</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colormaps</span><span class="p">[</span><span class="s2">&quot;RdYlBu&quot;</span><span class="p">]</span>
+        <span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="s2">&quot;0.5&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">imshow_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+            <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+            <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span>
+            <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">coeff_names</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coeff_names</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">figsize</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">figsize</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">4</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">subdata</span><span class="p">,</span> <span class="o">**</span><span class="n">imshow_kwargs</span><span class="p">)</span>  <span class="c1"># pyright: ignore / dumb</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)),</span> <span class="n">labels</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coeff_names</span><span class="p">)),</span> <span class="n">labels</span><span class="o">=</span><span class="n">coeff_names</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;passband&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">subdata</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)),</span> <span class="n">labels</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coeff_names</span><span class="p">)),</span> <span class="n">labels</span><span class="o">=</span><span class="n">coeff_names</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span>
+            <span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;passband&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;coefficient&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+        <span class="k">yield</span> <span class="n">res</span></div>
+
+
+
+<div class="viewcode-block" id="PolynomialModel">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PolynomialModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A polynomial model object</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meta: dict</span>
+<span class="sd">        meta information about the model</span>
+
+<span class="sd">    transformer_: PolynomialFeatures</span>
+<span class="sd">        polynomial transformer</span>
+
+<span class="sd">    coeffs_: pd.Series</span>
+<span class="sd">        coefficients of the regression on the polynomial expended features</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PolynomialModel.__init__">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">feature_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Input feature dimensions of the model&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">][</span><span class="s2">&quot;feature_names&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">degree_</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Degree of the polynomial transformation&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span><span class="o">.</span><span class="n">degree</span>  <span class="c1"># type: ignore / dump it exists</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the model name also stored in the coeffs series&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_transformed_feature_names</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name_</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_consolidate_named_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;A convenient consolidation of input data to named data fields</span>
+
+<span class="sd">        As we use the names internally to make the operations more readable, it</span>
+<span class="sd">        makes it easier to also convert the data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X: Union[np.ndarray, pd.DataFrame]</span>
+<span class="sd">            input features</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Xp: pd.DataFrame</span>
+<span class="sd">            named data input</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># pyright: ignore</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;PolynomialModel: </span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="si">{:s}</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&quot;&quot;&quot;   from: </span><span class="si">{:s}</span><span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span> <span class="ow">or</span> <span class="p">[]))</span>
+        <span class="n">txt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;   polynomial degree: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">degree_</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">txt</span>
+
+<div class="viewcode-block" id="PolynomialModel.fit">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">features</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Ax&quot;</span><span class="p">,</span>
+        <span class="n">degree</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">interaction_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df : DataFrame</span>
+<span class="sd">            DataFrame with the passband grid data.</span>
+<span class="sd">        features: Sequence[str]</span>
+<span class="sd">            input features from df (note: if used, teff will be normalized to teff/5040)</span>
+<span class="sd">        label: str</span>
+<span class="sd">            which field contains the label values</span>
+<span class="sd">        degree : int</span>
+<span class="sd">            The degree of the polynomial model.</span>
+<span class="sd">        interaction_only : bool</span>
+<span class="sd">            If True, only the interaction terms are used.</span>
+<span class="sd">        input_parameters : Sequence[str]</span>
+<span class="sd">            The input parameters to use.</span>
+<span class="sd">            If None, &#39;teff logg feh A0 alpha&#39; parameters are used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LassoLarsIC</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">median_absolute_error</span>
+
+        <span class="k">if</span> <span class="n">features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># features = &#39;teff A0&#39;.split()</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;teff logg feh A0 alpha&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Ax&quot;</span>
+
+        <span class="k">if</span> <span class="s2">&quot;A0&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;field `A0` expected in the input data.&quot;</span><span class="p">)</span>
+
+        <span class="n">features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+        <span class="n">col_subset</span> <span class="o">=</span> <span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">+</span> <span class="n">features</span>
+        <span class="n">subset</span><span class="p">:</span> <span class="n">DataFrame</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">col_subset</span><span class="p">])</span>
+        <span class="n">subset</span> <span class="o">=</span> <span class="n">subset</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">xdata</span> <span class="o">=</span> <span class="n">subset</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+        <span class="c1"># replace teff by teffnorm = teff / 5040K</span>
+        <span class="n">xdata</span><span class="p">[</span><span class="s2">&quot;teffnorm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xdata</span><span class="p">[</span><span class="s2">&quot;teff&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mf">5040.0</span>
+        <span class="n">xdata</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;teff&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ydata</span> <span class="o">=</span> <span class="n">subset</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+        <span class="n">ydata</span> <span class="o">/=</span> <span class="n">subset</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">]</span>
+
+        <span class="c1"># the common method</span>
+        <span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span>
+            <span class="n">degree</span><span class="o">=</span><span class="n">degree</span><span class="p">,</span> <span class="n">interaction_only</span><span class="o">=</span><span class="n">interaction_only</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xdata</span><span class="p">)</span>
+        <span class="n">expand</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">xdata</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+            <span class="n">regr</span> <span class="o">=</span> <span class="n">LassoLarsIC</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">copy_X</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+                <span class="n">expand</span><span class="p">,</span> <span class="n">ydata</span>
+            <span class="p">)</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">expand</span><span class="p">)</span>
+
+        <span class="n">mae</span> <span class="o">=</span> <span class="n">median_absolute_error</span><span class="p">(</span><span class="n">ydata</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">ydata</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+        <span class="n">stddev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">pred</span> <span class="o">-</span> <span class="n">ydata</span><span class="p">)</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred</span> <span class="o">-</span> <span class="n">ydata</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;comment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;teffnorm = teff / 5040; predicts kx = Ax / A0&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;kind&quot;</span><span class="p">:</span> <span class="s2">&quot;polynomial&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;degree&quot;</span><span class="p">:</span> <span class="n">degree</span><span class="p">,</span>
+            <span class="s2">&quot;interaction_only&quot;</span><span class="p">:</span> <span class="n">interaction_only</span><span class="p">,</span>
+            <span class="s2">&quot;include_bias&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;feature_names&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">xdata</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;mae&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mae</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;rmse&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rmse</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;std_residuals&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stddev</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;mean_residuals&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span> <span class="o">=</span> <span class="n">poly</span>
+        <span class="n">transformed_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_transformed_feature_names</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">transformed_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">transformed_names</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="PolynomialModel.predict">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel.predict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict the extinction in the specific passband</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            if X is a :class:`Dataframe`, `teffnorm` could be automatically added</span>
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X: Union[np.ndarray, pd.DataFrame]</span>
+<span class="sd">            input features</span>
+
+<span class="sd">        Return</span>
+<span class="sd">        ------</span>
+<span class="sd">        y: np.ndarray</span>
+<span class="sd">            predicted values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Model is not fitted&quot;</span><span class="p">)</span>
+        <span class="n">X_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_consolidate_named_data</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">feature_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s2">&quot;teffnorm&quot;</span> <span class="ow">in</span> <span class="n">feature_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;teffnorm&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">X_</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="n">X_</span><span class="p">[</span><span class="s2">&quot;teffnorm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_</span><span class="p">[</span><span class="s2">&quot;teff&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mf">5040.0</span>
+        <span class="n">X_</span> <span class="o">=</span> <span class="n">X_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span><span class="p">]</span>
+        <span class="n">transformed_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_transformed_feature_names</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">transformed_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Model transformer is not fitted&quot;</span><span class="p">)</span>
+        <span class="n">coeffs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="p">[</span><span class="n">transformed_names</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">expand</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">expand</span> <span class="o">=</span> <span class="n">X_</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">coeffs</span><span class="p">,</span> <span class="n">expand</span><span class="p">)</span>  <span class="c1"># type: ignore</span></div>
+
+
+<div class="viewcode-block" id="PolynomialModel.get_transformed_feature_names">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel.get_transformed_feature_names">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_transformed_feature_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;get the feature names of the internal transformation&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_transformer</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">degree</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">interaction_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">include_bias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">params</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Setup the PolynomialFeature transformer</span>
+
+<span class="sd">        Generate a new feature matrix consisting of all polynomial combinations</span>
+<span class="sd">        of the features with degree less than or equal to the specified degree.</span>
+<span class="sd">        For example, if an input sample is two dimensional and of the form</span>
+<span class="sd">        [a, b], the degree-2 polynomial features are [1, a, b, a^2, ab, b^2].</span>
+
+<span class="sd">        .. seealso::</span>
+
+<span class="sd">            :class:`PolynomialFeature` from sklearn</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        degree : int or tuple (min_degree, max_degree), default=2</span>
+<span class="sd">            If a single int is given, it specifies the maximal degree of the</span>
+<span class="sd">            polynomial features. If a tuple `(min_degree, max_degree)` is passed,</span>
+<span class="sd">            then `min_degree` is the minimum and `max_degree` is the maximum</span>
+<span class="sd">            polynomial degree of the generated features. Note that `min_degree=0`</span>
+<span class="sd">            and `min_degree=1` are equivalent as outputting the degree zero term is</span>
+<span class="sd">            determined by `include_bias`.</span>
+
+<span class="sd">        interaction_only : bool, default=False</span>
+<span class="sd">            If `True`, only interaction features are produced: features that are</span>
+<span class="sd">            products of at most `degree` *distinct* input features, i.e. terms with</span>
+<span class="sd">            power of 2 or higher of the same input feature are excluded:</span>
+
+<span class="sd">                - included: `x[0]`, `x[1]`, `x[0] * x[1]`, etc.</span>
+<span class="sd">                - excluded: `x[0] ** 2`, `x[0] ** 2 * x[1]`, etc.</span>
+
+<span class="sd">        include_bias : bool, default=True</span>
+<span class="sd">            If `True` (default), then include a bias column, the feature in which</span>
+<span class="sd">            all polynomial powers are zero (i.e. a column of ones - acts as an</span>
+<span class="sd">            intercept term in a linear model).</span>
+
+<span class="sd">        order : {&#39;C&#39;, &#39;F&#39;}, default=&#39;C&#39;</span>
+<span class="sd">            Order of output array in the dense case. `&#39;F&#39;` order is faster to</span>
+<span class="sd">            compute, but may slow down subsequent estimators.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check that the model attributes match</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;kind&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;polynomial&quot;</span><span class="p">,):</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="n">kind</span><span class="p">,</span> <span class="s2">&quot;Expecting a polynomial model definition&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">feature_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="c1"># prepare transformer on fake data</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_names</span><span class="p">))),</span> <span class="n">columns</span><span class="o">=</span><span class="n">feature_names</span>
+        <span class="p">)</span>
+        <span class="n">transformer</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span>
+            <span class="n">degree</span><span class="o">=</span><span class="n">degree</span><span class="p">,</span>
+            <span class="n">include_bias</span><span class="o">=</span><span class="n">include_bias</span><span class="p">,</span>
+            <span class="n">interaction_only</span><span class="o">=</span><span class="n">interaction_only</span><span class="p">,</span>
+            <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformer_</span> <span class="o">=</span> <span class="n">transformer</span>
+
+<div class="viewcode-block" id="PolynomialModel.from_file">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel.from_file">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">passband</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PolynomialModel&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Restore a model from a file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename: str</span>
+<span class="sd">            the ECSV filepath containing the model definition</span>
+
+<span class="sd">            The file should contain the various parameters associated with the</span>
+<span class="sd">            model in its `metadata`.</span>
+
+<span class="sd">        passband: str</span>
+<span class="sd">            name of the model to load (passband column in the ecsv file)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model: PolynomialModel</span>
+<span class="sd">            model object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">ecsv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;passband&quot;</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># setting model metadata</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+        <span class="n">model_attrs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">_set_transformer</span><span class="p">(</span><span class="o">**</span><span class="n">model_attrs</span><span class="p">)</span>
+
+        <span class="c1"># get regression coefficients</span>
+        <span class="n">coeffs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">passband</span><span class="p">]</span>
+        <span class="n">transformed_names</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_transformed_feature_names</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">transformed_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">coeffs_</span> <span class="o">=</span> <span class="n">coeffs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">coeffs_</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="n">transformed_names</span><span class="p">]</span>
+
+        <span class="c1"># get stats if provided</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="s2">&quot;mae,rmse,mean,stddev&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">stats</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">passband</span><span class="p">][</span><span class="n">keys</span><span class="p">]</span>  <span class="c1"># pyright: ignore / dumb typing here</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>  <span class="c1"># pyright: ignore</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="PolynomialModel.to_pandas">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel.to_pandas">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Export the model to a pandas array, useful for storage&quot;&quot;&quot;</span>
+        <span class="c1"># set name consistency</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Model has not been fitted yet&quot;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coeffs_</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="s2">&quot;mae,rmse,mean_residuals,std_residuals&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">))</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">meta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="PolynomialModel.to_ecsv">
+<a class="viewcode-back" href="../../../source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel.to_ecsv">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_ecsv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Export model into an ECSV file&quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+        <span class="n">meta</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">attrs</span>
+        <span class="n">meta</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">meta</span><span class="p">)</span>
+        <span class="n">ecsv</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span>  <span class="c1"># pyright: ignore</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

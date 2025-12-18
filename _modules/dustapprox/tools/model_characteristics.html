@@ -1,0 +1,931 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dustapprox.tools.model_characteristics &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=984d411d"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="../../../_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/dustapprox/tools/model_characteristics';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/_modules/dustapprox/tools/model_characteristics.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../precomputed.html">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../../precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2F_modules/dustapprox/tools/model_characteristics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for dustapprox.tools.model_characteristics</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Generates some characteristic model plots.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">binned_statistic_2d</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..io</span><span class="w"> </span><span class="kn">import</span> <span class="n">ecsv</span><span class="p">,</span> <span class="n">svo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.generate_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridParameters</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ModelCharacteristicsRunner&quot;</span><span class="p">,</span> <span class="s2">&quot;run_model_characteristics&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ModelCharacteristicsRunner">
+<a class="viewcode-back" href="../../../source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModelCharacteristicsRunner</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class to run model characteristics plots for a set of precomputed models.&quot;&quot;&quot;</span>
+
+    <span class="n">library_path</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;which precomputed model library path to use&quot;&quot;&quot;</span>
+    <span class="n">library_selection</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Selection criteria to select the precomputed model library&quot;&quot;&quot;</span>
+    <span class="n">testdata_path</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Path to the test data photometric grid&quot;&quot;&quot;</span>
+    <span class="n">_what</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">ModelInfo</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Which models to run&quot;&quot;&quot;</span>
+    <span class="n">_vega_zpt</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vega zeropoints for each passband&quot;&quot;&quot;</span>
+    <span class="n">vega_spec_approx</span><span class="p">:</span> <span class="n">svo</span><span class="o">.</span><span class="n">SVOSpectrum</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An approximate Vega spectrum for zeropoint calculations&quot;&quot;&quot;</span>
+    <span class="n">_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Data grid with photometric values and stellar parameters to test on&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Data grid with photometric values and stellar parameters to test on</span>
+<span class="sd">        Load the test data grid if not already done.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">testdata_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;No testdata_path provided to load test data grid.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">testdata_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;testdata_path should be a string path to the data file.&quot;</span>
+                <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading test data grid from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">testdata_path</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">testdata_path</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.ecsv&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">ecsv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">testdata_path</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">testdata_path</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">testdata_path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Unsupported testdata_path file format. Use .ecsv or .csv&quot;</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">what</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">ModelInfo</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Which models to run.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_what</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Selecting precomputed model library from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">library_path</span><span class="si">}</span><span class="s2">...&quot;</span>
+            <span class="p">)</span>
+            <span class="n">lib</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PrecomputedModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">library_path</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selection criteria:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">library_selection</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_what</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">library_selection</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_what</span><span class="p">)</span><span class="si">}</span><span class="s2"> models.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_what</span>
+
+<div class="viewcode-block" id="ModelCharacteristicsRunner.set_vega_zeropoints">
+<a class="viewcode-back" href="../../../source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner.set_vega_zeropoints">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_vega_zeropoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vega_spec</span><span class="p">:</span> <span class="n">svo</span><span class="o">.</span><span class="n">SVOSpectrum</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute Vega zeropoints for each passband in the selected models.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        vega_spec: svo.SVOSpectrum</span>
+<span class="sd">            An approximate Vega spectrum for zeropoint calculations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vega_spec_approx</span> <span class="o">=</span> <span class="n">vega_spec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vega_zpt</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing Vega zeropoints...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">pb</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">passbands</span><span class="p">():</span>
+            <span class="c1"># no need to recompute if overlapping passbands</span>
+            <span class="k">if</span> <span class="n">pb</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vega_zpt</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">passband_</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">get_pyphot_filter</span><span class="p">(</span><span class="n">pb</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">zpt</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span>
+                <span class="n">passband_</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">vega_spec</span><span class="o">.</span><span class="n">λ</span><span class="p">,</span> <span class="n">vega_spec</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vega_zpt</span><span class="p">[</span><span class="n">pb</span><span class="p">]</span> <span class="o">=</span> <span class="n">zpt</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">pb</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">zpt</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> mag&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ModelCharacteristicsRunner.passbands">
+<a class="viewcode-back" href="../../../source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner.passbands">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">passbands</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a generator on the passbands of the selected models.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">what_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">what</span><span class="p">:</span>
+            <span class="k">yield from</span> <span class="n">what_</span><span class="o">.</span><span class="n">passbands</span></div>
+
+
+<div class="viewcode-block" id="ModelCharacteristicsRunner.models">
+<a class="viewcode-back" href="../../../source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner.models">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a generator on the selected models.&quot;&quot;&quot;</span>
+        <span class="n">lib</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PrecomputedModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">library_path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">what_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">what</span><span class="p">:</span>
+            <span class="n">models_</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">what_</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">models_</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">):</span>
+                <span class="n">models_</span> <span class="o">=</span> <span class="p">[</span><span class="n">models_</span><span class="p">]</span>
+            <span class="k">yield from</span> <span class="n">models_</span></div>
+
+
+<div class="viewcode-block" id="ModelCharacteristicsRunner.plot_2d_residuals">
+<a class="viewcode-back" href="../../../source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner.plot_2d_residuals">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_2d_residuals</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="n">close_figure</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot 2D residuals for each selected model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        close_figure: bool, optional</span>
+<span class="sd">            Whether to close the figure after saving (default: True)</span>
+
+<span class="sd">        :see also: imshow_binned_statistic_2d</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Plotting 2D residuals...&quot;</span><span class="p">)</span>
+        <span class="c1"># plot 2D residuals per model</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;log10(teff)&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;log$_</span><span class="si">{10}</span><span class="s2">$T$_</span><span class="si">{eff}</span><span class="s2">$ [K]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;A0&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;A$_0$ [mag]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;logg&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;log g [dex]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;R0&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;R$_0$ [mag]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;feh&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;[Fe/H] [dex]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;median(delta_kg)&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;Median Predicted - True $A_x / A_0$ [mag]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;mean(delta_kg)&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;Mean Predicted - True $A_x / A_0$ [mag]&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">kwargs_</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;statistic&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;cmap&quot;</span><span class="p">:</span> <span class="s2">&quot;RdBu&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">kwargs_</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># prep data</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;passband == &quot;</span><span class="si">{pb}</span><span class="s1">&quot; &amp; A0 &gt; 0&#39;</span>
+
+        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">():</span>
+            <span class="n">pb</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># pyright: ignore</span>
+            <span class="c1"># zpt = self._vega_zpt.get(pb, 0.0)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pb</span><span class="o">=</span><span class="n">pb</span><span class="p">))</span>
+            <span class="n">kg_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+                <span class="n">kg_pred</span><span class="o">=</span><span class="n">kg_pred</span><span class="p">,</span>
+                <span class="n">kg_true</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ax&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">],</span>
+                <span class="n">delta_kg</span><span class="o">=</span><span class="n">kg_pred</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ax&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            <span class="n">quantiles</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;delta_kg&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span>
+            <span class="k">if</span> <span class="s2">&quot;vmin&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs_</span><span class="p">[</span><span class="s2">&quot;vmin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">quantiles</span><span class="p">))</span>
+            <span class="k">if</span> <span class="s2">&quot;vmax&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs_</span><span class="p">[</span><span class="s2">&quot;vmax&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">quantiles</span><span class="p">))</span>
+            <span class="n">imshow_binned_statistic_2d</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">,</span> <span class="s2">&quot;log10(teff)&quot;</span><span class="p">,</span> <span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;delta_kg&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_</span>
+            <span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+
+            <span class="n">imshow_binned_statistic_2d</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">,</span> <span class="s2">&quot;log10(teff)&quot;</span><span class="p">,</span> <span class="s2">&quot;logg&quot;</span><span class="p">,</span> <span class="s2">&quot;delta_kg&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_</span>
+            <span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+
+            <span class="n">imshow_binned_statistic_2d</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">,</span> <span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;R0&quot;</span><span class="p">,</span> <span class="s2">&quot;delta_kg&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_</span>
+            <span class="p">)</span>
+
+            <span class="n">imshow_binned_statistic_2d</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">,</span> <span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;feh&quot;</span><span class="p">,</span> <span class="s2">&quot;delta_kg&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_</span>
+            <span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="c1"># fig.suptitle(title)</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">pb</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+                <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+                <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model_characteristics_2_</span><span class="si">{</span><span class="n">pb</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;   - Saved model_characteristics_2_</span><span class="si">{</span><span class="n">pb</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.png&quot;</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">close_figure</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ModelCharacteristicsRunner.plot_1d_residuals">
+<a class="viewcode-back" href="../../../source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner.plot_1d_residuals">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_1d_residuals</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="n">close_figure</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot 1D residuals for each selected model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        close_figure: bool, optional</span>
+<span class="sd">            Whether to close the figure after saving (default: True)</span>
+
+<span class="sd">        :see also: plot_quick_diagnostic_1d</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Plotting 1D residuals...&quot;</span><span class="p">)</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;passband == &quot;</span><span class="si">{pb}</span><span class="s1">&quot; &amp; A0 &gt; 0&#39;</span>
+        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">():</span>
+            <span class="n">pb</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># pyright: ignore</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pb</span><span class="o">=</span><span class="n">pb</span><span class="p">))</span>
+            <span class="n">zpt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vega_zpt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pb</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="n">plot_quick_diagnostic_1d</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">mag_zpt</span><span class="o">=</span><span class="n">zpt</span><span class="p">)</span>
+
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>  <span class="c1"># pyright: ignore</span>
+                <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+                <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+                <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model_characteristics_1_</span><span class="si">{</span><span class="n">pb</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;   - Saved model_characteristics_1_</span><span class="si">{</span><span class="n">pb</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.png&quot;</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">close_figure</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_small_kurucz_testgrid</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">passbands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">model_pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;models/Kurucz2003all/*.fl.dat.txt&quot;</span><span class="p">,</span>
+    <span class="n">extinction_curve</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;F99&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a small grid of photometric data for testing purposes.</span>
+
+<span class="sd">    This grid is based on Kurucz (2003) atmospheric models and uses the</span>
+<span class="sd">    specified passbands. The grid covers a limited range of A0 and R0 values.</span>
+<span class="sd">    It should take ~3 min to generate on a good machine.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># helps to robustly define grid parameters</span>
+    <span class="n">grid_parameters</span> <span class="o">=</span> <span class="n">GridParameters</span><span class="p">(</span>
+        <span class="n">model_pattern</span><span class="o">=</span><span class="n">model_pattern</span><span class="p">,</span>
+        <span class="n">pbset</span><span class="o">=</span><span class="n">passbands</span><span class="p">,</span>
+        <span class="n">atmosphere_name</span><span class="o">=</span><span class="s2">&quot;Kurucz (ODFNEW/NOVER 2003)&quot;</span><span class="p">,</span>
+        <span class="n">atmosphere_shortname</span><span class="o">=</span><span class="s2">&quot;kurucz&quot;</span><span class="p">,</span>
+        <span class="n">extinction_curve</span><span class="o">=</span><span class="n">extinction_curve</span><span class="p">,</span>
+        <span class="n">apfields</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;teff&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;logg&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;feh&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;alpha&quot;</span><span class="p">,</span>
+        <span class="p">],</span>  <span class="c1"># no additional output parameters</span>
+        <span class="n">n_jobs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">A0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]),</span>
+        <span class="n">R0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">]),</span>
+    <span class="p">)</span>
+    <span class="n">grid_output_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">grid_parameters</span><span class="o">.</span><span class="n">atmosphere_shortname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">grid_parameters</span><span class="o">.</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">_small_a0r0_grid.ecsv&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># run grid generation</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">grid_parameters</span><span class="o">.</span><span class="n">generate_grid</span><span class="p">(</span><span class="n">grid_output_path</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Generated small grid at </span><span class="si">{</span><span class="n">grid_output_path</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="si">}</span><span class="s2"> entries.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">grid_output_path</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_quick_diagnostic_1d</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">,</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">mag_zpt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Δk(X) = A(X) / A0  predicted - true as a function of A0, mag0, and Teff</span>
+<span class="sd">    Plots are computed for the small precomputed model grid provided with Dustapprox.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># values Ax / A0</span>
+    <span class="n">kg_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">kg_pred</span><span class="o">=</span><span class="n">kg_pred</span><span class="p">,</span>
+        <span class="n">kg_true</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ax&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">],</span>
+        <span class="n">delta_kg</span><span class="o">=</span><span class="n">kg_pred</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ax&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colormaps</span><span class="p">[</span><span class="s2">&quot;inferno_r&quot;</span><span class="p">]</span>
+    <span class="n">kwargs_all</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+        <span class="n">c</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">],</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">noise</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;kg_pred&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;kg_true&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_all</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;A0 [mag]&quot;</span><span class="p">)</span>
+    <span class="n">grps</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;A0&quot;</span><span class="p">)[[</span><span class="s2">&quot;delta_kg&quot;</span><span class="p">]]</span>
+    <span class="n">grps</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;delta_kg&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean prediction error&quot;</span>
+    <span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">grps</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.16</span><span class="p">),</span> <span class="n">grps</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.84</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;delta_kg&quot;</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;delta_kg&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;A0 [mag]&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Predicted - True $A_x / A_0$ [mag]&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;mag0&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">mag_zpt</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;kg_pred&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;kg_true&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_all</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;A0 [mag]&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;M$_G$ [mag]&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Predicted - True $A_x / A_0$ [mag]&quot;</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;teff&quot;</span><span class="p">]),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;kg_pred&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;kg_true&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_all</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;A0 [mag]&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;log$_</span><span class="si">{10}</span><span class="s2">$T$_</span><span class="si">{eff}</span><span class="s2">$ [K]&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Predicted - True $A_x / A_0$ [mag]&quot;</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;R0&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">noise</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;kg_pred&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;kg_true&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_all</span>
+    <span class="p">)</span>
+    <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;A0 [mag]&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cbar</span><span class="o">.</span><span class="n">solids</span><span class="p">:</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">solids</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;R0&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Predicted - True $A_x / A_0$ [mag]&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="o">-</span><span class="n">axes</span><span class="o">.</span><span class="n">size</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">quantiles</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;delta_kg&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span>
+        <span class="c1"># ylim = -np.max(np.abs(quantiles)), np.max(np.abs(quantiles))</span>
+        <span class="n">ylim</span> <span class="o">=</span> <span class="n">quantiles</span><span class="p">[</span><span class="mf">0.01</span><span class="p">],</span> <span class="n">quantiles</span><span class="p">[</span><span class="mf">0.99</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">imshow_binned_statistic_2d</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">bins_x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bins_y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">statistic</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">labels</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
+    <span class="o">**</span><span class="n">imshow_kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot binned statistic 2d&quot;&quot;&quot;</span>
+    <span class="n">x_</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">w_</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">what</span><span class="p">)</span>
+    <span class="c1"># get bins</span>
+    <span class="k">if</span> <span class="n">bins_x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">x_</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>  <span class="c1"># pyright: ignore</span>
+        <span class="n">x_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1e-3</span>
+        <span class="n">x_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">1e-3</span>
+        <span class="n">bins_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_vals</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">x_vals</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">bins_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="n">x_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">bins_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+                <span class="n">bins_x</span><span class="p">,</span>
+                <span class="p">[</span><span class="n">x_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bins_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])],</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">bins_y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">y_</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>  <span class="c1"># pyright: ignore</span>
+        <span class="n">y_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1e-3</span>
+        <span class="n">y_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">1e-3</span>
+        <span class="n">bins_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">y_vals</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">bins_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">bins_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+                <span class="n">bins_y</span><span class="p">,</span>
+                <span class="p">[</span><span class="n">y_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bins_y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])],</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="c1"># get statistics</span>
+    <span class="n">bin_means</span><span class="p">,</span> <span class="n">xedges</span><span class="p">,</span> <span class="n">yedges</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">binned_statistic_2d</span><span class="p">(</span>
+        <span class="n">x_</span><span class="p">,</span>
+        <span class="n">y_</span><span class="p">,</span>
+        <span class="n">w_</span><span class="p">,</span>
+        <span class="n">statistic</span><span class="o">=</span><span class="n">statistic</span><span class="p">,</span>
+        <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="n">bins_x</span><span class="p">,</span> <span class="n">bins_y</span><span class="p">],</span>  <span class="c1"># pyright: ignore</span>
+    <span class="p">)</span>
+
+    <span class="c1"># plot</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+        <span class="n">bin_means</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span>
+        <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">xedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+        <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">imshow_kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">statistic</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">what</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">statistic</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">what</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="run_model_characteristics">
+<a class="viewcode-back" href="../../../source/dustapprox.tools.html#dustapprox.tools.model_characteristics.run_model_characteristics">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_model_characteristics</span><span class="p">(</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">passbands</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Gaia&quot;</span><span class="p">,</span>
+    <span class="n">extinction_curve</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;F99&quot;</span><span class="p">,</span>
+    <span class="n">plot_1d</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">plot_2d</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">close_figure</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the model characteristics plots for a given set of passbands and extinction curve.</span>
+
+<span class="sd">    This function generates a small photometric test grid if not already</span>
+<span class="sd">    existing, and then produces 1D and/or 2D residual plots for the selected</span>
+<span class="sd">    passbands.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    passbands: str</span>
+<span class="sd">        Name of the passband set to use (e.g., &quot;Gaia&quot;, &quot;Generic&quot;), this</span>
+<span class="sd">        corresponds to :func:`dustapprox.models.PrecomputedModel.find` passband</span>
+<span class="sd">        argument.</span>
+<span class="sd">    extinction_curve: str</span>
+<span class="sd">        Name of the extinction curve to use (e.g., &quot;F99&quot;, &quot;G23&quot;), this corresponds to</span>
+<span class="sd">        :func:`dustapprox.models.PrecomputedModel.find` extinction argument and</span>
+<span class="sd">        :class:`dustapprox.tools.generate_model.GridParameters` extinction_curve</span>
+<span class="sd">        field.</span>
+<span class="sd">    plot_1d: bool</span>
+<span class="sd">        Whether to generate 1D residual plots (default: True).</span>
+<span class="sd">    plot_2d: bool</span>
+<span class="sd">        Whether to generate 2D residual plots (default: True).</span>
+<span class="sd">    close_figure: bool</span>
+<span class="sd">        Whether to close figures after saving (default: True).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># prepare testdata path</span>
+    <span class="n">testdata_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">passbands</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">_kurucz_</span><span class="si">{</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">_small_a0r0_grid.ecsv&quot;</span>
+    <span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">ModelCharacteristicsRunner</span><span class="p">(</span>
+        <span class="n">library_path</span><span class="o">=</span><span class="s2">&quot;precomputed&quot;</span><span class="p">,</span>
+        <span class="n">library_selection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;passband&quot;</span><span class="p">:</span> <span class="n">passbands</span><span class="p">},</span>
+        <span class="n">testdata_path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">testdata_path</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># generate small grid if not existing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">testdata_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating small test grid at </span><span class="si">{</span><span class="n">testdata_path</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="n">generate_small_kurucz_testgrid</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">passbands</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+            <span class="n">passbands</span><span class="o">=</span><span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">passbands</span><span class="p">()],</span>
+            <span class="n">extinction_curve</span><span class="o">=</span><span class="n">extinction_curve</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># set vega for zeropoints</span>
+    <span class="c1"># use an approximate Kurucz model for Vega</span>
+    <span class="c1"># alpha_lyr_mod_003 is using Kurucz 9550K Vega spectrum T/g=9550/3.95</span>
+    <span class="c1"># we use the nearest Kurucz model available: feh=-0.5, logg=3.5, teff=9500K</span>
+    <span class="c1"># This is an approximation for the plots</span>
+    <span class="n">vega_spec_approx</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">SVOSpectrum</span><span class="p">(</span>
+        <span class="s2">&quot;models/Kurucz2003all/fm05at9500g35k2odfnew.fl.dat.txt&quot;</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">set_vega_zeropoints</span><span class="p">(</span><span class="n">vega_spec_approx</span><span class="p">)</span>
+
+    <span class="c1"># plot 2d residuals</span>
+    <span class="k">if</span> <span class="n">plot_2d</span><span class="p">:</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">plot_2d_residuals</span><span class="p">(</span><span class="n">close_figure</span><span class="o">=</span><span class="n">close_figure</span><span class="p">)</span>
+
+    <span class="c1"># plot 1d residuals</span>
+    <span class="k">if</span> <span class="n">plot_1d</span><span class="p">:</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">plot_1d_residuals</span><span class="p">(</span><span class="n">close_figure</span><span class="o">=</span><span class="n">close_figure</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done.&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

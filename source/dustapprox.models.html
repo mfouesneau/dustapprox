@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dustapprox.models package &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=984d411d"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="../_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/dustapprox.models';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/source/dustapprox.models.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../precomputed.html">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/blob/main/docs/source/dustapprox.models.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Fsource/dustapprox.models.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/source/dustapprox.models.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>dustapprox.models package</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dustapprox.models.basemodel">dustapprox.models.basemodel module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.meta"><code class="docutils literal notranslate"><span class="pre">BaseModel.meta</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.__init__"><code class="docutils literal notranslate"><span class="pre">BaseModel.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.fit"><code class="docutils literal notranslate"><span class="pre">BaseModel.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.predict"><code class="docutils literal notranslate"><span class="pre">BaseModel.predict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.to_pandas"><code class="docutils literal notranslate"><span class="pre">BaseModel.to_pandas()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dustapprox.models.polynomial">dustapprox.models.polynomial module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel"><code class="docutils literal notranslate"><span class="pre">PolynomialModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.meta"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.meta</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.transformer_"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.transformer_</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.coeffs_"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.coeffs_</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.__init__"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.degree_"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.degree_</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.feature_names"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.feature_names</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.fit"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.from_file"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.from_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.get_transformed_feature_names"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.get_transformed_feature_names()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.name"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.predict"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.predict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.to_ecsv"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.to_ecsv()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.to_pandas"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.to_pandas()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.approx_model"><code class="docutils literal notranslate"><span class="pre">approx_model()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.quick_plot_models"><code class="docutils literal notranslate"><span class="pre">quick_plot_models()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dustapprox.models">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo"><code class="docutils literal notranslate"><span class="pre">ModelInfo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.__init__"><code class="docutils literal notranslate"><span class="pre">ModelInfo.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.atmosphere"><code class="docutils literal notranslate"><span class="pre">ModelInfo.atmosphere</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.comment"><code class="docutils literal notranslate"><span class="pre">ModelInfo.comment</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.copy"><code class="docutils literal notranslate"><span class="pre">ModelInfo.copy()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.extinction"><code class="docutils literal notranslate"><span class="pre">ModelInfo.extinction</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.filename"><code class="docutils literal notranslate"><span class="pre">ModelInfo.filename</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.load_model"><code class="docutils literal notranslate"><span class="pre">ModelInfo.load_model()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.model"><code class="docutils literal notranslate"><span class="pre">ModelInfo.model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.passbands"><code class="docutils literal notranslate"><span class="pre">ModelInfo.passbands</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel.__init__"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel.find"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel.find()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel.get_models_info"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel.get_models_info()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel.load_model"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel.load_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="dustapprox-models-package">
+<h1>dustapprox.models package<a class="headerlink" href="#dustapprox-models-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-dustapprox.models.basemodel">
+<span id="dustapprox-models-basemodel-module"></span><h2>dustapprox.models.basemodel module<a class="headerlink" href="#module-dustapprox.models.basemodel" title="Link to this heading">#</a></h2>
+<p>Base class for deriving various kinds of models.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dustapprox.models.basemodel.BaseModel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaseModel</span></span><a class="reference internal" href="../_modules/dustapprox/models/basemodel.html#BaseModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.basemodel.BaseModel" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A model object other approximations derive from</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.basemodel.BaseModel.meta">
+<span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#dustapprox.models.basemodel.BaseModel.meta" title="Link to this definition">#</a></dt>
+<dd><p>meta information about the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.basemodel.BaseModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/basemodel.html#BaseModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.basemodel.BaseModel.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.basemodel.BaseModel.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/basemodel.html#BaseModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.basemodel.BaseModel.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit the model to the data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – positional arguments</p></li>
+<li><p><strong>**kwargs</strong> – keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.basemodel.BaseModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/basemodel.html#BaseModel.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.basemodel.BaseModel.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predict the extinction in a given passband.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – positional arguments</p></li>
+<li><p><strong>**kwargs</strong> – keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.basemodel.BaseModel.to_pandas">
+<span class="sig-name descname"><span class="pre">to_pandas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/basemodel.html#BaseModel.to_pandas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.basemodel.BaseModel.to_pandas" title="Link to this definition">#</a></dt>
+<dd><p>Export the model to a pandas DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The model as a pandas DataFrame.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-dustapprox.models.polynomial">
+<span id="dustapprox-models-polynomial-module"></span><h2>dustapprox.models.polynomial module<a class="headerlink" href="#module-dustapprox.models.polynomial" title="Link to this heading">#</a></h2>
+<p>Polynomial approximation of extinction effect per passband.</p>
+<p>In this library, we provide tools and pre-computed models to obtain the extinction coefficient
+<span class="math notranslate nohighlight">\(k_x = A_x / A_0\)</span> for various passbands.</p>
+<p>Extinction coefficients depend primarily on the source spectral energy
+distribution and on the extinction itself (e.g., Gordon et al., 2016; Jordi et
+al., 2010) but also other parameters such as <span class="math notranslate nohighlight">\(\log g\)</span>,
+<span class="math notranslate nohighlight">\([\alpha/Fe]\)</span>, and <span class="math notranslate nohighlight">\([Fe/H]\)</span>.</p>
+<p>We define the extinction coefficient <span class="math notranslate nohighlight">\(k_x\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[k_x = A_x / A_0,\]</div>
+<p>with <span class="math notranslate nohighlight">\(A_0\)</span> the extinction parameter at <span class="math notranslate nohighlight">\(550 nm\)</span>, and <span class="math notranslate nohighlight">\(x\)</span> the passband.</p>
+<p>We use a L1-regularized regression model (Lasso-Lars model) using BIC or AIC for
+model/complexity selection.</p>
+<p>The optimization objective for Lasso is:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2 n_{samples}} \cdot \|y - X \cdot w\|^2_2 + \alpha \times \|w\|_1\]</div>
+<p>AIC is the <a class="reference external" href="https://en.wikipedia.org/wiki/Akaike_information_criterion">Akaike information
+criterion</a> and BIC
+is the <a class="reference external" href="https://en.wikipedia.org/wiki/Bayesian_information_criterion">Bayes Information criterion</a>.
+AIC or BIC are useful criteria to select the value of the regularization parameter <span class="math notranslate nohighlight">\(\alpha\)</span> by making a
+trade-off between the goodness-of-fit and
+the complexity of the model.</p>
+<p>This allows is to follow the principle of parsimony (aka Occam’s razor): a good
+model should explain well the data while being simple.</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/65f8898a59d6181d3f3d7b897f9f0365/dustapprox-models-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PolynomialModel</span></span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#PolynomialModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dustapprox.models.basemodel.BaseModel" title="dustapprox.models.basemodel.BaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<p>A polynomial model object</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.meta">
+<span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.meta" title="Link to this definition">#</a></dt>
+<dd><p>meta information about the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.transformer_">
+<span class="sig-name descname"><span class="pre">transformer_</span></span><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.transformer_" title="Link to this definition">#</a></dt>
+<dd><p>polynomial transformer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PolynomialFeatures</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.coeffs_">
+<span class="sig-name descname"><span class="pre">coeffs_</span></span><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.coeffs_" title="Link to this definition">#</a></dt>
+<dd><p>coefficients of the regression on the polynomial expended features</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#PolynomialModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.degree_">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">degree_</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.degree_" title="Link to this definition">#</a></dt>
+<dd><p>Degree of the polynomial transformation</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.feature_names">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">feature_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.feature_names" title="Link to this definition">#</a></dt>
+<dd><p>Input feature dimensions of the model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Ax'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#PolynomialModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.fit" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>DataFrame</em>) – DataFrame with the passband grid data.</p></li>
+<li><p><strong>features</strong> (<em>Sequence</em><em>[</em><em>str</em><em>]</em>) – input features from df (note: if used, teff will be normalized to teff/5040)</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – which field contains the label values</p></li>
+<li><p><strong>degree</strong> (<em>int</em>) – The degree of the polynomial model.</p></li>
+<li><p><strong>interaction_only</strong> (<em>bool</em>) – If True, only the interaction terms are used.</p></li>
+<li><p><strong>input_parameters</strong> (<em>Sequence</em><em>[</em><em>str</em><em>]</em>) – The input parameters to use.
+If None, ‘teff logg feh A0 alpha’ parameters are used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.from_file">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passband</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#PolynomialModel.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.from_file" title="Link to this definition">#</a></dt>
+<dd><p>Restore a model from a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – <p>the ECSV filepath containing the model definition</p>
+<p>The file should contain the various parameters associated with the
+model in its <cite>metadata</cite>.</p>
+</p></li>
+<li><p><strong>passband</strong> (<em>str</em>) – name of the model to load (passband column in the ecsv file)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>model</strong> – model object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dustapprox.models.polynomial.PolynomialModel" title="dustapprox.models.polynomial.PolynomialModel">PolynomialModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.get_transformed_feature_names">
+<span class="sig-name descname"><span class="pre">get_transformed_feature_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#PolynomialModel.get_transformed_feature_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.get_transformed_feature_names" title="Link to this definition">#</a></dt>
+<dd><p>get the feature names of the internal transformation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ndarray</em>[tuple[<em>Any</em>, …], <em>dtype</em>[<em>Any</em>]] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.name" title="Link to this definition">#</a></dt>
+<dd><p>Get the model name also stored in the coeffs series</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#PolynomialModel.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predict the extinction in the specific passband</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if X is a <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataframe</span></code>, <cite>teffnorm</cite> could be automatically added</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>Union</em><em>[</em><em>np.ndarray</em><em>, </em><em>pd.DataFrame</em><em>]</em>) – input features</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>y</strong> – predicted values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.to_ecsv">
+<span class="sig-name descname"><span class="pre">to_ecsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">meta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#PolynomialModel.to_ecsv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.to_ecsv" title="Link to this definition">#</a></dt>
+<dd><p>Export model into an ECSV file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.PolynomialModel.to_pandas">
+<span class="sig-name descname"><span class="pre">to_pandas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#PolynomialModel.to_pandas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.PolynomialModel.to_pandas" title="Link to this definition">#</a></dt>
+<dd><p>Export the model to a pandas array, useful for storage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>DataFrame</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.approx_model">
+<span class="sig-name descname"><span class="pre">approx_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">passband</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GAIA_GAIA3.G'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#approx_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.approx_model" title="Link to this definition">#</a></dt>
+<dd><p>Fit the passband grid data with a polynomial model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>DataFrame</em>) – DataFrame with the passband grid data.</p></li>
+<li><p><strong>passband</strong> (<em>str</em>) – The passband to fit.</p></li>
+<li><p><strong>degree</strong> (<em>int</em>) – The degree of the polynomial model.</p></li>
+<li><p><strong>interaction_only</strong> (<em>bool</em>) – If True, only the interaction terms are used.</p></li>
+<li><p><strong>input_parameters</strong> (<em>Sequence</em><em>[</em><em>str</em><em>]</em>) – The input parameters to use.
+If None, ‘teff logg feh A0 alpha’ parameters are used.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If True, print the model parameters and statistics</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with the model parameters and statistics.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dustapprox.models.polynomial.quick_plot_models">
+<span class="sig-name descname"><span class="pre">quick_plot_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models/polynomial.html#quick_plot_models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.polynomial.quick_plot_models" title="Link to this definition">#</a></dt>
+<dd><p>Plot diagnostic plots for the models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>r</strong> (<em>DataFrame</em>) – DataFrame with the passband grid data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>DataFrame</em> – DataFrame with the all model parameters and statistics.</p></li>
+<li><p><em>.. seealso::</em> – <a class="reference internal" href="#dustapprox.models.polynomial.approx_model" title="dustapprox.models.polynomial.approx_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">approx_model()</span></code></a></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Generator</em>[<em>DataFrame</em>, None, None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-dustapprox.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dustapprox.models" title="Link to this heading">#</a></h2>
+<p>We provide various modeling schemes for extinction in a given photometric band.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>add script to generate grid of models</p></li>
+<li><p>add polynomial training.</p></li>
+<li><p>compare literature values to ours.</p></li>
+</ul>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ModelInfo</span></span><a class="reference internal" href="../_modules/dustapprox/models.html#ModelInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.ModelInfo" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Information about a precomputed model</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atmosphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extinction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passbands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_source_library</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dustapprox.models.ModelInfo.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atmosphere</strong> (<em>dict</em>)</p></li>
+<li><p><strong>extinction</strong> (<em>dict</em>)</p></li>
+<li><p><strong>comment</strong> (<em>Sequence</em><em>[</em><em>str</em><em>]</em>)</p></li>
+<li><p><strong>model</strong> (<em>dict</em>)</p></li>
+<li><p><strong>passbands</strong> (<em>Sequence</em><em>[</em><em>str</em><em>]</em>)</p></li>
+<li><p><strong>filename</strong> (<em>str</em>)</p></li>
+<li><p><strong>_source_library</strong> (<a class="reference internal" href="#dustapprox.models.PrecomputedModel" title="dustapprox.models.PrecomputedModel"><em>PrecomputedModel</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.atmosphere">
+<span class="sig-name descname"><span class="pre">atmosphere</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dustapprox.models.ModelInfo.atmosphere" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.comment">
+<span class="sig-name descname"><span class="pre">comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dustapprox.models.ModelInfo.comment" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models.html#ModelInfo.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.ModelInfo.copy" title="Link to this definition">#</a></dt>
+<dd><p>Create a copy of this ModelInfo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dustapprox.models.ModelInfo" title="dustapprox.models.ModelInfo"><em>ModelInfo</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.extinction">
+<span class="sig-name descname"><span class="pre">extinction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dustapprox.models.ModelInfo.extinction" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.filename">
+<span class="sig-name descname"><span class="pre">filename</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dustapprox.models.ModelInfo.filename" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.load_model">
+<span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">passband</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models.html#ModelInfo.load_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.ModelInfo.load_model" title="Link to this definition">#</a></dt>
+<dd><p>Load the model described by this info</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>passband</strong> (<em>str</em>) – The passband to be loaded. If <cite>None</cite>, loads all available passband models.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>model</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dustapprox.models.polynomial.PolynomialModel" title="dustapprox.models.polynomial.PolynomialModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.polynomial.PolynomialModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dustapprox.models.ModelInfo.model" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dustapprox.models.ModelInfo.passbands">
+<span class="sig-name descname"><span class="pre">passbands</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dustapprox.models.ModelInfo.passbands" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dustapprox.models.PrecomputedModel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PrecomputedModel</span></span><a class="reference internal" href="../_modules/dustapprox/models.html#PrecomputedModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.PrecomputedModel" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Access to precomputed models</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrecomputedModel</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">PrecomputedModel</span><span class="p">()</span>
+<span class="c1"># search for GALEX passbands if present</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s2">&quot;galex&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="c1"># load both available models</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">passband</span><span class="o">=</span><span class="n">pbname</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">pbname</span> <span class="ow">in</span> <span class="n">source</span><span class="p">[</span><span class="s2">&quot;passbands&quot;</span><span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">result from <a class="reference internal" href="#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">PrecomputedModel.find()</span></code></a></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[{&#39;atmosphere&#39;: {&#39;source&#39;: &#39;Kurucz (ODFNEW/NOVER 2003)&#39;,
+    &#39;teff&#39;: [3500.0, 50000.0],
+    &#39;logg&#39;: [0.0, 5.0],
+    &#39;feh&#39;: [-4, 0.5],
+    &#39;alpha&#39;: [0, 0.4]},
+  &#39;extinction&#39;: {&#39;source&#39;: &#39;Fitzpatrick (1999)&#39;, &#39;R0&#39;: 3.1, &#39;A0&#39;: [0, 10]},
+  &#39;comment&#39;: [&#39;teffnorm = teff / 5040&#39;, &#39;predicts kx = Ax / A0&#39;],
+  &#39;model&#39;: {&#39;kind&#39;: &#39;polynomial&#39;,
+  &#39;degree&#39;: 3,
+  &#39;interaction_only&#39;: False,
+  &#39;include_bias&#39;: True,
+  &#39;feature_names&#39;: [&#39;A0&#39;, &#39;teffnorm&#39;]},
+  &#39;passbands&#39;: [&#39;GALEX_GALEX.FUV&#39;, &#39;GALEX_GALEX.NUV&#39;],
+  &#39;filename&#39;: &#39;dustapprox/data/precomputed/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv&#39;}]
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">result when loading models with from <a class="reference internal" href="#dustapprox.models.PrecomputedModel.load_model" title="dustapprox.models.PrecomputedModel.load_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">PrecomputedModel.load_model()</span></code></a></span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[PolynomialModel: GALEX_GALEX.FUV
+&lt;dustapprox.models.polynomial.PolynomialModel object at 0x12917b6a0&gt;
+    from: A0, teffnorm   polynomial degree: 3,
+PolynomialModel: GALEX_GALEX.NUV
+&lt;dustapprox.models.polynomial.PolynomialModel object at 0x129170820&gt;
+    from: A0, teffnorm   polynomial degree: 3]
+</pre></div>
+</div>
+</div>
+<p>Constructor</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.PrecomputedModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models.html#PrecomputedModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.PrecomputedModel.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>location</strong> (<em>str</em><em> | </em><em>None</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.PrecomputedModel.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">passband</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extinction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atmosphere</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models.html#PrecomputedModel.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.PrecomputedModel.find" title="Link to this definition">#</a></dt>
+<dd><p>Find all the computed models that match the given parameters.</p>
+<p>The search is case insentive and returns all matches.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>passband</strong> (<em>str</em>) – The passband to be used.</p></li>
+<li><p><strong>extinction</strong> (<em>str</em>) – The extinction model to be used. (e.g., ‘Fitzpatrick’)</p></li>
+<li><p><strong>atmosphere</strong> (<em>str</em>) – The atmosphere model to be used. (e.g., ‘kurucz’)</p></li>
+<li><p><strong>kind</strong> (<em>str</em>) – The kind of model to be used (e.g., polynomial).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Sequence</em>[<a class="reference internal" href="#dustapprox.models.ModelInfo" title="dustapprox.models.ModelInfo"><em>ModelInfo</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.PrecomputedModel.get_models_info">
+<span class="sig-name descname"><span class="pre">get_models_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">glob_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/**/*.ecsv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models.html#PrecomputedModel.get_models_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.PrecomputedModel.get_models_info" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the information for all models available and files
+:param glob_pattern: The glob pattern to use to search for model files.
+:type glob_pattern: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>info</strong> – The list of model information structures.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of <a class="reference internal" href="#dustapprox.models.ModelInfo" title="dustapprox.models.ModelInfo">ModelInfo</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>glob_pattern</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dustapprox.models.PrecomputedModel.load_model">
+<span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passband</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustapprox/models.html#PrecomputedModel.load_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustapprox.models.PrecomputedModel.load_model" title="Link to this definition">#</a></dt>
+<dd><p>Load a model from a file or description (<a class="reference internal" href="#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">PrecomputedModel.find()</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em><em> or </em><em>dict</em>) – The filename of the model to be loaded or a description of the model
+returned by <a class="reference internal" href="#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">PrecomputedModel.find()</span></code></a></p></li>
+<li><p><strong>passband</strong> (<em>str</em>) – The passband to be loaded. If <cite>None</cite>, loads all available passband models.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>model</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dustapprox.models.polynomial.PolynomialModel" title="dustapprox.models.polynomial.PolynomialModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.polynomial.PolynomialModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dustapprox.models.basemodel">dustapprox.models.basemodel module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.meta"><code class="docutils literal notranslate"><span class="pre">BaseModel.meta</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.__init__"><code class="docutils literal notranslate"><span class="pre">BaseModel.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.fit"><code class="docutils literal notranslate"><span class="pre">BaseModel.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.predict"><code class="docutils literal notranslate"><span class="pre">BaseModel.predict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.basemodel.BaseModel.to_pandas"><code class="docutils literal notranslate"><span class="pre">BaseModel.to_pandas()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dustapprox.models.polynomial">dustapprox.models.polynomial module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel"><code class="docutils literal notranslate"><span class="pre">PolynomialModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.meta"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.meta</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.transformer_"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.transformer_</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.coeffs_"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.coeffs_</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.__init__"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.degree_"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.degree_</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.feature_names"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.feature_names</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.fit"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.from_file"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.from_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.get_transformed_feature_names"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.get_transformed_feature_names()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.name"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.predict"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.predict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.to_ecsv"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.to_ecsv()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.PolynomialModel.to_pandas"><code class="docutils literal notranslate"><span class="pre">PolynomialModel.to_pandas()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.approx_model"><code class="docutils literal notranslate"><span class="pre">approx_model()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.polynomial.quick_plot_models"><code class="docutils literal notranslate"><span class="pre">quick_plot_models()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dustapprox.models">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo"><code class="docutils literal notranslate"><span class="pre">ModelInfo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.__init__"><code class="docutils literal notranslate"><span class="pre">ModelInfo.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.atmosphere"><code class="docutils literal notranslate"><span class="pre">ModelInfo.atmosphere</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.comment"><code class="docutils literal notranslate"><span class="pre">ModelInfo.comment</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.copy"><code class="docutils literal notranslate"><span class="pre">ModelInfo.copy()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.extinction"><code class="docutils literal notranslate"><span class="pre">ModelInfo.extinction</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.filename"><code class="docutils literal notranslate"><span class="pre">ModelInfo.filename</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.load_model"><code class="docutils literal notranslate"><span class="pre">ModelInfo.load_model()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.model"><code class="docutils literal notranslate"><span class="pre">ModelInfo.model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.ModelInfo.passbands"><code class="docutils literal notranslate"><span class="pre">ModelInfo.passbands</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel.__init__"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel.find"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel.find()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel.get_models_info"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel.get_models_info()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dustapprox.models.PrecomputedModel.load_model"><code class="docutils literal notranslate"><span class="pre">PrecomputedModel.load_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

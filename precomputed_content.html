@@ -1,0 +1,2787 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>List of provided precomputed models &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'precomputed_content';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/precomputed_content.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Assessing models accuracy and systematics" href="systematics.html" />
+    <link rel="prev" title="Extinction approximation models" href="precomputed.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="precomputed.html">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/blob/main/docs/precomputed_content.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Fprecomputed_content.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/precomputed_content.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>List of provided precomputed models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="list-of-provided-precomputed-models">
+<h1>List of provided precomputed models<a class="headerlink" href="#list-of-provided-precomputed-models" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><dl class="simple">
+<dt>use <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel.find</span></code></a> to find available models and associated passbands</dt><dd><ul>
+<li><p>The search can be on passband, extinction, atmosphere, and model kind.  It is caseless and does not need to contain the complete name.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">examples of searching for models</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrecomputedModel</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">PrecomputedModel</span><span class="p">()</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;Gaia&#39;</span><span class="p">)</span>   <span class="c1"># returns all models with Gaia passband</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;galex&#39;</span><span class="p">,</span> <span class="n">atmosphere</span><span class="o">=</span><span class="s1">&#39;Atlas&#39;</span><span class="p">)</span>   <span class="c1"># returns nothing (we did not provide Atlas9 atmosphere)</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;galex&#39;</span><span class="p">,</span> <span class="n">atmosphere</span><span class="o">=</span><span class="s1">&#39;kurucz&#39;</span><span class="p">)</span>  <span class="c1"># return only kurucz based models</span>
+</pre></div>
+</div>
+</div>
+<p>This table provides the list of precomputed models provided with this package.</p>
+<div class="pst-scrollable-table-container"><table class="sphinx-datatable table" id="id2">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">List of provided precomputed models</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>passband</p></th>
+<th class="head"><p>kind</p></th>
+<th class="head"><p>features</p></th>
+<th class="head"><p>extinction</p></th>
+<th class="head"><p>A0 min</p></th>
+<th class="head"><p>A0 max</p></th>
+<th class="head"><p>R0 min</p></th>
+<th class="head"><p>R0 max</p></th>
+<th class="head"><p>atmosphere</p></th>
+<th class="head"><p>teff min</p></th>
+<th class="head"><p>teff max</p></th>
+<th class="head"><p>logg min</p></th>
+<th class="head"><p>logg max</p></th>
+<th class="head"><p>[Fe/H] min</p></th>
+<th class="head"><p>[Fe/H] max</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2MASS_2MASS.H</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2MASS_2MASS.H</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>2MASS_2MASS.H</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2MASS_2MASS.J</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>2MASS_2MASS.J</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2MASS_2MASS.J</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>2MASS_2MASS.Ks</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2MASS_2MASS.Ks</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>2MASS_2MASS.Ks</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B431</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B431</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B431</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B556</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B556</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B556</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B655</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B655</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B655</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B768</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B768</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B768</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B916</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1B916</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1B916</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M326</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M326</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M326</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M344</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M344</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M344</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M379</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M379</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M379</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M395</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M395</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M395</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M410</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M410</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M410</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M467</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M467</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M467</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M506</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M506</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M506</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M515</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M515</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M515</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M549</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M549</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M549</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M656</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M656</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M656</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M716</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M716</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M716</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M747</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M747</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M747</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M825</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M825</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M825</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M861</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M861</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M861</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M965</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>C1M965</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>C1M965</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA/GAIA4.G</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GAIA/GAIA4.G</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA/GAIA4.Gbp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GAIA/GAIA4.Gbp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA/GAIA4.Rp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GAIA/GAIA4.Rp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA_GAIA3.G</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GAIA_GAIA3.G</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA_GAIA3.G</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GAIA_GAIA3.Gbp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA_GAIA3.Gbp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GAIA_GAIA3.Gbp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA_GAIA3.Grp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GAIA_GAIA3.Grp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAIA_GAIA3.Grp</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GALEX_GALEX.FUV</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GALEX_GALEX.FUV</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GALEX_GALEX.FUV</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GALEX_GALEX.NUV</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GALEX_GALEX.NUV</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GALEX_GALEX.NUV</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Bessell_JHKLM.H</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Bessell_JHKLM.H</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Bessell_JHKLM.H</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Bessell_JHKLM.J</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Bessell_JHKLM.J</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Bessell_JHKLM.J</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Bessell_JHKLM.K</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Bessell_JHKLM.K</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Bessell_JHKLM.K</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Cousins.I</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Cousins.I</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Cousins.I</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Cousins.R</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Cousins.R</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Cousins.R</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Johnson.B</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Johnson.B</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Johnson.B</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Johnson.U</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Johnson.U</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Johnson.U</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Johnson.V</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Generic_Johnson.V</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic_Johnson.V</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.g</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.g</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.g</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.i</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.i</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.i</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.r</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.r</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.r</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.u</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.u</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.u</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.z</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>SLOAN_SDSS.z</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SLOAN_SDSS.z</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_WISE.W1</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_WISE.W1</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_WISE.W1</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_WISE.W2</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_WISE.W2</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_WISE.W2</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_WISE.W3</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_WISE.W3</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_WISE.W3</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_WISE.W4</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 teffnorm</p></td>
+<td><p>Fitzpatrick (1999)</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>3.1</p></td>
+<td><p>3.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_WISE.W4</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>G23</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_WISE.W4</p></td>
+<td><p>polynomial(degree=3)</p></td>
+<td><p>A0 R0 teffnorm</p></td>
+<td><p>F99</p></td>
+<td><p>0.01</p></td>
+<td><p>20</p></td>
+<td><p>2.3</p></td>
+<td><p>5.1</p></td>
+<td><p>Kurucz (ODFNEW/NOVER 2003)</p></td>
+<td><p>3.5e+03</p></td>
+<td><p>5e+04</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>-4</p></td>
+<td><p>0.5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="precomputed.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Extinction approximation models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="systematics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Assessing models accuracy and systematics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Assessing models accuracy and systematics &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'systematics';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/systematics.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Steps to generate models" href="examples.html" />
+    <link rel="prev" title="List of provided precomputed models" href="precomputed_content.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="precomputed.html">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/mfouesneau/dustapprox/main?urlpath=lab/tree/docs/systematics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/mfouesneau/dustapprox/blob/main/docs/systematics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/blob/main/docs/systematics.ipynb?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Fsystematics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/systematics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Assessing models accuracy and systematics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principles">Principles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaia-dr3-passbands-f99-extinction-curve-with-variable-a0-r0">Gaia DR3 passbands, F99 extinction curve with variable A0, R0</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-generic-passbands-with-f99-extinction-curve">Common generic passbands with F99 extinction curve</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="assessing-models-accuracy-and-systematics">
+<h1>Assessing models accuracy and systematics<a class="headerlink" href="#assessing-models-accuracy-and-systematics" title="Link to this heading">#</a></h1>
+<p>This package provides approximations to the extinction effects in photometric bands. It is not meant to be a full implementation of the extinction curves but a shortcut.
+Models come with inherent uncertainties due to the approximation process. To first order, we provide global uncertainties (e.g., rms, biases) associated with the models but it may not be sufficient for all use cases.
+To obtain complete uncertainties, one needs to use models and compute the specific statistics. This may require to evaluate the models on a test set with known properties.</p>
+<p>This notebook illustrates how to use the <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner" title="dustapprox.tools.model_characteristics.ModelCharacteristicsRunner"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelCharacteristicsRunner</span></code></a> class from the <a class="reference internal" href="source/dustapprox.tools.html#module-dustapprox.tools.model_characteristics" title="dustapprox.tools.model_characteristics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.tools.model_characteristics</span></code></a> module to evaluate the accuracy and systematics of dust attenuation models.</p>
+<div class="admonition-version admonition">
+<p class="admonition-title">version</p>
+<p>This notebook is based on Dustapprox version 0.2.0.</p>
+</div>
+<div class="cell tag_remove-input tag_remove-stdout docutils container">
+<div class="cell_output docutils container">
+</div>
+</div>
+<section id="principles">
+<h2>Principles<a class="headerlink" href="#principles" title="Link to this heading">#</a></h2>
+<p>To assess the characteristics of a dustapprox model, we need to compare its predictions to a reference set of data with known properties.</p>
+<p>Any given model is defined by a set of passbands, an extinction curve, and a grid of parameters: <span class="math notranslate nohighlight">\(R_0\)</span>, <span class="math notranslate nohighlight">\(A_0\)</span>, stellar temperatures, gravities, and metallicities to first order.
+The underlying photometric of the models are too large to be distributed with the package, but one can compute them using the <a class="reference internal" href="source/dustapprox.tools.html#module-dustapprox.tools.generate_model" title="dustapprox.tools.generate_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model</span></code></a> module.
+In particular, one can compute a sparse version of the model grid to be used as a test set. If one changes some properties (e.g. extinction curve), this can also be used to analysis the effect of such changes on the model predictions.</p>
+<p>The following lists the steps to run the model characteristics analysis:</p>
+<ol class="arabic simple">
+<li><p>load a precomputed model library using <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel.find()</span></code></a></p></li>
+<li><p>If needed, compute a grid of test data using the properties of the model (passbands, curve, etc), <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.GridParameters" title="dustapprox.tools.generate_model.GridParameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model.GridParameters</span></code></a>, and <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.GridParameters.generate_grid" title="dustapprox.tools.generate_model.GridParameters.generate_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model.GridParameters.generate_grid()</span></code></a>.</p></li>
+<li><p>Evaluate the model predictions on the test data using the <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.basemodel.BaseModel.predict" title="dustapprox.models.basemodel.BaseModel.predict"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict()</span></code></a> method.</p></li>
+<li><p>Compute residuals and other statistics of the model predictions against the test data</p></li>
+</ol>
+<p>We provide a convenience class <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner" title="dustapprox.tools.model_characteristics.ModelCharacteristicsRunner"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.tools.model_characteristics.ModelCharacteristicsRunner</span></code></a> to perform these steps and generate some plots of the model characteristics.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<section id="gaia-dr3-passbands-f99-extinction-curve-with-variable-a0-r0">
+<h3>Gaia DR3 passbands, F99 extinction curve with variable A0, R0<a class="headerlink" href="#gaia-dr3-passbands-f99-extinction-curve-with-variable-a0-r0" title="Link to this heading">#</a></h3>
+<p>This section illustrates how to use the <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.model_characteristics.ModelCharacteristicsRunner" title="dustapprox.tools.model_characteristics.ModelCharacteristicsRunner"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelCharacteristicsRunner</span></code></a> to evaluate the characteristics of a dustapprox model associated with Gaia DR3 passbands and the F99 extinction curve with variable <span class="math notranslate nohighlight">\(A_0\)</span> and <span class="math notranslate nohighlight">\(R_0\)</span>.</p>
+<p>The following snippet (<a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.model_characteristics.run_model_characteristics" title="dustapprox.tools.model_characteristics.run_model_characteristics"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_model_characteristics()</span></code></a>) runs the steps outlined above and generates 2D plots of the model residuals as a function of <span class="math notranslate nohighlight">\(A_0\)</span> and <span class="math notranslate nohighlight">\(R_0\)</span>, one plot per passband.</p>
+<div class="cell tag_remove-stdout docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.tools.model_characteristics</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_model_characteristics</span>
+
+<span class="n">run_model_characteristics</span><span class="p">(</span>
+    <span class="n">passbands</span><span class="o">=</span><span class="s2">&quot;Gaia&quot;</span><span class="p">,</span>
+    <span class="n">extinction_curve</span><span class="o">=</span><span class="s2">&quot;F99&quot;</span><span class="p">,</span>
+    <span class="n">plot_1d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">plot_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">close_figure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/661bb01ff99315af82a1294c36e9f0f472f3f0603721dd504781dee3cb9edf4d.png" src="_images/661bb01ff99315af82a1294c36e9f0f472f3f0603721dd504781dee3cb9edf4d.png" />
+<img alt="_images/f682e2303299eb430920a27a6f920e75ea0a37762d34c4e81a3b7c0d21ab347b.png" src="_images/f682e2303299eb430920a27a6f920e75ea0a37762d34c4e81a3b7c0d21ab347b.png" />
+<img alt="_images/5f19854af271e3fbb9101d21be0e9a059d56daa742c05c105ad18cf57e76ccad.png" src="_images/5f19854af271e3fbb9101d21be0e9a059d56daa742c05c105ad18cf57e76ccad.png" />
+</div>
+</div>
+<p>These plots show that the residuals are generally small (within a few mmag) across the parameter space, indicating that the dustapprox model provides a good approximation of the extinction effects in the Gaia DR3 passbands for the F99 extinction curve with variable <span class="math notranslate nohighlight">\(A_0\)</span> and <span class="math notranslate nohighlight">\(R_0\)</span>. However, this is not perfect and some systematics are visible, especially at low extinction values. One can remark the polynomial nature of the residuals, which is expected given the polynomial approximations used in these dustapprox models.</p>
+<p>Hence it is important to be careful and consider these systematics when using the models for scientific analysis.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The runner calculates some approximate zeropoints that are not traditional photometric zeropoints. These correspond to the magnitude offset of the normalized stellar atmospheres and are only used to plot meaninful magnitudes.</p>
+</div>
+</section>
+</section>
+<section id="common-generic-passbands-with-f99-extinction-curve">
+<h2>Common generic passbands with F99 extinction curve<a class="headerlink" href="#common-generic-passbands-with-f99-extinction-curve" title="Link to this heading">#</a></h2>
+<div class="cell tag_remove-stdout docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_model_characteristics</span><span class="p">(</span>
+    <span class="n">passbands</span><span class="o">=</span><span class="s2">&quot;Generic&quot;</span><span class="p">,</span>
+    <span class="n">extinction_curve</span><span class="o">=</span><span class="s2">&quot;F99&quot;</span><span class="p">,</span>
+    <span class="n">plot_1d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">plot_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">close_figure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/728359d9bd987f8ab8b8918a6846a2cf59c0e7637c2d4b8d167bdc835d89c4e5.png" src="_images/728359d9bd987f8ab8b8918a6846a2cf59c0e7637c2d4b8d167bdc835d89c4e5.png" />
+<img alt="_images/8d26a26d362243b03379b37d11ebe0a25df17a9ccd720d9bb015c6993d218234.png" src="_images/8d26a26d362243b03379b37d11ebe0a25df17a9ccd720d9bb015c6993d218234.png" />
+<img alt="_images/7915a2f5f2c07c67768061a20926f05ab80fc8f3a714af385fa29510474ff1be.png" src="_images/7915a2f5f2c07c67768061a20926f05ab80fc8f3a714af385fa29510474ff1be.png" />
+<img alt="_images/9274131e5f14da5aa5ddf00bacb315bfa6c2ac603835d6d991cd634024f751fd.png" src="_images/9274131e5f14da5aa5ddf00bacb315bfa6c2ac603835d6d991cd634024f751fd.png" />
+<img alt="_images/1fbfed1604b0f93ce049e301f96e4652b50476558d140162ee6e4813d5a8bcb2.png" src="_images/1fbfed1604b0f93ce049e301f96e4652b50476558d140162ee6e4813d5a8bcb2.png" />
+<img alt="_images/a92e6ce77c7d886556b1cc5a4de1ab1d03f2dd067f27b8fa86c8569a7892cf3d.png" src="_images/a92e6ce77c7d886556b1cc5a4de1ab1d03f2dd067f27b8fa86c8569a7892cf3d.png" />
+<img alt="_images/b1f0a59f62241a3a98a4d4df32bce87092b63e2c04f83a25d6b897cec1b1ec43.png" src="_images/b1f0a59f62241a3a98a4d4df32bce87092b63e2c04f83a25d6b897cec1b1ec43.png" />
+<img alt="_images/a6340eeb8a705e8161b38f9d4c5c6bf792c54a20c04589160d93c619e1b92148.png" src="_images/a6340eeb8a705e8161b38f9d4c5c6bf792c54a20c04589160d93c619e1b92148.png" />
+<img alt="_images/6c05e8d772cb9502e306d710066ccb270de97ed3ecdf088e0e2b0445b534ea3f.png" src="_images/6c05e8d772cb9502e306d710066ccb270de97ed3ecdf088e0e2b0445b534ea3f.png" />
+<img alt="_images/1e596b7b046950e2bba2704674dd136aafd93c3928fc180b74312f6228c7114c.png" src="_images/1e596b7b046950e2bba2704674dd136aafd93c3928fc180b74312f6228c7114c.png" />
+<img alt="_images/687eb4e18edc65771e28ecde2636767cb04cf15bbff27204dee2d34b949f0fe3.png" src="_images/687eb4e18edc65771e28ecde2636767cb04cf15bbff27204dee2d34b949f0fe3.png" />
+<img alt="_images/803e6542d07ff6d0789560c9241aa3efbecf6012ce4a728a1c23e80b893a68b2.png" src="_images/803e6542d07ff6d0789560c9241aa3efbecf6012ce4a728a1c23e80b893a68b2.png" />
+<img alt="_images/a2e0c29b15198d5f09cde6036269d1ebd9a121e0940d5fe5f27c585ea19601e4.png" src="_images/a2e0c29b15198d5f09cde6036269d1ebd9a121e0940d5fe5f27c585ea19601e4.png" />
+<img alt="_images/6a2effa2e8202aa364d34c0bd917d8fb03bac97ab823ba3a4a962f72c1f0e828.png" src="_images/6a2effa2e8202aa364d34c0bd917d8fb03bac97ab823ba3a4a962f72c1f0e828.png" />
+<img alt="_images/49dcb82bd32785e93016ca943c46b2961efb8c1306e7f86de818076cc00566f6.png" src="_images/49dcb82bd32785e93016ca943c46b2961efb8c1306e7f86de818076cc00566f6.png" />
+<img alt="_images/b6fc899c09c44653f9f626800012a1a6ef31853a4809bb60cc7ff195588f5ee7.png" src="_images/b6fc899c09c44653f9f626800012a1a6ef31853a4809bb60cc7ff195588f5ee7.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="precomputed_content.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">List of provided precomputed models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="examples.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Steps to generate models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principles">Principles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaia-dr3-passbands-f99-extinction-curve-with-variable-a0-r0">Gaia DR3 passbands, F99 extinction curve with variable A0, R0</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-generic-passbands-with-f99-extinction-curve">Common generic passbands with F99 extinction curve</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

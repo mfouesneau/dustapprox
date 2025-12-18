@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dustapprox.literature.c1 &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=984d411d"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="../../../_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/dustapprox/literature/c1';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/_modules/dustapprox/literature/c1.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../precomputed.html">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../../precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2F_modules/dustapprox/literature/c1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for dustapprox.literature.c1</h1><div class="highlight"><pre>
+<span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Coefficients of the reddening laws to correct magnitudes in the :math:`C1` system.</span>
+
+<span class="sd">The :math:`C1` Gaia photometric system</span>
+<span class="sd">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="sd">The original design for Gaia included a set of photometric filters (see `Jordi et</span>
+<span class="sd">al., 2006 &lt;https://academic.oup.com/mnras/article/367/1/290/1018790&gt;`_), the C1B and C1M systems for the broad and medium band passbands,</span>
+<span class="sd">respectively.  The C1 system was specifically desgined to maximize the</span>
+<span class="sd">scientific return in terms of stellar astrophysical parameters.</span>
+
+<span class="sd">The C1B component has five broad passbands covering the wavelength range of the</span>
+<span class="sd">unfiltered light from the blue to the far-red (i.e.  400-1000 nm). The basic</span>
+<span class="sd">response curve of the filters versus wavelength is a symmetric quasi-trapezoidal</span>
+<span class="sd">shape. The filter designs represent a compromise between the astrophysical needs and the</span>
+<span class="sd">specific requirements for chromaticity calibration of Gaia.</span>
+
+<span class="sd">The C1M component consists of 14 passbands. Their basic response curves are</span>
+<span class="sd">symmetric quasi-trapezoidal shapes as well.</span>
+
+<span class="sd">Eventually, construction and budget constraints led ESA to adopt prisms in the</span>
+<span class="sd">final design of Gaia, which cover for those passbands.</span>
+
+<span class="sd">For example :math:`C1M467-C1M515` color is sensitive to</span>
+<span class="sd">surface gravity (:math:`\log g`) and :math:`C1B556-C1B996` is sensitive to the effective</span>
+<span class="sd">temperature :math:`T_{eff}`.</span>
+
+<span class="sd">**Comments on the Passbands and colors** (see details in Sect. 5.1 of `Jordi et al., 2006`_)</span>
+
+<span class="sd">* C1B431: similar to that of a Johnson&#39;s B passband.</span>
+<span class="sd">* C1B556: similar to that of a Johnson&#39;s V passband.</span>
+<span class="sd">* C1B768: similar to that of a Cousin&#39;s I passband, SDSS i prime, or HST F814W</span>
+<span class="sd">* C1M326: is affected by strong metallicity dependent absorption lines.</span>
+<span class="sd">* C1M379: corresponding to the higher energy levels of the Balmer series.</span>
+<span class="sd">* C1M395: mainly to measure the Ca II H line</span>
+<span class="sd">* C1M467: similar to Strömgren b</span>
+<span class="sd">* C1M549: similar to Strömgren y</span>
+<span class="sd">* C1M515: dominated by Mg I triplet and the MgH band.</span>
+<span class="sd">* C1M656: is a direct Halpha line measurement.</span>
+<span class="sd">* C1M716: dominated by TiO (713 nm)</span>
+<span class="sd">* C1M825: mostly the strong Carbon-Nitrogen (CN), but also weak TiO bands</span>
+
+
+<span class="sd">* C1B431-C1B556: is similar to Johnson&#39;s B-V.</span>
+<span class="sd">* C1B556-C1B768: is similar to a V-I color, HST F555W-F814W.</span>
+<span class="sd">* C1B655-C1M656: forms an Halpha index</span>
+<span class="sd">* C1B768-C1B916: strength of the Paschen jump.</span>
+<span class="sd">* C1M326-C1B431: is a Balmer jump index, function of Teff and log g</span>
+<span class="sd">* C1M326-C1M410: is a Balmer jump index, function of Teff and log g</span>
+<span class="sd">* C1M379-C1M467: is a metallicity index.</span>
+<span class="sd">* C1M395-C1M410: correlates with W(CaT*), i.e. the equivalent width of the Calcium triplet (in RVS).</span>
+<span class="sd">* C1M395-C1M515: (and similar indices) allows to disentangle Fe and alpha-process element abundances.</span>
+<span class="sd">* C1M716-C1M747: is an index for the presence and intensity of TiO.</span>
+<span class="sd">* C1M861-C1M965: is an index of gravity-sensitive absorption of the high member lines of the Paschen series.</span>
+
+<span class="sd">* C1B556-C1B768, C1B556-C1B916, C1B768-C1B916 indices can allow for the</span>
+<span class="sd">  separation of cool oxygen-rich (M) and carbon-rich (N) stars (for dust-free stars).</span>
+<span class="sd">* C1M395-C1M410 vs. W(CaT*) may be used as a log g estimator.</span>
+<span class="sd">* C1M825-C1M861 vs. C1M861-C1M965 helps separating M-, R- and N-type stars</span>
+
+
+<span class="sd">C1 passbands transmission curves</span>
+<span class="sd">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="sd">The C1 passbands are available from `Jordi et al., 2006`_.</span>
+
+<span class="sd">For convenience, we also provide them with this package in</span>
+<span class="sd">`dustapprox/data/Gaia2` directory in the `pyphot</span>
+<span class="sd">&lt;https://mfouesneau.github.io/pyphot/&gt;`_ ascii format.</span>
+
+
+<span class="sd">.. code-block:: python</span>
+<span class="sd">    :caption: Use the C1 passbands transmission curves with `pyphot`_ (v2.0)</span>
+
+<span class="sd">    from pkg_resources import resource_filename</span>
+<span class="sd">    from pyphot.libraries import Ascii_Library</span>
+
+<span class="sd">    where = resource_filename(&quot;dustapprox&quot;, &quot;data/Gaia2&quot;)</span>
+<span class="sd">    lib = Ascii_Library(where, glob_pattern=&quot;*csv&quot;)</span>
+<span class="sd">    lib[&quot;C1B556&quot;].info()</span>
+
+<span class="sd">The last line of the above example shows the information of the C1B556 passband.</span>
+
+<span class="sd">.. code-block:: text</span>
+
+<span class="sd">    Filter object information:</span>
+<span class="sd">        name:                 C1B556</span>
+<span class="sd">        detector type:        photon</span>
+<span class="sd">        wavelength units:     nm</span>
+<span class="sd">        central wavelength:   556.000128 nm</span>
+<span class="sd">        pivot wavelength:     554.743690 nm</span>
+<span class="sd">        effective wavelength: 548.703011 nm</span>
+<span class="sd">        photon wavelength:    551.180327 nm</span>
+<span class="sd">        minimum wavelength:   481.000000 nm</span>
+<span class="sd">        maximum wavelength:   631.000000 nm</span>
+<span class="sd">        norm:                 115.200850</span>
+<span class="sd">        effective width:      128.000944 nm</span>
+<span class="sd">        fullwidth half-max:   0.500000 nm</span>
+<span class="sd">        definition contains 337 points</span>
+<span class="sd">        Zeropoints</span>
+<span class="sd">            Vega: 21.142884 mag,</span>
+<span class="sd">                  3.490168493382294e-09 erg / (Angstrom s cm2),</span>
+<span class="sd">                  3582.6999073633024 Jy</span>
+<span class="sd">                  879.1985286958516 ph / (Angstrom s cm2)</span>
+<span class="sd">              AB: 21.128410 mag,</span>
+<span class="sd">                  3.5370073412867404e-09 erg / (Angstrom s cm2),</span>
+<span class="sd">                  3630.780547700996 Jy</span>
+<span class="sd">              ST: 21.100000 mag,</span>
+<span class="sd">                  3.6307805477010028e-09 erg / (Angstrom s cm2),</span>
+<span class="sd">                  3727.0398711607527 Jy</span>
+
+<span class="sd">.. plot::</span>
+<span class="sd">    :include-source:</span>
+<span class="sd">    :caption: C1 passband transmission curves. Black and blue lines indicate the C1B and C1M passbands, respectively.</span>
+
+<span class="sd">    import matplotlib.pyplot as plt</span>
+<span class="sd">    from pkg_resources import resource_filename</span>
+<span class="sd">    from pyphot.libraries import Ascii_Library</span>
+
+<span class="sd">    where = resource_filename(&#39;dustapprox&#39;, &#39;data/Gaia2&#39;)</span>
+<span class="sd">    lib = Ascii_Library(where, glob_pattern=&#39;*csv&#39;)</span>
+<span class="sd">    pbs = lib.load_all_filters()</span>
+
+<span class="sd">    plt.figure(figsize=(8, 4))</span>
+<span class="sd">    for pb in pbs:</span>
+<span class="sd">        if pb.name.startswith(&#39;C1B&#39;):</span>
+<span class="sd">            kwargs = dict(color=&#39;k&#39;, lw=2)</span>
+<span class="sd">        else:</span>
+<span class="sd">            kwargs = dict(color=&#39;C0&#39;, lw=1)</span>
+<span class="sd">        plt.plot(pb.wavelength.to(&#39;nm&#39;), pb.transmit, **kwargs)</span>
+<span class="sd">    plt.xlabel(&#39;wavelength [nm]&#39;)</span>
+<span class="sd">    plt.ylabel(&#39;throughput&#39;)</span>
+<span class="sd">    plt.tight_layout()</span>
+<span class="sd">    plt.show()</span>
+
+
+<span class="sd">Model from Bellazzini et al. (2022; Gaia DR3)</span>
+<span class="sd">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="sd">The procedure is detailed in the appendix E of `Bellazzini et al. (2022) &lt;https://www.cosmos.esa.int/web/gaia/dr3-papers&gt;`_.</span>
+
+<span class="sd">In brief, they fit polynomial relations to predicted SED values.</span>
+<span class="sd">The simulated predictions originate from the BTSettl atmosphere library combined</span>
+<span class="sd">with the :math:`C1` passbands definitions and the Fitzpatrick extinction curve.</span>
+
+<span class="sd">They derive the absorption in any :math:`X` band as a function of the absorption in :math:`G`, :math:`A_G`,</span>
+<span class="sd">the Gaia :math:`G_{BP}-G_{RP}` color:</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">        \frac{A_X}{A_G}=\alpha+\sum_{i=1}^{4}\beta_i \cdot ({G_{BP}-G_{RP}})^i+\sum_{j=1}^3 \gamma_j \cdot A_G^j + \delta \cdot ({G_{BP}-G_{RP}})\cdot A_G</span>
+
+<span class="sd">.. warning::</span>
+
+<span class="sd">    Those relations depend on :math:`A_G`, not :math:`A_0`.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..io</span><span class="w"> </span><span class="kn">import</span> <span class="n">ecsv</span>
+
+
+<div class="viewcode-block" id="dr3_ext">
+<a class="viewcode-back" href="../../../source/dustapprox.literature.html#dustapprox.literature.c1.dr3_ext">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">dr3_ext</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to get the extinction coefficients A_X / A_G in C1 system</span>
+
+<span class="sd">    The procedure is detailed in the appendix E of `Bellazzini et al. (2022)`_.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the X band</span>
+<span class="sd">    bprp : float or array</span>
+<span class="sd">        The Gaia G_BP - G_RP color</span>
+<span class="sd">    ag : float or array</span>
+<span class="sd">        The Gaia A_G value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A_X / A_G : float or array</span>
+<span class="sd">        The extinction coefficients</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="dr3_ext.__init__">
+<a class="viewcode-back" href="../../../source/dustapprox.literature.html#dustapprox.literature.c1.dr3_ext.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;gaia_C1_extinction.ecsv&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor that loads the external data table.&quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">ecsv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">bprp</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]],</span>
+        <span class="n">ag</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns A_X / A_G values</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the X band</span>
+<span class="sd">        bprp : float or array</span>
+<span class="sd">            The Gaia G_BP - G_RP color</span>
+<span class="sd">        ag : float or array</span>
+<span class="sd">            The Gaia A_G value</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A_X / A_G : float or array</span>
+<span class="sd">            The extinction coefficients</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bprp_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">bprp</span><span class="p">)</span>
+        <span class="n">ag_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ag</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;beta_</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">bprp_</span><span class="o">**</span><span class="n">i</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;gamma_</span><span class="si">{</span><span class="n">j</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">ag_</span><span class="o">**</span><span class="n">j</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">+=</span> <span class="n">c</span><span class="p">[</span><span class="s2">&quot;delta&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">bprp_</span> <span class="o">*</span> <span class="n">ag_</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
