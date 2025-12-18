@@ -24,9 +24,9 @@ a b
 2 3.5
 """
         test_file.write_text(content)
-        
+
         header = ecsv.read_header(str(test_file))
-        
+
         assert header is not None
         assert "datatype" in header
         assert len(header["datatype"]) == 2
@@ -47,9 +47,9 @@ x
 1.0
 """
         test_file.write_text(content)
-        
+
         header = ecsv.read_header(str(test_file))
-        
+
         assert "meta" in header
         assert header["meta"]["author"] == "test"
         assert header["meta"]["version"] == 1.0
@@ -67,9 +67,9 @@ wavelength flux
 2000 2e-10
 """
         test_file.write_text(content)
-        
+
         header = ecsv.read_header(str(test_file))
-        
+
         assert header["datatype"][0]["unit"] == "angstrom"
         assert "erg" in header["datatype"][1]["unit"]
 
@@ -86,7 +86,7 @@ x
 1
 """
         test_file.write_text(content)
-        
+
         header = ecsv.read_header(str(test_file))
         assert "datatype" in header
 
@@ -113,9 +113,9 @@ a,b
 3,4.5
 """
         test_file.write_text(content)
-        
+
         df = ecsv.read(str(test_file))
-        
+
         assert isinstance(df, pd.DataFrame)
         assert len(df) == 3
         assert "a" in df.columns
@@ -138,9 +138,9 @@ x
 2.0
 """
         test_file.write_text(content)
-        
+
         df = cast(pd.DataFrame, ecsv.read(str(test_file)))
-        
+
         assert hasattr(df, "attrs")
         assert "source" in df.attrs
         assert df.attrs["source"] == "test_source"
@@ -158,9 +158,9 @@ alpha,1.0
 beta,2.0
 """
         test_file.write_text(content)
-        
+
         df = cast(pd.DataFrame, ecsv.read(str(test_file)))
-        
+
         assert df["name"].dtype == object  # strings are stored as object
         assert df["value"].dtype == np.float64
 
@@ -178,9 +178,9 @@ a|b
 3|4
 """
         test_file.write_text(content)
-        
+
         df = cast(pd.DataFrame, ecsv.read(str(test_file)))
-        
+
         assert len(df) == 2
         assert df.loc[0, "a"] == 1
         assert df.loc[0, "b"] == 2
@@ -199,9 +199,9 @@ x,y
 5.5,6.5
 """
         test_file.write_text(content)
-        
+
         df = cast(pd.DataFrame, ecsv.read(str(test_file)))
-        
+
         assert df.loc[0, "x"] == 1.5
         assert df.loc[0, "y"] == 2.5
         assert df.loc[2, "x"] == 5.5
@@ -212,13 +212,10 @@ class TestGenerateHeader:
 
     def test_generate_header_basic(self):
         """Test generating a basic header."""
-        df = pd.DataFrame({
-            "a": [1, 2, 3],
-            "b": [1.5, 2.5, 3.5]
-        })
-        
+        df = pd.DataFrame({"a": [1, 2, 3], "b": [1.5, 2.5, 3.5]})
+
         header = ecsv.generate_header(df)
-        
+
         assert "# %ECSV" in header
         assert "datatype:" in header
         assert "name: a" in header
@@ -227,9 +224,9 @@ class TestGenerateHeader:
     def test_generate_header_with_meta(self):
         """Test generating header with metadata."""
         df = pd.DataFrame({"x": [1, 2]})
-        
+
         header = ecsv.generate_header(df, source="test", version="1.0")
-        
+
         assert "meta:" in header
         assert "source: test" in header
         assert "version:" in header
@@ -238,9 +235,9 @@ class TestGenerateHeader:
         """Test that df.attrs are included in header."""
         df = pd.DataFrame({"x": [1, 2]})
         df.attrs = {"author": "test_author", "date": "2024-01-01"}
-        
+
         header = ecsv.generate_header(df)
-        
+
         assert "author: test_author" in header
         assert "date:" in header
 
@@ -248,9 +245,9 @@ class TestGenerateHeader:
         """Test that explicit meta overrides df.attrs."""
         df = pd.DataFrame({"x": [1, 2]})
         df.attrs = {"key": "value1"}
-        
+
         header = ecsv.generate_header(df, key="value2")
-        
+
         # Explicit meta should override attrs
         assert "value2" in header
 
@@ -258,7 +255,7 @@ class TestGenerateHeader:
         """Test that generated header has correct ECSV format."""
         df = pd.DataFrame({"x": [1, 2]})
         header = ecsv.generate_header(df)
-        
+
         lines = header.split("\n")
         assert lines[0].startswith("# %ECSV")
         assert lines[1] == "# ---"
@@ -273,14 +270,11 @@ class TestWrite:
 
     def test_write_basic(self, tmp_path):
         """Test writing a basic ECSV file."""
-        df = pd.DataFrame({
-            "a": [1, 2, 3],
-            "b": [1.5, 2.5, 3.5]
-        })
-        
+        df = pd.DataFrame({"a": [1, 2, 3], "b": [1.5, 2.5, 3.5]})
+
         output_file = tmp_path / "output.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         assert output_file.exists()
         content = output_file.read_text()
         assert "# %ECSV" in content
@@ -288,16 +282,13 @@ class TestWrite:
 
     def test_write_and_read_roundtrip(self, tmp_path):
         """Test that write and read are consistent."""
-        original_df = pd.DataFrame({
-            "x": [1, 2, 3],
-            "y": [4.5, 5.5, 6.5]
-        })
-        
+        original_df = pd.DataFrame({"x": [1, 2, 3], "y": [4.5, 5.5, 6.5]})
+
         file_path = tmp_path / "test.ecsv"
         ecsv.write(original_df, str(file_path))
-        
+
         read_df = cast(pd.DataFrame, ecsv.read(str(file_path)))
-        
+
         assert len(read_df) == len(original_df)
         assert list(read_df.columns) == list(original_df.columns)
         pd.testing.assert_frame_equal(read_df, original_df)
@@ -305,10 +296,10 @@ class TestWrite:
     def test_write_with_metadata(self, tmp_path):
         """Test writing with metadata."""
         df = pd.DataFrame({"x": [1, 2]})
-        
+
         output_file = tmp_path / "output.ecsv"
         ecsv.write(df, str(output_file), author="test", version=1.0)
-        
+
         # Read back and check metadata
         read_df = cast(pd.DataFrame, ecsv.read(str(output_file)))
         assert "author" in read_df.attrs
@@ -318,24 +309,26 @@ class TestWrite:
         """Test that df.attrs are written to file."""
         df = pd.DataFrame({"x": [1, 2]})
         df.attrs = {"note": "test note"}
-        
+
         output_file = tmp_path / "output.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         read_df = cast(pd.DataFrame, ecsv.read(str(output_file)))
         assert "note" in read_df.attrs
         assert read_df.attrs["note"] == "test note"
 
     def test_write_preserves_dtypes(self, tmp_path):
         """Test that data types are preserved through write/read."""
-        df = pd.DataFrame({
-            "int_col": np.array([1, 2, 3], dtype=np.int64),
-            "float_col": np.array([1.5, 2.5, 3.5], dtype=np.float64),
-        })
-        
+        df = pd.DataFrame(
+            {
+                "int_col": np.array([1, 2, 3], dtype=np.int64),
+                "float_col": np.array([1.5, 2.5, 3.5], dtype=np.float64),
+            }
+        )
+
         output_file = tmp_path / "output.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         read_df = cast(pd.DataFrame, ecsv.read(str(output_file)))
         assert read_df["int_col"].dtype == np.int64
         assert read_df["float_col"].dtype == np.float64
@@ -347,7 +340,7 @@ class TestConverter:
     def test_converter_int_array(self):
         """Test converting string to int array."""
         result = ecsv._converter("[1, 2, 3]", "int64")
-        
+
         assert isinstance(result, np.ndarray)
         assert result.dtype == np.int64
         assert np.array_equal(result, np.array([1, 2, 3]))
@@ -355,7 +348,7 @@ class TestConverter:
     def test_converter_float_array(self):
         """Test converting string to float array."""
         result = ecsv._converter("[1.5, 2.5, 3.5]", "float64")
-        
+
         assert isinstance(result, np.ndarray)
         assert result.dtype == np.float64
         assert np.allclose(result, np.array([1.5, 2.5, 3.5]))
@@ -363,11 +356,13 @@ class TestConverter:
     def test_converter_with_none_values(self):
         """Test converter with None values (masked array)."""
         result = ecsv._converter("[1, null, 3]", "int64")
-        
+
         # Should return a masked array
         assert isinstance(result, (np.ndarray, np.ma.MaskedArray))
         if isinstance(result, np.ma.MaskedArray):
-            assert result.mask[1]  # Second element should be masked  #pyright: ignore
+            assert result.mask[
+                1
+            ]  # Second element should be masked  #pyright: ignore
 
 
 class TestECSVEdgeCases:
@@ -376,7 +371,7 @@ class TestECSVEdgeCases:
     def test_empty_dataframe(self, tmp_path):
         """Test handling of empty DataFrame."""
         df = pd.DataFrame(columns=["a", "b"])
-        
+
         output_file = tmp_path / "empty.ecsv"
         try:
             ecsv.write(df, str(output_file))
@@ -385,39 +380,38 @@ class TestECSVEdgeCases:
 
     def test_dataframe_with_nan(self, tmp_path):
         """Test DataFrame with NaN values."""
-        df = pd.DataFrame({
-            "x": [1.0, np.nan, 3.0],
-            "y": [4.0, 5.0, np.nan]
-        })
-        
+        df = pd.DataFrame({"x": [1.0, np.nan, 3.0], "y": [4.0, 5.0, np.nan]})
+
         output_file = tmp_path / "nan.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         read_df = cast(pd.DataFrame, ecsv.read(str(output_file)))
-        assert np.isnan(read_df.loc[1, "x"])  #pyright: ignore
-        assert np.isnan(read_df.loc[2, "y"])  #pyright: ignore
+        assert np.isnan(read_df.loc[1, "x"])  # pyright: ignore
+        assert np.isnan(read_df.loc[2, "y"])  # pyright: ignore
 
     def test_dataframe_with_inf(self, tmp_path):
         """Test DataFrame with infinity values."""
-        df = pd.DataFrame({
-            "x": [1.0, np.inf, -np.inf],
-        })
-        
+        df = pd.DataFrame(
+            {
+                "x": [1.0, np.inf, -np.inf],
+            }
+        )
+
         output_file = tmp_path / "inf.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         read_df = cast(pd.DataFrame, ecsv.read(str(output_file)))
-        assert np.isinf(read_df.loc[1, "x"])   #pyright: ignore
-        assert read_df.loc[1, "x"] > 0  #pyright: ignore
-        assert read_df.loc[2, "x"] < 0  #pyright: ignore
+        assert np.isinf(read_df.loc[1, "x"])  # pyright: ignore
+        assert read_df.loc[1, "x"] > 0  # pyright: ignore
+        assert read_df.loc[2, "x"] < 0  # pyright: ignore
 
     def test_single_row_dataframe(self, tmp_path):
         """Test DataFrame with single row."""
         df = pd.DataFrame({"x": [1], "y": [2]})
-        
+
         output_file = tmp_path / "single.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         read_df = cast(pd.DataFrame, ecsv.read(str(output_file)))
         assert len(read_df) == 1
         assert read_df.loc[0, "x"] == 1
@@ -425,10 +419,10 @@ class TestECSVEdgeCases:
     def test_single_column_dataframe(self, tmp_path):
         """Test DataFrame with single column."""
         df = pd.DataFrame({"x": [1, 2, 3]})
-        
+
         output_file = tmp_path / "single_col.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         read_df = cast(pd.DataFrame, ecsv.read(str(output_file)))
         assert len(read_df.columns) == 1
         assert "x" in read_df.columns
@@ -437,7 +431,7 @@ class TestECSVEdgeCases:
         """Test column names with spaces (should be avoided but test behavior)."""
         # ECSV spec may not support spaces well, but test how it handles them
         df = pd.DataFrame({"col name": [1, 2]})
-        
+
         output_file = tmp_path / "spaces.ecsv"
         try:
             ecsv.write(df, str(output_file))
@@ -451,22 +445,22 @@ class TestECSVEdgeCases:
         """Test with very long string values."""
         long_string = "a" * 10000
         df = pd.DataFrame({"text": [long_string]})
-        
+
         output_file = tmp_path / "long.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         read_df = ecsv.read(str(output_file))
         assert read_df.loc[0, "text"] == long_string
 
     def test_special_characters_in_data(self, tmp_path):
         """Test special characters in data."""
-        df = pd.DataFrame({
-            "text": ["hello", "world,with,commas", "tabs\there"]
-        })
-        
+        df = pd.DataFrame(
+            {"text": ["hello", "world,with,commas", "tabs\there"]}
+        )
+
         output_file = tmp_path / "special.ecsv"
         ecsv.write(df, str(output_file))
-        
+
         # CSV should handle commas in quoted fields
         read_df = cast(pd.DataFrame, ecsv.read(str(output_file)))
-        assert "," in read_df.loc[1, "text"]  #pyright: ignore
+        assert "," in read_df.loc[1, "text"]  # pyright: ignore

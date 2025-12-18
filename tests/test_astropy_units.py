@@ -71,17 +71,19 @@ class TestHasUnit:
 
     def test_quantity_with_units_attr(self):
         """Test objects with 'units' attribute."""
+
         class MockWithUnits:
             units = u.meter
-        
+
         obj = MockWithUnits()
         assert has_unit(obj)
 
     def test_quantity_with_unit_attr(self):
         """Test objects with 'unit' attribute."""
+
         class MockWithUnit:
             unit = u.meter
-        
+
         obj = MockWithUnit()
         assert has_unit(obj)
 
@@ -124,13 +126,13 @@ class TestValInUnit:
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
             result = val_in_unit("my_var", 5.0, "meter")
-            
+
             # Check warning was raised
             assert len(w) == 1
             assert "does not have explicit units" in str(w[0].message)
             assert "my_var" in str(w[0].message)
             assert "meter" in str(w[0].message)
-            
+
             # Check result
             assert isinstance(result, Quantity)
             assert result.value == 5.0
@@ -142,7 +144,7 @@ class TestValInUnit:
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
             result = val_in_unit("test_array", arr, "meter")
-            
+
             assert len(w) == 1
             assert isinstance(result, Quantity)
             assert np.array_equal(result.value, arr)
@@ -225,7 +227,7 @@ class TestEdgeCases:
     def test_unit_string_variations(self):
         """Test different string representations of units."""
         val = 1.0 * u.m
-        
+
         # Different valid string formats
         result1 = val_in_unit("test", val, "m")
         result2 = val_in_unit("test", val, "meter")

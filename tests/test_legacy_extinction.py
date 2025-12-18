@@ -227,13 +227,18 @@ class TestCCM89Call:
     def test_ccm89_multiple_wavelengths_mixed_regions(self):
         """Test CCM89 with multiple wavelengths across different regions."""
         ccm = CCM89()
-        wavelengths = np.array([
-            1000.0,   # Far UV
-            2000.0,   # UV
-            5000.0,   # Optical
-            10000.0,  # NIR
-            50000.0,  # Infrared (out of range)
-        ]) * u.angstrom
+        wavelengths = (
+            np.array(
+                [
+                    1000.0,  # Far UV
+                    2000.0,  # UV
+                    5000.0,  # Optical
+                    10000.0,  # NIR
+                    50000.0,  # Infrared (out of range)
+                ]
+            )
+            * u.angstrom
+        )
         results = ccm(wavelengths)
         assert isinstance(results, np.ndarray)
         assert results.shape == (5,)
@@ -355,12 +360,17 @@ class TestF99Call:
     def test_f99_multiple_wavelengths_mixed_regions(self):
         """Test F99 with multiple wavelengths across different regions."""
         f99 = F99()
-        wavelengths = np.array([
-            1500.0,   # UV
-            3000.0,   # UV
-            5000.0,   # Optical
-            10000.0,  # NIR
-        ]) * u.angstrom
+        wavelengths = (
+            np.array(
+                [
+                    1500.0,  # UV
+                    3000.0,  # UV
+                    5000.0,  # Optical
+                    10000.0,  # NIR
+                ]
+            )
+            * u.angstrom
+        )
         results = f99(wavelengths)
         assert isinstance(results, np.ndarray)
         assert results.shape == (4,)
@@ -401,10 +411,10 @@ class TestCurveComparison:
         ccm = CCM89()
         f99 = F99()
         wavelengths = np.array([2000.0, 5000.0, 10000.0]) * u.angstrom
-        
+
         ccm_results = ccm(wavelengths)
         f99_results = f99(wavelengths)
-        
+
         assert np.all(ccm_results > 0)
         assert np.all(f99_results > 0)
 
@@ -413,12 +423,12 @@ class TestCurveComparison:
         ccm = CCM89()
         f99 = F99()
         wavelength = 5000.0 * u.angstrom
-        
+
         ccm1 = ccm(wavelength, Av=1.0)
         ccm2 = ccm(wavelength, Av=2.0)
         f99_1 = f99(wavelength, Av=1.0)
         f99_2 = f99(wavelength, Av=2.0)
-        
+
         np.testing.assert_almost_equal(ccm2, 2.0 * ccm1)
         np.testing.assert_almost_equal(f99_2, 2.0 * f99_1)
 
@@ -483,6 +493,7 @@ class TestModuleExports:
     def test_module_all(self):
         """Test that __all__ includes expected classes."""
         from dustapprox import legacy_extinction
+
         assert hasattr(legacy_extinction, "__all__")
         assert "ExtinctionLaw" in legacy_extinction.__all__
         assert "CCM89" in legacy_extinction.__all__
@@ -491,14 +502,17 @@ class TestModuleExports:
     def test_import_extinction_law(self):
         """Test importing ExtinctionLaw."""
         from dustapprox.legacy_extinction import ExtinctionLaw
+
         assert ExtinctionLaw is not None
 
     def test_import_ccm89(self):
         """Test importing CCM89."""
         from dustapprox.legacy_extinction import CCM89
+
         assert CCM89 is not None
 
     def test_import_f99(self):
         """Test importing F99."""
         from dustapprox.legacy_extinction import F99
+
         assert F99 is not None

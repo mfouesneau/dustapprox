@@ -54,7 +54,7 @@ def sample_extinction_params():
 def small_test_dataframe():
     """Create a small test DataFrame for model testing."""
     import pandas as pd
-    
+
     data = {
         "teff": [5000, 6000, 7000],
         "logg": [4.0, 4.5, 5.0],
