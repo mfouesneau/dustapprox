@@ -29,7 +29,7 @@ Quick Start
   model = lib.load_model(r, passband='GAIA_GAIA3.G')
 
   # get some data
-  data = pd.read_csv('models/precomputed/kurucs_gaiaedr3_small_a0_grid.csv')
+  data = pd.read_csv('models/precomputed/kurucz_gaiaedr3_small_a0_grid.csv')
   df = data[(data['passband'] == 'GAIA_GAIA3.G') & (data['A0'] > 0)]
 
   # values

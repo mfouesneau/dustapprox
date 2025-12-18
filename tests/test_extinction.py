@@ -49,7 +49,7 @@ class TestGetExtinctionModel:
     def test_all_common_models_available(self):
         """Test that all common extinction models are available."""
         common_models = ["CCM89", "F99", "G23"]
-
+        
         for model_name in common_models:
             model = get_extinction_model(model_name)
             assert model is not None
@@ -68,7 +68,7 @@ class TestEvaluateExtinctionModel:
             A0=1.0,
             R0=3.1,
         )
-
+        
         assert isinstance(result, np.ndarray)
         assert result.shape == sample_wavelengths.shape
         assert np.all(np.isfinite(result))
@@ -82,7 +82,7 @@ class TestEvaluateExtinctionModel:
         result2 = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=1.0, R0=5.0
         )
-
+        
         # Results should be different for different Rv
         assert not np.allclose(result1, result2)
 
@@ -94,7 +94,7 @@ class TestEvaluateExtinctionModel:
         result2 = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=2.0, R0=3.1
         )
-
+        
         # Should scale linearly with A0
         assert np.allclose(result2, 2.0 * result1)
 
@@ -103,7 +103,7 @@ class TestEvaluateExtinctionModel:
         result = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=0.0, R0=3.1
         )
-
+        
         assert np.allclose(result, 0.0)
 
     def test_wavelength_in_microns(self, sample_wavelengths_micron):
@@ -114,7 +114,7 @@ class TestEvaluateExtinctionModel:
             A0=1.0,
             R0=3.1,
         )
-
+        
         assert isinstance(result, np.ndarray)
         assert result.shape == sample_wavelengths_micron.shape
         assert np.all(np.isfinite(result))
@@ -122,15 +122,15 @@ class TestEvaluateExtinctionModel:
     def test_wavelength_without_units(self):
         """Test evaluation with wavelengths without units (should warn)."""
         import warnings
-
+        
         wavelengths = np.array([1000, 2000, 5000, 10000])
-
+        
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
             result = evaluate_extinction_model(
                 "CCM89", wavelengths, A0=1.0, R0=3.1
             )
-
+            
             # Should warn about missing units
             assert len(w) >= 1
             assert result is not None
@@ -138,8 +138,10 @@ class TestEvaluateExtinctionModel:
     def test_single_wavelength(self):
         """Test evaluation at a single wavelength."""
         wavelength = np.array([5500]) * u.angstrom
-        result = evaluate_extinction_model("CCM89", wavelength, A0=1.0, R0=3.1)
-
+        result = evaluate_extinction_model(
+            "CCM89", wavelength, A0=1.0, R0=3.1
+        )
+        
         assert isinstance(result, np.ndarray)
         assert result.shape == wavelength.shape  # scalar
         assert np.isfinite(result)
@@ -150,12 +152,12 @@ class TestEvaluateExtinctionModel:
         result_extrap = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=1.0, R0=3.1, extrapolate=True
         )
-
+        
         # Without extrapolation
         result_no_extrap = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=1.0, R0=3.1, extrapolate=False
         )
-
+        
         # Both should produce results
         assert result_extrap is not None
         assert result_no_extrap is not None
@@ -166,7 +168,7 @@ class TestEvaluateExtinctionModel:
         result = evaluate_extinction_model(
             model, sample_wavelengths, A0=1.0, R0=3.1
         )
-
+        
         assert isinstance(result, np.ndarray)
         assert np.all(np.isfinite(result))
 
@@ -174,13 +176,13 @@ class TestEvaluateExtinctionModel:
         """Test that different extinction curves give different results."""
         curves = ["CCM89", "F99", "O94"]
         results = []
-
+        
         for curve in curves:
             result = evaluate_extinction_model(
                 curve, sample_wavelengths, A0=1.0, R0=3.1
             )
             results.append(result)
-
+        
         # Results should be different between models
         assert not np.allclose(results[0], results[1])
         assert not np.allclose(results[1], results[2])
@@ -191,12 +193,12 @@ class TestEvaluateExtinctionModel:
         result_low = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=1.0, R0=2.0, extrapolate=True
         )
-
+        
         # Test with high Rv
         result_high = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=1.0, R0=6.0, extrapolate=True
         )
-
+        
         # Both should produce valid results
         assert np.all(np.isfinite(result_low))
         assert np.all(np.isfinite(result_high))
@@ -208,7 +210,7 @@ class TestEvaluateExtinctionModel:
         result = evaluate_extinction_model(
             "CCM89", wavelengths, A0=1.0, R0=3.1, extrapolate=True
         )
-
+        
         # Should handle UV wavelengths
         assert isinstance(result, np.ndarray)
         # May contain NaN for extrapolated regions
@@ -220,7 +222,7 @@ class TestEvaluateExtinctionModel:
         result = evaluate_extinction_model(
             "F99", wavelengths, A0=1.0, R0=3.1, extrapolate=True
         )
-
+        
         # Should handle IR wavelengths
         assert isinstance(result, np.ndarray)
         assert result.shape == wavelengths.shape
@@ -229,11 +231,11 @@ class TestEvaluateExtinctionModel:
         """Test that F99 extrapolation patch is applied correctly."""
         # Very wide range of wavelengths
         wavelengths = np.logspace(-1, 1, 20) * u.micron
-
+        
         result = evaluate_extinction_model(
             "F99", wavelengths, A0=1.0, R0=3.1, extrapolate=True
         )
-
+        
         # Should not raise an error and should produce results
         assert isinstance(result, np.ndarray)
         assert result.shape == wavelengths.shape  # pyright: ignore
@@ -245,7 +247,7 @@ class TestExtinctionEdgeCases:
     def test_negative_wavelength_handling(self):
         """Test behavior with invalid negative wavelengths."""
         wavelengths = np.array([-1000, 1000, 2000]) * u.angstrom
-
+        
         # This should either raise an error or handle gracefully
         # Implementation-dependent behavior
         try:
@@ -261,7 +263,7 @@ class TestExtinctionEdgeCases:
     def test_zero_wavelength_handling(self):
         """Test behavior with zero wavelength."""
         wavelengths = np.array([0, 1000, 2000]) * u.angstrom
-
+        
         # Should handle division by zero gracefully
         try:
             result = evaluate_extinction_model(
@@ -276,11 +278,11 @@ class TestExtinctionEdgeCases:
     def test_nan_wavelengths(self):
         """Test handling of NaN in wavelength array."""
         wavelengths = np.array([np.nan, 1000, 2000]) * u.angstrom
-
+        
         result = evaluate_extinction_model(
             "CCM89", wavelengths, A0=1.0, R0=3.1
         )
-
+        
         # First element should be NaN
         assert np.isnan(result[0])
         # Other elements should be finite
@@ -290,11 +292,11 @@ class TestExtinctionEdgeCases:
     def test_inf_wavelengths(self):
         """Test handling of infinity in wavelength array."""
         wavelengths = np.array([np.inf, 1000, 2000]) * u.angstrom
-
+        
         result = evaluate_extinction_model(
             "CCM89", wavelengths, A0=1.0, R0=3.1, extrapolate=True
         )
-
+        
         # Should produce some result
         assert result is not None
         assert result.shape == wavelengths.shape
@@ -302,11 +304,11 @@ class TestExtinctionEdgeCases:
     def test_empty_wavelength_array(self):
         """Test with empty wavelength array."""
         wavelengths = np.array([]) * u.angstrom
-
+        
         result = evaluate_extinction_model(
             "CCM89", wavelengths, A0=1.0, R0=3.1
         )
-
+        
         assert result.shape == (0,)
 
     def test_very_large_a0(self, sample_wavelengths):
@@ -314,7 +316,7 @@ class TestExtinctionEdgeCases:
         result = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=100.0, R0=3.1
         )
-
+        
         assert np.all(np.isfinite(result))
         assert np.all(result > 0)
 
@@ -323,7 +325,7 @@ class TestExtinctionEdgeCases:
         result = evaluate_extinction_model(
             "CCM89", sample_wavelengths, A0=-1.0, R0=3.1
         )
-
+        
         # Should still produce a result (negative extinction)
         assert isinstance(result, np.ndarray)
         assert np.all(result <= 0)
@@ -332,25 +334,25 @@ class TestExtinctionEdgeCases:
         """Test that wavelength order doesn't affect individual values."""
         wavelengths_asc = np.array([1000, 2000, 5000, 10000]) * u.angstrom
         wavelengths_desc = wavelengths_asc[::-1]
-
+        
         result_asc = evaluate_extinction_model(
             "CCM89", wavelengths_asc, A0=1.0, R0=3.1
         )
         result_desc = evaluate_extinction_model(
             "CCM89", wavelengths_desc, A0=1.0, R0=3.1
         )
-
+        
         # Results should be reversed but otherwise identical
         assert np.allclose(result_asc, result_desc[::-1])
 
     def test_duplicate_wavelengths(self):
         """Test with duplicate wavelengths."""
         wavelengths = np.array([1000, 1000, 2000, 2000]) * u.angstrom
-
+        
         result = evaluate_extinction_model(
             "CCM89", wavelengths, A0=1.0, R0=3.1
         )
-
+        
         # Duplicate wavelengths should give duplicate results
         assert np.isclose(result[0], result[1])
         assert np.isclose(result[2], result[3])

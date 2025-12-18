@@ -3,6 +3,7 @@
 import pytest
 import numpy as np
 import pandas as pd
+from pathlib import Path
 from typing import Any, cast
 
 from dustapprox.models import (
@@ -67,7 +68,7 @@ class TestModelInfo:
             passbands=["GAIA_GAIA3.G"],
             filename="test.ecsv",
         )
-
+        
         assert info.atmosphere["source"] == "Kurucz"
         assert info.extinction["source"] == "F99"
         assert len(info.passbands) == 1
@@ -83,7 +84,7 @@ class TestModelInfo:
             passbands=["GAIA_GAIA3.G"],
             filename="test.ecsv",
         )
-
+        
         repr_str = repr(info)
         assert "Precomputed Model Information" in repr_str
         assert "Kurucz" in repr_str
@@ -99,7 +100,7 @@ class TestModelInfo:
             passbands=["GAIA_GAIA3.G"],
             filename="test.ecsv",
         )
-
+        
         info_copy = info.copy()
         assert info_copy.atmosphere == info.atmosphere
         assert info_copy.extinction == info.extinction
@@ -115,7 +116,7 @@ class TestModelInfo:
             passbands=[],
             filename="",
         )
-
+        
         with pytest.raises(ValueError, match="source library is not set"):
             info.load_model()
 
@@ -276,7 +277,7 @@ class TestPrecomputedModel:
     def test_load_model_not_implemented_kind(self, tmp_path):
         """Test loading model with unimplemented kind."""
         lib = PrecomputedModel()
-
+        
         # Create a mock ModelInfo with unsupported kind
         info = ModelInfo(
             atmosphere={},
@@ -286,7 +287,7 @@ class TestPrecomputedModel:
             passbands=["TEST"],
             filename=str(tmp_path / "test.ecsv"),
         )
-
+        
         with pytest.raises(NotImplementedError, match="not implemented"):
             lib.load_model(info, passband="TEST")
 
@@ -316,13 +317,11 @@ class TestPolynomialModelFitting:
         # simple linear relation on teffnorm to keep the regression stable
         kx = 0.2 + 0.01 * (teff / 5040.0)
         Ax = A0 * kx
-        df = pd.DataFrame(
-            {
-                "teff": teff,
-                "A0": A0,
-                "Ax": Ax,
-            }
-        )
+        df = pd.DataFrame({
+            "teff": teff,
+            "A0": A0,
+            "Ax": Ax,
+        })
         # mimic metadata from grid generation
         df.attrs = {
             "atmosphere": {"source": "test"},
@@ -384,9 +383,9 @@ class TestPolynomialModelFitting:
 
     def test_set_transformer_invalid_kind(self):
         """_set_transformer should reject unknown kinds."""
-        model = PolynomialModel(
-            name="GAIA.TEST", meta={"model": {"feature_names": ["teff", "A0"]}}
-        )
+        model = PolynomialModel(name="GAIA.TEST", meta={
+            "model": {"feature_names": ["teff", "A0"]}
+        })
         with pytest.raises(NotImplementedError):
             model._set_transformer(kind="spline", degree=2)
 
@@ -404,7 +403,7 @@ class TestModelsEdgeCases:
             passbands=[],
             filename="",
         )
-
+        
         assert info.passbands == []
         assert len(info.passbands) == 0
 
@@ -419,7 +418,7 @@ class TestModelsEdgeCases:
             passbands=[],
             filename="",
         )
-
+        
         assert len(info.comment) == 3
         assert info.comment == comments
 
@@ -427,10 +426,10 @@ class TestModelsEdgeCases:
         """Test PrecomputedModel with empty directory."""
         empty_dir = tmp_path / "empty"
         empty_dir.mkdir()
-
+        
         lib = PrecomputedModel(location=str(empty_dir))
         info = lib.get_models_info()
-
+        
         # Should return empty list for empty directory
         assert isinstance(info, (list, tuple))
         assert len(info) == 0
@@ -438,7 +437,7 @@ class TestModelsEdgeCases:
     def test_find_filters_passbands_correctly(self):
         """Test that find filters passbands in results."""
         lib = PrecomputedModel()
-
+        
         # Create mock info
         mock_info = ModelInfo(
             atmosphere={},
@@ -449,12 +448,12 @@ class TestModelsEdgeCases:
             filename="test.ecsv",
             _source_library=lib,
         )
-
+        
         lib._info = [mock_info]
-
+        
         # Find GAIA passbands
         results = lib.find(passband="GAIA")
-
+        
         if len(results) > 0:
             # Should only include GAIA passbands
             for passband in results[0].passbands:
@@ -465,9 +464,9 @@ class TestModelsEdgeCases:
         model = BaseModel(
             meta={"test": "value"},
             name="test_name",
-            extra_param="should_be_ignored",
+            extra_param="should_be_ignored"
         )
-
+        
         assert model.meta == {"test": "value"}
         assert model.name_ == "test_name"
         # extra_param should not cause an error
