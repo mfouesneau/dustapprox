@@ -7,7 +7,8 @@ import pathlib
 from importlib import resources
 
 import numpy as np
-from pyphot import Filter
+import pandas as pd
+from pyphot import Filter, config
 from pyphot.libraries import Ascii_Library
 
 from dustapprox.models import PrecomputedModel
@@ -18,12 +19,50 @@ from dustapprox.tools.generate_model import (
 
 
 def get_gaia_c1_filters() -> list[Filter]:
-    """Load Gaia DR3 C1 passbands from pyphot's Ascii_Library"""
+    """Load Gaia DR3 C1 passbands from pyphot's Ascii_Library
+
+    Returns
+    -------
+    list of pyphot.Filter
+        The Gaia DR3 C1 passbands as a list of pyphot.Filter objects.
+    """
     DATA_PATH = str(resources.files("dustapprox").joinpath("data", "Gaia2"))
     lib = Ascii_Library(f"{DATA_PATH}", glob_pattern="*csv")
     fnames = [f for f in lib.content if f.endswith(".csv")]
     filters = lib.load_filters(fnames)
     return filters
+
+
+def get_gaiadr4_passbands(
+    source: str = "GDR4/ExtPhotSystemDR4_v3.5.csv",
+) -> list[Filter]:
+    """
+    Load the Gaia DR4 passbands from the GDR4/ExtPhotSystemDR4_v3.5.csv file.
+
+    Returns
+    -------
+    list of pyphot.Filter
+        The Gaia DR4 passbands as a list of pyphot.Filter objects.
+    """
+
+    U = config.units.U
+
+    df = pd.read_csv(source)
+
+    defs = [
+        ("GAIA/GAIA4.G", "waveG", "G"),
+        ("GAIA/GAIA4.Gbp", "waveBp", "BP"),
+        ("GAIA/GAIA4.Rp", "waveRp", "RP"),
+    ]
+
+    gaia_dr4_filters = []
+
+    for name, wcol, tcol in defs:
+        subdf = df[[wcol, tcol]].dropna()
+        wave = subdf[wcol].values * U("nm")
+        trans = np.array(subdf[tcol].values)
+        gaia_dr4_filters.append(Filter(wave, trans, name=name, dtype="photon"))
+    return gaia_dr4_filters
 
 
 gaia_dr3_filters = [
@@ -73,6 +112,7 @@ filter_set = dict(
         ("galex", galex_filters),
         ("generic", generic_filters),
         ("gaiac1", get_gaia_c1_filters()),
+        ("gaiadr4", get_gaiadr4_passbands()),
     )
 )
 

@@ -183,9 +183,15 @@ class TestPrecomputedModel:
             # Try to find GAIA models
             results = lib.find(passband="GAIA")
             if len(results) > 0:
-                assert all("passband" in str(r.passbands).lower() or "gaia" in str(r.passbands).lower() for r in results)
+                assert all(
+                    "passband" in str(r.passbands).lower()
+                    or "gaia" in str(r.passbands).lower()
+                    for r in results
+                )
         except (FileNotFoundError, OSError, AttributeError):
-            pytest.skip("No precomputed models available or passband not found")
+            pytest.skip(
+                "No precomputed models available or passband not found"
+            )
 
     @pytest.mark.requires_data
     def test_find_by_extinction(self):
@@ -194,7 +200,11 @@ class TestPrecomputedModel:
         try:
             results = lib.find(extinction="F99")
             if len(results) > 0:
-                assert all("f99" in r.extinction["source"].lower() or "fitzpatrick" in r.extinction["source"].lower() for r in results)
+                assert all(
+                    "f99" in r.extinction["source"].lower()
+                    or "fitzpatrick" in r.extinction["source"].lower()
+                    for r in results
+                )
         except (FileNotFoundError, OSError, AttributeError):
             pytest.skip("No precomputed models available")
 
@@ -205,7 +215,9 @@ class TestPrecomputedModel:
         try:
             results = lib.find(atmosphere="kurucz")
             if len(results) > 0:
-                assert all("kurucz" in r.atmosphere["source"].lower() for r in results)
+                assert all(
+                    "kurucz" in r.atmosphere["source"].lower() for r in results
+                )
         except (FileNotFoundError, OSError, AttributeError):
             pytest.skip("No precomputed models available")
 
@@ -228,9 +240,11 @@ class TestPrecomputedModel:
             results_lower = lib.find(passband="gaia")
             results_upper = lib.find(passband="GAIA")
             results_mixed = lib.find(passband="Gaia")
-            
+
             # All should return the same results
-            assert len(results_lower) == len(results_upper) == len(results_mixed)
+            assert (
+                len(results_lower) == len(results_upper) == len(results_mixed)
+            )
         except (FileNotFoundError, OSError, AttributeError):
             pytest.skip("No precomputed models available")
 
@@ -240,9 +254,7 @@ class TestPrecomputedModel:
         lib = PrecomputedModel()
         try:
             results = lib.find(
-                passband="GAIA",
-                extinction="F99",
-                kind="polynomial"
+                passband="GAIA", extinction="F99", kind="polynomial"
             )
             # Should filter by all criteria
             if len(results) > 0:
