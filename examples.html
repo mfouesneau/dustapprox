@@ -1,0 +1,1373 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Steps to generate models &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/examples.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to contribute?" href="contributing.html" />
+    <link rel="prev" title="Assessing models accuracy and systematics" href="systematics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="precomputed.html">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/mfouesneau/dustapprox/main?urlpath=lab/tree/docs/examples.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/mfouesneau/dustapprox/blob/main/docs/examples.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/blob/main/docs/examples.ipynb?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Fexamples.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/examples.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Steps to generate models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-extinction-curves">Available extinction curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-passbands">Available passbands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#through-the-svo-profile-service">Through the SVO Profile Service</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#passbands-from-local-ascii-files">Passbands from local ascii files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-pre-computed-models">Generating the pre-computed models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-set-of-filters-you-want-to-compute-the-models-for">define the set of filters you want to compute the models for.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-atmosphere-models">Define the atmosphere models.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-and-export-the-polynomial-models">Train and export the polynomial models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reloading-precomputed-models">Reloading precomputed models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shortcuts-with-dustapprox-tools-generate-model-module">Shortcuts with <code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model</span></code> module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-full-model-generation">Running full model generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-available-models">List all available models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-with-edr3-extinction">Comparing with EDR3 extinction</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="steps-to-generate-models">
+<h1>Steps to generate models<a class="headerlink" href="#steps-to-generate-models" title="Link to this heading">#</a></h1>
+<p>This notebook outlines steps for generating the pre-computed models provided with Dustapprox.</p>
+<p>The process typically involves the following steps:</p>
+<ul class="simple">
+<li><p>download or provide atmosphere models</p></li>
+<li><p>select extinction curves</p></li>
+<li><p>select passbands to compute extinction in</p></li>
+<li><p>Generate a grid of models for various values of <span class="math notranslate nohighlight">\(A_0\)</span> and <span class="math notranslate nohighlight">\(R_0\)</span> (or other extinction curve parameters)</p></li>
+<li><p>Fit polynomial models to the extinction values as a function of <span class="math notranslate nohighlight">\(A_0\)</span>, <span class="math notranslate nohighlight">\(R_0\)</span>, and commonly <span class="math notranslate nohighlight">\(T_{eff}\)</span> or colors.</p></li>
+<li><p>Export the models to ECSV files for later use.</p></li>
+</ul>
+<div class="admonition-version admonition">
+<p class="admonition-title">version</p>
+<p>This notebook is based on Dustapprox version 0.2.0.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This process can be computationally intensive and may take some time to complete.</p>
+</div>
+<div class="admonition-intermediate-data-not-provided admonition">
+<p class="admonition-title">Intermediate data not provided</p>
+<p>We do not provide the intermediate data files (e.g., the atmosphere models or the full grid of extinction values before fitting) due to their large size. However, the code provided here allows you to reproduce the models if needed.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import package or add to path from source</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">dustapprox</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;../src&quot;</span><span class="p">)</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">dustapprox</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="available-extinction-curves">
+<h2>Available extinction curves<a class="headerlink" href="#available-extinction-curves" title="Link to this heading">#</a></h2>
+<p>Dusapprox uses <a class="reference external" href="https://dust-extinction.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">dust_extinction</span></code></a> as provider of dust extinction curves. <a class="reference internal" href="#fig-extinction-curves"><span class="std std-numref">Fig. 8</span></a> shows some of the available extinction curves. Not all extinction curves are suitable for all applications, weavelength ranges, parameters, etc vary between curves. We primarily use the <a class="reference external" href="https://dust-extinction.readthedocs.io/en/latest/dust_extinction/choose_model.html#parameter-dependent-average-curves">parametric average average curves</a> here, but you can always manually use a different one. Please refer to the <a class="reference external" href="https://dust-extinction.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">dust_extinction</span></code></a> documentation for more details.</p>
+<div class="cell tag_hide-input tag_figure docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.extinction</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate_extinction_model</span>
+
+<span class="c1">#define the wave numbers</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>    <span class="c1"># in microns^{-1}</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">x</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">micron</span>
+
+<span class="n">curves</span> <span class="o">=</span> <span class="s1">&#39;CCM89&#39;</span><span class="p">,</span> <span class="s1">&#39;O94&#39;</span><span class="p">,</span> <span class="s1">&#39;F99&#39;</span><span class="p">,</span> <span class="s1">&#39;F04&#39;</span><span class="p">,</span> <span class="s1">&#39;F19&#39;</span><span class="p">,</span> <span class="s1">&#39;G23&#39;</span>
+<span class="n">R0</span> <span class="o">=</span> <span class="mf">3.1</span>
+
+<span class="n">curve_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">curves</span><span class="p">:</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">evaluate_extinction_model</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">λ</span><span class="p">,</span> <span class="n">A0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">R0</span><span class="o">=</span><span class="n">R0</span><span class="p">)</span>
+    <span class="n">curve_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s1">s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">mean_curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">curve_data</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">curve_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">values</span> <span class="o">-</span> <span class="n">mean_curve</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s1">s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$A(x)/A_V$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Ext. Curve&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="sa">rf</span><span class="s1">&#39;$R_V=</span><span class="si">{</span><span class="n">R0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Wave number [$\mu$m$^{-1}$]&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$A(x)/A_V - &lt;A(x)/A_V&gt;$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.5&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-extinction-curves">
+<img alt="_images/e894871c31672151cc9ffd36d70b83f89c6dcbf0d73fd887119ac41545de1817.png" src="_images/e894871c31672151cc9ffd36d70b83f89c6dcbf0d73fd887119ac41545de1817.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Comparison of several extinction curves. Top: Extinction curves normalized to their parameter A<span class="math notranslate nohighlight">\(_V\)</span>. Bottom: Difference to the mean extinction curve to emphasize the variations. The curves are computed for the parameter R<span class="math notranslate nohighlight">\(_V\)</span>=3.1.</span><a class="headerlink" href="#fig-extinction-curves" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="extinction.html"><span class="doc">Extinction curves</span></a></p>
+</div>
+</section>
+<section id="available-passbands">
+<h2>Available passbands<a class="headerlink" href="#available-passbands" title="Link to this heading">#</a></h2>
+<p>For the photometry, we use <a class="reference external" href="https://mfouesneau.github.io/pyphot/index.html"><code class="docutils literal notranslate"><span class="pre">pyphot</span></code></a> a suite to compute synthetic photometry in flexible ways.</p>
+<div class="important admonition">
+<p class="admonition-title">Using pyphot v2.0.0</p>
+<p>For more information about <code class="docutils literal notranslate"><span class="pre">pyphot</span></code>, and the internal photometric computations, please refer to its <a class="reference external" href="https://mfouesneau.github.io/pyphot/index.html">documentation</a>.</p>
+</div>
+<section id="through-the-svo-profile-service">
+<h3>Through the SVO Profile Service<a class="headerlink" href="#through-the-svo-profile-service" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="source/dustapprox.io.html#dustapprox.io.svo.get_svo_passbands" title="dustapprox.io.svo.get_svo_passbands"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.io.svo.get_svo_passbands()</span></code></a> is a wrapper around pyphot to interface the <a class="reference external" href="http://svo2.cab.inta-csic.es/theory/fps/index.php">SVO Filter Profile Service</a>, which provides us with a large collection of passbands. <a class="reference internal" href="#fig-passbands"><span class="std std-numref">Fig. 9</span></a> shows an example of passbands retrieved from the SVO service.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">svo</span>
+<span class="n">which_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GAIA/GAIA3.Gbp&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.Grp&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.G&#39;</span><span class="p">]</span>
+<span class="n">passbands</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">get_svo_passbands</span><span class="p">(</span><span class="n">which_filters</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">pb</span> <span class="ow">in</span> <span class="n">passbands</span><span class="p">:</span>
+   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pb</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;nm&#39;</span><span class="p">),</span> <span class="n">pb</span><span class="o">.</span><span class="n">transmit</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">pb</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;wavelength [nm]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;transmission&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-passbands">
+<img alt="_images/13c8c210d410b02558f88d6921b3f0762ecf96e86153e92ca4a9f03c774ac66a.png" src="_images/13c8c210d410b02558f88d6921b3f0762ecf96e86153e92ca4a9f03c774ac66a.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Gaia eDR3 passbands retrieved from the SVO service.</span><a class="headerlink" href="#fig-passbands" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="passbands-from-local-ascii-files">
+<h3>Passbands from local ascii files<a class="headerlink" href="#passbands-from-local-ascii-files" title="Link to this heading">#</a></h3>
+<p>Pyphot also provides all features to read passbands from local ascii files. <a class="reference internal" href="#fig-gaiac1-passbands"><span class="std std-numref">Fig. 10</span></a> shows an example of the Gaia C1 passbands (<a class="reference external" href="https://academic.oup.com/mnras/article/367/1/290/1018790">Jordi et al 2006</a>) read from dustapprox distributed ascii files.
+The C1B and C1M systems for the broad and medium band passbands, respectively. The C1 system was specifically designed to maximize the scientific return in terms of stellar astrophysical parameters, but was not implemented in favor of the Gaia BP/RP prism spectra.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">resources</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyphot.libraries</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ascii_Library</span>
+
+<span class="c1"># get the path to the data directory in the package</span>
+<span class="n">where</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s1">&#39;dustapprox&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;data/Gaia2&#39;</span><span class="p">))</span>
+
+<span class="c1"># load all filters from that directory</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">Ascii_Library</span><span class="p">(</span><span class="n">where</span><span class="p">,</span> <span class="n">glob_pattern</span><span class="o">=</span><span class="s1">&#39;*csv&#39;</span><span class="p">)</span>
+<span class="n">pbset</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_filters</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;C1&#39;</span><span class="p">))</span>
+
+<span class="c1"># plot the passbands</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">pb</span> <span class="ow">in</span> <span class="n">pbset</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">pb</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;C1B&quot;</span><span class="p">):</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;C0&#39;</span>
+        <span class="n">zorder</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+        <span class="n">zorder</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pb</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;nm&#39;</span><span class="p">),</span> 
+             <span class="n">pb</span><span class="o">.</span><span class="n">transmit</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="n">pb</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> 
+             <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> 
+             <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;wavelength [nm]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;transmission&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-gaiac1-passbands">
+<img alt="_images/94e00b2ebd250532e861e0d0644b826da4fb38057fd5138d4b3314959b00e2e8.png" src="_images/94e00b2ebd250532e861e0d0644b826da4fb38057fd5138d4b3314959b00e2e8.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Gaia C1 passbands from dustapprox provided ascii files. The Broad passbands are shown in full strength, while the medium ones are shown at half strength for clarity.</span><a class="headerlink" href="#fig-gaiac1-passbands" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="generating-the-pre-computed-models">
+<h2>Generating the pre-computed models<a class="headerlink" href="#generating-the-pre-computed-models" title="Link to this heading">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This process can be computationally intensive and may take some time to complete.</p>
+</div>
+<section id="define-the-set-of-filters-you-want-to-compute-the-models-for">
+<h3>define the set of filters you want to compute the models for.<a class="headerlink" href="#define-the-set-of-filters-you-want-to-compute-the-models-for" title="Link to this heading">#</a></h3>
+<p>Here is an example of some commonly used sets of filters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of common sets of filters we use to generate pre-computed models for dustapprox.</span>
+
+<span class="n">gaia_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GAIA/GAIA3.G&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.Gbp&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.Grp&#39;</span><span class="p">,]</span>
+<span class="n">sloan_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SLOAN/SDSS.u&#39;</span><span class="p">,</span> <span class="s1">&#39;SLOAN/SDSS.g&#39;</span><span class="p">,</span> <span class="s1">&#39;SLOAN/SDSS.r&#39;</span><span class="p">,</span> <span class="s1">&#39;SLOAN/SDSS.i&#39;</span><span class="p">,</span> <span class="s1">&#39;SLOAN/SDSS.z&#39;</span><span class="p">,]</span>
+<span class="n">twomass_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2MASS/2MASS.J&#39;</span><span class="p">,</span> <span class="s1">&#39;2MASS/2MASS.H&#39;</span><span class="p">,</span> <span class="s1">&#39;2MASS/2MASS.Ks&#39;</span><span class="p">,]</span>
+<span class="n">wise_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WISE/WISE.W1&#39;</span><span class="p">,</span> <span class="s1">&#39;WISE/WISE.W2&#39;</span><span class="p">,</span> <span class="s1">&#39;WISE/WISE.W3&#39;</span><span class="p">,</span> <span class="s1">&#39;WISE/WISE.W4&#39;</span><span class="p">,]</span>
+<span class="n">galex_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GALEX/GALEX.FUV&#39;</span><span class="p">,</span> <span class="s1">&#39;GALEX/GALEX.NUV&#39;</span><span class="p">,]</span>
+<span class="n">generic_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Generic/Johnson.U&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Johnson.B&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Johnson.V&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Generic/Cousins.R&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Cousins.I&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Generic/Bessell_JHKLM.J&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Bessell_JHKLM.H&#39;</span><span class="p">,</span> <span class="s1">&#39;Generic/Bessell_JHKLM.K&#39;</span><span class="p">,]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the following, we will use the Gaia filters <code class="docutils literal notranslate"><span class="pre">gaia_filters</span></code> as an example.</p>
+</section>
+<section id="define-the-atmosphere-models">
+<h3>Define the atmosphere models.<a class="headerlink" href="#define-the-atmosphere-models" title="Link to this heading">#</a></h3>
+<p>As internally we calculate the relative change in flux of the spectra, we do not need absolute flux-calibrated models and use the atmospheres directly (i.e. no rescaling with radius or bolometric luminosity). Here we use the Kurucz 2003 models taken from the <a class="reference external" href="http://svo2.cab.inta-csic.es/theory/newov2/index.php">SVO Theoretical spectra</a> service. These models span ranges of from 3,500 K to 50,000 K, from 0 to 5 dex, and metallicity from -4 to 0 dex. Our approach is agnostics to the exact library itself. All files from SVO have the same format, but the spectra are not on the same wavelength scale (even for a single atmosphere source). The parameters of the spectra may vary from source to source. For instance, they may not provide microturbulence velocity or [<span class="math notranslate nohighlight">\(\alpha\)</span>/Fe] etc. We technically require only effective temperature and surface gravity to be provided.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="atmospheres.html"><span class="doc">Atmosphere models</span></a> for further information and download links to some precompiled atmospheres.</p>
+</div>
+<p>The following code snippet shows how to generate the pre-computed models using the <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.generate_grid" title="dustapprox.tools.generate_model.generate_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_grid()</span></code></a> function from <a class="reference internal" href="source/dustapprox.tools.html#module-dustapprox.tools.generate_model" title="dustapprox.tools.generate_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model</span></code></a> module. It is basically a loop over the model atmosphere files, the A0 and R0 values, and the selected filters.
+The internal function <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.generate_grid" title="dustapprox.tools.generate_model.generate_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_grid()</span></code></a> handles all the details of reading the atmosphere models, applying the extinction curves, computing synthetic photometry, and exporting the results to ECSV files. It also allows parallel processing through <code class="docutils literal notranslate"><span class="pre">joblib</span></code> to speed up the computation.</p>
+<div class="cell tag_remove-stderr docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+
+<span class="c1"># features = &#39;teff logg feh A0 alpha&#39;.split()</span>
+<span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;teff A0 R0&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">model_pattern</span> <span class="o">=</span> <span class="s2">&quot;models/Kurucz2003all/*.fl.dat.txt&quot;</span>
+<span class="c1"># model_pattern = &quot;../docs/models/Kurucz2003all/*.fl.dat.txt&quot;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">gaia_filters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;precomputed/grids/kurucz_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_f99_a0r0_grid.ecsv&quot;</span><span class="p">)</span>
+<span class="n">atmosphere_name</span> <span class="o">=</span> <span class="s2">&quot;Kurucz (ODFNEW/NOVER 2003)&quot;</span>
+<span class="n">extinction_curve</span> <span class="o">=</span> <span class="s2">&quot;F99&quot;</span>
+
+<span class="c1"># Compute the grid -- this may take a while -- reuses existing grids if available</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">generate_model</span><span class="o">.</span><span class="n">generate_grid</span><span class="p">(</span>
+    <span class="n">model_pattern</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">,</span>
+    <span class="n">gaia_filters</span><span class="p">,</span>
+    <span class="n">atmosphere_name</span><span class="o">=</span><span class="n">atmosphere_name</span><span class="p">,</span>
+    <span class="n">extinction_curve</span><span class="o">=</span><span class="n">extinction_curve</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing photometric grid
+   - Using passbands: GAIA/GAIA3.G, GAIA/GAIA3.Gbp, GAIA/GAIA3.Grp
+   - Using model pattern: models/Kurucz2003all/*.fl.dat.txt
+   - Using atmospheres: Kurucz (ODFNEW/NOVER 2003)
+   - Using extinction curve: F99
+   - Using default A0 values: [0.01, 0.1, 0.2 ... 20.0]
+   - Using default R0 values: [2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1]
+   - Using default parameters: (&#39;teff&#39;, &#39;logg&#39;, &#39;feh&#39;, &#39;alpha&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting grid to precomputed/grids/kurucz_gaia_f99_a0r0_grid.ecsv. Done.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Saving files as ECSV ensures compatibility with any platform that can read ascii files. ECSV preserves metadata, such as column names and data types, which is essential for later use.
+For photometric grids, this generates large files that could benefit from other formats. However, these are intermediate files that we do not provide with <code class="docutils literal notranslate"><span class="pre">dustapprox</span></code>.</p>
+</div>
+</section>
+<section id="train-and-export-the-polynomial-models">
+<h3>Train and export the polynomial models<a class="headerlink" href="#train-and-export-the-polynomial-models" title="Link to this heading">#</a></h3>
+<p>The final step involves fitting polynomial models to the computed extinction values as a function of <span class="math notranslate nohighlight">\(A_0\)</span>, potentially <span class="math notranslate nohighlight">\(R_0\)</span>, and other parameters like <span class="math notranslate nohighlight">\(T_{eff}\)</span>. This is done using the <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.train_polynomial_model" title="dustapprox.tools.generate_model.train_polynomial_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model.train_polynomial_model()</span></code></a> module, which fits the polynomials, and provides means to export the fitted models to new ECSV files for later use in <code class="docutils literal notranslate"><span class="pre">dustapprox</span></code>. A wrapper function <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.export_trained_model_to_ecsv" title="dustapprox.tools.generate_model.export_trained_model_to_ecsv"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model.export_trained_model_to_ecsv()</span></code></a> is provided to handle the entire process in one go.</p>
+<p>For this step, we define what features are used in the polynomial fitting. In our case, we will use <code class="docutils literal notranslate"><span class="pre">teff</span></code>, <code class="docutils literal notranslate"><span class="pre">A0</span></code>, and <code class="docutils literal notranslate"><span class="pre">R0</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The choice of features depends on the specific application and the desired accuracy of the extinction models. Including more features can improve the fit but may also increase the complexity of the models.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;teff A0 R0&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">atmosphere_shortname</span> <span class="o">=</span> <span class="s1">&#39;kurucz&#39;</span>
+<span class="n">force_recompute</span> <span class="o">=</span> <span class="kc">False</span>    <span class="c1"># Change here to True to force recomputing the model</span>
+<span class="n">model_output_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;precomputed/polynomial/</span><span class="si">{</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">atmosphere_shortname</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">atmosphere_shortname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">features</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">.ecsv&quot;</span>
+    <span class="p">)</span>
+<span class="k">if</span> <span class="n">model_output_path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force_recompute</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model file </span><span class="si">{</span><span class="n">model_output_path</span><span class="si">}</span><span class="s2"> already exists. Skipping model fitting.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">force_recompute</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model file </span><span class="si">{</span><span class="n">model_output_path</span><span class="si">}</span><span class="s2"> does not exist. Fitting model.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forced recomputing is True. Fitting model.&quot;</span><span class="p">)</span>
+        <span class="n">models</span> <span class="o">=</span> <span class="n">generate_model</span><span class="o">.</span><span class="n">train_polynomial_model</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">model_output_path</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">generate_model</span><span class="o">.</span><span class="n">export_trained_model_to_ecsv</span><span class="p">(</span><span class="n">model_output_path</span><span class="p">,</span> <span class="n">models</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model file precomputed/polynomial/F99/kurucz/gaia_kurucz_F99_teff_a0_r0.ecsv already exists. Skipping model fitting.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The models are exported as ECSV files for later use with <code class="docutils literal notranslate"><span class="pre">dustapprox</span></code>.</p>
+</section>
+<section id="reloading-precomputed-models">
+<h3>Reloading precomputed models<a class="headerlink" href="#reloading-precomputed-models" title="Link to this heading">#</a></h3>
+<p>We use <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel" title="dustapprox.models.PrecomputedModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel</span></code></a> to define our library and its <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find()</span></code></a> method to search available models and associated passbands.
+The search can be on passband, extinction, atmosphere, and model kind. It is caseless and does not need to contain the complete name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrecomputedModel</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;teff A0 R0&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">atmosphere_shortname</span> <span class="o">=</span> <span class="s1">&#39;kurucz&#39;</span>
+<span class="n">extinction_curve</span> <span class="o">=</span> <span class="s2">&quot;F99&quot;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;gaia&quot;</span>
+<span class="n">force_recompute</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">model_output_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;precomputed/polynomial/</span><span class="si">{</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">atmosphere_shortname</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">atmosphere_shortname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">features</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">.ecsv&quot;</span>
+    <span class="p">)</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">PrecomputedModel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">model_output_path</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">get_models_info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;GAIA3.Gbp&#39;</span><span class="p">,</span> <span class="n">extinction</span><span class="o">=</span><span class="s1">&#39;F99&#39;</span><span class="p">,</span> <span class="n">atmosphere</span><span class="o">=</span><span class="s1">&#39;kurucz&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">load_model</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[PolynomialModel: None 
+ &lt;dustapprox.models.polynomial.PolynomialModel object at 0x1120b20c0&gt;
+    from: A0, R0, teffnorm   polynomial degree: 3]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="shortcuts-with-dustapprox-tools-generate-model-module">
+<h3>Shortcuts with <a class="reference internal" href="source/dustapprox.tools.html#module-dustapprox.tools.generate_model" title="dustapprox.tools.generate_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model</span></code></a> module<a class="headerlink" href="#shortcuts-with-dustapprox-tools-generate-model-module" title="Link to this heading">#</a></h3>
+<p>To simplify the process of generating grids and fitting models, <code class="docutils literal notranslate"><span class="pre">dustapprox</span></code> provides the <a class="reference internal" href="source/dustapprox.tools.html#module-dustapprox.tools.generate_model" title="dustapprox.tools.generate_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model</span></code></a> module and the <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.main_example" title="dustapprox.tools.generate_model.main_example"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model.main_example()</span></code></a> function. This module encapsulates the entire workflow into convenient classes and functions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.tools.generate_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridParameters</span><span class="p">,</span> <span class="n">train_polynomial_model</span><span class="p">,</span> <span class="n">gaia_dr3_filters</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>  
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a pre-computed polynomial model library end-to-end&quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;gaia&quot;</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;teff&quot;</span><span class="p">,</span> <span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;R0&quot;</span><span class="p">]</span>
+
+    <span class="c1"># helps to robustly define grid parameters</span>
+    <span class="n">grid_parameters</span> <span class="o">=</span> <span class="n">GridParameters</span><span class="p">(</span>
+        <span class="n">model_pattern</span><span class="o">=</span><span class="s2">&quot;models/Kurucz2003all/*.fl.dat.txt&quot;</span><span class="p">,</span>
+        <span class="n">pbset</span><span class="o">=</span><span class="n">gaia_dr3_filters</span><span class="p">,</span>
+        <span class="n">atmosphere_name</span><span class="o">=</span><span class="s2">&quot;Kurucz (ODFNEW/NOVER 2003)&quot;</span><span class="p">,</span>
+        <span class="n">atmosphere_shortname</span><span class="o">=</span><span class="s2">&quot;kurucz&quot;</span><span class="p">,</span>
+        <span class="n">extinction_curve</span><span class="o">=</span><span class="s2">&quot;F99&quot;</span><span class="p">,</span>
+        <span class="n">apfields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;teff&quot;</span><span class="p">,</span> <span class="s2">&quot;logg&quot;</span><span class="p">,</span> <span class="s2">&quot;feh&quot;</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">),</span>  <span class="c1"># no additional output parameters</span>
+        <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">A0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([[</span><span class="mf">0.01</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">20.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)])),</span>
+        <span class="n">R0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">]),</span>
+    <span class="p">)</span>
+
+    <span class="n">grid_output_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;precomputed/grids/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">grid_parameters</span><span class="o">.</span><span class="n">atmosphere_shortname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">grid_parameters</span><span class="o">.</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">_grid.ecsv&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># run grid generation</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">grid_parameters</span><span class="o">.</span><span class="n">generate_grid</span><span class="p">(</span><span class="n">grid_output_path</span><span class="p">)</span>
+
+    <span class="c1"># Train models on the generated grid</span>
+    <span class="n">model_output_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;precomputed/polynomial/</span><span class="si">{</span><span class="n">grid_parameters</span><span class="o">.</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">grid_parameters</span><span class="o">.</span><span class="n">atmosphere_shortname</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">grid_parameters</span><span class="o">.</span><span class="n">atmosphere_shortname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">grid_parameters</span><span class="o">.</span><span class="n">extinction_curve</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">features</span><span class="p">)</span><span class="si">}</span><span class="s2">.ecsv&quot;</span>
+    <span class="p">)</span>
+    <span class="n">model_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;degree&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+    <span class="n">train_polynomial_model</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">model_output_path</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span>
+
+    <span class="n">lib</span> <span class="o">=</span> <span class="n">PrecomputedModel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">model_output_path</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">lib</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.GridParameters" title="dustapprox.tools.generate_model.GridParameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridParameters</span></code></a> dataclass allows you to specify all the parameters needed to generate the grid, while the <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.GridParameters.generate_grid" title="dustapprox.tools.generate_model.GridParameters.generate_grid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_grid()</span></code></a> method handles the actual computation.
+The <a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.generate_model.train_polynomial_model" title="dustapprox.tools.generate_model.train_polynomial_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">train_polynomial_model()</span></code></a> function fits the polynomial models and saves them to the specified output path.</p>
+</section>
+</section>
+<section id="running-full-model-generation">
+<h2>Running full model generation<a class="headerlink" href="#running-full-model-generation" title="Link to this heading">#</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To be added</p>
+</div>
+</section>
+<section id="list-all-available-models">
+<h2>List all available models<a class="headerlink" href="#list-all-available-models" title="Link to this heading">#</a></h2>
+<p>The following shows how to list all available pre-computed models in the <code class="docutils literal notranslate"><span class="pre">dustapprox</span></code> library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrecomputedModel</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">PrecomputedModel</span><span class="p">()</span>
+
+<span class="n">data_</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_models_info</span><span class="p">():</span>
+
+    <span class="n">kind</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">])</span>
+    <span class="n">extc</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">extinction</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span>
+    <span class="n">atm</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">extinction</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span>
+    <span class="n">teffmin</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">atmosphere</span><span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">teffmax</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">atmosphere</span><span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">loggmin</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">atmosphere</span><span class="p">[</span><span class="s1">&#39;logg&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">loggmax</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">atmosphere</span><span class="p">[</span><span class="s1">&#39;logg&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">fehmin</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">atmosphere</span><span class="p">[</span><span class="s1">&#39;feh&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">fehmax</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">atmosphere</span><span class="p">[</span><span class="s1">&#39;feh&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">a0min</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">extinction</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">a0max</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">extinction</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s1">&#39;R0&#39;</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">extinction</span><span class="p">:</span>
+            <span class="n">r0min</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">extinction</span><span class="p">[</span><span class="s1">&#39;R0&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">r0max</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">extinction</span><span class="p">[</span><span class="s1">&#39;R0&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r0min</span><span class="p">,</span> <span class="n">r0max</span> <span class="o">=</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.1</span>
+
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;polynomial&#39;</span><span class="p">:</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{kind:s}</span><span class="s2">(degree=</span><span class="si">{degree:d}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span> 
+                                                    <span class="n">degree</span><span class="o">=</span><span class="n">info</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">pb</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">passbands</span><span class="p">:</span>
+        <span class="n">data_</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pb</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> 
+                     <span class="n">extc</span><span class="p">,</span> <span class="n">a0min</span><span class="p">,</span> <span class="n">a0max</span><span class="p">,</span> <span class="n">r0min</span><span class="p">,</span> <span class="n">r0max</span><span class="p">,</span>
+                     <span class="n">atm</span><span class="p">,</span> <span class="n">teffmin</span><span class="p">,</span> <span class="n">teffmax</span><span class="p">,</span> <span class="n">loggmin</span><span class="p">,</span> <span class="n">loggmax</span><span class="p">,</span> <span class="n">fehmin</span><span class="p">,</span> <span class="n">fehmax</span><span class="p">])</span>
+<span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;passband&#39;</span><span class="p">,</span> <span class="s1">&#39;kind&#39;</span><span class="p">,</span> <span class="s1">&#39;features&#39;</span><span class="p">,</span> 
+         <span class="s1">&#39;extinction&#39;</span><span class="p">,</span> <span class="s1">&#39;A0 min&#39;</span><span class="p">,</span> <span class="s1">&#39;A0 max&#39;</span><span class="p">,</span> <span class="s1">&#39;R0 min&#39;</span><span class="p">,</span> <span class="s1">&#39;R0 max&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;atmosphere&#39;</span><span class="p">,</span> <span class="s1">&#39;teff min&#39;</span><span class="p">,</span> <span class="s1">&#39;teff max&#39;</span><span class="p">,</span> <span class="s1">&#39;logg min&#39;</span><span class="p">,</span> <span class="s1">&#39;logg max&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;[Fe/H] min&#39;</span><span class="p">,</span> <span class="s1">&#39;[Fe/H] max&#39;</span><span class="p">]</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">data_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;passband&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>kind</th>
+      <th>features</th>
+      <th>extinction</th>
+      <th>A0 min</th>
+      <th>A0 max</th>
+      <th>R0 min</th>
+      <th>R0 max</th>
+      <th>atmosphere</th>
+      <th>teff min</th>
+      <th>teff max</th>
+      <th>logg min</th>
+      <th>logg max</th>
+      <th>[Fe/H] min</th>
+      <th>[Fe/H] max</th>
+    </tr>
+    <tr>
+      <th>passband</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2MASS_2MASS.H</th>
+      <td>polynomial(degree=3)</td>
+      <td>A0 teffnorm</td>
+      <td>Fitzpatrick (1999)</td>
+      <td>0.01</td>
+      <td>20.0</td>
+      <td>3.1</td>
+      <td>3.1</td>
+      <td>Fitzpatrick (1999)</td>
+      <td>3500.0</td>
+      <td>50000.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>-4.0</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>2MASS_2MASS.H</th>
+      <td>polynomial(degree=3)</td>
+      <td>A0 R0 teffnorm</td>
+      <td>F99</td>
+      <td>0.01</td>
+      <td>20.0</td>
+      <td>2.3</td>
+      <td>5.1</td>
+      <td>F99</td>
+      <td>3500.0</td>
+      <td>50000.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>-4.0</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>2MASS_2MASS.J</th>
+      <td>polynomial(degree=3)</td>
+      <td>A0 teffnorm</td>
+      <td>Fitzpatrick (1999)</td>
+      <td>0.01</td>
+      <td>20.0</td>
+      <td>3.1</td>
+      <td>3.1</td>
+      <td>Fitzpatrick (1999)</td>
+      <td>3500.0</td>
+      <td>50000.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>-4.0</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>2MASS_2MASS.J</th>
+      <td>polynomial(degree=3)</td>
+      <td>A0 R0 teffnorm</td>
+      <td>F99</td>
+      <td>0.01</td>
+      <td>20.0</td>
+      <td>2.3</td>
+      <td>5.1</td>
+      <td>F99</td>
+      <td>3500.0</td>
+      <td>50000.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>-4.0</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>2MASS_2MASS.Ks</th>
+      <td>polynomial(degree=3)</td>
+      <td>A0 teffnorm</td>
+      <td>Fitzpatrick (1999)</td>
+      <td>0.01</td>
+      <td>20.0</td>
+      <td>3.1</td>
+      <td>3.1</td>
+      <td>Fitzpatrick (1999)</td>
+      <td>3500.0</td>
+      <td>50000.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>-4.0</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="precomputed.html"><span class="doc">Extinction approximation models</span></a> for the complete list.</p>
+</div>
+</section>
+<section id="comparing-with-edr3-extinction">
+<h2>Comparing with EDR3 extinction<a class="headerlink" href="#comparing-with-edr3-extinction" title="Link to this heading">#</a></h2>
+<p>We provide the EDR3 model from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract">Riello et al. (2020)</a> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">module-dustapprox.literature.edr3</span></code>. They fit a similar polynomial equation on a grid of extinctions obtained by convolving the Gaia eDR3 passbands with Kurucz spectra (Castelli &amp; Kurucz, 2003) and the
+Fitzpatrick et al. (2019) extinction curve. They constructed a grid with <span class="math notranslate nohighlight">\(3500 K &lt; T_{eff}
+&lt; 10000 K\)</span> in steps of <span class="math notranslate nohighlight">\(250 K\)</span>, and <span class="math notranslate nohighlight">\(0.01 &lt; A_0 &lt; 20 mag\)</span> with a step linearly
+increasing with <span class="math notranslate nohighlight">\(0.01 mag\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.literature</span><span class="w"> </span><span class="kn">import</span> <span class="n">edr3</span>
+<span class="n">edr3ext</span> <span class="o">=</span> <span class="n">edr3</span><span class="o">.</span><span class="n">edr3_ext</span><span class="p">()</span>
+<span class="n">kg_bab</span> <span class="o">=</span> <span class="n">edr3ext</span><span class="o">.</span><span class="n">from_teff</span><span class="p">(</span><span class="s1">&#39;kG&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">])</span>
+<span class="n">delta_edr3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">kg_bab</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag0&#39;</span><span class="p">]</span>
+<span class="n">ydata</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag0&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">]</span>
+<span class="n">ypred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">ypred</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag0&#39;</span><span class="p">]</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">root_mean_squared_error</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> 
+         <span class="s1">&#39;mae&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+         <span class="s1">&#39;rmse&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">))}</span>
+
+
+<span class="n">selection</span> <span class="o">=</span> <span class="s1">&#39;A0 &gt; 0.0&#39;</span>
+<span class="n">select</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;Our model (</span><span class="si">{</span><span class="n">selection</span><span class="si">}</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    &quot;</span><span class="p">,</span> <span class="n">sname</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">sk</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">select</span><span class="p">]</span> <span class="o">-</span> <span class="n">ypred</span><span class="p">[</span><span class="n">select</span><span class="p">]))</span> <span class="k">for</span> <span class="n">sname</span><span class="p">,</span> <span class="n">sk</span> <span class="ow">in</span> <span class="n">stats</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;EDR3 model (</span><span class="si">{</span><span class="n">selection</span><span class="si">}</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    &quot;</span><span class="p">,</span> <span class="n">sname</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">sk</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">select</span><span class="p">]</span> <span class="o">-</span> <span class="n">kg_bab</span><span class="p">[</span><span class="n">select</span><span class="p">]))</span> <span class="k">for</span> <span class="n">sname</span><span class="p">,</span> <span class="n">sk</span> <span class="ow">in</span> <span class="n">stats</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+<span class="n">selection</span> <span class="o">=</span> <span class="s1">&#39;3500 &lt; teff &lt; 10_000&#39;</span>
+<span class="n">select</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2">Our model (</span><span class="si">{</span><span class="n">selection</span><span class="si">}</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    &quot;</span><span class="p">,</span> <span class="n">sname</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">sk</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">select</span><span class="p">]</span> <span class="o">-</span> <span class="n">ypred</span><span class="p">[</span><span class="n">select</span><span class="p">]))</span> <span class="k">for</span> <span class="n">sname</span><span class="p">,</span> <span class="n">sk</span> <span class="ow">in</span> <span class="n">stats</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;EDR3 model (</span><span class="si">{</span><span class="n">selection</span><span class="si">}</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    &quot;</span><span class="p">,</span> <span class="n">sname</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">sk</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">select</span><span class="p">]</span> <span class="o">-</span> <span class="n">kg_bab</span><span class="p">[</span><span class="n">select</span><span class="p">]))</span> <span class="k">for</span> <span class="n">sname</span><span class="p">,</span> <span class="n">sk</span> <span class="ow">in</span> <span class="n">stats</span><span class="o">.</span><span class="n">items</span><span class="p">()];</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Our model (A0 &gt; 0.0)
+     mean = -1.2335793396269397e-14
+     std = 0.006371610131284496
+     mae = 0.004285260812386554
+     rmse = 0.006371610131284496
+EDR3 model (A0 &gt; 0.0)
+     mean = -2.6226363805751904
+     std = 7.01279579721422
+     mae = 2.6226363805751904
+     rmse = 7.487157436446889
+
+Our model (3500 &lt; teff &lt; 10_000)
+     mean = 0.0022291703821189636
+     std = 0.005015272890195844
+     mae = 0.00430507292284872
+     rmse = 0.005488366128061226
+EDR3 model (3500 &lt; teff &lt; 10_000)
+     mean = -0.1560191806864705
+     std = 0.05344416757431945
+     mae = 0.1560191806864705
+     rmse = 0.16491896128034964
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.literature</span><span class="w"> </span><span class="kn">import</span> <span class="n">edr3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># get Gaia models</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PrecomputedModel</span><span class="p">()</span>
+<span class="c1"># r_ = lib.find(passband=&#39;Gaia&#39;)[0]  # taking the first one</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;../gaiadr3_a0_tmp.ecsv&#39;</span><span class="p">,</span> <span class="n">passband</span><span class="o">=</span><span class="s1">&#39;GAIA_GAIA3.G&#39;</span><span class="p">)</span>
+
+<span class="c1"># get some data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../docs/models/precomputed/kurucz_gaiaedr3_small_a0_grid.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;passband&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;GAIA_GAIA3.G&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)]</span>
+
+<span class="c1"># values</span>
+<span class="n">ydata</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag0&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">]</span>
+<span class="n">kg_edr3</span> <span class="o">=</span> <span class="n">edr3</span><span class="o">.</span><span class="n">edr3_ext</span><span class="p">()</span><span class="o">.</span><span class="n">from_teff</span><span class="p">(</span><span class="s1">&#39;kG&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">])</span>
+<span class="n">delta_edr3</span> <span class="o">=</span> <span class="n">ydata</span> <span class="o">-</span> <span class="n">kg_edr3</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">ydata</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="c1"># note: edr3 model valid for 3500 &lt; teff &lt; 10_000</span>
+<span class="n">selection</span> <span class="o">=</span> <span class="s1">&#39;3500 &lt; teff &lt; 10_000&#39;</span>
+<span class="n">select</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">inferno_r</span>
+
+<span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{name:s}</span><span class="s2">: kind=</span><span class="si">{kind:s}</span><span class="se">\n</span><span class="s2"> using: </span><span class="si">{features}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">kind</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="n">features</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">feature_names</span><span class="p">))</span>
+
+<span class="n">kwargs_all</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">])</span>
+<span class="n">kwargs_select</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">][</span><span class="n">select</span><span class="p">])</span>
+
+<span class="n">ax0</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag0&#39;</span><span class="p">],</span> <span class="n">delta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_all</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag0&#39;</span><span class="p">][</span><span class="n">select</span><span class="p">],</span> <span class="n">delta</span><span class="p">[</span><span class="n">select</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_select</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;A$_0$ [mag]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;k$_G$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;medium&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">],</span> <span class="n">delta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_all</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">][</span><span class="n">select</span><span class="p">],</span> <span class="n">delta</span><span class="p">[</span><span class="n">select</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_select</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;A$_0$ [mag]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;medium&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{name:s}</span><span class="s2">: kind=</span><span class="si">{kind:s}</span><span class="se">\n</span><span class="s2"> using: </span><span class="si">{features}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+           <span class="n">name</span><span class="o">=</span><span class="s2">&quot;EDR3&quot;</span><span class="p">,</span>
+           <span class="n">kind</span><span class="o">=</span><span class="n">edr3</span><span class="o">.</span><span class="n">edr3_ext</span><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+           <span class="n">features</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s1">&#39;teffnorm&#39;</span><span class="p">,</span> <span class="s1">&#39;A0&#39;</span><span class="p">)))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax0</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag0&#39;</span><span class="p">],</span> <span class="n">delta_edr3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_all</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag0&#39;</span><span class="p">][</span><span class="n">select</span><span class="p">],</span> <span class="n">delta_edr3</span><span class="p">[</span><span class="n">select</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_select</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;A$_0$ [mag]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;M$_G$ [mag] + constant&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;k$_G$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;medium&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">],</span> <span class="n">delta_edr3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_all</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">][</span><span class="n">select</span><span class="p">],</span> <span class="n">delta_edr3</span><span class="p">[</span><span class="n">select</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_select</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;T$_{\rm eff}$ [K]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;A$_0$ [mag]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;medium&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9db83f8f311d13de44a5a856b438edf94fe50c9ec1e5071ed409ae92550952da.png" src="_images/9db83f8f311d13de44a5a856b438edf94fe50c9ec1e5071ed409ae92550952da.png" />
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="source/dustapprox.literature.html#module-dustapprox.literature" title="dustapprox.literature"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.literature</span></code></a> for other literature models.</p>
+<p><a class="reference internal" href="systematics.html"><span class="doc">Assessing models accuracy and systematics</span></a> for more details.</p>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="systematics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Assessing models accuracy and systematics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="contributing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">How to contribute?</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-extinction-curves">Available extinction curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-passbands">Available passbands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#through-the-svo-profile-service">Through the SVO Profile Service</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#passbands-from-local-ascii-files">Passbands from local ascii files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-pre-computed-models">Generating the pre-computed models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-set-of-filters-you-want-to-compute-the-models-for">define the set of filters you want to compute the models for.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-atmosphere-models">Define the atmosphere models.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-and-export-the-polynomial-models">Train and export the polynomial models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reloading-precomputed-models">Reloading precomputed models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shortcuts-with-dustapprox-tools-generate-model-module">Shortcuts with <code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.tools.generate_model</span></code> module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-full-model-generation">Running full model generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-available-models">List all available models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-with-edr3-extinction">Comparing with EDR3 extinction</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,723 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Extinction approximation models &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'precomputed';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/precomputed.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="List of provided precomputed models" href="precomputed_content.html" />
+    <link rel="prev" title="Photometric computations" href="photometry.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Photometric computations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/blob/main/docs/precomputed.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Fprecomputed.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/precomputed.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Extinction approximation models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Extinction approximation models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#precomputed-models">Precomputed models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-models">Generating models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-photometric-grid-of-dust-attenuated-stars">Creating a photometric grid of dust attenuated stars</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="extinction-approximation-models">
+<h1>Extinction approximation models<a class="headerlink" href="#extinction-approximation-models" title="Link to this heading">#</a></h1>
+<p>Extinction coefficients per passbands depend on both the source spectral energy distribution
+and on the extinction itself (e.g., Gordon et al., 2016, Jordi et al., 2010).
+To first order, the shape of the SED through a given passband determine the mean
+photon wavelength and therefore the mean extinction through that passband.  Of
+course in practice this also depends on the source spectral features in the
+passband and the dust properties.</p>
+<p>Please have a look to the following pages for the ingredients we used in our precomputed models</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="atmospheres.html"><span class="doc">Atmosphere models</span></a> - The source stellar atmosphere models</p></li>
+<li><p><a class="reference internal" href="photometry.html"><span class="doc">Photometric computations</span></a> - The photometric computations</p></li>
+<li><p><a class="reference internal" href="extinction.html"><span class="doc">Extinction curves</span></a> - The extinction curves</p></li>
+</ul>
+</section>
+<section id="precomputed-models">
+<h1>Precomputed models<a class="headerlink" href="#precomputed-models" title="Link to this heading">#</a></h1>
+<p>We provide some already precomputed model approximations for the extinction in various passbands.</p>
+<p><a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel" title="dustapprox.models.PrecomputedModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel</span></code></a> provides convenient search and load functions.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>use <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel.find</span></code></a> to find available models and associated passbands</dt><dd><ul>
+<li><p>The search can be on passband, extinction, atmosphere, and model kind.  It is caseless and does not need to contain the complete name.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">examples of searching for models</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrecomputedModel</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">PrecomputedModel</span><span class="p">()</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;Gaia&#39;</span><span class="p">)</span>   <span class="c1"># returns all models with Gaia passband</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;galex&#39;</span><span class="p">,</span> <span class="n">atmosphere</span><span class="o">=</span><span class="s1">&#39;Atlas&#39;</span><span class="p">)</span>   <span class="c1"># returns nothing (we did not provide Atlas9 atmosphere)</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;galex&#39;</span><span class="p">,</span> <span class="n">atmosphere</span><span class="o">=</span><span class="s1">&#39;kurucz&#39;</span><span class="p">)</span>  <span class="c1"># return only kurucz based models</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">result from <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel.find" title="dustapprox.models.PrecomputedModel.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel.find()</span></code></a> for <cite>passband=”galex”</cite></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{&#39;/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv&#39;: {&#39;atmosphere&#39;: {&#39;source&#39;: &#39;Kurucz (ODFNEW/NOVER 2003)&#39;,
+    &#39;teff&#39;: [3500.0, 50000.0],
+    &#39;logg&#39;: [0.0, 5.0],
+    &#39;feh&#39;: [-4, 0.5],
+    &#39;alpha&#39;: [0, 0.4]},
+    &#39;extinction&#39;: {&#39;source&#39;: &#39;Fitzpatrick (1999)&#39;, &#39;R0&#39;: 3.1, &#39;A0&#39;: [0, 10]},
+    &#39;comment&#39;: [&#39;teffnorm = teff / 5040&#39;, &#39;predicts kx = Ax / A0&#39;],
+    &#39;model&#39;: {&#39;kind&#39;: &#39;polynomial&#39;,
+    &#39;degree&#39;: 3,
+    &#39;interaction_only&#39;: False,
+    &#39;include_bias&#39;: True,
+    &#39;feature_names&#39;: [&#39;A0&#39;, &#39;teffnorm&#39;]},
+    &#39;passbands&#39;: [&#39;GALEX_GALEX.FUV&#39;, &#39;GALEX_GALEX.NUV&#39;],
+    &#39;filename&#39;: &#39;dustapprox/data/precomputed/polynomial/f99/kurucz/kurucz_f99_a0_teff.ecsv&#39;}}
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><p>use <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel.load_model" title="dustapprox.models.PrecomputedModel.load_model"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel.load_model</span></code></a> to load any model (for a given passband)</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">example of loading Gaia passband approximations</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrecomputedModel</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">PrecomputedModel</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;Gaia&#39;</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">passband</span><span class="o">=</span><span class="n">pbname</span><span class="p">)</span> <span class="k">for</span> <span class="n">pbname</span> <span class="ow">in</span> <span class="n">source</span><span class="p">[</span><span class="s1">&#39;passbands&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>We currently provide only a limited set of models and approximation methods.
+We plan to expand in the future releases.</p>
+<p>Please contact us if you would like a particular passband (or set of passbands) to be included by default.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p>list of provided models: <a class="reference internal" href="precomputed_content.html"><span class="doc">List of provided precomputed models</span></a></p></li>
+</ul>
+</div>
+</section>
+<section id="generating-models">
+<h1>Generating models<a class="headerlink" href="#generating-models" title="Link to this heading">#</a></h1>
+<p>Generating a photometric extinction model or approximation requires first that
+we have some atmosphere spectral model.  We provide some tools associated with the
+<a class="reference external" href="spectra:http://svo2.cab.inta-csic.es/theory/newov2/index.php">SVO Theoretical</a>
+in <a class="reference internal" href="atmospheres.html"><span class="doc">Atmosphere models</span></a> (<a class="reference internal" href="source/dustapprox.io.html#module-dustapprox.io.svo" title="dustapprox.io.svo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.io.svo</span></code></a>) but you can also use your own atmosphere models.</p>
+<p>Second, we need an extinction presscription.  We provide some mean extinction
+curves in <a class="reference internal" href="extinction.html"><span class="doc">Extinction curves</span></a> (<a class="reference internal" href="source/dustapprox.html#module-dustapprox.extinction" title="dustapprox.extinction"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.extinction</span></code></a>).</p>
+<p>Finally, we need passband definitions and functions to do the photometric
+calculations.  For the photometry, we use the external package <a class="reference external" href="https://mfouesneau.github.io/pyphot/index.html">pyphot</a> a suite to compute synthetic
+photometry in flexible ways.  In addition,
+<a class="reference internal" href="source/dustapprox.io.html#dustapprox.io.svo.get_svo_passbands" title="dustapprox.io.svo.get_svo_passbands"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.io.svo.get_svo_passbands()</span></code></a> interfaces the <a class="reference external" href="http://svo2.cab.inta-csic.es/theory/fps/index.php">SVO Filter Profile
+Service</a>, which provides us
+with a large collection of passbands.  (wrapper from <a class="reference external" href="https://mfouesneau.github.io/pyphot/index.html">pyphot</a>).</p>
+<p>Once we have the above ingredients, we can bring them together to generate a
+large collection of photometric extinction values in various bands.</p>
+<section id="creating-a-photometric-grid-of-dust-attenuated-stars">
+<h2>Creating a photometric grid of dust attenuated stars<a class="headerlink" href="#creating-a-photometric-grid-of-dust-attenuated-stars" title="Link to this heading">#</a></h2>
+<p>To compute an extinction approximation model, we need to first compute the exact
+effects of extinction on well known stars when assuming a given extinction curve.</p>
+<p>We detail below the steps to do this.</p>
+<ul class="simple">
+<li><p>We first need to get the set of transmission curves that we find relevant for the <a class="reference internal" href="photometry.html"><span class="doc">Photometric computations</span></a>.</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">Get transmission curves from the <a class="reference external" href="http://svo2.cab.inta-csic.es/theory/fps/index.php">SVO Filter Profile Service</a>.</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">svo</span>
+<span class="n">which_filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GAIA/GAIA3.G&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.Gbp&#39;</span><span class="p">,</span> <span class="s1">&#39;GAIA/GAIA3.Grp&#39;</span><span class="p">]</span>
+<span class="n">passbands</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">get_svo_passbands</span><span class="p">(</span><span class="n">which_filters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Get the Gaia C1 transmission curves provided with <a class="reference internal" href="source/dustapprox.html#module-dustapprox" title="dustapprox"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox</span></code></a> (see <a class="reference internal" href="source/dustapprox.literature.html#module-dustapprox.literature.c1" title="dustapprox.literature.c1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.literature.c1</span></code></a>)</span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pkg_resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">resource_filename</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyphot.libraries</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ascii_Library</span>
+
+<span class="n">where</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;dustapprox&#39;</span><span class="p">,</span> <span class="s1">&#39;data/Gaia2&#39;</span><span class="p">)</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">Ascii_Library</span><span class="p">(</span><span class="n">where</span><span class="p">,</span> <span class="n">glob_pattern</span><span class="o">=</span><span class="s1">&#39;*csv&#39;</span><span class="p">)</span>
+<span class="n">passbands</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_all_filters</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We set which atmosphere library files we use (note that we do not provide these internally; <a class="reference internal" href="atmospheres.html"><span class="doc">Atmosphere models</span></a>).</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">Set the atmosphere models and parameter fields to report</span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+
+<span class="n">models</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="s1">&#39;models/Kurucz2003all/*.fl.dat.txt&#39;</span><span class="p">)</span>
+<span class="n">apfields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;teff&#39;</span><span class="p">,</span> <span class="s1">&#39;logg&#39;</span><span class="p">,</span> <span class="s1">&#39;feh&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We then need to get the set of extinction curves that we find relevant.</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">Extinction curve and parameter sets</span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.extinction</span><span class="w"> </span><span class="kn">import</span> <span class="n">F99</span>
+
+<span class="c1"># Extinction</span>
+<span class="n">extc</span> <span class="o">=</span> <span class="n">F99</span><span class="p">()</span>
+<span class="n">Rv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.1</span><span class="p">,])</span>
+<span class="n">Av</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.01</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Finally we loop through the elements and store relevant information (e.g., <code class="docutils literal notranslate"><span class="pre">apfields</span></code>, <code class="docutils literal notranslate"><span class="pre">Rv</span></code>, <code class="docutils literal notranslate"><span class="pre">Av</span></code>, <code class="docutils literal notranslate"><span class="pre">mag0</span></code>, <code class="docutils literal notranslate"><span class="pre">mag</span></code>).</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">An example of <strong>not optimized</strong> script to generate an extinction grid over all the atmosphere models</span><a class="headerlink" href="#id8" title="Link to this code">#</a></div>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">svo</span>
+
+<span class="n">logs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">spectra_file_reader</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="c1"># extract model relevant information</span>
+    <span class="n">lamb_unit</span><span class="p">,</span> <span class="n">flux_unit</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">get_svo_sprectum_units</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">lamb</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">lamb_unit</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;FLUX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">flux_unit</span>
+    <span class="n">apvalues</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">apfields</span><span class="p">]</span>
+
+    <span class="c1"># wavelength definition varies between models</span>
+    <span class="n">alambda_per_av</span> <span class="o">=</span> <span class="n">extc</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">Rv</span><span class="o">=</span><span class="n">Rv</span><span class="p">)</span>
+
+    <span class="c1"># Dust magnitudes</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">apfields</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;passband&#39;</span><span class="p">,</span> <span class="s1">&#39;mag0&#39;</span><span class="p">,</span> <span class="s1">&#39;mag&#39;</span><span class="p">,</span> <span class="s1">&#39;A0&#39;</span><span class="p">,</span> <span class="s1">&#39;Ax&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">pk</span> <span class="ow">in</span> <span class="n">passbands</span><span class="p">:</span>
+        <span class="n">mag0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">flux</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="c1"># we redo av = 0, but it&#39;s cheap, allows us to use the same code</span>
+        <span class="k">for</span> <span class="n">av_val</span> <span class="ow">in</span> <span class="n">Av</span><span class="p">:</span>
+            <span class="n">new_flux</span> <span class="o">=</span> <span class="n">flux</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">alambda_per_av</span> <span class="o">*</span> <span class="n">av_val</span><span class="p">)</span>
+            <span class="n">mag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">new_flux</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">mag</span> <span class="o">-</span> <span class="n">mag0</span><span class="p">)</span>
+            <span class="n">logs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">apvalues</span> <span class="o">+</span> <span class="p">[</span><span class="n">pk</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mag0</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">av_val</span><span class="p">,</span> <span class="n">delta</span><span class="p">])</span>
+
+<span class="n">logs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">logs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The above script works, but it could be very time consuming if you have many
+passbands and many extinction parameters to grid.  However, every piece of
+information are independent of one another: atmosphere spectra, passbands,
+extinction grid points.  Hence this is a massively parallel problem.</p>
+<p>As the first rule of optimization is to start by the most outer loop, we
+provide a script that parallelizes the the procedure with respect to the atmosphere files in
+<a class="reference internal" href="source/dustapprox.tools.html#module-dustapprox.tools.grid" title="dustapprox.tools.grid"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.tools.grid</span></code></a> (using
+<a class="reference external" href="https://joblib.readthedocs.io/en/latest/">joblib</a>) in particular
+<a class="reference internal" href="source/dustapprox.tools.html#dustapprox.tools.grid.compute_photometric_grid" title="dustapprox.tools.grid.compute_photometric_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">dustapprox.tools.grid.compute_photometric_grid()</span></code></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="photometry.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Photometric computations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="precomputed_content.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">List of provided precomputed models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Extinction approximation models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#precomputed-models">Precomputed models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-models">Generating models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-photometric-grid-of-dust-attenuated-stars">Creating a photometric grid of dust attenuated stars</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

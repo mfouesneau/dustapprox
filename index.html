@@ -1,110 +1,752 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to No Errors Test Project’s documentation! &#8212; No Errors Test Project  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to dustapprox’s documentation! &#8212; dustapprox</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=7f7c277e"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.0/datatables.min.js"></script>
+    <script src="_static/activate_datatables.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/dustapprox/index.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="next" title="Version History" href="whats_new.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
   
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-  </head><body>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-          <div class="body" role="main">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dustapprox</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="precomputed.html">Extinction approximation models</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">dustapprox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/blob/main/docs/index.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/dustapprox/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Welcome to dustapprox’s documentation!</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-  <div class="section" id="welcome-to-no-errors-test-project-s-documentation">
-<h1>Welcome to No Errors Test Project’s documentation!<a class="headerlink" href="#welcome-to-no-errors-test-project-s-documentation" title="Permalink to this headline">¶</a></h1>
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to dustapprox’s documentation!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-an-approximation">Why an approximation?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precomputed-models">Precomputed models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#literature-extinction-approximations">Literature Extinction approximations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-cite-this-work">How to cite this work?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="welcome-to-dustapprox-s-documentation">
+<h1>Welcome to dustapprox’s documentation!<a class="headerlink" href="#welcome-to-dustapprox-s-documentation" title="Link to this heading">#</a></h1>
+<p>This package is a set of tools to compute photometric extinction coefficients in a <em>quick and dirty</em> way.</p>
+<a class="reference external image-reference" href="https://pypi.org/project/dustapprox/"><img alt="https://img.shields.io/pypi/v/dustapprox.svg" src="https://img.shields.io/pypi/v/dustapprox.svg" />
+</a>
+<a class="reference external image-reference" href="https://pepy.tech/project/dustapprox"><img alt="https://static.pepy.tech/badge/dustapprox" src="https://static.pepy.tech/badge/dustapprox" />
+</a>
+<a class="reference external image-reference" href="https://pepy.tech/project/dustapprox"><img alt="https://static.pepy.tech/badge/dustapprox/month" src="https://static.pepy.tech/badge/dustapprox/month" />
+</a>
+<img alt="https://img.shields.io/badge/python-_3.10,_3.11,_3.12,_3.13-blue.svg" src="https://img.shields.io/badge/python-_3.10,_3.11,_3.12,_3.13-blue.svg" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Python 3.14 support
+Support for python 3.14 is currently blocked by <cite>pytables</cite> not supporting it yet.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>New release (v0.2.0) which introduces new models and features.</p>
+<p>See <a class="reference internal" href="whats_new.html"><span class="doc">What’s new</span></a>.</p>
+</div>
+<p>Extinction coefficients per passbands depend on both the source spectral energy distribution
+and on the extinction itself (e.g., <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016ApJ...826..104G/abstract">Gordon et al., 2016</a>,
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2010A%26A...523A..48J/abstract">Jordi et al., 2010</a> ).
+To first order, the shape of the SED through a given passband determine the mean
+photon wavelength and therefore the mean extinction through that passband.  Of
+course in practice this also depends on the source spectral features in the
+passband and the dust properties.</p>
+<p>We provide the methodology to compute approximation models of the extinction for a given
+passband as well as some precomputed models that are ready to use or integrate
+with larger projects.</p>
+<p>We also detailed the various ingredients of the models in subsequent pages listed below</p>
 <div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmospheres.html">Atmosphere models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extinction.html">Extinction curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Photometric computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="precomputed.html">Extinction approximation models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="precomputed.html#precomputed-models">Precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="precomputed.html#generating-models">Generating models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="precomputed_content.html">List of provided precomputed models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systematics.html">Assessing models accuracy and systematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Steps to generate models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute?</a></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This package provides <strong>approximations</strong> to the extinction effects in photometric bands.
+It is not meant to be a full implementation of the extinction curves but a shortcut.</p>
+<p>In this current version, we only provide global uncertainties (e.g., rms,
+biases). To obtain complete uncertainties, one needs to use models and
+compute the relevant statistics. We show how to compute a model grid in <a class="reference internal" href="precomputed.html"><span class="doc">Extinction approximation models</span></a>.</p>
+</div>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
+<p>The following example shows how to use the predictions from a precomputed model.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">Example of using an approximation model.</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dustapprox.literature</span><span class="w"> </span><span class="kn">import</span> <span class="n">edr3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># get Gaia models</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PrecomputedModel</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">passband</span><span class="o">=</span><span class="s1">&#39;Gaia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># taking the first one</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">passband</span><span class="o">=</span><span class="s1">&#39;GAIA_GAIA3.G&#39;</span><span class="p">)</span>
+
+<span class="c1"># get some data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;models/precomputed/kurucz_gaiaedr3_small_a0_grid.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;passband&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;GAIA_GAIA3.G&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)]</span>
+
+<span class="c1"># values</span>
+<span class="n">kg_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+</section>
+<section id="why-an-approximation">
+<h2>Why an approximation?<a class="headerlink" href="#why-an-approximation" title="Link to this heading">#</a></h2>
+<p><em>very light mathematical details</em></p>
+<p>If we assume <span class="math notranslate nohighlight">\(F_\lambda^0\)</span> is the intrinsic atmosphere energy distribution of a star
+as a function of wavelength <span class="math notranslate nohighlight">\(\lambda\)</span> and the extinction curve <span class="math notranslate nohighlight">\(\tau_\lambda\)</span>, the apparent
+wavelength-dependent light observed from a star is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+f_\lambda = F_\lambda^0 \exp(-\tau_\lambda).
+\end{equation}\]</div>
+<p>(<a class="reference download internal" download="" href="_downloads/25f419794f3589105a3cedf01038cfc8/index-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="_downloads/0bfe27a11450053ef2a8661552da1c80/index-1.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="_downloads/68fbfadf3bd8cb999cb011ca6f991e16/index-1.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="_downloads/d869d766c7bad84a7c191586100e49d7/index-1.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default" id="id2">
+<img alt="_images/index-1.png" class="plot-directive" src="_images/index-1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text"><strong>Figure 1.</strong> Effect of extinction on a given star. The reference star parameters
+are indicated at the top. We gridded <span class="math notranslate nohighlight">\(A_0\)</span> from 0 to 5 mag (by 0.1 mag step).
+The code also illustrates adding the effect of dust extinction with the tools we provide.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>If we consider a filter photon throughput (a.k.a, transmission curve, or response
+function) defined in wavelength by the dimensionless function <span class="math notranslate nohighlight">\(T(\lambda)\)</span>,
+this function tells you what fraction of the arriving photons at wavelength
+<span class="math notranslate nohighlight">\(\lambda\)</span> actually get through the instrument.</p>
+<p>Consequently, the statistical mean of the flux density through <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(\overline{f_T}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\overline{f_T} = \frac{\int_\lambda \lambda f_\lambda T(\lambda) d\lambda}{\int_\lambda \lambda T(\lambda) d\lambda}.
+\end{equation}\]</div>
+<p>The flux equation above changes slightly if we consider energy detector types, but the general idea remains the same.
+The magnitude in <span class="math notranslate nohighlight">\(T\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+m_T = -2.5 \times \log_{10} \left(\overline{f_T}/\overline{f_{zero}}\right),
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{f_{zero}}\)</span> is the zero-point flux density of the filter
+depending on the photometric systems.</p>
+<p>However, the magnitude effect <span class="math notranslate nohighlight">\(A(T)\)</span> or <span class="math notranslate nohighlight">\(A_T\)</span> of the extinction in
+<span class="math notranslate nohighlight">\(T\)</span> does not require an explicit zero-point as it is a relative effect:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+A_T &amp;=&amp; m_T - M_T \\
+    &amp;=&amp; -2.5 \times \log_{10} \frac{
+                    \int_\lambda \lambda F_\lambda^0 \exp(-\tau_\lambda) T(\lambda) d\lambda}{
+                    \int_\lambda \lambda F_\lambda^0 T(\lambda) d\lambda},
+\end{eqnarray}\end{split}\]</div>
+<p>From the equation above, it should be clear that <span class="math notranslate nohighlight">\(A(T)\)</span> is not a constant,
+nor a simple expression form. However, one can approximate <span class="math notranslate nohighlight">\(A(T)\)</span> by a function of various parameters.
+From the integral’s perspective, we see that the shape of the SED matters, which
+often leads to approximations as functions of stellar temperatures, <span class="math notranslate nohighlight">\(T_{eff}\)</span>.</p>
+<p>(<a class="reference download internal" download="" href="_downloads/7058aec332d785a4591743caa46fe3a2/index-2.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="_downloads/b99d8cdf078cd7abe42e329ff60021fa/index-2.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="_downloads/778d652deed738862f596c6c9e993f73/index-2.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="_downloads/7470fd799a96a2505da9a04873717e2c/index-2.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default" id="id4">
+<img alt="_images/index-2.png" class="plot-directive" src="_images/index-2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text"><strong>Figure 2.</strong> Integrated extinction effect in the Gaia G, BP and RP bands.
+The left panel illustrates that <span class="math notranslate nohighlight">\(A(T)\)</span> is not a simple rescaling of <span class="math notranslate nohighlight">\(A_0\)</span>
+but a distribution of values (the black line indicates the identity line).
+The right panel illustates that the distribution of
+<span class="math notranslate nohighlight">\(A(T)/A_0\)</span> depends strongly on the temperature
+<span class="math notranslate nohighlight">\(T_{eff}\)</span>, i.e. the shape of the SED throught the passband <span class="math notranslate nohighlight">\(T\)</span></span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>However, calculating <span class="math notranslate nohighlight">\(A(T)\)</span> correctly is not a trivial task. It first requires having an atmosphere model at the exact
+stellar parameter set (<span class="math notranslate nohighlight">\(T_{eff}, \log g, [Fe/H], \ldots\)</span>). This may be also a long computation or an interpolation.
+Then applying the dust extinction curve, and integrating through the passband, twice, to obtain <span class="math notranslate nohighlight">\(A(T)\)</span>.
+It may become computationally a very expensive task.</p>
+<p>On another hand, it is often useful to convert extinction from <span class="math notranslate nohighlight">\(A(T)\)</span> to <span class="math notranslate nohighlight">\(A(T^\prime)\)</span>: for instance from
+<span class="math notranslate nohighlight">\(A_0\)</span> to <span class="math notranslate nohighlight">\(A(V)\)</span>, <span class="math notranslate nohighlight">\(A(G_{BP})\)</span>, or <span class="math notranslate nohighlight">\(A(Ks)\)</span>. This could also become a difficult task.</p>
+</section>
+<section id="precomputed-models">
+<h2>Precomputed models<a class="headerlink" href="#precomputed-models" title="Link to this heading">#</a></h2>
+<p>This package allows one to generate new models from spectral libraries and extinction curves.
+However, we also provide some pre-computed models that can be used directly.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.PrecomputedModel" title="dustapprox.models.PrecomputedModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.PrecomputedModel</span></code></a> provides convenient search and load functions.</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p>model training details <a class="reference internal" href="precomputed.html"><span class="doc">Extinction approximation models</span></a></p></li>
+<li><p>list of provided models: <a class="reference internal" href="precomputed_content.html"><span class="doc">List of provided precomputed models</span></a></p></li>
+</ul>
+</div>
+<section id="literature-extinction-approximations">
+<h3>Literature Extinction approximations<a class="headerlink" href="#literature-extinction-approximations" title="Link to this heading">#</a></h3>
+<p>We also provide multiple literature approximations with this package (<a class="reference internal" href="source/dustapprox.literature.html#module-dustapprox.literature" title="dustapprox.literature"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.literature</span></code></a>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Their relations may not use the same approach or parametrizations.</p>
+</div>
+<p>The following figure (code provided) compares the predictions from a <a class="reference internal" href="source/dustapprox.models.html#dustapprox.models.polynomial.PolynomialModel" title="dustapprox.models.polynomial.PolynomialModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.models.polynomial.PolynomialModel</span></code></a> to those of <a class="reference internal" href="source/dustapprox.literature.html#dustapprox.literature.edr3.edr3_ext" title="dustapprox.literature.edr3.edr3_ext"><code class="xref py py-class docutils literal notranslate"><span class="pre">dustapprox.literature.edr3.edr3_ext</span></code></a>. The latter is a model described <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2021A%26A...649A...3R/abstract">Riello et al. (2020)</a>.</p>
+<p>However, one must note that the literature models are often valid on a restricted stellar parameter space, here in particular, the temperature <span class="math notranslate nohighlight">\(T_{eff}\)</span> is limited to the range <span class="math notranslate nohighlight">\([3500, 10 000]\)</span> K. Our model uses the same polynomial degree as the literature version.
+Note that these are evidently approximations to the explicit calculations used as reference on all the y-axis.
+Our package also allows one to update the model parameters, such as the polynomial degree, or the range of validity of the model.</p>
+<p>(<a class="reference download internal" download="" href="_downloads/3152ea1c2b846851a4ae4d1a2c0f9c9a/index-3.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="_downloads/d507bc80169e4f979478732a0b40a07b/index-3.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="_downloads/0e1954df02d143b03ddd5f0a4a0277b3/index-3.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="_downloads/e6270a0b3419c50c78c608a1d0454cf8/index-3.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default" id="id6">
+<img alt="_images/index-3.png" class="plot-directive" src="_images/index-3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text"><strong>Figure 3.</strong> Comparing a Gaia G approximation model to the EDR3 one (<a class="reference internal" href="source/dustapprox.literature.html#module-dustapprox.literature.edr3" title="dustapprox.literature.edr3"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dustapprox.literature.edr3</span></code></a>).
+We plot the residuals of <span class="math notranslate nohighlight">\(k_G = A_G/A_0\)</span> versus the intrinsic G-magnitude (left) and temperature (right). One
+can see the polynomial oscillations.  Note that the performance degrades with
+stellar temperature. As the EDR3 model is only valid for some limited range
+of temperature, we indicate extrapolation data with smaller dots.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="how-to-cite-this-work">
+<h2>How to cite this work?<a class="headerlink" href="#how-to-cite-this-work" title="Link to this heading">#</a></h2>
+<p>If you use this software, please cite it using the metadata below.</p>
+<p><strong>APA citation</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Fouesneau, M., Andrae, R., Sordo, R., &amp; Dharmawardena, T. (2025).
+   dustapprox (Version 0.2) [Computer software].
+   https://github.com/mfouesneau/dustapprox
+</pre></div>
+</div>
+<p><strong>Bibtex citation</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@software{Fouesneau_dustapprox_2025,
+   author = {Fouesneau, Morgan
+             and Andrae, René
+             and Sordo, Rosanna
+             and Dharmawardena, Thavisha},
+   month = {3},
+   title = {{dustapprox}},
+   url = {https://github.com/mfouesneau/dustapprox},
+   version = {0.2},
+   year = {2025}
+   }
+</pre></div>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-</div>
-
-
-          </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">No Errors Test Project</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module API</span></p>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
-  </ul></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">dustapprox</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</section>
 
 
+                </article>
+              
 
-
-
-
-
-
-        </div>
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="whats_new.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Version History</p>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, sphinx-action Test Suite.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/index.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to dustapprox’s documentation!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-an-approximation">Why an approximation?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precomputed-models">Precomputed models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#literature-extinction-approximations">Literature Extinction approximations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-cite-this-work">How to cite this work?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena
+</p>
+
+  </div>
+  
+  <div class="footer-item">
     
 
+  <p class="copyright">
     
+      © Copyright 2022-2025, DPAC - M. Fouesneau, R. Andrae, R. Sordo, T. E. Dharmawardena.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
