@@ -1,0 +1,90 @@
+# %ECSV 1.0
+# ---
+# delimiter: ','
+# datatype:
+# - name: passband
+#   datatype: object
+# - name: '1'
+#   datatype: float64
+# - name: A0
+#   datatype: float64
+# - name: R0
+#   datatype: float64
+# - name: teffnorm
+#   datatype: float64
+# - name: A0^2
+#   datatype: float64
+# - name: A0 R0
+#   datatype: float64
+# - name: A0 teffnorm
+#   datatype: float64
+# - name: R0^2
+#   datatype: float64
+# - name: R0 teffnorm
+#   datatype: float64
+# - name: teffnorm^2
+#   datatype: float64
+# - name: A0^3
+#   datatype: float64
+# - name: A0^2 R0
+#   datatype: float64
+# - name: A0^2 teffnorm
+#   datatype: float64
+# - name: A0 R0^2
+#   datatype: float64
+# - name: A0 R0 teffnorm
+#   datatype: float64
+# - name: A0 teffnorm^2
+#   datatype: float64
+# - name: R0^3
+#   datatype: float64
+# - name: R0^2 teffnorm
+#   datatype: float64
+# - name: R0 teffnorm^2
+#   datatype: float64
+# - name: teffnorm^3
+#   datatype: float64
+# - name: mae
+#   datatype: float64
+# - name: rmse
+#   datatype: float64
+# - name: mean_residuals
+#   datatype: float64
+# - name: std_residuals
+#   datatype: float64
+# meta:
+#   extinction:
+#     source: G23
+#     R0:
+#     - 2.299999952316284
+#     - 5.099999904632568
+#     A0:
+#     - 0.009999999776482582
+#     - 20.0
+#   atmosphere:
+#     source: Kurucz (ODFNEW/NOVER 2003)
+#     teff:
+#     - 3500.0
+#     - 50000.0
+#     logg:
+#     - 0.0
+#     - 5.0
+#     feh:
+#     - -4.0
+#     - 0.5
+#     alpha:
+#     - 0.0
+#     - 0.4
+#   comment: teffnorm = teff / 5040; predicts kx = Ax / A0
+#   model:
+#     kind: polynomial
+#     degree: 3
+#     interaction_only: false
+#     include_bias: true
+#     feature_names:
+#     - A0
+#     - R0
+#     - teffnorm
+passband,1,A0,R0,teffnorm,A0^2,A0 R0,A0 teffnorm,R0^2,R0 teffnorm,teffnorm^2,A0^3,A0^2 R0,A0^2 teffnorm,A0 R0^2,A0 R0 teffnorm,A0 teffnorm^2,R0^3,R0^2 teffnorm,R0 teffnorm^2,teffnorm^3,mae,rmse,mean_residuals,std_residuals
+GALEX_GALEX.FUV,10.830641053362022,-0.023943845091516765,-4.804810547068052,0.3061473344537899,0.0005055395959022938,0.010964125097250537,-0.004797284577167986,0.8950447298470043,-0.0587338091947104,-0.030234723483782214,-3.241662017570043e-06,-0.00010481172512826281,2.434878360971848e-05,-0.0011188972753209576,0.0005873017964226451,0.00018233468798793022,-0.06022983273162853,0.0012283271619157748,0.0037014081127940465,0.0008010961676141435,0.01465353085278931,0.0006484063649679903,-6.292964017805383e-12,0.02546382463354612
+GALEX_GALEX.NUV,6.795384811637965,-0.14795123847775665,-2.6051320412140075,0.5332172341192019,0.006157883296226497,0.03734702563417048,-0.014136724333574038,0.4543865361633184,-0.04436747629582653,-0.07293041476883753,-8.709302352653261e-05,-0.0007247066026796854,0.00013039614577132493,-0.0022718480008553916,0.0008627514383518215,0.0007402284185811268,-0.029277334714825937,0.0009174706546510737,0.00247251224622963,0.0032885425055918585,0.0288850464289494,0.0027463679821912936,-1.7462527352322657e-12,0.05240580103568014

@@ -119,13 +119,13 @@ We detail below the steps to do this.
 
 
 .. code-block:: python3
-   :caption: Get the Gaia C1 transmission curves provided with `dustapprox` (see :mod:`dustapprox.literature.c1`)
+   :caption: Get the Gaia C1 transmission curves provided with :mod:`dustapprox` (see :mod:`dustapprox.literature.c1`)
 
    from pkg_resources import resource_filename
-   from pyphot.astropy import UnitAscii_Library
+   from pyphot.libraries import Ascii_Library
 
    where = resource_filename('dustapprox', 'data/Gaia2')
-   lib = UnitAscii_Library([where])
+   lib = Ascii_Library(where, glob_pattern='*csv')
    passbands = lib.load_all_filters()
 
 * We set which atmosphere library files we use (note that we do not provide these internally; :doc:`/atmospheres`).
@@ -152,7 +152,7 @@ We detail below the steps to do this.
    Av = np.arange(0, 10.01, 0.2)
 
 
-* Finally we loop through the elements and store relevant information (e.g., `apfields`, `Rv`, `Av`, `mag0`, `mag`).
+* Finally we loop through the elements and store relevant information (e.g., ``apfields``, ``Rv``, ``Av``, ``mag0``, ``mag``).
 
 
 .. code-block:: python3
