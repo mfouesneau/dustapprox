@@ -4,7 +4,7 @@ dustapprox -- A tool for computing approximative extinction coefficients
 .. image:: https://img.shields.io/pypi/v/dustapprox.svg
     :target: https://pypi.org/project/dustapprox/
 
-.. image:: https://img.shields.io/badge/python-3.10,_3.11,_3.12,_3.13-blue.svg
+.. image:: https://img.shields.io/badge/python-3.10,_3.11,_3.12,_3.13,_3.14-blue.svg
 
 This is a set of tools to compute photometric extinction coefficients in a *quick and dirty* way.
 
