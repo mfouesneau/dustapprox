@@ -126,8 +126,18 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# ignore system cache and temp files
 .DS_Store
 tmp/*
 
 # ignore model data
 models/*
+
+# ignore snakemake files
+**/.snakemake
+
+# ignore offline calculations
+examples/**/*.ecsv
+examples/**/*.csv
+examples/**/*.dat
+examples/**/*.txt
