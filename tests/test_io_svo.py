@@ -138,8 +138,14 @@ class TestSpectraFileReader:
 
         data = spectra_file_reader(str(fname))
 
-        assert data["columns"]["WAVELENGTH"]["description"] == "Wavelength in Angstrom units"
-        assert data["columns"]["FLUX"]["description"] == "Flux in erg/cm2/s/A units"
+        assert (
+            data["columns"]["WAVELENGTH"]["description"]
+            == "Wavelength in Angstrom units"
+        )
+        assert (
+            data["columns"]["FLUX"]["description"]
+            == "Flux in erg/cm2/s/A units"
+        )
 
 
 class TestGetSVOSpectrumUnits:
@@ -163,7 +169,10 @@ class TestGetSVOSpectrumUnits:
         assert hasattr(lamb_unit, "unit")
         assert hasattr(flux_unit, "unit")
         # Units should contain wavelength and flux info
-        assert "Angstrom" in str(lamb_unit.unit) or "angstrom" in str(lamb_unit.unit).lower()
+        assert (
+            "Angstrom" in str(lamb_unit.unit)
+            or "angstrom" in str(lamb_unit.unit).lower()
+        )
 
     def test_get_units_lowercase_fallback(self, tmp_path):
         """Test that lowercase units are handled as fallback."""
