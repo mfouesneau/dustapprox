@@ -3,6 +3,7 @@
 import pytest
 import numpy as np
 import pandas as pd
+import urllib3
 from unittest.mock import Mock, patch, MagicMock
 from types import SimpleNamespace
 from typing import cast
@@ -144,6 +145,9 @@ class TestComputePhotometricGrid:
         except (ValueError, IndexError, KeyError):
             # Also acceptable to raise an error for empty input
             pass
+        except urllib3.exceptions.MaxRetryError:
+            # Network issues may cause failures in SVO fetch
+            pytest.skip("Network issues prevented filter fetching")
 
     def test_compute_grid_default_parameters(self):
         """Test that default parameters are set correctly."""
