@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import urllib3
 import requests
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock
 from types import SimpleNamespace
 from typing import cast
 
