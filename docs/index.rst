@@ -12,7 +12,7 @@ This package is a set of tools to compute photometric extinction coefficients in
 .. image:: https://static.pepy.tech/badge/dustapprox/month
     :target: https://pepy.tech/project/dustapprox
 
-.. image:: https://img.shields.io/badge/python-_3.10,_3.11,_3.12,_3.13-blue.svg
+.. image:: https://img.shields.io/badge/python-_3.11,_3.12,_3.13,_3.14-blue.svg
 
 .. note:: Python 3.14 support
    Support for python 3.14 is currently blocked by `pytables` not supporting it yet.
