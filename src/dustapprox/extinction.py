@@ -44,7 +44,8 @@ which includes commonly used extinction curves.
 """
 
 import warnings
-from typing import Union
+from contextlib import contextmanager
+from typing import Iterator, Sequence, Union
 
 import astropy.units as u
 import dust_extinction.parameter_averages
@@ -69,6 +70,49 @@ def _allow_F9x_extrapolation() -> None:
     from dust_extinction.shapes import FM90
 
     FM90.x_range = [0.001, 100]
+
+
+# Curves whose native range spans the optical to the far-UV can be evaluated
+# beyond their edges (smooth low-order forms). Curves defined on one region only
+# (e.g., D22 near-IR, GCC09/VCG04 UV, M14 optical) blow up or return 0 outside
+# it, so they are left NaN there instead.
+_EXTRAPOLABLE_X_SPAN = (0.3, 8.0)  # [micron^-1] native x_range must cover this
+_EXTRAPOLATION_X_RANGE = [0.001, 100.0]
+#  Above Rv=6.3, G23 FUV extinction becomes lower at shorter wavelengths
+#  Below Rv=2.2, G23 MIR before 10um silicates goes unrealistically small
+_EXTRAPOLATION_RV_RANGE = [2.0, 6.51]
+
+
+def _can_extrapolate_x(model_cls: type) -> bool:
+    """Whether the curve's native x range covers the optical to the far-UV"""
+    xmin, xmax = model_cls.x_range  # pyright: ignore[reportAttributeAccessIssue]
+    return (xmin <= _EXTRAPOLABLE_X_SPAN[0]) and (
+        xmax >= _EXTRAPOLABLE_X_SPAN[1]
+    )
+
+
+@contextmanager
+def _class_ranges(
+    model_cls: type, **ranges: Sequence[float]
+) -> Iterator[None]:
+    """Temporarily override class-level validity ranges (e.g., x_range, Rv_range)
+
+    dust_extinction checks these class attributes; restoring them afterwards keeps
+    later calls (e.g., with ``extrapolate=False``) validating against the native
+    ranges.
+    """
+    missing = object()
+    saved = {k: model_cls.__dict__.get(k, missing) for k in ranges}
+    try:
+        for k, v in ranges.items():
+            setattr(model_cls, k, list(v))
+        yield
+    finally:
+        for k, v in saved.items():
+            if v is missing:
+                delattr(model_cls, k)
+            else:
+                setattr(model_cls, k, v)
 
 
 def get_extinction_model(name: Union[str, BaseExtRvModel]) -> BaseExtRvModel:
@@ -146,22 +190,25 @@ def evaluate_extinction_model(
     # convert wavelength to wavenumber (inverse in microns)
     x = 1.0 / λ_
     if extrapolate:
-        # prepare output array of A(λ)/A0
-        τ = np.zeros(λ_.shape, dtype=float) * float("nan")
-        # allow extrapolation!
-        #  Above Rv=6.3, G23 FUV extinction becomes lower at shorter wavelengths
-        #  Below Rv=2.2, G23 MIR before 10um silicates goes unrealistically small
-        model_cls.Rv_range = [2.0, 6.51]
-        # most curves valid range in x is [0.3, 10.0], but we allow more extrapolation
-        # because models are low order polynomials this should be ok, but no garanties.
-        model_cls.x_range = [0.001, 100.0]
-        if model_cls.__name__.startswith("F9"):
-            _allow_F9x_extrapolation()
-        model = model_cls(Rv=R0)
-        valid = (x.value < model.x_range[1]) & (x.value > model.x_range[0])
-        if np.any(valid):
-            τ_ = model(x[valid])
-            τ[valid] = τ_
+        # prepare output array of A(λ)/A0: NaN where the curve is not defined
+        τ = np.full(λ_.shape, np.nan, dtype=float)
+        # Rv extrapolation for all curves; x extrapolation only where it is safe.
+        # Because models are low order polynomials this should be ok, but no
+        # guarantees.
+        x_range = (
+            _EXTRAPOLATION_X_RANGE
+            if _can_extrapolate_x(model_cls)
+            else list(model_cls.x_range)  # pyright: ignore[reportAttributeAccessIssue]
+        )
+        with _class_ranges(
+            model_cls, x_range=x_range, Rv_range=_EXTRAPOLATION_RV_RANGE
+        ):
+            if model_cls.__name__.startswith("F9"):
+                _allow_F9x_extrapolation()
+            model = model_cls(Rv=R0)
+            valid = (x.value < x_range[1]) & (x.value > x_range[0])
+            if np.any(valid):
+                τ[valid] = model(x[valid])
     else:
         τ = model_cls(Rv=R0)(x)
     # return extinction curve evaluated at given x, A0, R0

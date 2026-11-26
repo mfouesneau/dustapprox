@@ -403,3 +403,54 @@ def test_grid_attenuation_uses_magnitudes(tmp_path):
         "F99", np.array([5500.0]) * u.angstrom, A0=1.0, R0=3.1
     )[0]
     np.testing.assert_allclose(kx, expected, atol=0.005)
+
+
+# --- extinction: x extrapolation only where the curve allows it -------------
+
+
+@pytest.mark.parametrize(
+    "name, inside, outside",
+    [
+        ("D22", [0.5, 1.0], [3.0, 8.0]),  # near-IR only: blows up in the UV
+        (
+            "GCC09",
+            [4.0, 8.0],
+            [1.0, 2.0],
+        ),  # UV only: returned 0 in the optical
+        ("M14", [1.0, 3.0], [5.0, 8.0]),  # optical only: returned 0 in the UV
+    ],
+)
+def test_partial_range_curves_are_nan_outside(name, inside, outside):
+    x = np.array(inside + outside)
+    lam = (1.0 / x) * u.micron
+    vals = evaluate_extinction_model(
+        name, lam, A0=1.0, R0=3.1, extrapolate=True
+    )
+    assert np.all(np.isfinite(vals[: len(inside)]))
+    assert np.all(vals[: len(inside)] > 0)
+    assert np.all(np.isnan(vals[len(inside) :]))
+
+
+@pytest.mark.parametrize("name", ["CCM89", "F99", "F04", "F19", "G23", "O94"])
+def test_full_range_curves_still_extrapolate(name):
+    lam = (1.0 / np.array([0.2, 1.0, 9.5])) * u.micron
+    vals = evaluate_extinction_model(
+        name, lam, A0=1.0, R0=3.1, extrapolate=True
+    )
+    assert np.all(np.isfinite(vals))
+
+
+@pytest.mark.parametrize("name", ["M14", "F99", "G23"])
+def test_extrapolate_does_not_leak_class_ranges(name):
+    import dust_extinction.parameter_averages as pa
+
+    cls = getattr(pa, name)
+    before = (list(cls.x_range), list(cls.Rv_range))
+    evaluate_extinction_model(name, [5500.0] * u.AA, A0=1.0, R0=3.1)
+    assert (list(cls.x_range), list(cls.Rv_range)) == before
+    # outside the native range, extrapolate=False must still refuse
+    with pytest.raises(ValueError):
+        evaluate_extinction_model(
+            name, [1.0e6] * u.AA, A0=1.0, R0=3.1, extrapolate=False
+        )
+

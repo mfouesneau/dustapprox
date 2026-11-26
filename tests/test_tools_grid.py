@@ -3,12 +3,11 @@
 import pytest
 import numpy as np
 import pandas as pd
-import urllib3
-import requests
 from unittest.mock import Mock
 from types import SimpleNamespace
 from typing import cast
 
+from dustapprox.io import svo
 from dustapprox.tools.grid import (
     DEFAULT_FILTERS,
     compute_photometric_grid,
@@ -134,31 +133,21 @@ class TestComputePhotometricGrid:
         assert df.attrs.get("extinction", {}).get("source") == "F99"
         assert df.attrs.get("atmosphere", {}).get("source") == "dummy/*.fits"
 
-    @pytest.mark.requires_network
-    def test_compute_grid_no_sources(self, tmp_path):
-        """Test behavior when no source files match."""
+    def test_compute_grid_no_sources(self, tmp_path, monkeypatch):
+        """No matching source files raises before any SVO passband download."""
         pattern = str(tmp_path / "nonexistent/*.txt")
 
-        # Should handle empty glob result gracefully
-        try:
-            result = compute_photometric_grid(
+        def _no_network(*args, **kwargs):
+            raise AssertionError("passbands fetched before checking sources")
+
+        monkeypatch.setattr(svo, "get_svo_passbands", _no_network)
+        with pytest.raises(ValueError, match="No atmosphere model files"):
+            compute_photometric_grid(
                 sources=pattern,
                 which_filters=["GAIA/GAIA3.G"],
                 extinction_curve="F99",
                 n_jobs=1,
             )
-            # If it succeeds, check result is empty or minimal
-            if result is not None:
-                assert isinstance(result, pd.DataFrame)
-        except (ValueError, IndexError, KeyError):
-            # Also acceptable to raise an error for empty input
-            pass
-        except (
-            urllib3.exceptions.MaxRetryError,
-            requests.exceptions.ConnectTimeout,
-        ):
-            # Network issues may cause failures in SVO fetch
-            pytest.skip("Network issues prevented filter fetching")
 
     def test_compute_grid_default_parameters(self):
         """Test that default parameters are set correctly."""
