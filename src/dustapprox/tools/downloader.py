@@ -98,7 +98,12 @@ def _dl_ascii_progress(
             dl += 1
         cur_t = time.time()
         if cur_t - last_print_t >= mininterval:
-            done = int(progress_length * dl / total)
+            # unknown/zero total (e.g. no content-length): no fraction to show
+            done = (
+                min(progress_length, int(progress_length * dl / total))
+                if total
+                else 0
+            )
             message = "\r[{}{}] ({})".format(
                 "=" * done,
                 " " * (progress_length - done),
@@ -113,7 +118,12 @@ def _dl_ascii_progress(
     buffer.flush()
 
 
-def download_file(link: str, file_name: str, overwrite: bool = False) -> str:
+def download_file(
+    link: str,
+    file_name: str,
+    overwrite: bool = False,
+    timeout: float = 60.0,
+) -> str:
     """Download a file on disk from url
 
     Parameters
@@ -124,15 +134,26 @@ def download_file(link: str, file_name: str, overwrite: bool = False) -> str:
         path and filename of the download location
     overwrite: bool
         set to re-download (default False)
+    timeout: float
+        seconds to wait for the server (connect and between bytes)
 
     Returns
     -------
     Returns the filename of the data
+
+    Raises
+    ------
+    requests.HTTPError
+        if the server answers with an error status (e.g. 404), instead of
+        saving the error page as the file.
     """
-    response = requests.get(link, stream=True)
-    total_length = int(response.headers.get("content-length") or "0")
+    response = requests.get(link, stream=True, timeout=timeout)
+    response.raise_for_status()
+    content_length = response.headers.get("content-length")
+    total_length = int(content_length) if content_length else None
     if os.path.exists(file_name) and not overwrite:
-        if (total_length is None) or (
+        # without a content-length we cannot tell a partial file: re-download
+        if (total_length is not None) and (
             os.stat(file_name).st_size == total_length
         ):
             print(f"file '{file_name}' already downloaded.")
@@ -140,7 +161,7 @@ def download_file(link: str, file_name: str, overwrite: bool = False) -> str:
 
     with open(file_name, "wb") as f:
         print(f"Downloading '{file_name}'", end="")
-        print(f" ({_pretty_size_print(total_length):s})")
+        print(f" ({_pretty_size_print(total_length) or 'unknown size':s})")
 
         if total_length is None:  # no content length header
             f.write(response.content)
