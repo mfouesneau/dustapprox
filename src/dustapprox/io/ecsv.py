@@ -48,6 +48,7 @@ example of file::
 
 """
 
+import functools
 import textwrap
 import re
 import yaml
@@ -156,7 +157,8 @@ def read(fname: str, **kwargs) -> pd.DataFrame | Generator[Any, Any, None]:
             idx = subtype.index("[")
             sub_dtype = subtype[:idx]
             # shape = json.loads(subtype[idx:])
-            converters[name] = lambda x: _converter(x, sub_dtype)
+            # bind sub_dtype now: a plain lambda would see the last loop value
+            converters[name] = functools.partial(_converter, subtype=sub_dtype)
             dtype.pop(name)
     converters.update(kwargs.pop("converters", {}))
 
