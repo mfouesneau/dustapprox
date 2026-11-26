@@ -260,8 +260,7 @@ def quick_plot_models(r: DataFrame, **kwargs) -> DataFrame:
     if (vmin < 0) and (vmax > 0):
         vmin = -1 * max(abs(vmin), vmax)
         vmax = -vmin
-    cmap = plt.colormaps["RdYlBu"]
-    cmap.set_bad("0.5", 1.0)
+    cmap = plt.colormaps["RdYlBu"].with_extremes(bad="0.5")
     imshow_kwargs = dict(
         vmin=vmin,
         vmax=vmax,
