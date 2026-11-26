@@ -51,6 +51,10 @@ DEFAULT_FILTERS = [
     "Generic/Bessell_JHKLM.K",
 ]
 
+DEFAULT_A0 = np.sort(np.hstack([[0.01], np.arange(0.1, 20.01, 0.1)]))
+DEFAULT_R0 = np.array([2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1])
+DEFAULT_APFIELDS = ("teff", "logg", "feh", "alpha")
+
 
 def _parallel_task(
     fname: str,
@@ -119,7 +123,8 @@ def _parallel_task(
             mag0 = -2.5 * np.log10(pk.get_flux(λ[valid], flux[valid]).value)  # pyright: ignore / dumb
             # possibly we redo a0[0] = 0, but it's cheap for consistency gain
             for a0_val in A0:
-                new_flux = flux * np.exp(-Aλ_per_A0 * a0_val)
+                # A(λ) is in magnitudes: F = F0 * 10^(-0.4 A), not exp(-A)
+                new_flux = flux * 10 ** (-0.4 * Aλ_per_A0 * a0_val)
                 mag = -2.5 * np.log10(
                     pk.get_flux(λ[valid], new_flux[valid]).value
                 )  # pyright: ignore / dumb
@@ -202,11 +207,11 @@ def compute_photometric_grid(
     )
 
     if R0 is None:
-        R0 = np.array([2.3, 2.6, 3.1, 3.6, 4.1, 4.6, 5.1])
+        R0 = DEFAULT_R0
     if A0 is None:
-        A0 = np.sort(np.hstack([[0.01], np.arange(0.1, 20.01, 0.1)]))
+        A0 = DEFAULT_A0
     if apfields is None:
-        apfields = ("teff", "logg", "feh", "alpha")
+        apfields = DEFAULT_APFIELDS
 
     # get model file list
     models = glob(sources)

@@ -134,6 +134,7 @@ class TestComputePhotometricGrid:
         assert df.attrs.get("extinction", {}).get("source") == "F99"
         assert df.attrs.get("atmosphere", {}).get("source") == "dummy/*.fits"
 
+    @pytest.mark.requires_network
     def test_compute_grid_no_sources(self, tmp_path):
         """Test behavior when no source files match."""
         pattern = str(tmp_path / "nonexistent/*.txt")

@@ -43,6 +43,7 @@ which includes commonly used extinction curves.
 
 """
 
+import warnings
 from typing import Union
 
 import astropy.units as u
@@ -129,8 +130,18 @@ def evaluate_extinction_model(
     np.ndarray
         Evaluated extinction curve values at the given wavelengths
     """
-    # make sure we have an instance of extinction curve
-    model_cls: BaseExtRvModel = get_extinction_model(name)
+    model_cls = get_extinction_model(name)
+    if not isinstance(model_cls, type):
+        # An instance carries its own Rv: evaluate the same curve at R0 instead
+        # of silently ignoring R0 (e.g., when looping over an R0 grid).
+        instance_rv = float(model_cls.Rv.value)
+        if not np.isclose(instance_rv, R0):
+            warnings.warn(
+                f"{type(model_cls).__name__} instance has Rv={instance_rv:g} "
+                f"but R0={R0:g} was requested; using R0={R0:g}.",
+                stacklevel=2,
+            )
+        model_cls = type(model_cls)
     λ_ = val_in_unit("extinction wavelength", λ, "angstrom").to("micron")
     # convert wavelength to wavenumber (inverse in microns)
     x = 1.0 / λ_
@@ -144,12 +155,9 @@ def evaluate_extinction_model(
         # most curves valid range in x is [0.3, 10.0], but we allow more extrapolation
         # because models are low order polynomials this should be ok, but no garanties.
         model_cls.x_range = [0.001, 100.0]
-        if isinstance(name, str) and name.startswith("F9"):
+        if model_cls.__name__.startswith("F9"):
             _allow_F9x_extrapolation()
-        if isinstance(model_cls, type):
-            model = model_cls(Rv=R0)
-        else:
-            model = model_cls
+        model = model_cls(Rv=R0)
         valid = (x.value < model.x_range[1]) & (x.value > model.x_range[0])
         if np.any(valid):
             τ_ = model(x[valid])
