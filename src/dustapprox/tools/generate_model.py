@@ -197,8 +197,12 @@ def generate_grid(
         DataFrame with the computed grid
     """
 
+    # default name: the directory holding the models (e.g. "Kurucz2003all"),
+    # or the pattern itself when it has no directory part.
     atmosphere_name = (
-        atmosphere_name or model_pattern.split("/")[1].split("_")[0]
+        atmosphere_name
+        or pathlib.Path(model_pattern).parent.name.split("_")[0]
+        or model_pattern
     )
 
     # show some info
@@ -246,7 +250,68 @@ def generate_grid(
             f"   - Existing grid from {grid_fname}. Skipping computation and reloading from file."
         )
         r = cast(pd.DataFrame, ecsv.read(str(grid_fname)))
+        problems = _grid_mismatches(
+            r, pbset, extinction_curve, A0, R0, apfields
+        )
+        if problems:
+            raise ValueError(
+                f"Existing grid {grid_fname} does not match the requested "
+                f"parameters: {'; '.join(problems)}. Remove the file or "
+                "choose another output path to recompute it."
+            )
     return r
+
+
+def _grid_mismatches(
+    r: pd.DataFrame,
+    pbset: List[str] | List[Filter],
+    extinction_curve: Union[str, BaseExtRvModel],
+    A0: Optional[npt.NDArray],
+    R0: Optional[npt.NDArray],
+    apfields: Optional[Sequence[str]],
+) -> List[str]:
+    """Differences between a stored grid and the requested grid parameters."""
+    problems = []
+
+    def _norm(name) -> str:
+        # SVO ids "GAIA/GAIA3.G" are stored as "GAIA_GAIA3.G"
+        return str(name).replace("/", "_")
+
+    wanted = {_norm(f.name if isinstance(f, Filter) else f) for f in pbset}
+    stored = {_norm(p) for p in r["passband"].unique()}
+    if wanted != stored:
+        problems.append(
+            f"passbands differ (missing: {sorted(wanted - stored)}, "
+            f"extra: {sorted(stored - wanted)})"
+        )
+
+    ext = (
+        extinction_curve
+        if isinstance(extinction_curve, str)
+        else type(extinction_curve).__name__
+    )
+    stored_ext = r.attrs.get("extinction", {}).get("source")
+    if stored_ext is not None and stored_ext != ext:
+        problems.append(f"extinction curve is {stored_ext!r}, not {ext!r}")
+
+    for key, values in (
+        ("A0", grid.DEFAULT_A0 if A0 is None else A0),
+        ("R0", grid.DEFAULT_R0 if R0 is None else R0),
+    ):
+        # grids store A0/R0 as float32: compare with a tolerance
+        stored_vals = np.unique(r[key].to_numpy(dtype=float))
+        wanted_vals = np.unique(np.asarray(values, dtype=float))
+        if stored_vals.shape != wanted_vals.shape or not np.allclose(
+            stored_vals, wanted_vals, rtol=1e-5, atol=1e-6
+        ):
+            problems.append(f"{key} values differ")
+
+    missing = [
+        k for k in (apfields or grid.DEFAULT_APFIELDS) if k not in r.columns
+    ]
+    if missing:
+        problems.append(f"missing atmosphere fields {missing}")
+    return problems
 
 
 def export_trained_model_to_ecsv(
