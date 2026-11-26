@@ -11,14 +11,13 @@ authors = [
 ]
 license = {text = "BSD 3-Clause License"}
 classifiers = [
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent"
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "astropy>=6.0.0",
     "dust-extinction>=1.6",
@@ -85,8 +84,8 @@ docs = [
 [tool.ruff]
 # Enumerate all fixed violations.
 show-fixes = true
-# Always generate Python 3.10-compatible code.
-target-version = "py310"
+# Always generate Python 3.11-compatible code.
+target-version = "py311"
 # PEP-8 line length
 line-length = 79
 # Exclude a variety of commonly ignored directories.
