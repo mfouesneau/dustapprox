@@ -147,6 +147,9 @@ docs/*csv
 # ignore offline calculations
 examples/models/*
 examples/precomputed/*
+# local symlink to the snakemake grid output directory (no trailing slash:
+# a symlink is a file to git)
+examples/grids
 examples/**/*.ecsv
 examples/**/*.csv
 examples/**/*.dat

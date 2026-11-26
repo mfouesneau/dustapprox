@@ -156,6 +156,8 @@ class PrecomputedModel:
         if location is None:
             location = _DATA_PATH_
         self._info = None
+        # glob pattern the cached ``_info`` was built with
+        self._info_pattern = "/**/*.ecsv"
         self.location = location
 
     def get_models_info(
@@ -171,7 +173,7 @@ class PrecomputedModel:
         info : list of ModelInfo
             The list of model information structures.
         """
-        if self._info is not None:
+        if self._info is not None and glob_pattern == self._info_pattern:
             return self._info
 
         location = self.location
@@ -183,6 +185,7 @@ class PrecomputedModel:
             minfo._source_library = self
             info.append(minfo)
         self._info = info
+        self._info_pattern = glob_pattern
         return info
 
     def _get_file_info(self, fname: str) -> dict:
@@ -304,9 +307,12 @@ class PrecomputedModel:
                 for pbname in info["passbands"]
             ]
 
+        # only the kind lookup may turn a KeyError into NotImplementedError;
+        # a KeyError from from_file (e.g. unknown passband) must propagate.
         try:
-            return kinds[model_kind].from_file(fname_, passband=passband)
+            model_cls = kinds[model_kind]
         except KeyError:
             raise NotImplementedError(
                 f"Model kind {model_kind} not implemented."
-            )
+            ) from None
+        return model_cls.from_file(fname_, passband=passband)

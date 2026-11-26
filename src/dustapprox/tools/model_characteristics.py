@@ -195,10 +195,9 @@ class ModelCharacteristicsRunner:
             )
 
             plt.tight_layout()
-            plt.savefig(f"model_characteristics_2_{pb.replace('/', '_')}.png")
-            print(
-                f"   - Saved model_characteristics_2_{pb.replace('/', '_')}.png"
-            )
+            fname = _figure_name(2, model)
+            plt.savefig(fname)
+            print(f"   - Saved {fname}")
             if close_figure:
                 plt.close()
 
@@ -232,12 +231,20 @@ class ModelCharacteristicsRunner:
                 va="center",
                 fontweight="bold",
             )
-            plt.savefig(f"model_characteristics_1_{pb.replace('/', '_')}.png")
-            print(
-                f"   - Saved model_characteristics_1_{pb.replace('/', '_')}.png"
-            )
+            fname = _figure_name(1, model)
+            plt.savefig(fname)
+            print(f"   - Saved {fname}")
             if close_figure:
                 plt.close()
+
+
+def _figure_name(kind: int, model: models.BaseModel) -> str:
+    """Figure filename unique per extinction curve and passband."""
+    extinction = model.meta.get("extinction", {}).get("source", "unknown")
+    name = f"{extinction}_{model.name}"  # pyright: ignore
+    for char in "/ ()":
+        name = name.replace(char, "_")
+    return f"model_characteristics_{kind:d}_{name}.png"
 
 
 def generate_small_kurucz_testgrid(
@@ -475,7 +482,11 @@ def run_model_characteristics(
     )
     r = ModelCharacteristicsRunner(
         library_path="precomputed",
-        library_selection={"passband": passbands},
+        # restrict to the curve the test grid is computed with
+        library_selection={
+            "passband": passbands,
+            "extinction": extinction_curve,
+        },
         testdata_path=str(testdata_path),
     )
 
