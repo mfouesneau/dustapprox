@@ -56,7 +56,6 @@ model should explain well the data while being simple.
 import warnings
 from typing import (
     Any,
-    Generator,
     List,
     Literal,
     Optional,
@@ -73,6 +72,26 @@ from sklearn.preprocessing import PolynomialFeatures
 
 from ..io import ecsv
 from .basemodel import BaseModel
+
+
+def _training_data(
+    r: DataFrame, features: Sequence[str], label: str
+) -> tuple[DataFrame, Series]:
+    """Training inputs and target ``kx = label / A0`` for rows with A0 > 0.
+
+    If ``teff`` is among the features, it is replaced by
+    ``teffnorm = teff / 5040 K``.
+    """
+    features = list(features)
+    subset = cast(DataFrame, r[[label, *features]])
+    # kx = Ax / A0 is undefined at A0 = 0: drop those rows (not NaN them).
+    subset = subset[subset["A0"] > 0]
+    xdata = subset[features].copy()
+    if "teff" in xdata.columns:
+        xdata["teffnorm"] = xdata["teff"] / 5040.0
+        xdata = xdata.drop(columns="teff")
+    ydata = subset[label] / subset["A0"]
+    return xdata, ydata
 
 
 def approx_model(
@@ -109,23 +128,13 @@ def approx_model(
 
     """
     from sklearn.linear_model import LassoLarsIC
-    from sklearn.metrics import mean_squared_error, median_absolute_error
+    from sklearn.metrics import median_absolute_error, root_mean_squared_error
 
     if input_parameters is None:
         input_parameters = "teff logg feh A0 alpha".split()
-    input_parameters = list(input_parameters)
-    predict_parameter = "Ax"
-
-    col_subset = [predict_parameter] + input_parameters
-    subset: DataFrame = cast(DataFrame, r[r.passband == passband][col_subset])
-    subset = subset.where(subset["A0"] > 0)
-
-    xdata = subset[input_parameters]
-    # replace teff by teffnorm = teff / 5040K
-    xdata["teffnorm"] = xdata["teff"] / 5040.0
-    xdata.drop(columns="teff", inplace=True)
-    ydata = subset[predict_parameter]
-    ydata /= subset["A0"]
+    xdata, ydata = _training_data(
+        cast(DataFrame, r[r.passband == passband]), input_parameters, "Ax"
+    )
 
     # the common method
     poly = PolynomialFeatures(
@@ -142,7 +151,7 @@ def approx_model(
     pred = regr.predict(expand)
 
     mae = median_absolute_error(ydata, pred)
-    rmse = mean_squared_error(ydata, pred)
+    rmse = root_mean_squared_error(ydata, pred)
     stddev = np.std(pred - ydata)
     mean = np.mean(pred - ydata)
 
@@ -183,15 +192,15 @@ def approx_model(
     }
 
 
-def quick_plot_models(
-    r: DataFrame, **kwargs
-) -> Generator[DataFrame, None, None]:
-    """Plot diagnostic plots for the models.
+def quick_plot_models(r: DataFrame, **kwargs) -> DataFrame:
+    """Fit every passband and plot diagnostic plots for the models.
 
     Parameters
     ----------
     r : DataFrame
         DataFrame with the passband grid data.
+    **kwargs
+        passed to :func:`approx_model`
 
     Returns
     -------
@@ -220,69 +229,70 @@ def quick_plot_models(
             ]
         )
 
-        res = DataFrame(
-            data,
-            columns=["passband"]
-            + list(coeff_names)
-            + ["mae", "rmse", "mean", "stddev"],  # pyright: ignore / dumb
-        )
+    res = DataFrame(
+        data,
+        columns=["passband"]
+        + list(coeff_names)
+        + ["mae", "rmse", "mean", "stddev"],  # pyright: ignore / dumb
+    )
 
-        image = res[res.columns[1:]].to_numpy().T
+    image = res[res.columns[1:]].to_numpy().T
 
-        plt.figure()
-        subdata = image[-4:]
+    plt.figure()
+    subdata = image[-4:]
 
-        plt.plot(subdata[0], label="mae")
-        plt.plot(subdata[1], label="rmse")
-        plt.plot(subdata[2], label="mean")
-        plt.plot(subdata[3], label="stddev")
-        plt.legend(loc="best", frameon=False)
+    plt.plot(subdata[0], label="mae")
+    plt.plot(subdata[1], label="rmse")
+    plt.plot(subdata[2], label="mean")
+    plt.plot(subdata[3], label="stddev")
+    plt.legend(loc="best", frameon=False)
+    plt.xticks(np.arange(len(names)), labels=names, rotation=90)
+    plt.xlabel("passband")
+    plt.ylabel("residual statistics")
+    plt.tight_layout()
+
+    image = np.ma.masked_where(np.abs(image) < 1e-5, image)
+    subdata = image[:-4]
+    shape = subdata.shape
+    # percentiles of the unmasked coefficients (np.percentile ignores masks)
+    values = subdata.compressed()
+    vmin, vmax = np.percentile(values, [10, 90]) if values.size else (-1, 1)
+    if (vmin < 0) and (vmax > 0):
+        vmin = -1 * max(abs(vmin), vmax)
+        vmax = -vmin
+    cmap = plt.colormaps["RdYlBu"]
+    cmap.set_bad("0.5", 1.0)
+    imshow_kwargs = dict(
+        vmin=vmin,
+        vmax=vmax,
+        cmap=cmap,
+        interpolation="nearest",
+        aspect="auto",
+    )
+    if shape[0] < shape[1]:
+        figsize = (len(names) * 0.8, len(coeff_names) * 0.5)
+    else:
+        figsize = (len(coeff_names) * 0.25, len(names) * 0.8)
+
+    plt.figure(figsize=(max(figsize[0], 6), max(figsize[1], 4)))
+    if shape[0] < shape[1]:
+        plt.imshow(subdata, **imshow_kwargs)  # pyright: ignore / dumb
         plt.xticks(np.arange(len(names)), labels=names, rotation=90)
+        plt.yticks(np.arange(len(coeff_names)), labels=coeff_names)
         plt.xlabel("passband")
-        plt.ylabel("residual statistics")
-        plt.tight_layout()
-
-        image = np.ma.masked_where(np.abs(image) < 1e-5, image)
-        subdata = image[:-4]
-        shape = subdata.shape
-        vmin = np.percentile(subdata, 10)
-        vmax = np.percentile(subdata, 90)
-        if (vmin < 0) and (vmax > 0):
-            vmin = -1 * max(abs(vmin), vmax)
-            vmax = -vmin
-        cmap = plt.colormaps["RdYlBu"]
-        cmap.set_bad("0.5", 1.0)
-        imshow_kwargs = dict(
-            vmin=vmin,
-            vmax=vmax,
-            cmap=cmap,
-            interpolation="nearest",
-            aspect="auto",
+        plt.ylabel("features")
+    else:
+        plt.imshow(subdata.T, **imshow_kwargs)
+        plt.yticks(np.arange(len(names)), labels=names)
+        plt.xticks(
+            np.arange(len(coeff_names)), labels=coeff_names, rotation=90
         )
-        if shape[0] < shape[1]:
-            figsize = (len(names) * 0.8, len(coeff_names) * 0.5)
-        else:
-            figsize = (len(coeff_names) * 0.25, len(names) * 0.8)
+        plt.ylabel("passband")
+        plt.xlabel("features")
+    plt.colorbar(extend="both").set_label("coefficient")
+    plt.tight_layout()
 
-        plt.figure(figsize=(max(figsize[0], 6), max(figsize[1], 4)))
-        if shape[0] < shape[1]:
-            plt.imshow(subdata, **imshow_kwargs)  # pyright: ignore / dumb
-            plt.xticks(np.arange(len(names)), labels=names, rotation=90)
-            plt.yticks(np.arange(len(coeff_names)), labels=coeff_names)
-            plt.xlabel("passband")
-            plt.ylabel("features")
-        else:
-            plt.imshow(subdata.T, **kwargs)
-            plt.yticks(np.arange(len(names)), labels=names)
-            plt.xticks(
-                np.arange(len(coeff_names)), labels=coeff_names, rotation=90
-            )
-            plt.ylabel("passband")
-            plt.xlabel("features")
-        plt.colorbar(extend="both").set_label("coefficient")
-        plt.tight_layout()
-
-        yield res
+    return res
 
 
 class PolynomialModel(BaseModel):
@@ -369,7 +379,8 @@ class PolynomialModel(BaseModel):
             self.name, object.__repr__(self)
         )
         txt += """   from: {:s}""".format(", ".join(self.feature_names or []))
-        txt += f"""   polynomial degree: {self.degree_:d}"""
+        degree = "not fitted" if self.degree_ is None else f"{self.degree_:d}"
+        txt += f"""   polynomial degree: {degree}"""
         return txt
 
     def fit(
@@ -398,7 +409,10 @@ class PolynomialModel(BaseModel):
             If None, 'teff logg feh A0 alpha' parameters are used.
         """
         from sklearn.linear_model import LassoLarsIC
-        from sklearn.metrics import mean_squared_error, median_absolute_error
+        from sklearn.metrics import (
+            median_absolute_error,
+            root_mean_squared_error,
+        )
 
         if features is None:
             # features = 'teff A0'.split()
@@ -409,18 +423,7 @@ class PolynomialModel(BaseModel):
         if "A0" not in features:
             raise AttributeError("field `A0` expected in the input data.")
 
-        features = list(features)
-
-        col_subset = [label] + features
-        subset: DataFrame = cast(DataFrame, df[col_subset])
-        subset = subset.where(subset["A0"] > 0)
-
-        xdata = subset[features]
-        # replace teff by teffnorm = teff / 5040K
-        xdata["teffnorm"] = xdata["teff"] / 5040.0
-        xdata.drop(columns="teff", inplace=True)
-        ydata = subset[label]
-        ydata /= subset["A0"]
+        xdata, ydata = _training_data(df, features, label)
 
         # the common method
         poly = PolynomialFeatures(
@@ -436,7 +439,7 @@ class PolynomialModel(BaseModel):
         pred = regr.predict(expand)
 
         mae = median_absolute_error(ydata, pred)
-        rmse = mean_squared_error(ydata, pred)
+        rmse = root_mean_squared_error(ydata, pred)
         stddev = np.std(pred - ydata)
         mean = np.mean(pred - ydata)
 
@@ -604,6 +607,11 @@ class PolynomialModel(BaseModel):
         model._set_transformer(**model_attrs)
 
         # get regression coefficients
+        if passband not in data.index:
+            raise KeyError(
+                f"Passband {passband!r} not found in {filename}. "
+                f"Available: {', '.join(map(str, data.index))}"
+            )
         coeffs = data.loc[passband]
         transformed_names = model.get_transformed_feature_names()
         if transformed_names is None:
@@ -611,8 +619,8 @@ class PolynomialModel(BaseModel):
         else:
             model.coeffs_ = coeffs[transformed_names]
 
-        # get stats if provided
-        keys = "mae,rmse,mean,stddev".split(",")
+        # get stats if provided (same column names as written by to_pandas)
+        keys = "mae,rmse,mean_residuals,std_residuals".split(",")
         try:
             stats = data.loc[passband][keys]  # pyright: ignore / dumb typing here
             for key in keys:
