@@ -192,6 +192,11 @@ def compute_photometric_grid(
         Dataframe with the photometric values for each passband
     """
 
+    # get model file list (before any passband download: fail fast, offline)
+    models = glob(sources)
+    if not models:
+        raise ValueError(f"No atmosphere model files match {sources!r}.")
+
     # Load relevant passbands
     which_filters = which_filters or DEFAULT_FILTERS
     if not isinstance(which_filters[0], Filter):
@@ -212,9 +217,6 @@ def compute_photometric_grid(
         A0 = DEFAULT_A0
     if apfields is None:
         apfields = DEFAULT_APFIELDS
-
-    # get model file list
-    models = glob(sources)
 
     # trick to get progress bar with joblib+tqdm
     res = [
