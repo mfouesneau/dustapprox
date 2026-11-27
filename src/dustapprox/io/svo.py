@@ -218,7 +218,7 @@ class SVOSpectrum:
 
     filename: str
     """The source path and filename of the spectrum."""
-    units = tuple[str, str]
+    units: tuple[str, str]
     """The units of the wavelength and flux."""
     meta: dict[str, Any]
     """The metadata of the spectrum (e.g. stellar parameters)."""

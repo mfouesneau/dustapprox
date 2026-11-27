@@ -241,6 +241,9 @@ class TestEdgeCasesAndBugs:
             attr for attr in dir(dustapprox) if not attr.startswith("_")
         ]
 
+        if not public_attrs:
+            pytest.fail("no public attributes in package.")
+
         # Should mainly export __VERSION__ and possibly submodules
         # Not checking exact count as it may vary
         assert "__VERSION__" in dir(dustapprox)

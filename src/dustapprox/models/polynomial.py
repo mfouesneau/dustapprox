@@ -386,7 +386,7 @@ class PolynomialModel(BaseModel):
         self,
         df: DataFrame,
         features: Union[Sequence[str], None] = None,
-        label: str = "Ax",
+        label: str | None = None,
         degree: int = 3,
         interaction_only: bool = False,
     ):
@@ -644,6 +644,5 @@ class PolynomialModel(BaseModel):
     def to_ecsv(self, fname: str, **meta):
         """Export model into an ECSV file"""
         df = self.to_pandas()
-        meta = df.attrs
-        meta.update(meta)
+        meta.update(df.attrs)
         ecsv.write(df, fname, **meta)  # pyright: ignore
